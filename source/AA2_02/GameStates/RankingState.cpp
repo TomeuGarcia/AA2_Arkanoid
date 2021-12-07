@@ -1,6 +1,6 @@
 #include "RankingState.h"
 
-RankingState::RankingState(Player* player1) : GameState(), _player1(player1)
+RankingState::RankingState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1)
 {
 }
 
@@ -17,7 +17,7 @@ void RankingState::DoStart()
 bool RankingState::Update(float elapsedTime)
 {
 	std::cout << "RankingState::Update\n";
-	if (_player1->GetController()->GetButtonDown(ActionName::RANKING)) {
+	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
 		_nextState = GameStates::MAIN_MENU;
 		return true;
 	}

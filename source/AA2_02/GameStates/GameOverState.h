@@ -3,11 +3,13 @@
 
 class GameOverState : public GameState {
 public:
-	GameOverState();
+	GameOverState(SDL_Renderer* renderer, Player* player1);
 	~GameOverState();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);
 	virtual void Render() const;
 	virtual void End();
 
+private:
+	Player* _player1;
 };

@@ -54,6 +54,7 @@ private:
 	SDL_Renderer* _renderer;
 
 	Player* _player1;
+	Player* _player2;
 
 
 	//Vector2D<int> _mousePosition;

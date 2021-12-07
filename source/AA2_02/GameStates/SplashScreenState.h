@@ -3,7 +3,7 @@
 
 class SplashScreenState : public GameState {
 public:
-	SplashScreenState();
+	SplashScreenState(SDL_Renderer* renderer);
 	~SplashScreenState();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);

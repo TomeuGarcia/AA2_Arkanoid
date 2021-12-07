@@ -2,7 +2,6 @@
 
 Player::Player() : _controller(nullptr)
 {
-	InitController();
 }
 
 Player::~Player()
@@ -10,15 +9,12 @@ Player::~Player()
 	delete _controller;
 }
 
-void Player::InitController()
+void Player::InitController(const int& moveUp, const int& moveDown)
 {
 	_controller = new Keyboard("keyboard1");
-	_controller->AddActionKey(ActionName::RIGHT, SDLK_RIGHT);
-	_controller->AddActionKey(ActionName::LEFT, SDLK_LEFT);
-	_controller->AddAxisActionKeys(AxisName::HORIZONTAL, SDLK_RIGHT, SDLK_LEFT);
-	_controller->AddActionKey(ActionName::UP, SDLK_UP);
-	_controller->AddActionKey(ActionName::DOWN, SDLK_DOWN);
-	_controller->AddAxisActionKeys(AxisName::VERTICAL, SDLK_UP, SDLK_DOWN);
+	_controller->AddActionKey(ActionName::UP, moveUp);
+	_controller->AddActionKey(ActionName::DOWN, moveDown);
+	_controller->AddAxisActionKeys(AxisName::VERTICAL, moveUp, moveDown);
 
 	_controller->AddActionKey(ActionName::QUIT, SDLK_ESCAPE);
 	_controller->AddActionKey(ActionName::PAUSE, SDLK_p);

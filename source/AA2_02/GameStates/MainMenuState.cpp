@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 
 
-MainMenuState::MainMenuState(Player* player1) : GameState(), _player1(player1)
+MainMenuState::MainMenuState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1)
 {
 }
 

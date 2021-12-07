@@ -8,7 +8,7 @@ public:
 	Player();
 	~Player();
 
-	void InitController();
+	void InitController(const int& moveUp, const int& moveDown);
 	Controller* GetController() const;
 
 private:

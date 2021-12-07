@@ -1,7 +1,7 @@
 #include "GamePausedState.h"
 
 
-GamePausedState::GamePausedState(Player* player1) : GameState(), _player1(player1)
+GamePausedState::GamePausedState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1)
 {
 }
 

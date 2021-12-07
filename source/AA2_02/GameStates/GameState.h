@@ -8,7 +8,7 @@ enum class GameStates{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME_RUNNING, GAM
 class GameState {
 
 public:
-	GameState() : _nextState(GameStates::NONE) {}
+	GameState(SDL_Renderer* renderer) : _nextState(GameStates::NONE), _renderer(renderer) {}
 	virtual ~GameState() = default;
 
 	void Start() {
@@ -25,5 +25,5 @@ protected:
 	virtual void DoStart() = 0;
 
 	GameStates _nextState;
-
+	SDL_Renderer* _renderer;
 };

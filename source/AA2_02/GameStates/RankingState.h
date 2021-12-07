@@ -3,7 +3,7 @@
 
 class RankingState : public GameState {
 public:
-	RankingState(Player* player1);
+	RankingState(SDL_Renderer* renderer, Player* player1);
 	~RankingState();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);

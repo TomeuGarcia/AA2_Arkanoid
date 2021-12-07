@@ -1,6 +1,6 @@
 #include "SplashScreenState.h"
 
-SplashScreenState::SplashScreenState() : GameState()
+SplashScreenState::SplashScreenState(SDL_Renderer* renderer) : GameState(renderer)
 {
 }
 

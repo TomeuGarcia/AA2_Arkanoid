@@ -3,6 +3,7 @@
 Game::~Game()
 {
 	delete _player1;
+	delete _player2;
 
 	Release();
 }
@@ -28,12 +29,12 @@ void Game::InitStates()
 {
 	_isStateFinished = false;
 
-	_states[GameStates::SPLASH_SCREEN] = new SplashScreenState;
-	_states[GameStates::MAIN_MENU] = new MainMenuState(_player1);
-	_states[GameStates::RANKING] = new RankingState(_player1);
-	_states[GameStates::GAME_RUNNING] = new GameRunningState(_player1);
-	_states[GameStates::GAME_PAUSED] = new GamePausedState(_player1);
-	_states[GameStates::GAME_OVER] = new GameOverState();
+	_states[GameStates::SPLASH_SCREEN] = new SplashScreenState(_renderer);
+	_states[GameStates::MAIN_MENU] = new MainMenuState(_renderer, _player1);
+	_states[GameStates::RANKING] = new RankingState(_renderer, _player1);
+	_states[GameStates::GAME_RUNNING] = new GameRunningState(_renderer, _player1, _player2);
+	_states[GameStates::GAME_PAUSED] = new GamePausedState(_renderer, _player1);
+	_states[GameStates::GAME_OVER] = new GameOverState(_renderer, _player1);
 
 	_currentGameState = _states[GameStates::SPLASH_SCREEN];
 	_currentGameState->Start();
@@ -88,6 +89,10 @@ void Game::InitAudioSDL()
 void Game::InitPlayers()
 {
 	_player1 = new Player;
+	_player1->InitController(SDLK_UP, SDLK_DOWN);
+
+	_player2 = new Player;
+	_player2->InitController(SDLK_w, SDLK_s);
 }
 
 

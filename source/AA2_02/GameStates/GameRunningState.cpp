@@ -1,7 +1,7 @@
 #include "GameRunningState.h"
 
 
-GameRunningState::GameRunningState(Player* player1) : GameState(), _player1(player1)
+GameRunningState::GameRunningState(SDL_Renderer* renderer, Player* player1, Player* player2) : GameState(renderer), _player1(player1), _player2(player2)
 {
 }
 

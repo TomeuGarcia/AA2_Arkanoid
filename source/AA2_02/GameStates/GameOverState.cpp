@@ -1,7 +1,7 @@
 #include "GameOverState.h"
 
 
-GameOverState::GameOverState() : GameState()
+GameOverState::GameOverState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1)
 {
 }
 
@@ -18,6 +18,10 @@ void GameOverState::DoStart()
 bool GameOverState::Update(float elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
+	if (_player1->GetController()->GetButtonDown(ActionName::START)) {
+		_nextState = GameStates::RANKING;
+		return true;
+	}
 	return false;
 }
 

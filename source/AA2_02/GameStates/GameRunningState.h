@@ -3,7 +3,7 @@
 
 class GameRunningState : public GameState {
 public:
-	GameRunningState(Player* player1);
+	GameRunningState(SDL_Renderer* renderer, Player* player1, Player* player2);
 	~GameRunningState();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);
@@ -12,4 +12,5 @@ public:
 
 private:
 	Player* _player1;
+	Player* _player2;
 };
