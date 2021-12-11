@@ -153,9 +153,11 @@ void Game::Update(const double elapsedTime)
 
 void Game::Render()
 {
-	SDL_RenderClear(_renderer);
+	//SDL_RenderClear(_renderer);
 
-	SDL_RenderPresent(_renderer);
+	_currentGameState->Render();
+
+	//SDL_RenderPresent(_renderer);
 }
 
 

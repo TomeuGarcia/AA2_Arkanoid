@@ -32,6 +32,7 @@ bool GameRunningState::Update(float elapsedTime)
 void GameRunningState::Render() const
 {
 	std::cout << "GameRunningState::Render\n";
+
 }
 
 void GameRunningState::End()
