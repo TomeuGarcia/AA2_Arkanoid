@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "../GameScenes/GameScene.h"
 
 enum class GameStates { NONE, RUNNING, PAUSED, GAME_OVER, QUIT };
 

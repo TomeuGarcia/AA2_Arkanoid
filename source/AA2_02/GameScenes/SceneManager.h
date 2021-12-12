@@ -12,13 +12,12 @@
 #include "../Inputs/InputHandler.h"
 #include "../Inputs/Keyboard.h"
 
-#include "../GameStates/Scene.h"
-#include "../GameStates/SplashScreenState.h"
-#include "../GameStates/MainMenuState.h"
-#include "../GameStates/RankingState.h"
-#include "../GameStates/GameRunningState.h"
-#include "../GameStates/GamePausedState.h"
-#include "../GameStates/GameOverState.h"
+#include "Scene.h"
+#include "SplashScreenScene.h"
+#include "MainMenuScene.h"
+#include "RankingScene.h"
+#include "GameScene.h"
+
 
 //#include "CollisionsHelper.h"
 //#include "Vector2D.h"

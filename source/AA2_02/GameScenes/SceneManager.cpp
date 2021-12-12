@@ -29,10 +29,8 @@ void SceneManager::InitStates()
 
 	_scenes[Scenes::SPLASH_SCREEN] = new SplashScreenScene(_renderer);
 	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer, _player1);
-	_scenes[Scenes::RANKING] = new RankingState(_renderer, _player1);
-	_scenes[Scenes::GAME_RUNNING] = new Scene(_renderer, _player1, _player2);
-	_scenes[Scenes::GAME_PAUSED] = new GamePausedState(_renderer, _player1);
-	_scenes[Scenes::GAME_OVER] = new GameOverState(_renderer, _player1);
+	_scenes[Scenes::RANKING] = new RankingScene(_renderer, _player1);
+	_scenes[Scenes::GAME] = new GameScene(_renderer, _player1, _player2);
 
 	_currentScene = _scenes[Scenes::SPLASH_SCREEN];
 	_currentScene->Start();

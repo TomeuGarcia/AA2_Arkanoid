@@ -1,9 +1,9 @@
 #pragma once
 #include "Scene.h"
-#include "GameState.h"
-#include "GameRunningState.h"
-#include "GamePausedState.h"
-#include "GameOverState.h"
+#include "../GameStates/GameState.h"
+#include "../GameStates/GameRunningState.h"
+#include "../GameStates/GamePausedState.h"
+#include "../GameStates/GameOverState.h"
 #include <map>
 
 
