@@ -25,6 +25,15 @@
     <Filter Include="Inputs">
       <UniqueIdentifier>{cecac248-d171-406f-9dc1-dbe7bee61fc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Brick">
+      <UniqueIdentifier>{2e31976c-2bc0-4c99-9e1c-47782a01858c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{c20bf001-b173-4956-a64f-1cd114515fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders">
+      <UniqueIdentifier>{6016f8ac-1854-4eda-a455-1067e0ac7579}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -115,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Vector2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollisionsHelper.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\Brick.h">
+      <Filter>Brick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
