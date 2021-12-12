@@ -1,9 +1,8 @@
 #pragma once
-#include <iostream>
-#include "../Inputs/InputHandler.h"
-#include "../Player/Player.h"
+#include "Scene.h"
 
-enum class GameStates{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME_RUNNING, GAME_PAUSED, GAME_OVER};
+enum class GameStates { NONE, RUNNING, PAUSED, GAME_OVER, QUIT };
+
 
 class GameState {
 
@@ -12,7 +11,7 @@ public:
 	virtual ~GameState() = default;
 
 	void Start() {
-		_nextState = GameStates::NONE;
+		_nextState = GameStates::RUNNING;
 		DoStart();
 	}
 	virtual bool Update(float elapsedTime) = 0;

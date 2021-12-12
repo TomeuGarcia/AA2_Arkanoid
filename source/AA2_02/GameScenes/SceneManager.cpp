@@ -1,14 +1,12 @@
-#include "Game.h"
+#include "SceneManager.h"
 
-Game::~Game()
+SceneManager::~SceneManager()
 {
 	delete _player1;
 	delete _player2;
-
-	Release();
 }
 
-void Game::Init()
+void SceneManager::Init()
 {
 	InitSDL();
 	InitWindowAndRenderer();
@@ -25,22 +23,22 @@ void Game::Init()
 	InitStates();
 }
 
-void Game::InitStates()
+void SceneManager::InitStates()
 {
-	_isStateFinished = false;
+	_isSceneFinished = false;
 
-	_states[GameStates::SPLASH_SCREEN] = new SplashScreenState(_renderer);
-	_states[GameStates::MAIN_MENU] = new MainMenuState(_renderer, _player1);
-	_states[GameStates::RANKING] = new RankingState(_renderer, _player1);
-	_states[GameStates::GAME_RUNNING] = new GameRunningState(_renderer, _player1, _player2);
-	_states[GameStates::GAME_PAUSED] = new GamePausedState(_renderer, _player1);
-	_states[GameStates::GAME_OVER] = new GameOverState(_renderer, _player1);
+	_scenes[Scenes::SPLASH_SCREEN] = new SplashScreenScene(_renderer);
+	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer, _player1);
+	_scenes[Scenes::RANKING] = new RankingState(_renderer, _player1);
+	_scenes[Scenes::GAME_RUNNING] = new Scene(_renderer, _player1, _player2);
+	_scenes[Scenes::GAME_PAUSED] = new GamePausedState(_renderer, _player1);
+	_scenes[Scenes::GAME_OVER] = new GameOverState(_renderer, _player1);
 
-	_currentGameState = _states[GameStates::SPLASH_SCREEN];
-	_currentGameState->Start();
+	_currentScene = _scenes[Scenes::SPLASH_SCREEN];
+	_currentScene->Start();
 }
 
-void Game::InitSDL()
+void SceneManager::InitSDL()
 {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	bool isInitialized = result >= 0;
@@ -50,7 +48,7 @@ void Game::InitSDL()
 	}
 }
 
-void Game::InitWindowAndRenderer()
+void SceneManager::InitWindowAndRenderer()
 {
 	int result = SDL_CreateWindowAndRenderer(512, 512, SDL_WINDOW_SHOWN, &_window, &_renderer);
 	bool isInitialized = result >= 0;
@@ -60,7 +58,7 @@ void Game::InitWindowAndRenderer()
 	}
 }
 
-void Game::InitAudioSDL()
+void SceneManager::InitAudioSDL()
 {
 	//Mix_OpenAudio(22050, AUDIO_S16, 2, 4096); // Inicia Audio
 	//_audio = Mix_LoadWAV("resources/sound.wav");
@@ -86,7 +84,7 @@ void Game::InitAudioSDL()
 
 }
 
-void Game::InitPlayers()
+void SceneManager::InitPlayers()
 {
 	_player1 = new Player;
 	_player1->InitController(SDLK_UP, SDLK_DOWN);
@@ -97,7 +95,7 @@ void Game::InitPlayers()
 
 
 
-void Game::InitFont()
+void SceneManager::InitFont()
 {
 	//TTF_Init();
 	//TTF_Font* font = TTF_OpenFont("resources/Roboto-Black.ttf", 32);
@@ -124,7 +122,7 @@ void Game::InitFont()
 
 
 
-void Game::HandleEvents()
+void SceneManager::HandleEvents()
 {
 	SDL_Event event;
 
@@ -137,31 +135,31 @@ void Game::HandleEvents()
 	}
 }
 
-void Game::Update(const double elapsedTime)
+void SceneManager::Update(const double elapsedTime)
 {
-	_isStateFinished = _currentGameState->Update(elapsedTime);
-	if (_isStateFinished) {
+	_isSceneFinished = _currentScene->Update(elapsedTime);
+	if (_isSceneFinished) {
 		// Acabar estat actual
-		_currentGameState->End();
+		_currentScene->End();
 		// Canviar d'estat
-		_currentGameState = _states[_currentGameState->GetNextState()];
+		_currentScene = _scenes[_currentScene->GetNextState()];
 		// Començar nou estat
-		_currentGameState->Start();
+		_currentScene->Start();
 	}
 }
 
 
-void Game::Render()
+void SceneManager::Render()
 {
 	//SDL_RenderClear(_renderer);
 
-	_currentGameState->Render();
+	_currentScene->Render();
 
 	//SDL_RenderPresent(_renderer);
 }
 
 
-void Game::Release()
+void SceneManager::Release()
 {
 	Mix_CloseAudio();
 
@@ -172,7 +170,7 @@ void Game::Release()
 	SDL_Quit();
 }
 
-bool Game::IsRunning()
+bool SceneManager::IsRunning()
 {
 	return _isRunning;
 }

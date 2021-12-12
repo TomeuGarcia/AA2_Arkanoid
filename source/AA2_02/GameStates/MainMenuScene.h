@@ -1,10 +1,10 @@
 #pragma once
-#include "GameState.h"
+#include "GameScene.h"
 
-class MainMenuState : public GameState {
+class MainMenuScene : public Scene {
 public:
-	MainMenuState(SDL_Renderer* renderer, Player* player1);
-	~MainMenuState();
+	MainMenuScene(SDL_Renderer* renderer, Player* player1);
+	~MainMenuScene();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);
 	virtual void Render() const;

@@ -12,7 +12,7 @@
 #include "../Inputs/InputHandler.h"
 #include "../Inputs/Keyboard.h"
 
-#include "../GameStates/GameState.h"
+#include "../GameStates/Scene.h"
 #include "../GameStates/SplashScreenState.h"
 #include "../GameStates/MainMenuState.h"
 #include "../GameStates/RankingState.h"
@@ -23,11 +23,11 @@
 //#include "CollisionsHelper.h"
 //#include "Vector2D.h"
 
-class Game {
+class SceneManager {
 
 public:
-	Game() = default;
-	~Game();
+	SceneManager() = default;
+	~SceneManager();
 
 	void Init();
 	void InitStates();
@@ -46,9 +46,9 @@ public:
 	bool IsRunning();
 
 private:
-	GameState* _currentGameState;
-	std::map<GameStates, GameState*> _states;
-	bool _isStateFinished;
+	Scene* _currentScene;
+	std::map<Scenes, Scene*> _scenes;
+	bool _isSceneFinished;
 
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;

@@ -18,7 +18,7 @@ bool GamePausedState::Update(float elapsedTime)
 {
 	std::cout << "GamePausedState::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
-		_nextState = GameStates::GAME_RUNNING;
+		_nextState = GameStates::RUNNING;
 		return true;
 	}
 

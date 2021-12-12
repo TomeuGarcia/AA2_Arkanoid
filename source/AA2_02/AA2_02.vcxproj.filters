@@ -22,6 +22,12 @@
     <Filter Include="GameStates">
       <UniqueIdentifier>{c0e86ff5-2714-463c-aa72-d8ee31d18cfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameStates\GameScenes">
+      <UniqueIdentifier>{feb8b764-2eda-4ebc-86b8-a037b3359da2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates\GameStates">
+      <UniqueIdentifier>{4ecf22e0-6ad9-46f0-943f-94b5ea38bc23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inputs\InputHandler.cpp">
@@ -36,7 +42,7 @@
     <ClCompile Include="Inputs\Event.cpp">
       <Filter>Inputs</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Game.cpp">
+    <ClCompile Include="Game\SceneManager.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -45,23 +51,26 @@
     <ClCompile Include="Player\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameStates\RankingScene.cpp">
+      <Filter>GameStates\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\SplashScreenScene.cpp">
+      <Filter>GameStates\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\MainMenuScene.cpp">
+      <Filter>GameStates\GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameScene.cpp">
+      <Filter>GameStates\GameScenes</Filter>
+    </ClCompile>
     <ClCompile Include="GameStates\GameOverState.cpp">
-      <Filter>GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStates\GameRunningState.cpp">
-      <Filter>GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStates\MainMenuState.cpp">
-      <Filter>GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStates\RankingState.cpp">
-      <Filter>GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStates\SplashScreenState.cpp">
-      <Filter>GameStates</Filter>
+      <Filter>GameStates\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="GameStates\GamePausedState.cpp">
-      <Filter>GameStates</Filter>
+      <Filter>GameStates\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameRunningState.cpp">
+      <Filter>GameStates\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +83,7 @@
     <ClInclude Include="Inputs\InputHandler.h">
       <Filter>Inputs</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Game.h">
+    <ClInclude Include="Game\SceneManager.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Inputs\Keyboard.h">
@@ -83,26 +92,32 @@
     <ClInclude Include="Player\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\GameOverState.h">
-      <Filter>GameStates</Filter>
+    <ClInclude Include="GameStates\Scene.h">
+      <Filter>GameStates\GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\GameRunningState.h">
-      <Filter>GameStates</Filter>
+    <ClInclude Include="GameStates\SplashScreenScene.h">
+      <Filter>GameStates\GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\GameState.h">
-      <Filter>GameStates</Filter>
+    <ClInclude Include="GameStates\RankingScene.h">
+      <Filter>GameStates\GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\MainMenuState.h">
-      <Filter>GameStates</Filter>
+    <ClInclude Include="GameStates\MainMenuScene.h">
+      <Filter>GameStates\GameScenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates\RankingState.h">
-      <Filter>GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStates\SplashScreenState.h">
-      <Filter>GameStates</Filter>
+    <ClInclude Include="GameStates\GameScene.h">
+      <Filter>GameStates\GameScenes</Filter>
     </ClInclude>
     <ClInclude Include="GameStates\GamePausedState.h">
-      <Filter>GameStates</Filter>
+      <Filter>GameStates\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameOverState.h">
+      <Filter>GameStates\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameState.h">
+      <Filter>GameStates\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameRunningState.h">
+      <Filter>GameStates\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

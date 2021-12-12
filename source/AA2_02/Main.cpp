@@ -1,4 +1,4 @@
-#include "Game/Game.h"
+#include "Game/SceneManager.h"
 #include <exception>
 #include <chrono>
 
@@ -7,26 +7,26 @@ int main(int argc, char* args[]) {
 
 	try {
 
-		Game game = Game();
+		SceneManager sceneManager = SceneManager();
 
-		game.Init();
+		sceneManager.Init();
 
 
 		auto lastTime = std::chrono::system_clock::now();
-		while (game.IsRunning()) {
+		while (sceneManager.IsRunning()) {
 			auto currentTime = std::chrono::system_clock::now();
 			std::chrono::duration<double> elapsedTime = currentTime - lastTime;
 
-			game.HandleEvents();
+			sceneManager.HandleEvents();
 
-			game.Update(elapsedTime.count()); // Game logic goes here
+			sceneManager.Update(elapsedTime.count()); // Game logic goes here
 
-			game.Render();
+			sceneManager.Render();
 
 			lastTime = currentTime;
 		}
 
-		game.Release();
+		sceneManager.Release();
 
 	}
 	catch (std::exception& exception) {

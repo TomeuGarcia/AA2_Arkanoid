@@ -1,10 +1,10 @@
 #pragma once
-#include "GameState.h"
+#include "GameScene.h"
 
-class SplashScreenState : public GameState {
+class SplashScreenScene : public Scene {
 public:
-	SplashScreenState(SDL_Renderer* renderer);
-	~SplashScreenState();
+	SplashScreenScene(SDL_Renderer* renderer);
+	~SplashScreenScene();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);
 	virtual void Render() const;

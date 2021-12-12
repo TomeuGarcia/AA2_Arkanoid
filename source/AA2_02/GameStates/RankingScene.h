@@ -1,10 +1,10 @@
 #pragma once
-#include "GameState.h"
+#include "GameScene.h"
 
-class RankingState : public GameState {
+class RankingScene : public Scene {
 public:
-	RankingState(SDL_Renderer* renderer, Player* player1);
-	~RankingState();
+	RankingScene(SDL_Renderer* renderer, Player* player1);
+	~RankingScene();
 	virtual void DoStart();
 	virtual bool Update(float elapsedTime);
 	virtual void Render() const;

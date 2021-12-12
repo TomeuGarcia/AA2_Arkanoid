@@ -19,7 +19,7 @@ bool GameOverState::Update(float elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::START)) {
-		_nextState = GameStates::RANKING;
+		_nextState = GameStates::QUIT;
 		return true;
 	}
 	return false;
