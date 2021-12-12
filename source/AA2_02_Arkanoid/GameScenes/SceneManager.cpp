@@ -149,11 +149,7 @@ void SceneManager::Update(const double elapsedTime)
 
 void SceneManager::Render()
 {
-	//SDL_RenderClear(_renderer);
-
 	_currentScene->Render();
-
-	//SDL_RenderPresent(_renderer);
 }
 
 

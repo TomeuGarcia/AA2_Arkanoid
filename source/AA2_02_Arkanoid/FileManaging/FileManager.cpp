@@ -5,6 +5,10 @@ FileManager::FileManager() : _content(), _document() {}
 GameData* FileManager::LoadGameData(const char* filePath)
 {
 	std::ifstream file(filePath);
+	if (!file.is_open()) {
+		throw std::exception("Couldn't open config.xml file\n");
+	}
+
 	std::stringstream buffer;
 	buffer << file.rdbuf();
 	file.close();

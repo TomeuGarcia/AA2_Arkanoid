@@ -46,8 +46,8 @@ void Render::Rotate(const int& rotationAngleInDegrees)
 {
 	_rotationAngleInDegrees += rotationAngleInDegrees;
 	_rotationAngleInDegrees %= 360;
-	_rotationPivot.x = _destinationRect.x / 2;
-	_rotationPivot.y = _destinationRect.y / 2;
+	_rotationPivot.x = _destinationRect.w / 2;
+	_rotationPivot.y = _destinationRect.h / 2;
 }
 
 void Render::Rotate(const int& rotationAngleInDegrees, const SDL_Point& rotationPivot)

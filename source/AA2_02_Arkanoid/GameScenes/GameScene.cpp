@@ -51,6 +51,14 @@ void GameScene::Render() const
 {
 	std::cout << "GameGameScene::Render\n";
 
+	SDL_RenderClear(_renderer);
+
+	for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
+		(*it)->GetCurrentSprite()->Draw();
+	}
+
+	SDL_RenderPresent(_renderer);
+
 }
 
 void GameScene::End()
@@ -62,23 +70,38 @@ void GameScene::End()
 
 void GameScene::LoadGame()
 {
-	GameData* gameData = _fileManager.LoadGameData("../../../resources/XML/config.xml");
+	GameData* gameData = _fileManager.LoadGameData("../../resources/XML/config.xml");
 
 	_platformSpeed = gameData->GetPlatformSpeed();
 	_brickPoints = gameData->GetBrickPoints();
 
-	std::list<BrickData> levelBricksData = gameData->GetLevelBricks();
-	for (BrickData& brickData : levelBricksData) {
-		
-		if (brickData._brickType == BrickType::NORMAL) {
-			_bricks.push_back(new NormalBrick(brickData._x, brickData._y, GetRandomBrickPoints(brickData._brickType)));
+
+	Vector2D<int> start(0, 0);
+	int xIncrement{40};
+	int yIncrement{20};
+	Vector2D<int> end(xIncrement, yIncrement);
+
+	std::list<BrickData> levelBricksData(gameData->GetLevelBricks());
+	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {	
+		if (it->_brickType == BrickType::NORMAL) {
+			_bricks.push_back(new NormalBrick(it->_x, it->_y, GetRandomBrickPoints(it->_brickType)));
 		}
-		else if (brickData._brickType == BrickType::HEAVY) {
-			_bricks.push_back(new HeavyBrick(brickData._x, brickData._y, GetRandomBrickPoints(brickData._brickType)));
+		else if (it->_brickType == BrickType::HEAVY) {
+			_bricks.push_back(new HeavyBrick(it->_x, it->_y, GetRandomBrickPoints(it->_brickType)));
 		}
-		else if (brickData._brickType == BrickType::FIX) {
-			_bricks.push_back(new FixBrick(brickData._x, brickData._y, GetRandomBrickPoints(brickData._brickType)));
+		else if (it->_brickType == BrickType::FIX) {
+			_bricks.push_back(new FixBrick(it->_x, it->_y));
 		}
+
+
+		start = (*_bricks.rbegin())->GetPosition();
+		start.X = start.X * 40;
+		start.Y = start.Y * 40;
+		end = start + Vector2D<int>(40,20);
+		end.X;
+		end.Y;
+		(*_bricks.rbegin())->InitSprite(_renderer, start, end);
+
 	}
 
 }
