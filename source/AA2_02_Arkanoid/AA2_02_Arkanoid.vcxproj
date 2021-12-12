@@ -187,6 +187,10 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Brick\Brick.cpp" />
+    <ClCompile Include="Brick\FixBrick.cpp" />
+    <ClCompile Include="Brick\HeavyBrick.cpp" />
+    <ClCompile Include="Brick\NormalBrick.cpp" />
     <ClCompile Include="GameScenes\GameScene.cpp" />
     <ClCompile Include="GameScenes\MainMenuScene.cpp" />
     <ClCompile Include="GameScenes\RankingScene.cpp" />
@@ -204,9 +208,13 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Renders\AnimatedImage.cpp" />
     <ClCompile Include="Renders\Image.cpp" />
     <ClCompile Include="Renders\Render.cpp" />
+    <ClCompile Include="Systems\LifeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brick\Brick.h" />
+    <ClInclude Include="Brick\FixBrick.h" />
+    <ClInclude Include="Brick\HeavyBrick.h" />
+    <ClInclude Include="Brick\NormalBrick.h" />
     <ClInclude Include="GameScenes\GameScene.h" />
     <ClInclude Include="GameScenes\MainMenuScene.h" />
     <ClInclude Include="GameScenes\RankingScene.h" />
@@ -224,9 +232,11 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Physics\CollisionsHelper.h" />
     <ClInclude Include="Physics\Vector2D.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="PowerUps\PowerUp.h" />
     <ClInclude Include="Renders\AnimatedImage.h" />
     <ClInclude Include="Renders\Image.h" />
     <ClInclude Include="Renders\Render.h" />
+    <ClInclude Include="Systems\LifeSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
