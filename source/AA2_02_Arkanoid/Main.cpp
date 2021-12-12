@@ -7,6 +7,8 @@ int main(int argc, char* args[]) {
 
 	try {
 
+		srand(time(NULL));
+
 		SceneManager sceneManager = SceneManager();
 
 		sceneManager.Init();

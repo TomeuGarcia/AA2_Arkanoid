@@ -40,6 +40,9 @@
     <Filter Include="PowerUps">
       <UniqueIdentifier>{77ae2e2a-7105-43e2-b8fa-31c66b01a7ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FileManaging">
+      <UniqueIdentifier>{b113b1e0-8c5e-477d-afc5-05022230443e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -107,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="Brick\HeavyBrick.cpp">
       <Filter>Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\FileManager.cpp">
+      <Filter>FileManaging</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\GameData.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="Brick\HeavyBrick.h">
       <Filter>Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\FileManager.h">
+      <Filter>FileManaging</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\GameData.h">
+      <Filter>FileManaging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

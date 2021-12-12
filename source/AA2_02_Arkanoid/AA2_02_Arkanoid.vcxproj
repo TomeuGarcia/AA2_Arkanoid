@@ -191,6 +191,8 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Brick\FixBrick.cpp" />
     <ClCompile Include="Brick\HeavyBrick.cpp" />
     <ClCompile Include="Brick\NormalBrick.cpp" />
+    <ClCompile Include="FileManaging\FileManager.cpp" />
+    <ClCompile Include="FileManaging\GameData.cpp" />
     <ClCompile Include="GameScenes\GameScene.cpp" />
     <ClCompile Include="GameScenes\MainMenuScene.cpp" />
     <ClCompile Include="GameScenes\RankingScene.cpp" />
@@ -215,6 +217,8 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Brick\FixBrick.h" />
     <ClInclude Include="Brick\HeavyBrick.h" />
     <ClInclude Include="Brick\NormalBrick.h" />
+    <ClInclude Include="FileManaging\FileManager.h" />
+    <ClInclude Include="FileManaging\GameData.h" />
     <ClInclude Include="GameScenes\GameScene.h" />
     <ClInclude Include="GameScenes\MainMenuScene.h" />
     <ClInclude Include="GameScenes\RankingScene.h" />

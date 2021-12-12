@@ -8,6 +8,11 @@ Render::Render(SDL_Renderer* renderer, const Vector2D<int>& sourceStartCorner, c
 	SetDestinationRect(destinationStartCorner, destinationSize);
 }
 
+Vector2D<int> Render::GetSourceRectStart()
+{
+	return Vector2D<int>(_sourceRect.x, _sourceRect.y);
+}
+
 void Render::SetSourceRect(const Vector2D<int>& sourceStartCorner, const Vector2D<int>& sourceSize)
 {
 	_sourceRect.x = sourceStartCorner.X;

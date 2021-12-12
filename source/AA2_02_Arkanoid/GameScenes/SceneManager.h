@@ -18,9 +18,6 @@
 #include "GameScene.h"
 
 
-//#include "CollisionsHelper.h"
-//#include "Vector2D.h"
-
 class SceneManager {
 
 public:

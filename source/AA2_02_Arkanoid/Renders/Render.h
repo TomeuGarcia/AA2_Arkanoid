@@ -11,6 +11,8 @@ public:
 		const Vector2D<int>& destinationStartCorner, const Vector2D<int>& destinationSize);
 	virtual ~Render() = default;
 
+	Vector2D<int> GetSourceRectStart();
+
 	void SetSourceRect(const Vector2D<int>& sourceStartCorner, const Vector2D<int>& sourceSize);
 	void SetDestinationRect(const Vector2D<int>& destinationStartCorner, const Vector2D<int>& destinationSize);
 	void Init(const char* path);

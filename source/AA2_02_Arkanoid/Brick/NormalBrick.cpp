@@ -1,9 +1,18 @@
 #include "NormalBrick.h"
 
-NormalBrick::NormalBrick(const int& x, const int& y, const int& points) :Brick(x, y, points) {}
+NormalBrick::NormalBrick(const int& x, const int& y, const int& points) :Brick(x, y, points, 80) {}
 
-void NormalBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destination)
+void NormalBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart, const Vector2D<int>& destinationEnd)
 {
-	_currentSprite = new Image(renderer, Vector2D<int>(0, 0), Vector2D<int>(40, 20), destination, destination + Vector2D<int>(40, 20));
+	_currentSprite = new Image(renderer, Vector2D<int>(0, 0), _spriteSize + Vector2D<int>(0, 0), destinationStart, destinationEnd);
 	_currentSprite->Init("../../../resources/Assets/Images/bricks.jpg");
+	_currentSprite->Rotate(90);
+}
+
+void NormalBrick::NextSprite()
+{
+	Vector2D<int> currentSourceStart = _currentSprite->GetSourceRectStart();
+
+	_currentSprite->SetSourceRect(currentSourceStart + Vector2D<int>(_spriteSourceWidth, 0),
+		currentSourceStart + _spriteSize + Vector2D<int>(_spriteSourceWidth, 0));
 }

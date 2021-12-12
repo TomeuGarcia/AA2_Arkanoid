@@ -43,6 +43,12 @@ public:
         return *this;
     }
 
+    Vector2D& operator%=(T scalar) {
+        X %= scalar;
+        Y %= scalar;
+        return *this;
+    }
+
     void Normalize() {
         T length = Length();
         if (length > 0) {
