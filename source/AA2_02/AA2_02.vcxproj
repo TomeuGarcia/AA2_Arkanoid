@@ -187,13 +187,14 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameScenes\GameScene.cpp" />
+    <ClCompile Include="GameScenes\MainMenuScene.cpp" />
+    <ClCompile Include="GameScenes\RankingScene.cpp" />
+    <ClCompile Include="GameScenes\SceneManager.cpp" />
+    <ClCompile Include="GameScenes\SplashScreenScene.cpp" />
     <ClCompile Include="GameStates\GameOverState.cpp" />
     <ClCompile Include="GameStates\GamePausedState.cpp" />
     <ClCompile Include="GameStates\GameRunningState.cpp" />
-    <ClCompile Include="GameStates\GameScene.cpp" />
-    <ClCompile Include="GameStates\MainMenuScene.cpp" />
-    <ClCompile Include="GameStates\RankingScene.cpp" />
-    <ClCompile Include="GameStates\SplashScreenScene.cpp" />
     <ClCompile Include="Game\SceneManager.cpp" />
     <ClCompile Include="Inputs\Controller.cpp" />
     <ClCompile Include="Inputs\Event.cpp" />
@@ -203,15 +204,16 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Player\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameScenes\GameScene.h" />
+    <ClInclude Include="GameScenes\MainMenuScene.h" />
+    <ClInclude Include="GameScenes\RankingScene.h" />
+    <ClInclude Include="GameScenes\Scene.h" />
+    <ClInclude Include="GameScenes\SceneManager.h" />
+    <ClInclude Include="GameScenes\SplashScreenScene.h" />
     <ClInclude Include="GameStates\GameOverState.h" />
     <ClInclude Include="GameStates\GamePausedState.h" />
     <ClInclude Include="GameStates\GameRunningState.h" />
-    <ClInclude Include="GameStates\GameScene.h" />
     <ClInclude Include="GameStates\GameState.h" />
-    <ClInclude Include="GameStates\Scene.h" />
-    <ClInclude Include="GameStates\MainMenuScene.h" />
-    <ClInclude Include="GameStates\RankingScene.h" />
-    <ClInclude Include="GameStates\SplashScreenScene.h" />
     <ClInclude Include="Game\SceneManager.h" />
     <ClInclude Include="Inputs\Controller.h" />
     <ClInclude Include="Inputs\Event.h" />
