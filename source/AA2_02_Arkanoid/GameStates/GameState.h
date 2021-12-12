@@ -1,5 +1,7 @@
 #pragma once
-#include "../Game/GameScene.h"
+#include "SDL.h"
+#include "../Player/Player.h"
+
 
 enum class GameStates { NONE, RUNNING, PAUSED, GAME_OVER, QUIT };
 

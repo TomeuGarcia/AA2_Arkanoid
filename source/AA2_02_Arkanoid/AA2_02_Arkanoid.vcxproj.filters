@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GameScenes">
+      <UniqueIdentifier>{7b68ee29-6a8d-4eda-aa67-cbfbefcb740a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{5ce7b2a6-57e2-416c-9a8e-fdf4d03fcbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{e573ef24-065f-4034-a0d2-57437af7d71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inputs">
+      <UniqueIdentifier>{cecac248-d171-406f-9dc1-dbe7bee61fc5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\MainMenuScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\RankingScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\SceneManager.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\SplashScreenScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\GameScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameOverState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GamePausedState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameRunningState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Controller.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Event.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\InputHandler.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Keyboard.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameScenes\GameScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\MainMenuScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\RankingScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\Scene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\SceneManager.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\SplashScreenScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameOverState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GamePausedState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameRunningState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Controller.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Event.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\InputHandler.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Keyboard.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
