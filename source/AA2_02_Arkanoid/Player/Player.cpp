@@ -2,6 +2,7 @@
 
 Player::Player() : _controller(nullptr), _platform(nullptr)
 {
+	_platform = new Platform;
 }
 
 Player::~Player()

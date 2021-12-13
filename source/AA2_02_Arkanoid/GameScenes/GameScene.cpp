@@ -21,7 +21,7 @@ void GameScene::DoStart()
 
 	LoadGame();
 	InitBackgroundSprite();
-	//InitPlayerPlatforms();
+	InitPlayerPlatforms();
 
 	_currentGameState->Start();
 }
@@ -63,8 +63,8 @@ void GameScene::Render() const
 	SDL_RenderClear(_renderer);
 	
 	_backgroundSprite->Draw();
-	//_player1->GetPlatform()->GetSprite()->Draw();
-	//_player2->GetPlatform()->GetSprite()->Draw();
+	_player1->GetPlatform()->GetSprite()->Draw();
+	_player2->GetPlatform()->GetSprite()->Draw();
 
 	for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
 		(*it)->GetCurrentSprite()->Draw();
@@ -130,9 +130,7 @@ void GameScene::InitBackgroundSprite()
 
 void GameScene::InitPlayerPlatforms()
 {
-	_player1->GetPlatform();
 	_player1->GetPlatform()->InitSprite(_renderer, Vector2D<int>(40, 300), Vector2D<int>(100, 320));
-	_player2->GetPlatform(); 
 	_player2->GetPlatform()->InitSprite(_renderer, Vector2D<int>(720, 300), Vector2D<int>(780, 320));
 }
 

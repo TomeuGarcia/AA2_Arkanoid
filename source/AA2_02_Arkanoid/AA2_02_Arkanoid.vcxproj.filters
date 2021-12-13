@@ -118,7 +118,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player\Platform.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
