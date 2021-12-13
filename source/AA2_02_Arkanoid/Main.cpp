@@ -2,7 +2,6 @@
 #include <exception>
 #include <chrono>
 
-
 int main(int argc, char* args[]) {
 
 	try {

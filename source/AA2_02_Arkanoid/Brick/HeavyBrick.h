@@ -1,5 +1,6 @@
 #pragma once
 #include "Brick.h"
+
 class HeavyBrick :public Brick
 {
 public:

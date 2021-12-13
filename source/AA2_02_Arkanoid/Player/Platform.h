@@ -1,6 +1,7 @@
 #pragma once
 #include "../Renders/Image.h"
 #include "../Physics/Vector2D.h"
+#include "../Constants/Constants.h"
 
 class Platform {
 

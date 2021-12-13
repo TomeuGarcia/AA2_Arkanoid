@@ -15,6 +15,7 @@ public:
 
 	void SetSourceRect(const Vector2D<int>& sourceStartCorner, const Vector2D<int>& sourceSize);
 	void SetDestinationRect(const Vector2D<int>& destinationStartCorner, const Vector2D<int>& destinationSize);
+	void SetDestinationStart(const Vector2D<int>& destinationStartCorner);
 	void Init(const char* path);
 
 	void Rotate(const int& rotationAngleInDegrees);

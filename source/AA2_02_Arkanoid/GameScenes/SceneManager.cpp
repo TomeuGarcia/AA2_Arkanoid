@@ -48,7 +48,7 @@ void SceneManager::InitSDL()
 
 void SceneManager::InitWindowAndRenderer()
 {
-	int result = SDL_CreateWindowAndRenderer(800, 600, SDL_WINDOW_SHOWN, &_window, &_renderer);
+	int result = SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN, &_window, &_renderer);
 	bool isInitialized = result >= 0;
 
 	if (!isInitialized) {

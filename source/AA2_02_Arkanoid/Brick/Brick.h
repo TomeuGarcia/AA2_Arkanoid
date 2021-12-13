@@ -3,6 +3,7 @@
 #include "../Physics/Vector2D.h"
 #include "../Physics/CollisionsHelper.h"
 #include "../Renders/Image.h"
+#include "../Constants/Constants.h"
 
 class Brick 
 {

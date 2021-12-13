@@ -1,6 +1,6 @@
 #include "HeavyBrick.h"
 
-HeavyBrick::HeavyBrick(const int& x, const int& y, const int& points) : Brick(x, y, 40), _points(points) {}
+HeavyBrick::HeavyBrick(const int& x, const int& y, const int& points) : Brick(x, y, HEAVY_BRICK_SOURCE_WIDTH), _points(points) {}
 
 void HeavyBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart, const Vector2D<int>& destinationEnd)
 {
