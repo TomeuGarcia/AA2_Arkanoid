@@ -25,6 +25,8 @@ public:
 
 	void LoadGame();
 	int GetRandomBrickPoints(const BrickType& brickType);
+	void InitBackgroundSprite();
+	void InitPlayerPlatforms();
 
 private:
 	Player* _player1;
@@ -39,4 +41,6 @@ private:
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 
 	FileManager _fileManager;
+
+	Image* _backgroundSprite;
 };

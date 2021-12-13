@@ -117,6 +117,9 @@
     <ClCompile Include="FileManaging\GameData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player\Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="FileManaging\GameData.h">
       <Filter>FileManaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Platform.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

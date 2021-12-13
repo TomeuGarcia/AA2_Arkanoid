@@ -20,6 +20,8 @@ void GameScene::DoStart()
 	_currentGameState = _gameStates[GameStates::RUNNING];
 
 	LoadGame();
+	InitBackgroundSprite();
+	//InitPlayerPlatforms();
 
 	_currentGameState->Start();
 }
@@ -44,6 +46,13 @@ bool GameScene::Update(float elapsedTime)
 
 	}
 
+
+	if (_player1->GetController()->GetButtonUp(ActionName::DOWN)) {
+		for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
+			(*it)->NextSprite();
+		}
+	}
+
 	return false;
 }
 
@@ -52,6 +61,10 @@ void GameScene::Render() const
 	std::cout << "GameGameScene::Render\n";
 
 	SDL_RenderClear(_renderer);
+	
+	_backgroundSprite->Draw();
+	//_player1->GetPlatform()->GetSprite()->Draw();
+	//_player2->GetPlatform()->GetSprite()->Draw();
 
 	for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
 		(*it)->GetCurrentSprite()->Draw();
@@ -77,9 +90,9 @@ void GameScene::LoadGame()
 
 
 	Vector2D<int> start(0, 0);
-	int xIncrement{40};
-	int yIncrement{20};
-	Vector2D<int> end(xIncrement, yIncrement);
+	Vector2D<int> size(36, 18);
+	Vector2D<int> offset((800 / 2) - ((size.Y + 2) * (12.0f / 2.0f)),
+						 40);
 
 	std::list<BrickData> levelBricksData(gameData->GetLevelBricks());
 	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {	
@@ -95,12 +108,10 @@ void GameScene::LoadGame()
 
 
 		start = (*_bricks.rbegin())->GetPosition();
-		start.X = start.X * 40;
-		start.Y = start.Y * 40;
-		end = start + Vector2D<int>(40,20);
-		end.X;
-		end.Y;
-		(*_bricks.rbegin())->InitSprite(_renderer, start, end);
+		start.X = (start.X * size.Y);
+		start.Y = (start.Y * size.X);
+
+		(*_bricks.rbegin())->InitSprite(_renderer, start + offset, size);
 
 	}
 
@@ -109,5 +120,19 @@ void GameScene::LoadGame()
 int GameScene::GetRandomBrickPoints(const BrickType& brickType)
 {
 	return (rand() % (_brickPoints[brickType].second - _brickPoints[brickType].first)) + _brickPoints[brickType].first;
+}
+
+void GameScene::InitBackgroundSprite()
+{
+	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(800, 600), Vector2D<int>(0, 0), Vector2D<int>(800, 600));
+	_backgroundSprite->Init("../../resources/Assets/Images/Background.jpg");
+}
+
+void GameScene::InitPlayerPlatforms()
+{
+	_player1->GetPlatform();
+	_player1->GetPlatform()->InitSprite(_renderer, Vector2D<int>(40, 300), Vector2D<int>(100, 320));
+	_player2->GetPlatform(); 
+	_player2->GetPlatform()->InitSprite(_renderer, Vector2D<int>(720, 300), Vector2D<int>(780, 320));
 }
 

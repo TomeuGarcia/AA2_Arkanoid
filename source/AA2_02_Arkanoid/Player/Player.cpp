@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() : _controller(nullptr)
+Player::Player() : _controller(nullptr), _platform(nullptr)
 {
 }
 
@@ -28,4 +28,9 @@ void Player::InitController(const int& moveUp, const int& moveDown)
 Controller* Player::GetController() const
 {
 	return _controller;
+}
+
+Platform* Player::GetPlatform() const
+{
+	return _platform;
 }
