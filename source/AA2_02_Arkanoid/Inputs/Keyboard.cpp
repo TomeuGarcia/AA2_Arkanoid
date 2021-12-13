@@ -25,7 +25,7 @@ bool Keyboard::GetButtonUp(const ActionName& actionID)
 {
 	std::map<ActionName, bool>::iterator it = _actionUpStatus.find(actionID);
 	if (it == _actionUpStatus.end()) {
-		throw std::exception("Action not registered for a Keyboard.");
+		throw std::exception("Action Up not registered for a Keyboard.");
 	}
 
 	if (it->second) {
@@ -39,7 +39,7 @@ bool Keyboard::GetButtonDown(const ActionName& actionID) const
 {
 	std::map<ActionName, bool>::const_iterator it = _actionDownStatus.find(actionID);
 	if (it == _actionDownStatus.end()) {
-		throw std::exception("Action not registered for a Keyboard."); 
+		throw std::exception("Action Down not registered for a Keyboard."); 
 	}
 
 	return it->second;

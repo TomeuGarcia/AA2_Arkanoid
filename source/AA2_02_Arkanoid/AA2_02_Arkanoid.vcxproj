@@ -218,6 +218,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Brick\FixBrick.h" />
     <ClInclude Include="Brick\HeavyBrick.h" />
     <ClInclude Include="Brick\NormalBrick.h" />
+    <ClInclude Include="Constants\Constants.h" />
     <ClInclude Include="FileManaging\FileManager.h" />
     <ClInclude Include="FileManaging\GameData.h" />
     <ClInclude Include="GameScenes\GameScene.h" />

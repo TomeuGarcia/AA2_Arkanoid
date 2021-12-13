@@ -46,12 +46,22 @@ bool GameScene::Update(float elapsedTime)
 
 	}
 
-
+	// Test brick breaking
 	if (_player1->GetController()->GetButtonUp(ActionName::DOWN)) {
 		for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
 			(*it)->NextSprite();
 		}
 	}
+
+	int verticalDirection = _player1->GetController()->GetAxis(AxisName::VERTICAL);
+	if (verticalDirection != 0) {
+		_player1->MovePlatform(Vector2D<int>(0, verticalDirection), _platformSpeed * elapsedTime);
+	}
+	verticalDirection = _player2->GetController()->GetAxis(AxisName::VERTICAL);
+	if (verticalDirection != 0) {
+		_player2->MovePlatform(Vector2D<int>(0, verticalDirection), _platformSpeed * elapsedTime);
+	}
+
 
 	return false;
 }
@@ -130,7 +140,7 @@ void GameScene::InitBackgroundSprite()
 
 void GameScene::InitPlayerPlatforms()
 {
-	_player1->GetPlatform()->InitSprite(_renderer, Vector2D<int>(40, 300), Vector2D<int>(100, 320));
-	_player2->GetPlatform()->InitSprite(_renderer, Vector2D<int>(720, 300), Vector2D<int>(780, 320));
+	_player1->GetPlatform()->Init(_renderer, Vector2D<int>(20, 300-60), Vector2D<int>(60, 20));
+	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(720, 300-60), Vector2D<int>(60, 20));
 }
 

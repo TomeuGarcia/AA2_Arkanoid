@@ -43,6 +43,9 @@
     <Filter Include="FileManaging">
       <UniqueIdentifier>{b113b1e0-8c5e-477d-afc5-05022230443e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{10662f6a-e966-4c8f-88ee-c26d3e4661dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -114,11 +117,11 @@
     <ClCompile Include="FileManaging\FileManager.cpp">
       <Filter>FileManaging</Filter>
     </ClCompile>
-    <ClCompile Include="FileManaging\GameData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player\Platform.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\GameData.cpp">
+      <Filter>FileManaging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="Player\Platform.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants\Constants.h">
+      <Filter>Constants</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
