@@ -5,6 +5,10 @@
 const int SCREEN_WIDTH{ 800 };
 const int SCREEN_HEIGHT{ 600 };
 
+// Game
+const int ROWS{ 12 };
+const int COLUMNS{ 11 };
+
 
 // Brick
 const int BRICK_SOURCE_WIDTH{ 40 };
@@ -40,4 +44,4 @@ const Vector2D<int> PLATFORM_2_START_POSITION(720, SCREEN_HEIGHT - PLATFORM_SOUR
 
 // SCENES
 // Splash Screen
-const float WAIT_TIME{ 3.0f };
+const float SPLASH_WAIT_TIME{ 3.0f };

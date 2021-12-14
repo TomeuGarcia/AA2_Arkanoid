@@ -100,9 +100,7 @@ void GameScene::LoadGame()
 
 
 	Vector2D<int> start;
-	Vector2D<int> size(36, 18);
-	Vector2D<int> offset((800 / 2) - ((size.Y + 2) * (12.0f / 2.0f)),
-						 40);
+	Vector2D<int> offset((SCREEN_WIDTH / 2) - (BRICK_SOURCE_HEIGHT * (COLUMNS / 2)), BRICK_SOURCE_WIDTH);
 
 	BrickFactory brickFactory(_brickPoints);
 
@@ -113,7 +111,7 @@ void GameScene::LoadGame()
 
 		// Init Brick sprite and its destination
 		start = (*_bricks.rbegin())->GetPosition();
-		start *= Vector2D<int>(size.Y, size.X);
+		start *= Vector2D<int>(BRICK_SOURCE_HEIGHT, BRICK_SOURCE_WIDTH);
 		(*_bricks.rbegin())->InitSprite(_renderer, start + offset);
 	}
 
@@ -121,14 +119,15 @@ void GameScene::LoadGame()
 
 void GameScene::InitBackgroundSprite()
 {
-	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(800, 600), Vector2D<int>(0, 0), Vector2D<int>(800, 600));
+	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
+									Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
 	_backgroundSprite->Init("../../resources/Assets/Images/Background.jpg");
 }
 
 
 void GameScene::InitPlayerPlatforms()
 {
-	_player1->GetPlatform()->Init(_renderer, Vector2D<int>(20, 300-60), Vector2D<int>(60, 20));
-	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(720, 300-60), Vector2D<int>(60, 20));
+	_player1->GetPlatform()->Init(_renderer, Vector2D<int>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT/2) - PLATFORM_DESTINATION_WIDTH), PLATFORM_SOURCE_SIZE);
+	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), PLATFORM_SOURCE_SIZE);
 }
 

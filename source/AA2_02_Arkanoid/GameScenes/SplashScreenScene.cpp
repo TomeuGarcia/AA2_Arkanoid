@@ -13,7 +13,7 @@ void SplashScreenScene::DoStart()
 	InitBackground();
 	std::cout << "SplashScreenScene::Start\n";
 	
-	_waitTime = 3.0f;
+	_waitTime = SPLASH_WAIT_TIME;
 }
 
 bool SplashScreenScene::Update(float elapsedTime)
@@ -44,6 +44,7 @@ void SplashScreenScene::End()
 
 void SplashScreenScene::InitBackground()
 {
-	_background = new Image(_renderer,Vector2D<int>(0,0),Vector2D<int>(800,600), Vector2D<int>(0, 0), Vector2D<int>(800, 600));
+	_background = new Image(_renderer,Vector2D<int>(0,0),Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
+							Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
 	_background->Init("../../resources/Assets/Images/arkanoidSplashScreen.png");
 }

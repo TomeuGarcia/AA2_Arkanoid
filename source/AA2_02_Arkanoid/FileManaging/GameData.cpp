@@ -13,6 +13,7 @@ GameData::GameData() : _platformSpeed(0), _levelBricks(), _brickPoints() , _bric
 	_brickStringToBrickType[std::string("Fix")] = BrickType::FIX;
 }
 
+
 void GameData::SetBrickInfo(std::string& brickType, const int& min, const int& max)
 {
 	_brickPoints[_brickStringToBrickType[brickType]] = { min, max };
@@ -27,6 +28,7 @@ void GameData::SetLevelBricks(const int& i, const int& j, std::string& type)
 {
 	_levelBricks.push_back(BrickData(_brickStringToBrickType[type], i, j));
 }
+
 
 int GameData::GetPlatformSpeed() { return _platformSpeed; }
 

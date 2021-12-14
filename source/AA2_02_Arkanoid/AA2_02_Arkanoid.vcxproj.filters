@@ -124,7 +124,7 @@
       <Filter>FileManaging</Filter>
     </ClCompile>
     <ClCompile Include="Brick\BrickFactory.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Brick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +219,7 @@
       <Filter>Constants</Filter>
     </ClInclude>
     <ClInclude Include="Brick\BrickFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Brick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

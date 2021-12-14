@@ -18,7 +18,6 @@ public:
 protected:
 	Vector2D<int> _position;
 	Vector2D<int> _size;
-	Vector2D<int> _spriteSourceSize;
 	int _spriteSourceWidth;
 	Image* _currentSprite;
 
