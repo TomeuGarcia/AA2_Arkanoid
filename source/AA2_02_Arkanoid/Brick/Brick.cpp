@@ -1,7 +1,7 @@
 #include "Brick.h"
 
-Brick::Brick(const int& x, const int& y, const int& spriteSourceWidth)
-	: _position(x,y), _spriteSize(BRICK_SOURCE_SIZE), _spriteSourceWidth(spriteSourceWidth), _currentSprite(nullptr) {}
+Brick::Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidth)
+	: _position(position), _size(size), _spriteSourceSize(BRICK_SOURCE_SIZE), _spriteSourceWidth(spriteSourceWidth), _currentSprite(nullptr) {}
 
 Image* Brick::GetCurrentSprite() const { return _currentSprite; }
 

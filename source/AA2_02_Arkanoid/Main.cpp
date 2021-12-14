@@ -19,9 +19,7 @@ int main(int argc, char* args[]) {
 			std::chrono::duration<double> elapsedTime = currentTime - lastTime;
 
 			sceneManager.HandleEvents();
-
-			sceneManager.Update(elapsedTime.count()); // Game logic goes here
-
+			sceneManager.Update(elapsedTime.count());
 			sceneManager.Render();
 
 			lastTime = currentTime;

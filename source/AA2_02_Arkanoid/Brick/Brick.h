@@ -8,8 +8,8 @@
 class Brick 
 {
 public:
-	Brick(const int& x, const int& y, const int& spriteSourceWidth);
-	virtual void InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart, const Vector2D<int>& destinationEnd) = 0;
+	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidth);
+	virtual void InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart) = 0;
 	virtual void NextSprite() = 0;
 
 	Image* GetCurrentSprite() const;
@@ -17,8 +17,9 @@ public:
 
 protected:
 	Vector2D<int> _position;
-	Image* _currentSprite;
-	Vector2D<int> _spriteSize;
+	Vector2D<int> _size;
+	Vector2D<int> _spriteSourceSize;
 	int _spriteSourceWidth;
+	Image* _currentSprite;
 
 };

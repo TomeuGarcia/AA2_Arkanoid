@@ -22,6 +22,12 @@ void Render::SetSourceRect(const Vector2D<int>& sourceStartCorner, const Vector2
 
 }
 
+void Render::SetSourceStart(const Vector2D<int>& sourceStartCorner)
+{
+	_sourceRect.x = sourceStartCorner.X;
+	_sourceRect.y = sourceStartCorner.Y;
+}
+
 void Render::SetDestinationRect(const Vector2D<int>& destinationStartCorner, const Vector2D<int>& destinationSize)
 {
 	_destinationRect.x = destinationStartCorner.X;

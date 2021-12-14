@@ -188,6 +188,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Brick\Brick.cpp" />
+    <ClCompile Include="Brick\BrickFactory.cpp" />
     <ClCompile Include="Brick\FixBrick.cpp" />
     <ClCompile Include="Brick\HeavyBrick.cpp" />
     <ClCompile Include="Brick\NormalBrick.cpp" />
@@ -215,6 +216,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brick\Brick.h" />
+    <ClInclude Include="Brick\BrickFactory.h" />
     <ClInclude Include="Brick\FixBrick.h" />
     <ClInclude Include="Brick\HeavyBrick.h" />
     <ClInclude Include="Brick\NormalBrick.h" />

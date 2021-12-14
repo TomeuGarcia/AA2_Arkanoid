@@ -123,6 +123,9 @@
     <ClCompile Include="FileManaging\GameData.cpp">
       <Filter>FileManaging</Filter>
     </ClCompile>
+    <ClCompile Include="Brick\BrickFactory.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Constants\Constants.h">
       <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\BrickFactory.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

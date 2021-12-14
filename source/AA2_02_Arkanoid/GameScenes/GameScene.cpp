@@ -99,37 +99,24 @@ void GameScene::LoadGame()
 	_brickPoints = gameData->GetBrickPoints();
 
 
-	Vector2D<int> start(0, 0);
+	Vector2D<int> start;
 	Vector2D<int> size(36, 18);
 	Vector2D<int> offset((800 / 2) - ((size.Y + 2) * (12.0f / 2.0f)),
 						 40);
 
+	BrickFactory brickFactory(_brickPoints);
+
 	std::list<BrickData> levelBricksData(gameData->GetLevelBricks());
 	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {	
-		if (it->_brickType == BrickType::NORMAL) {
-			_bricks.push_back(new NormalBrick(it->_x, it->_y, GetRandomBrickPoints(it->_brickType)));
-		}
-		else if (it->_brickType == BrickType::HEAVY) {
-			_bricks.push_back(new HeavyBrick(it->_x, it->_y, GetRandomBrickPoints(it->_brickType)));
-		}
-		else if (it->_brickType == BrickType::FIX) {
-			_bricks.push_back(new FixBrick(it->_x, it->_y));
-		}
+		// Create Brick
+		_bricks.push_back(brickFactory.Create(*it));
 
-
+		// Init Brick sprite and its destination
 		start = (*_bricks.rbegin())->GetPosition();
-		start.X = (start.X * size.Y);
-		start.Y = (start.Y * size.X);
-
-		(*_bricks.rbegin())->InitSprite(_renderer, start + offset, size);
-
+		start *= Vector2D<int>(size.Y, size.X);
+		(*_bricks.rbegin())->InitSprite(_renderer, start + offset);
 	}
 
-}
-
-int GameScene::GetRandomBrickPoints(const BrickType& brickType)
-{
-	return (rand() % (_brickPoints[brickType].second - _brickPoints[brickType].first)) + _brickPoints[brickType].first;
 }
 
 void GameScene::InitBackgroundSprite()
@@ -137,6 +124,7 @@ void GameScene::InitBackgroundSprite()
 	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(800, 600), Vector2D<int>(0, 0), Vector2D<int>(800, 600));
 	_backgroundSprite->Init("../../resources/Assets/Images/Background.jpg");
 }
+
 
 void GameScene::InitPlayerPlatforms()
 {

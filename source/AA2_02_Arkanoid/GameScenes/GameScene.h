@@ -5,9 +5,8 @@
 #include "../GameStates/GameRunningState.h"
 #include "../GameStates/GamePausedState.h"
 #include "../GameStates/GameOverState.h"
-#include "../Brick/FixBrick.h"
-#include "../Brick/HeavyBrick.h"
-#include "../Brick/NormalBrick.h"
+
+#include "../Brick/BrickFactory.h"
 
 #include "../FileManaging/FileManager.h"
 
@@ -24,7 +23,6 @@ public:
 	virtual void End();
 
 	void LoadGame();
-	int GetRandomBrickPoints(const BrickType& brickType);
 	void InitBackgroundSprite();
 	void InitPlayerPlatforms();
 
