@@ -49,6 +49,9 @@
     <Filter Include="Game">
       <UniqueIdentifier>{3af768e6-8514-4065-a25c-489eb08ddf31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ball">
+      <UniqueIdentifier>{0b93f03d-d84c-4595-990d-0bc91ebdb387}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -131,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="Game\Game.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball\Ball.cpp">
+      <Filter>Ball</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Game\Game.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball\Ball.h">
+      <Filter>Ball</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

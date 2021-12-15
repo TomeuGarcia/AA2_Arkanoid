@@ -15,7 +15,7 @@ public:
 	virtual void NextSprite() = 0;
 	virtual bool DoCollision() = 0; // Return true if brick is to be destroyed
 
-	Image* GetSprite() const;
+	void Draw() const;
 	Vector2D<int> GetPosition() const;
 
 protected:

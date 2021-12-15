@@ -9,8 +9,7 @@ public:
 	Platform();
 	~Platform();
 	void Init(SDL_Renderer* renderer, const Vector2D<int>& destinationStart, const Vector2D<int>& destinationSize, const int& moveSpeed);
-	Image* GetSprite() const;
-
+	void Draw() const;
 	void Move(const Vector2D<int>& direction, const float& elapsedTime);
 
 private:

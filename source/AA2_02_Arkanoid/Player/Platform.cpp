@@ -17,16 +17,16 @@ void Platform::Init(SDL_Renderer* renderer, const Vector2D<int>& destinationStar
 	_moveSpeed = moveSpeed;
 }
 
-Image* Platform::GetSprite() const
+void Platform::Draw() const
 {
-	return _sprite;
+	_sprite->Draw();
 }
 
 void Platform::Move(const Vector2D<int>& direction, const float& elapsedTime)
 {
 	_moveDistance += _moveSpeed * elapsedTime;
 
-	_position -= direction * _moveDistance;
+	_position += Vector2D<int>(-direction.X, direction.Y) * _moveDistance;
 	_sprite->SetDestinationStart(_position);
 
 	if (_moveDistance >= 1.0f) _moveDistance = 0.0f;

@@ -7,6 +7,7 @@
 #include "../GameStates/GameOverState.h"
 
 #include "../Brick/BrickFactory.h"
+#include "../Ball/Ball.h"
 
 #include "../FileManaging/FileManager.h"
 
@@ -25,6 +26,7 @@ public:
 	void LoadGame();
 	void InitBackground();
 	void InitPlayerPlatforms();
+	void InitBall();
 
 private:
 	Player* _player1;
@@ -37,6 +39,8 @@ private:
 	int _platformSpeed;
 	std::list<Brick*> _bricks;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
+
+	Ball* _ball;
 
 	FileManager _fileManager;
 

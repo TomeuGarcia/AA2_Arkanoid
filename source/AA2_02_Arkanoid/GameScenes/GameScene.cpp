@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene(SDL_Renderer* renderer, Player* player1, Player* player2) 
-	: Scene(renderer), _player1(player1), _player2(player2), _fileManager() {}
+	: Scene(renderer), _player1(player1), _player2(player2), _fileManager(), _ball(nullptr) {}
 
 GameScene::~GameScene()
 {
@@ -13,16 +13,15 @@ void GameScene::DoStart()
 
 	_isStateFinished = false;
 
-	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _player1, _player2);
-	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _player1);
-	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _player1);
-
-	_currentGameState = _gameStates[GameStates::RUNNING];
-
 	LoadGame();
 	InitPlayerPlatforms();
 	InitBackground();
+	InitBall();
 
+	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _player1, _player2, _ball);
+	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _player1);
+	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _player1);
+	_currentGameState = _gameStates[GameStates::RUNNING];
 	_currentGameState->Start();
 }
 
@@ -67,12 +66,14 @@ void GameScene::Render() const
 	SDL_RenderClear(_renderer);
 	
 	_background->Draw();
-	_player1->GetPlatform()->GetSprite()->Draw();
-	_player2->GetPlatform()->GetSprite()->Draw();
+	_player1->GetPlatform()->Draw();
+	_player2->GetPlatform()->Draw();
 
 	for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
-		(*it)->GetSprite()->Draw();
+		(*it)->Draw();
 	}
+
+	_ball->Draw();
 
 	_currentGameState->Render();
 
@@ -84,6 +85,8 @@ void GameScene::Render() const
 void GameScene::End()
 {
 	std::cout << "GameGameScene::End\n";
+
+	delete _ball;
 }
 
 
@@ -128,5 +131,11 @@ void GameScene::InitPlayerPlatforms()
 								  PLATFORM_DESTINATION_SIZE, _platformSpeed);
 	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), 
 								  PLATFORM_DESTINATION_SIZE, _platformSpeed);
+}
+
+void GameScene::InitBall()
+{
+	_ball = new Ball(Vector2D<int>(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), _platformSpeed);
+	_ball->InitSprite(_renderer);
 }
 
