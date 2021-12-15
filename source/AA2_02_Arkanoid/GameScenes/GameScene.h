@@ -23,7 +23,7 @@ public:
 	virtual void End();
 
 	void LoadGame();
-	void InitBackgroundSprite();
+	void InitBackground();
 	void InitPlayerPlatforms();
 
 private:
@@ -40,5 +40,5 @@ private:
 
 	FileManager _fileManager;
 
-	Image* _backgroundSprite;
+	Image* _background;
 };

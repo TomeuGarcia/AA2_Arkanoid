@@ -10,6 +10,9 @@ public:
 	virtual void Render() const;
 	virtual void End();
 
+	void InitBlackbackground();
+
 private:
 	Player* _player1;
+	Image* _blackBackground;
 };

@@ -84,3 +84,8 @@ void Render::ResetFlip()
 {
 	_textureFlip = SDL_FLIP_NONE;
 }
+
+void Render::SetOpacity(const int& opacity)
+{
+	SDL_SetTextureAlphaMod(_texture, opacity);
+}

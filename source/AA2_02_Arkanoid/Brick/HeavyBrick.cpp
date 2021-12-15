@@ -5,12 +5,12 @@ HeavyBrick::HeavyBrick(const Vector2D<int>& position, const Vector2D<int>& size,
 
 void HeavyBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
-	_currentSprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_currentSprite->Init("../../resources/assets/images/bricks.png");
-	_currentSprite->Rotate(90);
+	_sprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
+	_sprite->Init("../../resources/assets/images/bricks.png");
+	_sprite->Rotate(90);
 }
 
 void HeavyBrick::NextSprite()
 {
-	_currentSprite->SetSourceStart(_currentSprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidth, 0));
+	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidth, 0));
 }

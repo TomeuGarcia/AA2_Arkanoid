@@ -24,6 +24,7 @@ public:
 	void FlipX();
 	void FlipY();
 	void ResetFlip();
+	void SetOpacity(const int& opacity);
 
 	virtual void Draw() = 0;
 	virtual void Update(const double& elapsedTime) {};

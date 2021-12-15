@@ -5,12 +5,12 @@ NormalBrick::NormalBrick(const Vector2D<int>& position, const Vector2D<int>& siz
 
 void NormalBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
-	_currentSprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_currentSprite->Init("../../resources/assets/images/bricks.png");
-	_currentSprite->Rotate(90);
+	_sprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
+	_sprite->Init("../../resources/assets/images/bricks.png");
+	_sprite->Rotate(90);
 }
 
 void NormalBrick::NextSprite()
 {
-	_currentSprite->SetSourceStart(_currentSprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidth, 0));
+	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidth, 0));
 }

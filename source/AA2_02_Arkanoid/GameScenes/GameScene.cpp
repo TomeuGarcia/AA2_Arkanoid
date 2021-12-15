@@ -20,8 +20,8 @@ void GameScene::DoStart()
 	_currentGameState = _gameStates[GameStates::RUNNING];
 
 	LoadGame();
-	InitBackgroundSprite();
 	InitPlayerPlatforms();
+	InitBackground();
 
 	_currentGameState->Start();
 }
@@ -53,16 +53,6 @@ bool GameScene::Update(float elapsedTime)
 		}
 	}
 
-	int verticalDirection = _player1->GetController()->GetAxis(AxisName::VERTICAL);
-	if (verticalDirection != 0) {
-		_player1->MovePlatform(Vector2D<int>(0, verticalDirection), _platformSpeed * elapsedTime);
-	}
-	verticalDirection = _player2->GetController()->GetAxis(AxisName::VERTICAL);
-	if (verticalDirection != 0) {
-		_player2->MovePlatform(Vector2D<int>(0, verticalDirection), _platformSpeed * elapsedTime);
-	}
-
-
 	return false;
 }
 
@@ -72,13 +62,16 @@ void GameScene::Render() const
 
 	SDL_RenderClear(_renderer);
 	
-	_backgroundSprite->Draw();
+	_background->Draw();
 	_player1->GetPlatform()->GetSprite()->Draw();
 	_player2->GetPlatform()->GetSprite()->Draw();
 
 	for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
-		(*it)->GetCurrentSprite()->Draw();
+		(*it)->GetSprite()->Draw();
 	}
+
+	_currentGameState->Render();
+
 
 	SDL_RenderPresent(_renderer);
 
@@ -117,17 +110,19 @@ void GameScene::LoadGame()
 
 }
 
-void GameScene::InitBackgroundSprite()
+void GameScene::InitBackground()
 {
-	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
+	_background = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
 									Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
-	_backgroundSprite->Init("../../resources/assets/images/background.jpg");
+	_background->Init("../../resources/assets/images/background.jpg");
 }
 
 
 void GameScene::InitPlayerPlatforms()
 {
-	_player1->GetPlatform()->Init(_renderer, Vector2D<int>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT/2) - PLATFORM_DESTINATION_WIDTH), PLATFORM_SOURCE_SIZE);
-	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), PLATFORM_SOURCE_SIZE);
+	_player1->GetPlatform()->Init(_renderer, Vector2D<int>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT/2) - PLATFORM_DESTINATION_WIDTH), 
+								  PLATFORM_DESTINATION_SIZE, _platformSpeed);
+	_player2->GetPlatform()->Init(_renderer, Vector2D<int>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), 
+								  PLATFORM_DESTINATION_SIZE, _platformSpeed);
 }
 

@@ -12,13 +12,13 @@ public:
 	virtual void InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart) = 0;
 	virtual void NextSprite() = 0;
 
-	Image* GetCurrentSprite() const;
+	Image* GetSprite() const;
 	Vector2D<int> GetPosition() const;
 
 protected:
 	Vector2D<int> _position;
 	Vector2D<int> _size;
 	int _spriteSourceWidth;
-	Image* _currentSprite;
+	Image* _sprite;
 
 };
