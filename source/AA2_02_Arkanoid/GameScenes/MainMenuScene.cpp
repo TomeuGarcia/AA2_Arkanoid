@@ -36,8 +36,8 @@ bool MainMenuScene::Update(float elapsedTime)
 
 void MainMenuScene::Render() const
 {
-	SDL_RenderClear(_renderer);
 	std::cout << "MainMenuScene::Render\n";
+	SDL_RenderClear(_renderer);
 	SDL_RenderPresent(_renderer);
 }
 

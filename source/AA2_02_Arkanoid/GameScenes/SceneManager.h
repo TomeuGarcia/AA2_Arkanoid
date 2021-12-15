@@ -26,7 +26,7 @@ public:
 	~SceneManager();
 
 	void Init();
-	void InitStates();
+	void InitScenes();
 	void InitSDL();
 	void InitWindowAndRenderer();
 	void InitFont();

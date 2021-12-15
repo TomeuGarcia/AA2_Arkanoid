@@ -20,10 +20,10 @@ void SceneManager::Init()
 	_isRunning = true;
 
 	InitPlayers();
-	InitStates();
+	InitScenes();
 }
 
-void SceneManager::InitStates()
+void SceneManager::InitScenes()
 {
 	_isSceneFinished = false;
 
@@ -85,10 +85,10 @@ void SceneManager::InitAudioSDL()
 void SceneManager::InitPlayers()
 {
 	_player1 = new Player;
-	_player1->InitController(SDLK_UP, SDLK_DOWN);
+	_player1->InitController(SDLK_w, SDLK_s);
 
 	_player2 = new Player;
-	_player2->InitController(SDLK_w, SDLK_s);
+	_player2->InitController(SDLK_UP, SDLK_DOWN);
 }
 
 

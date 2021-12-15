@@ -28,6 +28,8 @@ bool RankingScene::Update(float elapsedTime)
 void RankingScene::Render() const
 {
 	std::cout << "RankingScene::Render\n";
+	SDL_RenderClear(_renderer);
+	SDL_RenderPresent(_renderer);
 }
 
 void RankingScene::End()

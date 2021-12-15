@@ -1,6 +1,6 @@
+#pragma once
 #ifndef SDLPROJECT_VECTOR2D_H
 #define SDLPROJECT_VECTOR2D_H
-
 #include <cmath>
 
 template <typename T>

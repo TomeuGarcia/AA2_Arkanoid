@@ -12,7 +12,7 @@ void Platform::Init(SDL_Renderer* renderer, const Vector2D<int>& destinationStar
 	_position = destinationStart;
 	_size = Vector2D<int>(destinationSize.Y, destinationSize.X);
 	_sprite = new Image(renderer, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE, destinationStart, destinationSize);
-	_sprite->Init("../../resources/Assets/Images/platform.png");
+	_sprite->Init("../../resources/assets/images/platform.png");
 	_sprite->Rotate(90);
 }
 

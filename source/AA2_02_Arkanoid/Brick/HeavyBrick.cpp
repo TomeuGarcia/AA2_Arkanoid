@@ -6,7 +6,7 @@ HeavyBrick::HeavyBrick(const Vector2D<int>& position, const Vector2D<int>& size,
 void HeavyBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
 	_currentSprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_currentSprite->Init("../../resources/Assets/Images/bricks.png");
+	_currentSprite->Init("../../resources/assets/images/bricks.png");
 	_currentSprite->Rotate(90);
 }
 

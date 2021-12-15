@@ -25,9 +25,6 @@
     <Filter Include="Inputs">
       <UniqueIdentifier>{cecac248-d171-406f-9dc1-dbe7bee61fc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Brick">
-      <UniqueIdentifier>{2e31976c-2bc0-4c99-9e1c-47782a01858c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Physics">
       <UniqueIdentifier>{c20bf001-b173-4956-a64f-1cd114515fac}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,9 @@
     </Filter>
     <Filter Include="Constants">
       <UniqueIdentifier>{10662f6a-e966-4c8f-88ee-c26d3e4661dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bricks">
+      <UniqueIdentifier>{2e31976c-2bc0-4c99-9e1c-47782a01858c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,16 +103,16 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Brick\Brick.cpp">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClCompile>
     <ClCompile Include="Brick\FixBrick.cpp">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClCompile>
     <ClCompile Include="Brick\NormalBrick.cpp">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClCompile>
     <ClCompile Include="Brick\HeavyBrick.cpp">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClCompile>
     <ClCompile Include="FileManaging\FileManager.cpp">
       <Filter>FileManaging</Filter>
@@ -124,7 +124,7 @@
       <Filter>FileManaging</Filter>
     </ClCompile>
     <ClCompile Include="Brick\BrickFactory.cpp">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +180,7 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="Brick\Brick.h">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClInclude>
     <ClInclude Include="Renders\AnimatedImage.h">
       <Filter>Renders</Filter>
@@ -198,13 +198,13 @@
       <Filter>PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="Brick\FixBrick.h">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClInclude>
     <ClInclude Include="Brick\NormalBrick.h">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClInclude>
     <ClInclude Include="Brick\HeavyBrick.h">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClInclude>
     <ClInclude Include="FileManaging\FileManager.h">
       <Filter>FileManaging</Filter>
@@ -219,7 +219,7 @@
       <Filter>Constants</Filter>
     </ClInclude>
     <ClInclude Include="Brick\BrickFactory.h">
-      <Filter>Brick</Filter>
+      <Filter>Bricks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

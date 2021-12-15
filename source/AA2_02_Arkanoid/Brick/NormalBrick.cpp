@@ -6,7 +6,7 @@ NormalBrick::NormalBrick(const Vector2D<int>& position, const Vector2D<int>& siz
 void NormalBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
 	_currentSprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_currentSprite->Init("../../resources/Assets/Images/bricks.png");
+	_currentSprite->Init("../../resources/assets/images/bricks.png");
 	_currentSprite->Rotate(90);
 }
 

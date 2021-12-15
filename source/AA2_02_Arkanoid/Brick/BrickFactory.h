@@ -4,10 +4,6 @@
 class BrickFactory {
 
 public:
-	BrickFactory(std::map<BrickType, std::pair<int, int>> brickPoints);
-	Brick* Create(const BrickData& brickData);
-	int GetRandomBrickPoints(const BrickType& brickType);
-
-private:
-	std::map<BrickType, std::pair<int, int>> _brickPoints;
+	Brick* Create(const BrickData& brickData, std::map<BrickType, std::pair<int, int>>* brickPoints);
+	int GetRandomBrickPoints(const BrickType& brickType, std::map<BrickType, std::pair<int, int>>* brickPoints);
 };

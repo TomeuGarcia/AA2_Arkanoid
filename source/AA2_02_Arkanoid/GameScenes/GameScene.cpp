@@ -93,25 +93,25 @@ void GameScene::End()
 
 void GameScene::LoadGame()
 {
-	GameData* gameData = _fileManager.LoadGameData("../../resources/XML/config.xml");
+	GameData* gameData = _fileManager.LoadGameData("../../resources/files/configuration.xml");
 
 	_platformSpeed = gameData->GetPlatformSpeed();
 	_brickPoints = gameData->GetBrickPoints();
 
 
 	Vector2D<int> start;
-	Vector2D<int> offset((SCREEN_WIDTH / 2) - (BRICK_SOURCE_HEIGHT * (COLUMNS / 2)), BRICK_SOURCE_WIDTH);
+	Vector2D<int> offset((SCREEN_WIDTH / 2) - (BRICK_DESTINATION_HEIGHT * (ROWS / 2)), BRICK_SOURCE_WIDTH);
 
-	BrickFactory brickFactory(_brickPoints);
+	BrickFactory brickFactory;
 
 	std::list<BrickData> levelBricksData(gameData->GetLevelBricks());
 	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {	
 		// Create Brick
-		_bricks.push_back(brickFactory.Create(*it));
+		_bricks.push_back(brickFactory.Create(*it, &_brickPoints));
 
 		// Init Brick sprite and its destination
 		start = (*_bricks.rbegin())->GetPosition();
-		start *= Vector2D<int>(BRICK_SOURCE_HEIGHT, BRICK_SOURCE_WIDTH);
+		start *= Vector2D<int>(BRICK_DESTINATION_HEIGHT, BRICK_DESTINATION_WIDTH);
 		(*_bricks.rbegin())->InitSprite(_renderer, start + offset);
 	}
 
@@ -121,7 +121,7 @@ void GameScene::InitBackgroundSprite()
 {
 	_backgroundSprite = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
 									Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
-	_backgroundSprite->Init("../../resources/Assets/Images/Background.jpg");
+	_backgroundSprite->Init("../../resources/assets/images/background.jpg");
 }
 
 

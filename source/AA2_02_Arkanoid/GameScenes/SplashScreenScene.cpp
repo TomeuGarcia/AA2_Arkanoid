@@ -46,5 +46,5 @@ void SplashScreenScene::InitBackground()
 {
 	_background = new Image(_renderer,Vector2D<int>(0,0),Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 
 							Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
-	_background->Init("../../resources/Assets/Images/arkanoidSplashScreen.png");
+	_background->Init("../../resources/assets/images/arkanoidSplashScreen.png");
 }

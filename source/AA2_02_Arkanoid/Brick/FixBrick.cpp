@@ -5,7 +5,7 @@ FixBrick::FixBrick(const Vector2D<int>& position, const Vector2D<int>& size) : B
 void FixBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
 	_currentSprite = new Image(renderer, FIX_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_currentSprite->Init("../../resources/Assets/Images/bricks.png");
+	_currentSprite->Init("../../resources/assets/images/bricks.png");
 	_currentSprite->Rotate(90);
 }
 
