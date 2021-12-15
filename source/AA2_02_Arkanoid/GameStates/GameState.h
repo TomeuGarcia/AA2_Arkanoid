@@ -3,7 +3,7 @@
 #include "../Player/Player.h"
 
 
-enum class GameStates { NONE, RUNNING, PAUSED, GAME_OVER, QUIT };
+enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };
 
 
 class GameState {

@@ -15,6 +15,7 @@ public:
 		_nextScene = Scenes::NONE;
 		DoStart();
 	}
+	virtual void HandleEvents() = 0;
 	virtual bool Update(const double& elapsedTime) = 0;
 	virtual void Render() const = 0;
 	virtual void End() = 0;

@@ -31,3 +31,8 @@ void InputHandler::AddController(Controller* controllerToAdd)
 {
 	_controllers.push_back(controllerToAdd);
 }
+
+void InputHandler::RemoveAllControllers()
+{
+	_controllers.clear();
+}

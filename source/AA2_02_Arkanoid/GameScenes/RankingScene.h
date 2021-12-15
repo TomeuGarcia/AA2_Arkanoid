@@ -3,13 +3,15 @@
 
 class RankingScene : public Scene {
 public:
-	RankingScene(SDL_Renderer* renderer, Player* player1);
+	RankingScene(SDL_Renderer* renderer);
 	~RankingScene();
 	virtual void DoStart();
+	virtual void HandleEvents();
 	virtual bool Update(const double& elapsedTime);
 	virtual void Render() const;
 	virtual void End();
 
 private:
-	Player* _player1;
+	Controller* _controller;
+	bool _goToMainMenu;
 };

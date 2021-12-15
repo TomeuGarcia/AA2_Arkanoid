@@ -32,8 +32,6 @@ public:
 	void InitFont();
 	void InitAudioSDL();
 
-	void InitPlayers();
-
 	void HandleEvents();
 	void Update(const double& elapsedTime);
 	void Render();
@@ -48,9 +46,6 @@ private:
 
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
-
-	Player* _player1;
-	Player* _player2;
 
 	bool _isRunning;
 };

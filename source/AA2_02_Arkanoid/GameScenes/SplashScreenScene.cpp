@@ -14,6 +14,8 @@ void SplashScreenScene::DoStart()
 	std::cout << "SplashScreenScene::Start\n";
 }
 
+void SplashScreenScene::HandleEvents() {}
+
 bool SplashScreenScene::Update(const double& elapsedTime)
 {
 	std::cout << "SplashScreenScene::Update\n";

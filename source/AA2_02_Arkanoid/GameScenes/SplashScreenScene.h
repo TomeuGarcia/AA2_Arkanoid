@@ -6,6 +6,7 @@ public:
 	SplashScreenScene(SDL_Renderer* renderer);
 	~SplashScreenScene();
 	virtual void DoStart();
+	virtual void HandleEvents();
 	virtual bool Update(const double& elapsedTime);
 	virtual void Render() const;
 	virtual void End();

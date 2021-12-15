@@ -2,6 +2,7 @@
 #include "time.h"
 
 #include "Scene.h"
+#include "../GameStates/GameInitState.h"
 #include "../GameStates/GameRunningState.h"
 #include "../GameStates/GamePausedState.h"
 #include "../GameStates/GameOverState.h"
@@ -10,6 +11,7 @@
 #include "../Ball/Ball.h"
 
 #include "../FileManaging/FileManager.h"
+#include "../GameObjects/GameObjects.h"
 
 #include <map>
 #include <list>
@@ -29,20 +31,13 @@ public:
 	void InitBall();
 
 private:
-	Player* _player1;
-	Player* _player2;
-
 	std::map< GameStates, GameState*> _gameStates;
 	GameState* _currentGameState;
 	bool _isStateFinished;
 
-	int _platformSpeed;
-	std::list<Brick*> _bricks;
-	std::map<BrickType, std::pair<int, int>> _brickPoints;
 
-	Ball* _ball;
 
 	FileManager _fileManager;
 
-	Image* _background;
+	GameObjects* _gameObjects;
 };

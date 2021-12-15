@@ -1,6 +1,7 @@
 #pragma once
 #include <chrono>
 #include "../GameScenes/SceneManager.h"
+#include "GameInputs.h"
 
 class Game {
 

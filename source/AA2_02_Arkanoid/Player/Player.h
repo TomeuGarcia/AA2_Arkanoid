@@ -7,10 +7,9 @@
 class Player {
 	
 public:
-	Player();
+	Player(Controller* controller);
 	~Player();
 
-	void InitController(const int& moveUp, const int& moveDown);
 	Controller* GetController() const;
 	Platform* GetPlatform() const;
 	void MovePlatform(const Vector2D<int>& direction, const float& speed);

@@ -1,6 +1,6 @@
 #include "RankingScene.h"
 
-RankingScene::RankingScene(SDL_Renderer* renderer, Player* player1) : Scene(renderer), _player1(player1)
+RankingScene::RankingScene(SDL_Renderer* renderer) : Scene(renderer), _controller(nullptr), _goToMainMenu(false)
 {
 }
 
@@ -12,12 +12,24 @@ RankingScene::~RankingScene()
 void RankingScene::DoStart()
 {
 	std::cout << "RankingScene::Start\n";
+
+	_controller = new Keyboard("keyboard");
+	_controller->AddActionKey(ActionName::RESUME, SDLK_SPACE);
+	InputHandler::GetInstance()->AddController(_controller);
+}
+
+void RankingScene::HandleEvents()
+{
+	if (_controller->GetButtonDown(ActionName::RESUME)) {
+		_goToMainMenu = true;
+	}
+	
 }
 
 bool RankingScene::Update(const double& elapsedTime)
 {
 	std::cout << "RankingScene::Update\n";
-	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+	if (_goToMainMenu) {
 		_nextScene = Scenes::MAIN_MENU;
 		return true;
 	}
@@ -35,4 +47,6 @@ void RankingScene::Render() const
 void RankingScene::End()
 {
 	std::cout << "RankingScene::End\n";
+
+	InputHandler::GetInstance()->RemoveAllControllers();
 }

@@ -11,6 +11,8 @@ void GameScene::DoStart()
 {
 	std::cout << "GameGameScene::Start\n";
 
+
+
 	_isStateFinished = false;
 
 	LoadGame();
@@ -18,10 +20,11 @@ void GameScene::DoStart()
 	InitBackground();
 	InitBall();
 
-	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _player1, _player2, _ball);
+	_gameStates[GameStates::INIT] = new GameInitState(_renderer, &_fileManager, _gameObjects);
+	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer);
 	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _player1);
 	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _player1);
-	_currentGameState = _gameStates[GameStates::RUNNING];
+	_currentGameState = _gameStates[GameStates::INIT];
 	_currentGameState->Start();
 }
 
@@ -46,7 +49,7 @@ bool GameScene::Update(const double& elapsedTime)
 	}
 
 	// Test brick breaking
-	if (_player1->GetController()->GetButtonUp(ActionName::DOWN)) {
+	if (_controllerPlayer1->GetButtonUp(ActionName::DOWN)) {
 		for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
 			if ((*it)->DoCollision()) {
 				std::list<Brick*>::const_iterator it2{ it };
@@ -87,6 +90,8 @@ void GameScene::End()
 	std::cout << "GameGameScene::End\n";
 
 	delete _ball;
+
+	InputHandler::GetInstance()->RemoveAllControllers();
 }
 
 

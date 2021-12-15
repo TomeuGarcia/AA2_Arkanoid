@@ -17,6 +17,7 @@ void Game::InitSceneManager()
 	_sceneManager->Init();
 }
 
+
 void Game::GameLoop()
 {
 	auto lastTime = std::chrono::system_clock::now();

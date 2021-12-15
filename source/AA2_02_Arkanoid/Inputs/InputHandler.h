@@ -14,6 +14,7 @@ public:
 
 	void HandleEvents(const SDL_Event* eventToHandle);
 	void AddController(Controller* controllerToAdd);
+	void RemoveAllControllers();
 
 private:
 	static InputHandler* _instance;

@@ -2,8 +2,6 @@
 
 SceneManager::~SceneManager()
 {
-	delete _player1;
-	delete _player2;
 }
 
 void SceneManager::Init()
@@ -19,7 +17,6 @@ void SceneManager::Init()
 
 	_isRunning = true;
 
-	InitPlayers();
 	InitScenes();
 }
 
@@ -28,9 +25,9 @@ void SceneManager::InitScenes()
 	_isSceneFinished = false;
 
 	_scenes[Scenes::SPLASH_SCREEN] = new SplashScreenScene(_renderer);
-	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer, _player1);
-	_scenes[Scenes::RANKING] = new RankingScene(_renderer, _player1);
-	_scenes[Scenes::GAME] = new GameScene(_renderer, _player1, _player2);
+	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer);
+	_scenes[Scenes::RANKING] = new RankingScene(_renderer);
+	_scenes[Scenes::GAME] = new GameScene(_renderer);
 
 	_currentScene = _scenes[Scenes::SPLASH_SCREEN];
 	_currentScene->Start();
@@ -82,16 +79,6 @@ void SceneManager::InitAudioSDL()
 
 }
 
-void SceneManager::InitPlayers()
-{
-	_player1 = new Player;
-	_player1->InitController(SDLK_w, SDLK_s);
-
-	_player2 = new Player;
-	_player2->InitController(SDLK_UP, SDLK_DOWN);
-}
-
-
 
 void SceneManager::InitFont()
 {
@@ -131,6 +118,8 @@ void SceneManager::HandleEvents()
 
 		InputHandler::GetInstance()->HandleEvents(&event);
 	}
+
+	_currentScene->HandleEvents();
 }
 
 void SceneManager::Update(const double& elapsedTime)
