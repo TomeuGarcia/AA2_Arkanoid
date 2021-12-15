@@ -26,7 +26,7 @@ void Platform::Move(const Vector2D<int>& direction, const float& elapsedTime)
 {
 	_moveDistance += _moveSpeed * elapsedTime;
 
-	_position += Vector2D<int>(-direction.X, direction.Y) * _moveDistance;
+	_position += Vector2D<int>(direction.X, -direction.Y) * _moveDistance;
 	_sprite->SetDestinationStart(_position);
 
 	if (_moveDistance >= 1.0f) _moveDistance = 0.0f;
