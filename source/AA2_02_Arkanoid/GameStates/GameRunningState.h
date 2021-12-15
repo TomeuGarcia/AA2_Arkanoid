@@ -6,7 +6,7 @@ public:
 	GameRunningState(SDL_Renderer* renderer, Player* player1, Player* player2);
 	~GameRunningState();
 	virtual void DoStart();
-	virtual bool Update(float elapsedTime);
+	virtual bool Update(const double& elapsedTime);
 	virtual void Render() const;
 	virtual void End();
 

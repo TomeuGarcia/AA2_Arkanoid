@@ -14,7 +14,7 @@ void RankingScene::DoStart()
 	std::cout << "RankingScene::Start\n";
 }
 
-bool RankingScene::Update(float elapsedTime)
+bool RankingScene::Update(const double& elapsedTime)
 {
 	std::cout << "RankingScene::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {

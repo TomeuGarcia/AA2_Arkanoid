@@ -35,7 +35,7 @@ public:
 	void InitPlayers();
 
 	void HandleEvents();
-	void Update(const double elapsedTime);
+	void Update(const double& elapsedTime);
 	void Render();
 	void Release();
 
@@ -51,9 +51,6 @@ private:
 
 	Player* _player1;
 	Player* _player2;
-
-
-	//Vector2D<int> _mousePosition;
 
 	bool _isRunning;
 };

@@ -16,7 +16,7 @@ public:
 		_nextState = GameStates::RUNNING;
 		DoStart();
 	}
-	virtual bool Update(float elapsedTime) = 0;
+	virtual bool Update(const double& elapsedTime) = 0;
 	virtual void Render() const = 0;
 	virtual void End() = 0;
 

@@ -15,7 +15,7 @@ void MainMenuScene::DoStart()
 	std::cout << "MainMenuScene::Start\n";
 }
 
-bool MainMenuScene::Update(float elapsedTime)
+bool MainMenuScene::Update(const double& elapsedTime)
 {
 	std::cout << "MainMenuScene::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::START)) {

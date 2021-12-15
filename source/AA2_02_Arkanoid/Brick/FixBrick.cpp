@@ -2,6 +2,11 @@
 
 FixBrick::FixBrick(const Vector2D<int>& position, const Vector2D<int>& size) : Brick(position, size, FIX_BRICK_SOURCE_WIDTH){}
 
+FixBrick::~FixBrick()
+{
+	delete _sprite;
+}
+
 void FixBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
 {
 	_sprite = new Image(renderer, FIX_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
@@ -15,4 +20,10 @@ void FixBrick::NextSprite()
 	sourceStart %= FIX_BRICK_SOURCE_TOTAL_WIDTH;
 
 	_sprite->SetSourceStart(sourceStart);
+}
+
+bool FixBrick::DoCollision()
+{
+	NextSprite();
+	return false;
 }

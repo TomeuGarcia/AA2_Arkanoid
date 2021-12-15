@@ -15,7 +15,7 @@ void GameRunningState::DoStart()
 	std::cout << "GameRunningState::Start\n";
 }
 
-bool GameRunningState::Update(float elapsedTime)
+bool GameRunningState::Update(const double& elapsedTime)
 {
 	std::cout << "GameRunningState::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::PAUSE)) {
@@ -28,14 +28,9 @@ bool GameRunningState::Update(float elapsedTime)
 		return true;
 	}
 
-	int verticalDirection = _player1->GetController()->GetAxis(AxisName::VERTICAL);
-	if (verticalDirection != 0) {
-		_player1->MovePlatform(Vector2D<int>(0, verticalDirection), elapsedTime);
-	}
-	verticalDirection = _player2->GetController()->GetAxis(AxisName::VERTICAL);
-	if (verticalDirection != 0) {
-		_player2->MovePlatform(Vector2D<int>(0, verticalDirection), elapsedTime);
-	}
+
+	_player1->MovePlatform(Vector2D<int>(0, _player1->GetController()->GetAxis(AxisName::VERTICAL)), elapsedTime);
+	_player2->MovePlatform(Vector2D<int>(0, _player2->GetController()->GetAxis(AxisName::VERTICAL)), elapsedTime);
 
 
 	return false;

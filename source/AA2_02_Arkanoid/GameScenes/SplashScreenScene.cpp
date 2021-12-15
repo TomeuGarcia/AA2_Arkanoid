@@ -1,6 +1,6 @@
 #include "SplashScreenScene.h"
 
-SplashScreenScene::SplashScreenScene(SDL_Renderer* renderer) : Scene(renderer)
+SplashScreenScene::SplashScreenScene(SDL_Renderer* renderer) : Scene(renderer), _background(nullptr), _waitTime(SPLASH_WAIT_TIME)
 {
 }
 
@@ -12,11 +12,9 @@ void SplashScreenScene::DoStart()
 {
 	InitBackground();
 	std::cout << "SplashScreenScene::Start\n";
-	
-	_waitTime = SPLASH_WAIT_TIME;
 }
 
-bool SplashScreenScene::Update(float elapsedTime)
+bool SplashScreenScene::Update(const double& elapsedTime)
 {
 	std::cout << "SplashScreenScene::Update\n";
 	if (_waitTime <= 0.0f) {

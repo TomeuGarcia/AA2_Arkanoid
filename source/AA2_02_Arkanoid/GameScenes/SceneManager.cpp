@@ -133,7 +133,7 @@ void SceneManager::HandleEvents()
 	}
 }
 
-void SceneManager::Update(const double elapsedTime)
+void SceneManager::Update(const double& elapsedTime)
 {
 	_isSceneFinished = _currentScene->Update(elapsedTime);
 	if (_isSceneFinished) {

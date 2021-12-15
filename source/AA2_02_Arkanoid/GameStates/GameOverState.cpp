@@ -15,7 +15,7 @@ void GameOverState::DoStart()
 	std::cout << "GameOverState::Start\n";
 }
 
-bool GameOverState::Update(float elapsedTime)
+bool GameOverState::Update(const double& elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::START)) {

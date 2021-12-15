@@ -15,7 +15,7 @@ void GamePausedState::DoStart()
 	InitBlackbackground();
 }
 
-bool GamePausedState::Update(float elapsedTime)
+bool GamePausedState::Update(const double& elapsedTime)
 {
 	std::cout << "GamePausedState::Update\n";
 	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
@@ -38,6 +38,7 @@ void GamePausedState::Render() const
 void GamePausedState::End()
 {
 	std::cout << "GamePausedState::End\n";
+	delete _blackBackground;
 }
 
 void GamePausedState::InitBlackbackground()

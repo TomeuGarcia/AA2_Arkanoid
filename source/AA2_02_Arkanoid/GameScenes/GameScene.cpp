@@ -26,7 +26,7 @@ void GameScene::DoStart()
 	_currentGameState->Start();
 }
 
-bool GameScene::Update(float elapsedTime)
+bool GameScene::Update(const double& elapsedTime)
 {
 	std::cout << "GameGameScene::Update\n";
 
@@ -49,7 +49,11 @@ bool GameScene::Update(float elapsedTime)
 	// Test brick breaking
 	if (_player1->GetController()->GetButtonUp(ActionName::DOWN)) {
 		for (std::list<Brick*>::const_iterator it = _bricks.begin(); it != _bricks.end(); ++it) {
-			(*it)->NextSprite();
+			if ((*it)->DoCollision()) {
+				std::list<Brick*>::const_iterator it2{ it };
+				++it;
+				_bricks.erase(it2);
+			}
 		}
 	}
 
