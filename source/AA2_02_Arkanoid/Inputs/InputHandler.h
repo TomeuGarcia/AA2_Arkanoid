@@ -19,5 +19,5 @@ private:
 	static InputHandler* _instance;
 	std::vector<Controller*> _controllers;
 
-	std::map<int, ActionType> _actionTypeMapping;
+	std::unordered_map<int, ActionType> _actionTypeMapping;
 };

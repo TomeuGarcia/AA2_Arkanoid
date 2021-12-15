@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <SDL.h>
 #include "Event.h"
 
@@ -28,11 +28,11 @@ public:
 protected:
 	std::string _name;
 
-	std::map<int, ActionName> _eventKeyToAction;
-	std::map<ActionName, bool> _actionUpStatus;
-	std::map<ActionName, bool> _actionDownStatus;
+	std::unordered_map<int, ActionName> _eventKeyToAction;
+	std::unordered_map<ActionName, bool> _actionUpStatus;
+	std::unordered_map<ActionName, bool> _actionDownStatus;
 
-	std::map<int, AxisName> _eventKeyToAxis;
-	std::map<int, float> _eventKeyToSigned;
-	std::map<AxisName, float> _axisStatus;
+	std::unordered_map<int, AxisName> _eventKeyToAxis;
+	std::unordered_map<int, float> _eventKeyToSigned;
+	std::unordered_map<AxisName, float> _axisStatus;
 };

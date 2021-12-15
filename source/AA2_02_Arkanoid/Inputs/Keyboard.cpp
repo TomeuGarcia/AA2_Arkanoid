@@ -6,7 +6,7 @@ Keyboard::~Keyboard() {}
 
 void Keyboard::HandleEvent(const Event* eventToHandle)
 {
-	std::map<int, ActionName>::const_iterator it = _eventKeyToAction.find(eventToHandle->_key);
+	std::unordered_map<int, ActionName>::const_iterator it = _eventKeyToAction.find(eventToHandle->_key);
 	if (it == _eventKeyToAction.end()) {
 		return;
 	}
@@ -23,7 +23,7 @@ void Keyboard::HandleEvent(const Event* eventToHandle)
 
 bool Keyboard::GetButtonUp(const ActionName& actionID)
 {
-	std::map<ActionName, bool>::iterator it = _actionUpStatus.find(actionID);
+	std::unordered_map<ActionName, bool>::iterator it = _actionUpStatus.find(actionID);
 	if (it == _actionUpStatus.end()) {
 		throw std::exception("Action Up not registered for a Keyboard.");
 	}
@@ -37,7 +37,7 @@ bool Keyboard::GetButtonUp(const ActionName& actionID)
 
 bool Keyboard::GetButtonDown(const ActionName& actionID) const
 {
-	std::map<ActionName, bool>::const_iterator it = _actionDownStatus.find(actionID);
+	std::unordered_map<ActionName, bool>::const_iterator it = _actionDownStatus.find(actionID);
 	if (it == _actionDownStatus.end()) {
 		throw std::exception("Action Down not registered for a Keyboard."); 
 	}
@@ -48,7 +48,7 @@ bool Keyboard::GetButtonDown(const ActionName& actionID) const
 
 void Keyboard::HandleAxisEvent(const Event* eventToHandle)
 {
-	std::map<int, AxisName>::const_iterator it = _eventKeyToAxis.find(eventToHandle->_key);
+	std::unordered_map<int, AxisName>::const_iterator it = _eventKeyToAxis.find(eventToHandle->_key);
 	if (it == _eventKeyToAxis.end()) {
 		return;
 	}
@@ -63,7 +63,7 @@ void Keyboard::HandleAxisEvent(const Event* eventToHandle)
 
 float Keyboard::GetAxis(const AxisName& axisID) const
 {
-	std::map<AxisName, float>::const_iterator it = _axisStatus.find(axisID);
+	std::unordered_map<AxisName, float>::const_iterator it = _axisStatus.find(axisID);
 	if (it == _axisStatus.end()) {
 		return 0.0f;
 	}

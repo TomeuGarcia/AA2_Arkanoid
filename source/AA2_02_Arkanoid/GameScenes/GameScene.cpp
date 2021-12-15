@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene(SDL_Renderer* renderer, Player* player1, Player* player2) 
-	: Scene(renderer), _player1(player1), _player2(player2), _fileManager(), _ball(nullptr) {}
+	: Scene(renderer), _player1(player1), _player2(player2), _fileManager(), _ball(nullptr), _background(nullptr), _platformSpeed() {}
 
 GameScene::~GameScene()
 {
