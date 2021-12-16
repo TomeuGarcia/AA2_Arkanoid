@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _currentGameState(), _isStateFinished(false)  {}
+	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _currentGameState(), _isStateFinished(false) {}
 
 GameScene::~GameScene()
 {

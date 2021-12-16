@@ -13,7 +13,7 @@ public:
 	virtual ~GameState() = default;
 
 	void Start() {
-		_nextState = GameStates::RUNNING;
+		_nextState = GameStates::NONE;
 		DoStart();
 	}
 	virtual void HandleEvents() = 0;

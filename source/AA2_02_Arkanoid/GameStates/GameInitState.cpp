@@ -82,11 +82,6 @@ void GameInitState::LoadGame()
 	
 	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {
 		// Create Brick
-		/*_gameObjects->_bricks.push_back(brickFactory.Create(*it, &_brickPoints));
-
-		Brick* newBrick = brickFactory.Create(*it, &_brickPoints);
-		_gameObjects->_bricks.push_back(newBrick);*/
-
 		_gameObjects->AddNewBrick(brickFactory.Create(*it, &_brickPoints));
 
 		// Init Brick sprite and its destination

@@ -64,4 +64,7 @@ void MainMenuScene::End()
 {
 	std::cout << "MainMenuScene::End\n";
 	InputHandler::GetInstance()->RemoveAllControllers();
+	_goToGameScene = false;
+	_goToRankingScene = false;
+	_quitGame = false;
 }

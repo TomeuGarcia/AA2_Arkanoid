@@ -14,8 +14,7 @@ struct GameObjects {
 	Image* _background;
 
 	GameObjects() : _player1(nullptr), _player2(nullptr), _bricks(), _ball(nullptr), _background(nullptr) 
-	{
-		
+	{		
 	}
 	void AddNewBrick(Brick* newBrick) { _bricks.push_back(newBrick); }
 

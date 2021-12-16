@@ -14,7 +14,7 @@ void RankingScene::DoStart()
 	std::cout << "RankingScene::Start\n";
 
 	_controller = new Keyboard("keyboard");
-	_controller->AddActionKey(ActionName::RESUME, SDLK_SPACE);
+	_controller->AddActionKey(ActionName::RESUME, SDLK_ESCAPE);
 	InputHandler::GetInstance()->AddController(_controller);
 }
 
@@ -49,4 +49,5 @@ void RankingScene::End()
 	std::cout << "RankingScene::End\n";
 
 	InputHandler::GetInstance()->RemoveAllControllers();
+	_goToMainMenu = false;
 }
