@@ -20,7 +20,7 @@ Platform* Player::GetPlatform() const
 	return _platform;
 }
 
-void Player::MovePlatform(const Vector2D<int>& direction, const float& speed)
+void Player::MovePlatform(const Vector2D<float>& direction, const float& speed)
 {
 	_platform->Move(direction, speed);
 }

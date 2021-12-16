@@ -12,7 +12,7 @@ public:
 
 	Controller* GetController() const;
 	Platform* GetPlatform() const;
-	void MovePlatform(const Vector2D<int>& direction, const float& speed);
+	void MovePlatform(const Vector2D<float>& direction, const float& speed);
 
 private:
 	Controller* _controller;

@@ -1,7 +1,8 @@
 #include "GamePausedState.h"
 
 
-GamePausedState::GamePausedState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1), _blackBackground(nullptr)
+GamePausedState::GamePausedState(SDL_Renderer* renderer, GameObjects* gameObjects) 
+	: GameState(renderer, gameObjects),_blackBackground(nullptr)
 {
 }
 
@@ -12,13 +13,17 @@ GamePausedState::~GamePausedState()
 void GamePausedState::DoStart()
 {
 	std::cout << "GamePausedState::Start\n";
-	InitBlackbackground();
+	InitBlackBackground();
+}
+
+void GamePausedState::HandleEvents()
+{
 }
 
 bool GamePausedState::Update(const double& elapsedTime)
 {
 	std::cout << "GamePausedState::Update\n";
-	if (_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
 		_nextState = GameStates::RUNNING;
 		return true;
 	}
@@ -30,9 +35,10 @@ void GamePausedState::Render() const
 {
 	std::cout << "GamePausedState::Render\n";
 	
-	//SDL_RenderClear(_renderer);
+	SDL_RenderClear(_renderer);
+	DrawGameObjects();
 	_blackBackground->Draw();
-	//SDL_RenderPresent(_renderer);
+	SDL_RenderPresent(_renderer);
 }
 
 void GamePausedState::End()
@@ -41,7 +47,7 @@ void GamePausedState::End()
 	delete _blackBackground;
 }
 
-void GamePausedState::InitBlackbackground()
+void GamePausedState::InitBlackBackground()
 {
 	_blackBackground = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT),
 		Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));

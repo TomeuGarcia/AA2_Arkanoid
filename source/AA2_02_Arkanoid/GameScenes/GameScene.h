@@ -18,26 +18,19 @@
 
 class GameScene : public Scene {
 public:
-	GameScene(SDL_Renderer* renderer, Player* player1, Player* player2);
+	GameScene(SDL_Renderer* renderer);
 	~GameScene();
-	virtual void DoStart();
-	virtual bool Update(const double& elapsedTime);
-	virtual void Render() const;
-	virtual void End();
-
-	void LoadGame();
-	void InitBackground();
-	void InitPlayerPlatforms();
-	void InitBall();
+	virtual void DoStart() override;
+	virtual void HandleEvents() override;
+	virtual bool Update(const double& elapsedTime) override;
+	virtual void Render() const override;
+	virtual void End() override;
 
 private:
 	std::map< GameStates, GameState*> _gameStates;
 	GameState* _currentGameState;
 	bool _isStateFinished;
 
-
-
-	FileManager _fileManager;
-
+	FileManager* _fileManager;
 	GameObjects* _gameObjects;
 };

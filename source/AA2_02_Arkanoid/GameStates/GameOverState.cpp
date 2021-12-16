@@ -1,7 +1,8 @@
 #include "GameOverState.h"
 
 
-GameOverState::GameOverState(SDL_Renderer* renderer, Player* player1) : GameState(renderer), _player1(player1)
+GameOverState::GameOverState(SDL_Renderer* renderer, GameObjects* gameObjects) 
+	: GameState(renderer, gameObjects)
 {
 }
 
@@ -15,10 +16,14 @@ void GameOverState::DoStart()
 	std::cout << "GameOverState::Start\n";
 }
 
+void GameOverState::HandleEvents()
+{
+}
+
 bool GameOverState::Update(const double& elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
-	if (_player1->GetController()->GetButtonDown(ActionName::START)) {
+	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::START)) {
 		_nextState = GameStates::QUIT;
 		return true;
 	}

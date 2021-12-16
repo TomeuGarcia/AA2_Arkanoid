@@ -1,6 +1,6 @@
 #pragma once
 #include "SDL.h"
-#include "../Player/Player.h"
+#include "../GameObjects/GameObjects.h"
 
 
 enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };
@@ -9,22 +9,25 @@ enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };
 class GameState {
 
 public:
-	GameState(SDL_Renderer* renderer) : _nextState(GameStates::NONE), _renderer(renderer) {}
+	GameState(SDL_Renderer* renderer, GameObjects* gameObjects);
 	virtual ~GameState() = default;
 
 	void Start() {
 		_nextState = GameStates::RUNNING;
 		DoStart();
 	}
+	virtual void HandleEvents() = 0;
 	virtual bool Update(const double& elapsedTime) = 0;
 	virtual void Render() const = 0;
 	virtual void End() = 0;
 
 	GameStates GetNextState() const { return _nextState; }
+	void DrawGameObjects() const;
 
 protected:
 	virtual void DoStart() = 0;
 
 	GameStates _nextState;
 	SDL_Renderer* _renderer;
+	GameObjects* _gameObjects;
 };

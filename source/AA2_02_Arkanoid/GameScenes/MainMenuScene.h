@@ -5,11 +5,11 @@ class MainMenuScene : public Scene {
 public:
 	MainMenuScene(SDL_Renderer* renderer);
 	~MainMenuScene();
-	virtual void DoStart();
-	virtual void HandleEvents();
-	virtual bool Update(const double& elapsedTime);
-	virtual void Render() const;
-	virtual void End();
+	virtual void DoStart() override;
+	virtual void HandleEvents() override;
+	virtual bool Update(const double& elapsedTime) override;
+	virtual void Render() const override;
+	virtual void End() override;
 
 private:
 	Controller* _controller;

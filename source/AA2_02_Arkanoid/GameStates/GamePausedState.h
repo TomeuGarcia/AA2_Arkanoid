@@ -3,16 +3,16 @@
 
 class GamePausedState : public GameState {
 public:
-	GamePausedState(SDL_Renderer* renderer, Player* player1);
+	GamePausedState(SDL_Renderer* renderer, GameObjects* gameObjects);
 	~GamePausedState();
-	virtual void DoStart();
-	virtual bool Update(const double& elapsedTime);
-	virtual void Render() const;
-	virtual void End();
+	virtual void DoStart() override;
+	virtual void HandleEvents()  override;
+	virtual bool Update(const double& elapsedTime) override;
+	virtual void Render() const override;
+	virtual void End() override;
 
-	void InitBlackbackground();
+	void InitBlackBackground();
 
 private:
-	Player* _player1;
 	Image* _blackBackground;
 };

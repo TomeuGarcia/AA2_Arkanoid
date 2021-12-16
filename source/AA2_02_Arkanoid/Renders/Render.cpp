@@ -42,6 +42,12 @@ void Render::SetDestinationStart(const Vector2D<int>& destinationStartCorner)
 	_destinationRect.y = destinationStartCorner.Y;
 }
 
+void Render::SetDestinationStart(const Vector2D<float>& destinationStartCorner)
+{
+	_destinationRect.x = destinationStartCorner.X;
+	_destinationRect.y = destinationStartCorner.Y;
+}
+
 void Render::Init(const char* path)
 {
 	// Create surface
