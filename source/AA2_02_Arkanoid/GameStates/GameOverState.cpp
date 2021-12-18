@@ -1,8 +1,8 @@
 #include "GameOverState.h"
 
 
-GameOverState::GameOverState(SDL_Renderer* renderer, GameObjects* gameObjects) 
-	: GameState(renderer, gameObjects), _goToRanking(false)
+GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
+	: GameState(renderer, gameObjects), _controller(controller), _goToRanking(false)
 {
 }
 
@@ -18,7 +18,7 @@ void GameOverState::DoStart()
 
 void GameOverState::HandleEvents()
 {
-	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+	if (_controller->GetButtonDown(ActionName::RESUME)) {
 		_goToRanking = true;
 	}
 }

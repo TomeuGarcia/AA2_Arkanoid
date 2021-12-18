@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "../Inputs/InputHandler.h"
-#include "../Player/Player.h"
+
 
 enum class Scenes{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME, QUIT};
 

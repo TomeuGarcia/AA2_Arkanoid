@@ -3,7 +3,8 @@
 
 class GameRunningState : public GameState {
 public:
-	GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects, CollisionManager* collisionManager);
+	GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2, 
+		GameObjects* gameObjects, CollisionManager* collisionManager);
 	~GameRunningState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -19,4 +20,7 @@ private:
 	float _platform2VerticalMove;
 
 	CollisionManager* _collisionManager;
+
+	Controller* _controller1;
+	Controller* _controller2;
 };

@@ -3,7 +3,7 @@
 
 class GamePausedState : public GameState {
 public:
-	GamePausedState(SDL_Renderer* renderer, GameObjects* gameObjects);
+	GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects);
 	~GamePausedState();
 	virtual void DoStart() override;
 	virtual void HandleEvents()  override;
@@ -16,4 +16,6 @@ public:
 private:
 	Image* _blackBackground;
 	bool _goToRunningState;
+
+	Controller* _controller;
 };

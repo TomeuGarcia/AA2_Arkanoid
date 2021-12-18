@@ -196,6 +196,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="FileManaging\FileManager.cpp" />
     <ClCompile Include="FileManaging\GameData.cpp" />
     <ClCompile Include="GameObjects\GameObjects.cpp" />
+    <ClCompile Include="GameObjects\ImageGameObject.cpp" />
     <ClCompile Include="GameScenes\GameScene.cpp" />
     <ClCompile Include="GameScenes\MainMenuScene.cpp" />
     <ClCompile Include="GameScenes\RankingScene.cpp" />
@@ -217,7 +218,6 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Physics\BoxCollider2D.cpp" />
     <ClCompile Include="Physics\CollissionManager.cpp" />
     <ClCompile Include="Player\Platform.cpp" />
-    <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Renders\AnimatedImage.cpp" />
     <ClCompile Include="Renders\Image.cpp" />
     <ClCompile Include="Renders\Render.cpp" />
@@ -235,6 +235,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="FileManaging\GameData.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\GameObjects.h" />
+    <ClInclude Include="GameObjects\ImageGameObject.h" />
     <ClInclude Include="GameScenes\GameScene.h" />
     <ClInclude Include="GameScenes\MainMenuScene.h" />
     <ClInclude Include="GameScenes\RankingScene.h" />
@@ -258,7 +259,6 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Physics\CollissionManager.h" />
     <ClInclude Include="Physics\Vector2D.h" />
     <ClInclude Include="Player\Platform.h" />
-    <ClInclude Include="Player\Player.h" />
     <ClInclude Include="PowerUps\PowerUp.h" />
     <ClInclude Include="Renders\AnimatedImage.h" />
     <ClInclude Include="Renders\Image.h" />

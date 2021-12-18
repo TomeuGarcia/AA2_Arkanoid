@@ -5,7 +5,7 @@
 #include "../Constants/Constants.h"
 
 
-class Platform : GameObject {
+class Platform : public GameObject {
 
 public:
 	Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed);

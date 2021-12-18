@@ -96,9 +96,6 @@
     <ClCompile Include="Inputs\Keyboard.cpp">
       <Filter>Inputs</Filter>
     </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Renders\Render.cpp">
       <Filter>Renders</Filter>
     </ClCompile>
@@ -162,6 +159,9 @@
     <ClCompile Include="Physics\BoxCollider2D.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\ImageGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -205,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="Inputs\Keyboard.h">
       <Filter>Inputs</Filter>
-    </ClInclude>
-    <ClInclude Include="Player\Player.h">
-      <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Physics\Vector2D.h">
       <Filter>Physics</Filter>
@@ -282,6 +279,9 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\ImageGameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

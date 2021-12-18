@@ -1,8 +1,8 @@
 #include "GamePausedState.h"
 
 
-GamePausedState::GamePausedState(SDL_Renderer* renderer, GameObjects* gameObjects) 
-	: GameState(renderer, gameObjects),_blackBackground(nullptr), _goToRunningState(false)
+GamePausedState::GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
+	: GameState(renderer, gameObjects), _controller(controller), _blackBackground(nullptr), _goToRunningState(false)
 {
 }
 
@@ -18,7 +18,7 @@ void GamePausedState::DoStart()
 
 void GamePausedState::HandleEvents()
 {
-	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+	if (_controller->GetButtonDown(ActionName::RESUME)) {
 		_goToRunningState = true;
 	}
 }

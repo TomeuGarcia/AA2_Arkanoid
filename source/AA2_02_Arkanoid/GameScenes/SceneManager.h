@@ -8,8 +8,6 @@
 
 #include "../Constants/Constants.h"
 
-#include "../Player/Player.h"
-
 #include "../Inputs/InputHandler.h"
 #include "../Inputs/Keyboard.h"
 

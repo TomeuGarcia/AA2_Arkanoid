@@ -5,7 +5,7 @@
 #include "../Physics/BoxCollider2D.h"
 #include "../Constants/Constants.h"
 
-class Brick : GameObject {
+class Brick : public GameObject {
 
 public:
 	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);

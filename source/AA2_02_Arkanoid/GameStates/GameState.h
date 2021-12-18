@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "../GameObjects/GameObjects.h"
 #include "../Physics/CollissionManager.h"
+#include "../Inputs/Keyboard.h"
 
 
 enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };

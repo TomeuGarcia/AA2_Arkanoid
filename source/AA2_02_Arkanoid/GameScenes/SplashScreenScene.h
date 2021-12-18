@@ -1,6 +1,9 @@
 #pragma once
 #include "GameScene.h"
 #include "../Renders/Image.h"
+#include "../GameObjects/ImageGameObject.h"
+
+
 class SplashScreenScene : public Scene {
 public:
 	SplashScreenScene(SDL_Renderer* renderer);
@@ -14,5 +17,5 @@ public:
 
 private:
 	float _waitTime;
-	Image* _background;
+	ImageGameObject* _background;
 };

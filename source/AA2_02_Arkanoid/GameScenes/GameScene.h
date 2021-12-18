@@ -12,6 +12,7 @@
 
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/GameObjects.h"
+#include "../GameObjects/ImageGameObject.h"
 
 #include "../Physics/CollissionManager.h"
 
@@ -28,12 +29,18 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
+	void InitControllers();
+
 private:
 	std::map< GameStates, GameState*> _gameStates;
 	GameState* _currentGameState;
 	bool _isStateFinished;
 
-	FileManager* _fileManager;
+	Controller* _controller1;
+	Controller* _controller2;
+
 	GameObjects* _gameObjects;
+
+	FileManager* _fileManager;
 	CollisionManager* _collissionManager;
 };

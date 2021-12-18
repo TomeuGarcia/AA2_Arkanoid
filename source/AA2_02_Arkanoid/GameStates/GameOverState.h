@@ -3,7 +3,7 @@
 
 class GameOverState : public GameState {
 public:
-	GameOverState(SDL_Renderer* renderer, GameObjects* gameObjects);
+	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects);
 	~GameOverState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -13,4 +13,6 @@ public:
 
 private:
 	bool _goToRanking;
+
+	Controller* _controller;
 };

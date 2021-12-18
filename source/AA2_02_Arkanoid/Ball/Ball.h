@@ -5,7 +5,7 @@
 #include "../Physics/BoxCollider2D.h"
 
 
-class Ball : GameObject {
+class Ball : public GameObject {
 
 public:
 	Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed);

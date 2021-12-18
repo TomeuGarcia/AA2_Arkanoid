@@ -1,28 +1,35 @@
 #include "GameScene.h"
 
-GameScene::GameScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _collissionManager(nullptr), _currentGameState(), _isStateFinished(false) {}
+GameScene::GameScene(SDL_Renderer* renderer)
+	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _collissionManager(nullptr), _controller1(nullptr), _controller2(nullptr),
+	_currentGameState(), _isStateFinished(false)
+{
+}
 
 GameScene::~GameScene()
 {
+	delete _controller1;
+	delete _controller2;
 }
 
 void GameScene::DoStart()
 {
 	std::cout << "GameGameScene::Start\n";
 
-	_isStateFinished = false;
+	InitControllers();
+	_gameObjects = new GameObjects;
 
 	_fileManager = new FileManager;
-	_gameObjects = new GameObjects;
 	_collissionManager = new CollisionManager;
 
-	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _fileManager, _gameObjects, _collissionManager);
-	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _gameObjects, _collissionManager);
-	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _gameObjects);
-	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _gameObjects);
+	_isStateFinished = false;
+	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _controller1, _fileManager, _gameObjects, _collissionManager);
+	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _controller1, _controller2, _gameObjects, _collissionManager);
+	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _controller1, _gameObjects);
+	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _controller1, _gameObjects);
 	_currentGameState = _gameStates[GameStates::INIT];
 	_currentGameState->Start();
+
 }
 
 void GameScene::HandleEvents()
@@ -68,4 +75,23 @@ void GameScene::End()
 	delete _gameObjects;
 	delete _collissionManager;
 	InputHandler::GetInstance()->RemoveAllControllers();
+}
+
+void GameScene::InitControllers()
+{
+	_controller1 = new Keyboard("keyboardPlayer1");
+	_controller1->AddActionKey(ActionName::UP, SDLK_w);
+	_controller1->AddActionKey(ActionName::DOWN, SDLK_s);
+	_controller1->AddAxisActionKeys(AxisName::VERTICAL, SDLK_s, SDLK_w);
+	_controller1->AddActionKey(ActionName::PAUSE, SDLK_p);
+	_controller1->AddActionKey(ActionName::RESUME, SDLK_l);
+	_controller1->AddActionKey(ActionName::QUIT, SDLK_ESCAPE);
+	_controller1->AddActionKey(ActionName::START, SDLK_SPACE);
+	InputHandler::GetInstance()->AddController(_controller1);
+
+	_controller2 = new Keyboard("keyboardPlayer2");
+	_controller2->AddActionKey(ActionName::UP, SDLK_UP);
+	_controller2->AddActionKey(ActionName::DOWN, SDLK_DOWN);
+	_controller2->AddAxisActionKeys(AxisName::VERTICAL, SDLK_DOWN, SDLK_UP);
+	InputHandler::GetInstance()->AddController(_controller2);
 }
