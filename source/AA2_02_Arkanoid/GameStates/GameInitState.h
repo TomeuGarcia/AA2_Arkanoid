@@ -5,7 +5,7 @@
 
 class GameInitState : public GameState {
 public:
-	GameInitState(SDL_Renderer* renderer, FileManager* fileManager, GameObjects* gameObjects);
+	GameInitState(SDL_Renderer* renderer, FileManager* fileManager, GameObjects* gameObjects, CollisionManager* collisionManager);
 	~GameInitState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -23,4 +23,5 @@ private:
 	int _platformSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
+	CollisionManager* _collisionManager;
 };

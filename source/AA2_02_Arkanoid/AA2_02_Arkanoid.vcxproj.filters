@@ -52,6 +52,9 @@
     <Filter Include="Ball">
       <UniqueIdentifier>{0b93f03d-d84c-4595-990d-0bc91ebdb387}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{1fba807b-86bc-4ff6-b9d5-738aa2ed4111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -144,11 +147,20 @@
     <ClCompile Include="GameStates\GameInitState.cpp">
       <Filter>GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\GameObjects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameStates\GameState.cpp">
       <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\CollissionManager.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\GameObjects.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Collider.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\BoxCollider2D.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,8 +269,20 @@
     <ClInclude Include="GameStates\GameInitState.h">
       <Filter>GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\CollissionManager.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
     <ClInclude Include="GameObjects\GameObjects.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collider.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\BoxCollider2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObject.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

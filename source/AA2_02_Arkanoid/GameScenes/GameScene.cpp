@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _currentGameState(), _isStateFinished(false) {}
+	: Scene(renderer), _fileManager(nullptr), _gameObjects(nullptr), _collissionManager(nullptr), _currentGameState(), _isStateFinished(false) {}
 
 GameScene::~GameScene()
 {
@@ -16,8 +16,8 @@ void GameScene::DoStart()
 	_fileManager = new FileManager;
 	_gameObjects = new GameObjects;
 
-	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _fileManager, _gameObjects);
-	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _gameObjects);
+	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _fileManager, _gameObjects, _collissionManager);
+	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _gameObjects, _collissionManager);
 	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _gameObjects);
 	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _gameObjects);
 	_currentGameState = _gameStates[GameStates::INIT];
@@ -65,5 +65,6 @@ void GameScene::End()
 
 	delete _fileManager;
 	delete _gameObjects;
+	delete _collissionManager;
 	InputHandler::GetInstance()->RemoveAllControllers();
 }

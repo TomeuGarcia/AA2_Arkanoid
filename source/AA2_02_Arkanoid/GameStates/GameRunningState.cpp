@@ -1,8 +1,8 @@
 #include "GameRunningState.h"
 
 
-GameRunningState::GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects)
-	: GameState(renderer, gameObjects), _goToPauseState(false), _quit(false)
+GameRunningState::GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects, CollisionManager* collisionManager)
+	: GameState(renderer, gameObjects), _goToPauseState(false), _quit(false), _collisionManager(collisionManager)
 {
 }
 
@@ -22,6 +22,9 @@ void GameRunningState::HandleEvents()
 	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::PAUSE)) {
 		_goToPauseState = true;
 	}
+
+	_platform1VerticalMove = _gameObjects->_player1->GetController()->GetAxis(AxisName::VERTICAL);
+	_platform2VerticalMove = _gameObjects->_player2->GetController()->GetAxis(AxisName::VERTICAL);
 }
 
 bool GameRunningState::Update(const double& elapsedTime)
@@ -37,9 +40,20 @@ bool GameRunningState::Update(const double& elapsedTime)
 		return true;
 	}
 
+	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove > 0) {
+		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
+	}
+	else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove < 0) {
+		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
+	}
 
-	_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _gameObjects->_player1->GetController()->GetAxis(AxisName::VERTICAL)), elapsedTime);
-	_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _gameObjects->_player2->GetController()->GetAxis(AxisName::VERTICAL)), elapsedTime);
+	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove > 0) {
+		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
+	}
+	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove < 0) {
+		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
+	}
+	
 
 	_gameObjects->_ball->Move(Vector2D<float>(-1, 0), elapsedTime);
 

@@ -1,10 +1,11 @@
 #include "Platform.h"
 
-Platform::Platform() : _sprite(nullptr), _position(), _size(), _moveDistance(), _moveSpeed() {}
+Platform::Platform() : _sprite(nullptr), _position(), _size(), _moveDistance(), _moveSpeed(), _collider() {}
 
 Platform::~Platform()
 {
 	delete _sprite;
+	delete _collider;
 }
 
 void Platform::Init(SDL_Renderer* renderer, const Vector2D<float>& destinationStart, const Vector2D<int>& destinationSize, const int& moveSpeed)
@@ -17,6 +18,11 @@ void Platform::Init(SDL_Renderer* renderer, const Vector2D<float>& destinationSt
 	_moveSpeed = moveSpeed;
 }
 
+void Platform::InitCollider()
+{
+	_collider = new BoxCollider2D(SDL_Rect{ (int)_position.X, (int)_position.Y, _size.X, _size.Y });
+}
+
 void Platform::Draw() const
 {
 	_sprite->Draw();
@@ -24,12 +30,14 @@ void Platform::Draw() const
 
 void Platform::Move(const Vector2D<float>& direction, const float& elapsedTime)
 {
-	//_moveDistance += _moveSpeed * elapsedTime;
 	_position += direction * _moveSpeed * elapsedTime;
 
-	//_position += Vector2D<int>(direction.X, -direction.Y) * _moveDistance;
 	_sprite->SetDestinationStart(_position);
 
-	//if (_moveDistance >= 1.0f) _moveDistance = 0.0f;
+	_collider->SetBoundaryPosition(_position);
+}
 
+BoxCollider2D* Platform::GetCollider() const
+{
+	return _collider;
 }

@@ -3,7 +3,7 @@
 
 class GameRunningState : public GameState {
 public:
-	GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects);
+	GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects, CollisionManager* collisionManager);
 	~GameRunningState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -14,4 +14,9 @@ public:
 private:
 	bool _goToPauseState;
 	bool _quit;
+
+	float _platform1VerticalMove;
+	float _platform2VerticalMove;
+
+	CollisionManager* _collisionManager;
 };

@@ -1,8 +1,8 @@
 #include "GameInitState.h"
 
 
-GameInitState::GameInitState(SDL_Renderer* renderer, FileManager* fileManager, GameObjects* gameObjects) 
-	: GameState(renderer, gameObjects), _fileManager(fileManager), _platformSpeed()
+GameInitState::GameInitState(SDL_Renderer* renderer, FileManager* fileManager, GameObjects* gameObjects, CollisionManager* collisionManager)
+	: GameState(renderer, gameObjects), _fileManager(fileManager), _platformSpeed(), _collisionManager(collisionManager)
 {
 }
 
@@ -35,6 +35,8 @@ void GameInitState::DoStart()
 	InitPlayers(controllerPlayer1, controllerPlayer2);
 	InitBall();
 	InitBackground();
+
+	_collisionManager = new CollisionManager(_gameObjects->_player1->GetPlatform()->GetCollider(), _gameObjects->_player2->GetPlatform()->GetCollider());
 }
 
 void GameInitState::HandleEvents()
@@ -97,10 +99,12 @@ void GameInitState::InitPlayers(Controller* controllerPlayer1, Controller* contr
 	_gameObjects->_player1 = new Player(controllerPlayer1);
 	_gameObjects->_player1->GetPlatform()->Init(_renderer, Vector2D<float>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
 		PLATFORM_DESTINATION_SIZE, _platformSpeed);
+	_gameObjects->_player1->GetPlatform()->InitCollider();
 
 	_gameObjects->_player2 = new Player(controllerPlayer2);
 	_gameObjects->_player2->GetPlatform()->Init(_renderer, Vector2D<float>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
 		PLATFORM_DESTINATION_SIZE, _platformSpeed);
+	_gameObjects->_player2->GetPlatform()->InitCollider();
 }
 
 void GameInitState::InitBall()

@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "../GameObjects/GameObjects.h"
+#include "../Physics/CollissionManager.h"
 
 
 enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };

@@ -13,6 +13,8 @@
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/GameObjects.h"
 
+#include "../Physics/CollissionManager.h"
+
 #include <map>
 #include <list>
 
@@ -33,4 +35,5 @@ private:
 
 	FileManager* _fileManager;
 	GameObjects* _gameObjects;
+	CollisionManager* _collissionManager;
 };

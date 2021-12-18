@@ -1,5 +1,6 @@
 #pragma once
 #include "../Physics/Vector2D.h"
+#include "SDL.h"
 
 // Screen
 const int SCREEN_WIDTH{ 800 };
@@ -49,6 +50,15 @@ const Vector2D<int> BALL_SOURCE_SIZE(BALL_SOURCE_WIDTH, BALL_SOURCE_HEIGHT);
 const int BALL_DESTINATION_WIDTH{ 20 };
 const int BALL_DESTINATION_HEIGHT{ 20 };
 const Vector2D<int> BALL_DESTINATION_SIZE(BALL_DESTINATION_WIDTH, BALL_DESTINATION_HEIGHT);
+
+// Walls
+//SDL_Rect UPPER_WALL_COLLIDER{ 10, 10,  780, 25 };
+//SDL_Rect LOWER_WALL_COLLIDER{ 10, 575,  780, 25 };
+//SDL_Rect LEFT_WALL_COLLIDER{ 10, 25,  20, 550 };
+//SDL_Rect RIGHT_WALL_COLLIDER{ 780, 25,  20, 550 };
+
+
+
 
 // SCENES
 // Splash Screen
