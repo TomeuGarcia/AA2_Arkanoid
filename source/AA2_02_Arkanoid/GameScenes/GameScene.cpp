@@ -15,6 +15,7 @@ void GameScene::DoStart()
 
 	_fileManager = new FileManager;
 	_gameObjects = new GameObjects;
+	_collissionManager = new CollisionManager;
 
 	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _fileManager, _gameObjects, _collissionManager);
 	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _gameObjects, _collissionManager);

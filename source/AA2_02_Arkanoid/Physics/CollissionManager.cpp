@@ -1,14 +1,10 @@
 #include "CollissionManager.h"
 
-CollisionManager::CollisionManager(BoxCollider2D* platform1Collider, BoxCollider2D* platform2Collider)
+CollisionManager::CollisionManager()
 	: _upperWallCollider(nullptr), _lowerWallCollider(nullptr),
 	_rightWallCollider(nullptr), _leftWallCollider(nullptr),
-	_platform1Collider(platform1Collider), _platform2Collider(platform2Collider)
+	_platform1Collider(nullptr), _platform2Collider(nullptr)
 {
-	_upperWallCollider = new BoxCollider2D({ 10, 10,  780, 25 });
-	_lowerWallCollider = new BoxCollider2D({ 10, 575,  780, 25 });
-	_rightWallCollider = new BoxCollider2D({ 10, 25,  20, 550 });
-	_leftWallCollider = new BoxCollider2D({ 780, 25,  20, 550 });
 }
 
 CollisionManager::~CollisionManager()
@@ -17,6 +13,17 @@ CollisionManager::~CollisionManager()
 	delete _lowerWallCollider;
 	delete _rightWallCollider;
 	delete _leftWallCollider;
+}
+
+void CollisionManager::Init(BoxCollider2D* platform1Collider, BoxCollider2D* platform2Collider)
+{
+	_upperWallCollider = new BoxCollider2D({ 10, 10,  780, 40 });
+	_lowerWallCollider = new BoxCollider2D({ 10, 485,  780, 50 });
+	_rightWallCollider = new BoxCollider2D({ 10, 25,  20, 550 });
+	_leftWallCollider = new BoxCollider2D({ 780, 25,  20, 550 });
+
+	_platform1Collider = platform1Collider;
+	_platform2Collider = platform2Collider;
 }
 
 bool CollisionManager::Platform1UpperWallCollision() const

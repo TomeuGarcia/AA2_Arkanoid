@@ -6,9 +6,10 @@
 class CollisionManager {
 
 public:
-	CollisionManager(BoxCollider2D* platform1Collider, BoxCollider2D* platform2Collider);
+	CollisionManager();
 	~CollisionManager();
 
+	void Init(BoxCollider2D* platform1Collider, BoxCollider2D* platform2Collider);
 	bool Platform1UpperWallCollision() const;
 	bool Platform1LowerWallCollision() const;
 	bool Platform2UpperWallCollision() const;

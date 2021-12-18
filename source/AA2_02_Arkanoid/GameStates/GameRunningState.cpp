@@ -40,17 +40,17 @@ bool GameRunningState::Update(const double& elapsedTime)
 		return true;
 	}
 
-	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove > 0) {
+	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
 		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
 	}
-	else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove < 0) {
+	else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove > 0) {
 		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
 	}
 
-	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove > 0) {
+	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove < 0) {
 		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
 	}
-	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove < 0) {
+	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove > 0) {
 		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
 	}
 	

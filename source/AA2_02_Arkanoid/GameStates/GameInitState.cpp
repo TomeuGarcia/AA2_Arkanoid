@@ -36,7 +36,7 @@ void GameInitState::DoStart()
 	InitBall();
 	InitBackground();
 
-	_collisionManager = new CollisionManager(_gameObjects->_player1->GetPlatform()->GetCollider(), _gameObjects->_player2->GetPlatform()->GetCollider());
+	_collisionManager->Init(_gameObjects->_player1->GetPlatform()->GetCollider(), _gameObjects->_player2->GetPlatform()->GetCollider());
 }
 
 void GameInitState::HandleEvents()
