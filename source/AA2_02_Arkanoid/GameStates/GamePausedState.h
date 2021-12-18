@@ -15,4 +15,5 @@ public:
 
 private:
 	Image* _blackBackground;
+	bool _goToRunningState;
 };

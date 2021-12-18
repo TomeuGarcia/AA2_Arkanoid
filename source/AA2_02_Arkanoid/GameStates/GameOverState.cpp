@@ -2,7 +2,7 @@
 
 
 GameOverState::GameOverState(SDL_Renderer* renderer, GameObjects* gameObjects) 
-	: GameState(renderer, gameObjects)
+	: GameState(renderer, gameObjects), _goToRanking(false)
 {
 }
 
@@ -18,12 +18,15 @@ void GameOverState::DoStart()
 
 void GameOverState::HandleEvents()
 {
+	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+		_goToRanking = true;
+	}
 }
 
 bool GameOverState::Update(const double& elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
-	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::RESUME)) {
+	if (_goToRanking) {
 		_nextState = GameStates::QUIT;
 		return true;
 	}
@@ -38,4 +41,5 @@ void GameOverState::Render() const
 void GameOverState::End()
 {
 	std::cout << "GameOverState::End\n";
+	_goToRanking = false;
 }

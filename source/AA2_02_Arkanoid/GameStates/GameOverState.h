@@ -12,5 +12,5 @@ public:
 	virtual void End() override;
 
 private:
-
+	bool _goToRanking;
 };

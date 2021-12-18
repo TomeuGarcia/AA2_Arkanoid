@@ -2,7 +2,7 @@
 
 
 GameRunningState::GameRunningState(SDL_Renderer* renderer, GameObjects* gameObjects)
-	: GameState(renderer, gameObjects)
+	: GameState(renderer, gameObjects), _goToPauseState(false), _quit(false)
 {
 }
 
@@ -13,16 +13,21 @@ GameRunningState::~GameRunningState()
 void GameRunningState::DoStart()
 {
 	std::cout << "GameRunningState::Start\n";
+	_goToPauseState = false;
+	_quit = false;
 }
 
 void GameRunningState::HandleEvents()
 {
+	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::PAUSE)) {
+		_goToPauseState = true;
+	}
 }
 
 bool GameRunningState::Update(const double& elapsedTime)
 {
 	std::cout << "GameRunningState::Update\n";
-	if (_gameObjects->_player1->GetController()->GetButtonDown(ActionName::PAUSE)) {
+	if (_goToPauseState) {
 		_nextState = GameStates::PAUSED;
 		return true;
 	}
@@ -65,4 +70,6 @@ void GameRunningState::Render() const
 void GameRunningState::End()
 {
 	std::cout << "GameRunningState::End\n";
+	_goToPauseState = false;
+	_quit = false;
 }
