@@ -1,16 +1,23 @@
 #include "BrickFactory.h"
 
 
-Brick* BrickFactory::Create(const BrickData& brickData, std::map<BrickType, std::pair<int, int>>* brickPoints)
+Brick* BrickFactory::Create(SDL_Renderer* renderer, const BrickData& brickData, const Vector2D<int>& rotatedSize, const Vector2D<int>& offset,
+	std::map<BrickType, std::pair<int, int>>* brickPoints)
 {
+	Vector2D<int> brickPosition(brickData._x, brickData._y);
+	brickPosition *= rotatedSize;
+	brickPosition += offset;
+
 	if (brickData._brickType == BrickType::NORMAL) {
-		return new NormalBrick(Vector2D<int>(brickData._x, brickData._y), BRICK_DESTINATION_SIZE, GetRandomBrickPoints(brickData._brickType, brickPoints));
+		return new NormalBrick(renderer, brickPosition, BRICK_DESTINATION_SIZE, NORMAL_BRICK_SOURCE_WIDTH_GAP, 
+			GetRandomBrickPoints(brickData._brickType, brickPoints), NORMAL_BRICK_LIVES);
 	}
 	else if (brickData._brickType == BrickType::HEAVY) {
-		return new HeavyBrick(Vector2D<int>(brickData._x, brickData._y), BRICK_DESTINATION_SIZE, GetRandomBrickPoints(brickData._brickType, brickPoints));
+		return new HeavyBrick(renderer, brickPosition, BRICK_DESTINATION_SIZE, HEAVY_BRICK_SOURCE_WIDTH_GAP, 
+			GetRandomBrickPoints(brickData._brickType, brickPoints), HEAVY_BRICK_LIVES);
 	}
 	else if (brickData._brickType == BrickType::FIX) {
-		return new FixBrick(Vector2D<int>(brickData._x, brickData._y), BRICK_DESTINATION_SIZE);
+		return new FixBrick(renderer, brickPosition, BRICK_DESTINATION_SIZE, FIX_BRICK_SOURCE_WIDTH_GAP);
 	}
 }
 

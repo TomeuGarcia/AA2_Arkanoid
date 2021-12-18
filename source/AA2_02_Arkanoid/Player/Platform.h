@@ -1,25 +1,29 @@
 #pragma once
+#include "../GameObjects/GameObject.h"
 #include "../Renders/Image.h"
 #include "../Physics/BoxCollider2D.h"
 #include "../Constants/Constants.h"
 
-class Platform {
+
+class Platform : GameObject {
 
 public:
-	Platform();
+	Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed);
 	~Platform();
-	void Init(SDL_Renderer* renderer, const Vector2D<float>& destinationStart, const Vector2D<int>& destinationSize, const int& moveSpeed);
-	void InitCollider();
-	void Draw() const;
-	void Move(const Vector2D<float>& direction, const float& elapsedTime);
+
+	virtual void Update(const double& elapsedTime) override;
+	virtual void Render() const override;
+
+	void Move(const float& elapsedTime);
+	void SetMoveDirection(const Vector2D<float>& direction);
 	BoxCollider2D* GetCollider() const;
 
 private:
 	Image* _sprite;
+	BoxCollider2D* _collider;
+
 	Vector2D<float> _position;
 	Vector2D<int> _size;
-	float _moveDistance;
+	Vector2D<float> _moveDirection;
 	float _moveSpeed;
-
-	BoxCollider2D* _collider;
 };

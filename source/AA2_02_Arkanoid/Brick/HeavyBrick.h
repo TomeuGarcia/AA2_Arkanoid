@@ -2,13 +2,13 @@
 #include "Brick.h"
 #include "../Systems/LifeSystem.h"
 
-class HeavyBrick :public Brick
-{
+class HeavyBrick : public Brick {
+
 public:
-	HeavyBrick(const Vector2D<int>& position, const Vector2D<int>& size, const int& points);
+	HeavyBrick(SDL_Renderer* renderer, const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap,
+		const int& points, const int& lives);
 	~HeavyBrick();
 
-	virtual void InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart) override;
 	virtual void NextSprite() override;
 	virtual bool DoCollision() override;
 

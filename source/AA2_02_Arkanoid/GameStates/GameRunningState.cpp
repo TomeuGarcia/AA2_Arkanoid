@@ -41,21 +41,25 @@ bool GameRunningState::Update(const double& elapsedTime)
 	}
 
 	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
-		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
+		_gameObjects->_player1->GetPlatform()->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
+		_gameObjects->_player1->GetPlatform()->Update(elapsedTime);
 	}
 	else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove > 0) {
-		_gameObjects->_player1->MovePlatform(Vector2D<float>(0, _platform1VerticalMove), elapsedTime);
+		_gameObjects->_player1->GetPlatform()->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
+		_gameObjects->_player1->GetPlatform()->Update(elapsedTime);
 	}
 
 	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove < 0) {
-		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
+		_gameObjects->_player2->GetPlatform()->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
+		_gameObjects->_player2->GetPlatform()->Update(elapsedTime);
 	}
 	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove > 0) {
-		_gameObjects->_player2->MovePlatform(Vector2D<float>(0, _platform2VerticalMove), elapsedTime);
+		_gameObjects->_player2->GetPlatform()->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
+		_gameObjects->_player2->GetPlatform()->Update(elapsedTime);
 	}
 	
 
-	_gameObjects->_ball->Move(Vector2D<float>(-1, 0), elapsedTime);
+	_gameObjects->_ball->Update(elapsedTime);
 
 
 

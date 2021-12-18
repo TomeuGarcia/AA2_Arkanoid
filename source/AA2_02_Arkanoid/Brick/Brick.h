@@ -1,27 +1,29 @@
 #pragma once
 #include "SDL.h"
-#include "../Physics/Vector2D.h"
-#include "../Physics/CollisionsHelper.h"
+#include "../GameObjects/GameObject.h"
 #include "../Renders/Image.h"
+#include "../Physics/BoxCollider2D.h"
 #include "../Constants/Constants.h"
 
-class Brick 
-{
+class Brick : GameObject {
+
 public:
-	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidth);
+	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
 	virtual ~Brick() = default;
 
-	virtual void InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart) = 0;
-	virtual void NextSprite() = 0;
-	virtual bool DoCollision() = 0; // Return true if brick is to be destroyed
+	virtual void Update(const double& elapsedTime) override;
+	virtual void Render() const override;
 
-	void Draw() const;
+	virtual void NextSprite() = 0;
+	virtual bool DoCollision() = 0; // Returns true if brick is to be destroyed
 	Vector2D<int> GetPosition() const;
 
 protected:
+	Image* _sprite;
+	BoxCollider2D* _collider;
+
 	Vector2D<int> _position;
 	Vector2D<int> _size;
-	int _spriteSourceWidth;
-	Image* _sprite;
-
+	int _spriteSourceWidthGap;
+	
 };

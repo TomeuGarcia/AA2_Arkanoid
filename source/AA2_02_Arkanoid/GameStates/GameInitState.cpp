@@ -74,22 +74,10 @@ void GameInitState::LoadGame()
 	_platformSpeed = gameData->GetPlatformSpeed();
 	_brickPoints = gameData->GetBrickPoints();
 
-
-	Vector2D<int> start;
-	Vector2D<int> offset((SCREEN_WIDTH / 2) - (BRICK_DESTINATION_HEIGHT * (ROWS / 2)), BRICK_SOURCE_WIDTH);
-
 	BrickFactory brickFactory;
-
 	std::list<BrickData> levelBricksData(gameData->GetLevelBricks());
-	
 	for (std::list<BrickData>::iterator it = levelBricksData.begin(); it != levelBricksData.end(); ++it) {
-		// Create Brick
-		_gameObjects->AddNewBrick(brickFactory.Create(*it, &_brickPoints));
-
-		// Init Brick sprite and its destination
-		start = (*(_gameObjects->_bricks.rbegin()))->GetPosition();
-		start *= Vector2D<int>(BRICK_DESTINATION_HEIGHT, BRICK_DESTINATION_WIDTH);
-		(*(_gameObjects->_bricks.rbegin()))->InitSprite(_renderer, start + offset);
+		_gameObjects->AddNewBrick(brickFactory.Create(_renderer, *it, ROTATED_BRICK_DESTINATION_SIZE, OFFSET, &_brickPoints));
 	}
 
 }
@@ -97,25 +85,24 @@ void GameInitState::LoadGame()
 void GameInitState::InitPlayers(Controller* controllerPlayer1, Controller* controllerPlayer2)
 {
 	_gameObjects->_player1 = new Player(controllerPlayer1);
-	_gameObjects->_player1->GetPlatform()->Init(_renderer, Vector2D<float>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
+	_gameObjects->_player1->InitPlatform(_renderer, Vector2D<float>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), 
 		PLATFORM_DESTINATION_SIZE, _platformSpeed);
-	_gameObjects->_player1->GetPlatform()->InitCollider();
 
 	_gameObjects->_player2 = new Player(controllerPlayer2);
-	_gameObjects->_player2->GetPlatform()->Init(_renderer, Vector2D<float>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
+	_gameObjects->_player2->InitPlatform(_renderer, Vector2D<float>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
 		PLATFORM_DESTINATION_SIZE, _platformSpeed);
-	_gameObjects->_player2->GetPlatform()->InitCollider();
 }
 
 void GameInitState::InitBall()
 {
-	_gameObjects->_ball = new Ball(Vector2D<float>(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), _platformSpeed);
-	_gameObjects->_ball->InitSprite(_renderer);
+	Vector2D<float> spawnPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	Vector2D<float> spawnDirection(-1, 0);
+	_gameObjects->_ball = new Ball(_renderer, spawnPosition, BALL_DESTINATION_SIZE, spawnDirection, _platformSpeed);
 }
 
 void GameInitState::InitBackground()
 {
-	_gameObjects->_background = new Image(_renderer, Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT),
-											Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT));
+	_gameObjects->_background = new Image(_renderer, Vector2D<int>(0, 0), SCREEN_SIZE,
+											Vector2D<int>(0, 0), SCREEN_SIZE);
 	_gameObjects->_background->Init("../../resources/assets/images/background.jpg");
 }

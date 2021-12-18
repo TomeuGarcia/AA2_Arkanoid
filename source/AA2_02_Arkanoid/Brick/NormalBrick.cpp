@@ -1,23 +1,27 @@
 #include "NormalBrick.h"
 
-NormalBrick::NormalBrick(const Vector2D<int>& position, const Vector2D<int>& size, const int& points) 
-	: Brick(position, size, NORMAL_BRICK_SOURCE_WIDTH), _points(points), _lifeSystem(NORMAL_BRICK_LIVES) {}
+NormalBrick::NormalBrick(SDL_Renderer* renderer, const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap,
+	const int& points, const int& lives)
+	: Brick(position, size, spriteSourceWidthGap), _points(points), _lifeSystem(lives)
+{
+	// Initialize _sprite
+	_sprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, _position, _size);
+	_sprite->Init("../../resources/assets/images/bricks.png");
+	_sprite->Rotate(90);
+
+	// Initialize _collider
+	_collider = new BoxCollider2D({ _position.X, _position.Y, _size.Y, _size.X }); // Size inverted due to 90deg rotation
+}
 
 NormalBrick::~NormalBrick()
 {
 	delete _sprite;
 }
 
-void NormalBrick::InitSprite(SDL_Renderer* renderer, const Vector2D<int>& destinationStart)
-{
-	_sprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, destinationStart, _size);
-	_sprite->Init("../../resources/assets/images/bricks.png");
-	_sprite->Rotate(90);
-}
 
 void NormalBrick::NextSprite()
 {
-	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidth, 0));
+	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidthGap, 0));
 }
 
 bool NormalBrick::DoCollision()

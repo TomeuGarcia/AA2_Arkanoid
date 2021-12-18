@@ -1,6 +1,17 @@
 #include "Platform.h"
 
-Platform::Platform() : _sprite(nullptr), _position(), _size(), _moveDistance(), _moveSpeed(), _collider() {}
+Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed)
+	: _sprite(nullptr), _collider(nullptr), _position(position), _size(size), 
+	_moveDirection(), _moveSpeed(moveSpeed)
+{
+	// Initialize _sprite
+	_sprite = new Image(renderer, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);
+	_sprite->Init("../../resources/assets/images/platform.png");
+	_sprite->Rotate(90);
+
+	// Initialize _collider
+	_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.Y, _size.X }); // Size inverted due to 90deg rotation
+}
 
 Platform::~Platform()
 {
@@ -8,33 +19,28 @@ Platform::~Platform()
 	delete _collider;
 }
 
-void Platform::Init(SDL_Renderer* renderer, const Vector2D<float>& destinationStart, const Vector2D<int>& destinationSize, const int& moveSpeed)
+
+void Platform::Update(const double& elapsedTime)
 {
-	_position = destinationStart;
-	_size = Vector2D<int>(destinationSize.Y, destinationSize.X);
-	_sprite = new Image(renderer, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE, Vector2D<int>(destinationStart.X, destinationStart.Y), destinationSize);
-	_sprite->Init("../../resources/assets/images/platform.png");
-	_sprite->Rotate(90);
-	_moveSpeed = moveSpeed;
+	Move(elapsedTime);
+	_collider->SetBoundaryPosition(_position);
 }
 
-void Platform::InitCollider()
-{
-	_collider = new BoxCollider2D(SDL_Rect{ (int)_position.X, (int)_position.Y, _size.X, _size.Y });
-}
-
-void Platform::Draw() const
+void Platform::Render() const
 {
 	_sprite->Draw();
 }
 
-void Platform::Move(const Vector2D<float>& direction, const float& elapsedTime)
+
+void Platform::Move(const float& elapsedTime)
 {
-	_position += direction * _moveSpeed * elapsedTime;
-
+	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(_position);
+}
 
-	_collider->SetBoundaryPosition(_position);
+void Platform::SetMoveDirection(const Vector2D<float>& direction)
+{
+	_moveDirection = direction;
 }
 
 BoxCollider2D* Platform::GetCollider() const
