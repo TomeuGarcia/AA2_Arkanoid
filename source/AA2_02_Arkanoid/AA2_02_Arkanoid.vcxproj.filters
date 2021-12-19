@@ -55,6 +55,9 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{1fba807b-86bc-4ff6-b9d5-738aa2ed4111}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{8710c394-b58b-46ff-b2e2-0c04c0d3cb8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -167,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="GameObjects\TextGameObject.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic\GameLogic.cpp">
+      <Filter>GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +304,12 @@
     </ClInclude>
     <ClInclude Include="GameObjects\TextGameObject.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\GameLogic.h">
+      <Filter>GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

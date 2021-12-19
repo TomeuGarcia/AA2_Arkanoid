@@ -4,14 +4,8 @@ LifeSystem::LifeSystem(const int& lives) : _maxLives(lives), _currentLives(lives
 
 void LifeSystem::LoseLives(const int& amount)
 {
-	if (_currentLives >= amount) 
-	{
-		_currentLives -= amount;
-	}
-	else
-	{
-		_currentLives = 0;
-	}
+	_currentLives >= amount ? _currentLives -= amount : _currentLives = 0;
+	
 	
 }
 
