@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "../Brick/BrickFactory.h"
 #include "../FileManaging/FileManager.h"
+#include "../GameObjects/TextGameObject.h"
 
 class GameInitState : public GameState {
 public:
@@ -17,12 +18,18 @@ public:
 	void InitPlatforms();
 	void InitBall();
 	void InitBackground();
+	void InitTexts();
 
 private:
+	bool _start;
 	FileManager* _fileManager;
 	int _platformSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
 	CollisionManager* _collisionManager;
 	Controller* _controller;
+
+	ImageGameObject* _blackBackground;
+	TextGameObject* _startGame;
+	TextGameObject* _spaceToStart;
 };

@@ -4,7 +4,8 @@
 GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
 	GameObjects* gameObjects, CollisionManager* collisionManager)
 	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager), 
-	_platformSpeed(), _collisionManager(collisionManager)
+	_platformSpeed(), _collisionManager(collisionManager), _start(false), 
+	_blackBackground(nullptr), _startGame(nullptr), _spaceToStart(nullptr)
 {
 }
 
@@ -21,19 +22,31 @@ void GameInitState::DoStart()
 	InitPlatforms();
 	InitBall();
 	InitBackground();
+	InitTexts();
 	_collisionManager->Init(_gameObjects->_platform1->GetCollider(), _gameObjects->_platform2->GetCollider());
 }
 
 void GameInitState::HandleEvents()
 {
+	if (_controller->GetButtonDown(ActionName::START)) {
+		_start = true;
+	}
 }
 
 bool GameInitState::Update(const double& elapsedTime)
 {
 	std::cout << "GameInitState::Update\n";
 	
-	_nextState = GameStates::RUNNING;
-	return true;
+	if (_start) {
+		_nextState = GameStates::RUNNING;
+		return true;
+	}
+
+	_blackBackground->Update(elapsedTime);
+	_startGame->Update(elapsedTime);
+	_spaceToStart->Update(elapsedTime);
+
+	return false;
 }
 
 void GameInitState::Render() const
@@ -41,13 +54,26 @@ void GameInitState::Render() const
 	std::cout << "GameInitState::Render\n";
 
 	SDL_RenderClear(_renderer);
+
 	DrawGameObjects();
+	_blackBackground->Render();
+	_startGame->Render();
+	_spaceToStart->Render();
+
 	SDL_RenderPresent(_renderer);
 }
 
 void GameInitState::End()
 {
 	std::cout << "GameInitState::End\n";
+
+	_start = false;
+
+	delete _blackBackground;
+	delete _startGame;
+	delete _spaceToStart;
+	_blackBackground = nullptr;
+	_startGame = _spaceToStart = nullptr;
 }
 
 
@@ -92,4 +118,14 @@ void GameInitState::InitBackground()
 		new ImageGameObject(_renderer, "../../resources/assets/images/background.jpg", 
 		Vector2D<int>(0, 0), SCREEN_SIZE, Vector2D<int>(0, 0), SCREEN_SIZE)
 	);
+
+	_blackBackground = new ImageGameObject(_renderer, "../../resources/assets/images/blackBackground.png",
+		Vector2D<int>(0, 0), SCREEN_SIZE, Vector2D<int>(0, 0), SCREEN_SIZE, 150);
+}
+
+void GameInitState::InitTexts()
+{
+	SDL_Color white({ 255,255,255,255 });
+	_startGame = new TextGameObject(_renderer, "START GAME", white, Vector2D<int>(140, 200), 72);
+	_spaceToStart = new TextGameObject(_renderer, "SPACE BAR TO START", white, Vector2D<int>(180, 280), 36);
 }

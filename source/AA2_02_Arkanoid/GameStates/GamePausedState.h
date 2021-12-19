@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "../GameObjects/ImageGameObject.h"
+#include "../GameObjects/TextGameObject.h"
 
 class GamePausedState : public GameState {
 public:
@@ -12,10 +14,14 @@ public:
 	virtual void End() override;
 
 	void InitBlackBackground();
+	void InitTexts();
 
 private:
-	Image* _blackBackground;
 	bool _goToRunningState;
 
 	Controller* _controller;
+
+	ImageGameObject* _blackBackground;
+	TextGameObject* _pauseText;
+	TextGameObject* _lToResumeText;
 };
