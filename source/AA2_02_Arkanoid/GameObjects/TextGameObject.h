@@ -14,6 +14,12 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
+	void InitText();
+	void SetText(const char* text);
+	void SetTextSize(const int& textSize);
+	void SetColor(const SDL_Color& color);
+	void SetFont(const char* fontPath);
+
 private:
 	Text* _text;
 };

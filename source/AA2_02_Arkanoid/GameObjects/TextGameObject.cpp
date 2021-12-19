@@ -33,3 +33,28 @@ void TextGameObject::Render() const
 {
 	_text->Draw();
 }
+
+void TextGameObject::InitText()
+{
+	_text->InitText();
+}
+
+void TextGameObject::SetText(const char* text)
+{
+	_text->SetText(text);
+}
+
+void TextGameObject::SetTextSize(const int& textSize)
+{
+	_text->SetTextSize(textSize);
+}
+
+void TextGameObject::SetColor(const SDL_Color& color)
+{
+	_text->SetColor(color);
+}
+
+void TextGameObject::SetFont(const char* fontPath)
+{
+	_text->SetFont(fontPath);
+}
