@@ -18,6 +18,7 @@ void RankingScene::DoStart()
 	_controller->AddActionKey(ActionName::RESUME, SDLK_ESCAPE);
 	InputHandler::GetInstance()->AddController(_controller);
 	InitBackground();
+	InitTexts();
 }
 
 void RankingScene::HandleEvents()
@@ -36,6 +37,12 @@ bool RankingScene::Update(const double& elapsedTime)
 		return true;
 	}
 	_background->Update(elapsedTime);
+	_title->Update(elapsedTime);
+	_mainMenuText->Update(elapsedTime);
+	for (int i = 0; i < 10; ++i)
+	{
+		_ranking[i]->Update(elapsedTime);
+	}
 	return false;
 }
 
@@ -44,6 +51,12 @@ void RankingScene::Render() const
 	std::cout << "RankingScene::Render\n";
 	SDL_RenderClear(_renderer);
 	_background->Render();
+	_title->Render();
+	_mainMenuText->Render();
+	for (int i = 0; i < 10; ++i) 
+	{
+		_ranking[i]->Render();
+	}
 	SDL_RenderPresent(_renderer);
 }
 
@@ -55,6 +68,15 @@ void RankingScene::End()
 	_goToMainMenu = false;
 	delete _background;
 	_background = nullptr;
+	delete _mainMenuText;
+	delete _title;
+	_mainMenuText = nullptr;
+	_title = nullptr;
+	for (int i = 0; i < 10; ++i)
+	{
+		delete _ranking[i];
+		_ranking[i] = nullptr;
+	}
 }
 
 void RankingScene::InitBackground()
@@ -65,11 +87,12 @@ void RankingScene::InitBackground()
 
 void RankingScene::InitTexts()
 {
-	//SDL_Color white({ 255,255,255,255 });
-	//_title = new TextGameObject(_renderer, "Main Menu", white, Vector2D<int>(300, 100), 36);
-
-	//_playGameText = new TextGameObject(_renderer, "Space to Play Game", white, Vector2D<int>(50, 200), 24);
-	//_rankingText = new TextGameObject(_renderer, "R to Ranking", white, Vector2D<int>(50, 300), 24);
-	//_optionsText = new TextGameObject(_renderer, "Options", white, Vector2D<int>(50, 400), 24);
-	//_quitText = new TextGameObject(_renderer, "Esc to Quit", white, Vector2D<int>(50, 500), 24);
+	SDL_Color white({ 255,255,255,255 });
+	_title = new TextGameObject(_renderer, "Ranking:", white, Vector2D<int>(300, 100), 36);
+	_mainMenuText = new TextGameObject(_renderer, "ESC to Menu", white, Vector2D<int>(580, 550), 24);
+	for (int i = 0; i < 10; ++i) {
+		
+		_ranking.push_back(new TextGameObject(_renderer, (std::to_string(i+1) + std::string(". Player")).c_str(), white, Vector2D<int>(320, 160 + i*(40)), 20));
+	}
+	
 }
