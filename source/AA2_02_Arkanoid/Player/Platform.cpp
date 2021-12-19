@@ -22,6 +22,8 @@ Platform::~Platform()
 
 void Platform::Update(const double& elapsedTime)
 {
+	//if (m'he xocat amb una paret i em vull moure en aquella direcció)
+	//	return;
 	Move(elapsedTime);
 	_collider->SetBoundaryPosition(_position);
 }

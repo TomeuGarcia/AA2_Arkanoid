@@ -1,5 +1,9 @@
 #include "SceneManager.h"
 
+SceneManager::SceneManager(bool* isRunning) : _isRunning(isRunning)
+{
+}
+
 SceneManager::~SceneManager()
 {
 }
@@ -15,8 +19,6 @@ void SceneManager::Init()
 
 	InitFont();
 
-	_isRunning = true;
-
 	InitScenes();
 }
 
@@ -25,7 +27,7 @@ void SceneManager::InitScenes()
 	_isSceneFinished = false;
 
 	_scenes[Scenes::SPLASH_SCREEN] = new SplashScreenScene(_renderer);
-	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer);
+	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer, _isRunning);
 	_scenes[Scenes::RANKING] = new RankingScene(_renderer);
 	_scenes[Scenes::GAME] = new GameScene(_renderer);
 
@@ -36,6 +38,7 @@ void SceneManager::InitScenes()
 void SceneManager::InitSDL()
 {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
 	bool isInitialized = result >= 0;
 
 	if (!isInitialized) {
@@ -82,6 +85,8 @@ void SceneManager::InitAudioSDL()
 
 void SceneManager::InitFont()
 {
+	TTF_Init();
+
 	//TTF_Init();
 	//TTF_Font* font = TTF_OpenFont("resources/Roboto-Black.ttf", 32);
 	//SDL_Color color = { 0, 150, 200 };
@@ -113,7 +118,7 @@ void SceneManager::HandleEvents()
 
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
-			_isRunning = false;
+			*_isRunning = false;
 		}
 
 		InputHandler::GetInstance()->HandleEvents(&event);

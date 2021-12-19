@@ -20,8 +20,8 @@ public:
 
 
 private:
-	std::list<GameObject*> staticGameObjects;
-	std::list<std::list<GameObject*>> movingGameObjects;
+	std::list<GameObject*> _staticGameObjects;
+	std::list<std::list<GameObject*>> _movingGameObjects;
 
 
 

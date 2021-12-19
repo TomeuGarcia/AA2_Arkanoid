@@ -13,4 +13,5 @@ public:
 
 private:
 	SceneManager* _sceneManager;
+	bool _isRunning;
 };

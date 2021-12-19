@@ -20,7 +20,7 @@
 class SceneManager {
 
 public:
-	SceneManager() = default;
+	SceneManager(bool* isRunning);
 	~SceneManager();
 
 	void Init();
@@ -45,5 +45,5 @@ private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 
-	bool _isRunning;
+	bool* _isRunning;
 };

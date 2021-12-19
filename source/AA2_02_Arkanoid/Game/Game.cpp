@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : _sceneManager(nullptr)
+Game::Game() : _sceneManager(nullptr), _isRunning(true)
 {
 	InitSceneManager();
 }
@@ -13,7 +13,7 @@ Game::~Game()
 
 void Game::InitSceneManager()
 {
-	_sceneManager = new SceneManager;
+	_sceneManager = new SceneManager(&_isRunning);
 	_sceneManager->Init();
 }
 
@@ -21,7 +21,7 @@ void Game::InitSceneManager()
 void Game::GameLoop()
 {
 	auto lastTime = std::chrono::system_clock::now();
-	while (_sceneManager->IsRunning()) {
+	while (_isRunning) {
 		auto currentTime = std::chrono::system_clock::now();
 		std::chrono::duration<double> elapsedTime = currentTime - lastTime;
 

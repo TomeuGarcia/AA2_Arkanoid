@@ -5,8 +5,9 @@
 class TextGameObject : public GameObject {
 
 public:
-	TextGameObject(SDL_Renderer* renderer,const char* text, SDL_Color& color, const SDL_Color& backgroundColor, const Vector2D<int>& position, const Vector2D<int>& size);
-	TextGameObject(SDL_Renderer* renderer,const char* text, SDL_Color& color, const SDL_Color& backgroundColor, const Vector2D<int>& position, const Vector2D<int>& size,
+	TextGameObject(SDL_Renderer* renderer,const char* text, SDL_Color& color, const Vector2D<int>& position);
+	TextGameObject(SDL_Renderer* renderer,const char* text, SDL_Color& color, const Vector2D<int>& position, const int& textSize);
+	TextGameObject(SDL_Renderer* renderer,const char* text, SDL_Color& color, const Vector2D<int>& position,
 		const char* fontPath, const int& textSize);
 	virtual ~TextGameObject();
 

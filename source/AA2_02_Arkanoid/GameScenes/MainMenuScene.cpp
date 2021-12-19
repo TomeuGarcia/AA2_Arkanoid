@@ -1,8 +1,9 @@
 #include "MainMenuScene.h"
 
 
-MainMenuScene::MainMenuScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _controller(nullptr), _goToGameScene(false), _goToRankingScene(false), _quitGame(false), _background(nullptr)
+MainMenuScene::MainMenuScene(SDL_Renderer* renderer, bool* isRunning)
+	: _isRunning(isRunning), Scene(renderer), _controller(nullptr), _goToGameScene(false), _goToRankingScene(false), 
+	_background(nullptr), _title(nullptr), _playGameText(nullptr), _rankingText(nullptr), _optionsText(nullptr), _quitText(nullptr)
 {
 }
 
@@ -21,7 +22,7 @@ void MainMenuScene::DoStart()
 	_controller->AddActionKey(ActionName::QUIT, SDLK_ESCAPE);
 	InputHandler::GetInstance()->AddController(_controller);
 	InitBackground();
-	InitText();
+	InitTexts();
 }
 
 void MainMenuScene::HandleEvents()
@@ -33,7 +34,7 @@ void MainMenuScene::HandleEvents()
 		_goToRankingScene = true;
 	}
 	else if (_controller->GetButtonDown(ActionName::QUIT)) {
-		_quitGame = true;
+		*_isRunning = false;
 	}
 }
 
@@ -48,12 +49,17 @@ bool MainMenuScene::Update(const double& elapsedTime)
 		_nextScene = Scenes::RANKING;
 		return true;
 	}
-	else if (_quitGame) {
-		_nextScene = Scenes::QUIT;
-		return true;
-	}
+
+
 	_background->Update(elapsedTime);
+
 	_title->Update(elapsedTime);
+	_playGameText->Update(elapsedTime);
+	_rankingText->Update(elapsedTime);
+	_optionsText->Update(elapsedTime);
+	_quitText->Update(elapsedTime);
+
+
 	return false;
 }
 
@@ -61,8 +67,13 @@ void MainMenuScene::Render() const
 {
 	std::cout << "MainMenuScene::Render\n";
 	SDL_RenderClear(_renderer);
+
 	_background->Render();
 	_title->Render();
+	_playGameText->Render();
+	_rankingText->Render();
+	_optionsText->Render();
+	_quitText->Render();
 	SDL_RenderPresent(_renderer);
 }
 
@@ -72,11 +83,17 @@ void MainMenuScene::End()
 	InputHandler::GetInstance()->RemoveAllControllers();
 	_goToGameScene = false;
 	_goToRankingScene = false;
-	_quitGame = false;
+
 	delete _background;
 	_background = nullptr;
+
 	delete _title;
-	_title = nullptr;
+	delete _playGameText;
+	delete _rankingText;
+	delete _optionsText;
+	delete _quitText;
+	_title = _playGameText = _rankingText = _optionsText = _quitText = nullptr;
+
 }
 
 void MainMenuScene::InitBackground()
@@ -85,10 +102,13 @@ void MainMenuScene::InitBackground()
 		Vector2D<int>(0, 0), SCREEN_SIZE,Vector2D<int>(30, 30), Vector2D<int>(740, 435));
 }
 
-void MainMenuScene::InitText()
+void MainMenuScene::InitTexts()
 {
-	
-	SDL_Color color = { 255,255,255,100 };
-	SDL_Color backgroundColor = { 0,0,0,100 };
-	_title = new TextGameObject(_renderer, "MainMenu", color, backgroundColor, Vector2D<int>(100, 100), Vector2D<int>(200, 50));
+	SDL_Color white({ 255,255,255,255 });
+	_title = new TextGameObject(_renderer, "Main Menu", white, Vector2D<int>(300, 100), 36);
+
+	_playGameText = new TextGameObject(_renderer, "Space to Play Game", white, Vector2D<int>(50, 200), 24);
+	_rankingText = new TextGameObject(_renderer, "R to Ranking", white, Vector2D<int>(50, 300), 24);
+	_optionsText = new TextGameObject(_renderer, "Options", white, Vector2D<int>(50, 400), 24);
+	_quitText = new TextGameObject(_renderer, "Esc to Quit", white, Vector2D<int>(50, 500), 24);
 }
