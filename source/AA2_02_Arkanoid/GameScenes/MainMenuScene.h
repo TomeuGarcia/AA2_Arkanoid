@@ -1,5 +1,5 @@
 #pragma once
-#include "GameScene.h"
+#include "Scene.h"
 
 class MainMenuScene : public Scene {
 public:
@@ -10,11 +10,16 @@ public:
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
-
+	void InitBackground();
+	void InitText();
 private:
 	Controller* _controller;
 
 	bool _goToGameScene;
 	bool _goToRankingScene;
 	bool _quitGame;
+
+	ImageGameObject* _background;
+	TextGameObject* _title;
+	
 };

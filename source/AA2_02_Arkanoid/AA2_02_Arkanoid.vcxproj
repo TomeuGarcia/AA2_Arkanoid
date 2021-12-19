@@ -197,6 +197,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="FileManaging\GameData.cpp" />
     <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="GameObjects\ImageGameObject.cpp" />
+    <ClCompile Include="GameObjects\TextGameObject.cpp" />
     <ClCompile Include="GameScenes\GameScene.cpp" />
     <ClCompile Include="GameScenes\MainMenuScene.cpp" />
     <ClCompile Include="GameScenes\RankingScene.cpp" />
@@ -221,6 +222,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Renders\AnimatedImage.cpp" />
     <ClCompile Include="Renders\Image.cpp" />
     <ClCompile Include="Renders\Render.cpp" />
+    <ClCompile Include="Renders\Text.cpp" />
     <ClCompile Include="Systems\LifeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +238,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\ImageGameObject.h" />
+    <ClInclude Include="GameObjects\TextGameObject.h" />
     <ClInclude Include="GameScenes\GameScene.h" />
     <ClInclude Include="GameScenes\MainMenuScene.h" />
     <ClInclude Include="GameScenes\RankingScene.h" />
@@ -263,6 +266,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Renders\AnimatedImage.h" />
     <ClInclude Include="Renders\Image.h" />
     <ClInclude Include="Renders\Render.h" />
+    <ClInclude Include="Renders\Text.h" />
     <ClInclude Include="Systems\LifeSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

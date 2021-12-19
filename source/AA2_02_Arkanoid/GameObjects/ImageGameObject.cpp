@@ -5,7 +5,7 @@ ImageGameObject::ImageGameObject(SDL_Renderer* renderer, const char* path, const
 	: _sprite(nullptr)
 {
 	// Initializing _sprite
-	_sprite = new Image(renderer, sourcePosition, sourceSize, position, sourceSize);
+	_sprite = new Image(renderer, sourcePosition, sourceSize, position, size);
 	_sprite->Init(path);
 }
 

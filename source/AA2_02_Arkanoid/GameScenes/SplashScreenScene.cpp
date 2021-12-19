@@ -46,6 +46,7 @@ void SplashScreenScene::End()
 	std::cout << "SplashScreenScene::End\n";
 
 	delete _background;
+	_background = nullptr;
 }
 
 void SplashScreenScene::InitBackground()

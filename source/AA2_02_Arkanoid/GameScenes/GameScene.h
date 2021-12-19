@@ -12,7 +12,7 @@
 
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/GameObjects.h"
-#include "../GameObjects/ImageGameObject.h"
+
 
 #include "../Physics/CollissionManager.h"
 

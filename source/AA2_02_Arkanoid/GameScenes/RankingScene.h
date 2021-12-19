@@ -10,8 +10,9 @@ public:
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
-
+	void InitBackground();
 private:
 	Controller* _controller;
 	bool _goToMainMenu;
+	ImageGameObject* _background;
 };

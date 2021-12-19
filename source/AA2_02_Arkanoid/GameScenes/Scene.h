@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
 #include "../Inputs/InputHandler.h"
-
+#include "../GameObjects/ImageGameObject.h"
+#include "../GameObjects/TextGameObject.h"
+#include "../Constants/Constants.h"
+#include "../Inputs/Keyboard.h"
 
 enum class Scenes{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME, QUIT};
 

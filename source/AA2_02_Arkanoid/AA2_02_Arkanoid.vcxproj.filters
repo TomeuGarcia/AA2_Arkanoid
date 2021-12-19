@@ -162,6 +162,12 @@
     <ClCompile Include="GameObjects\ImageGameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Renders\Text.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\TextGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -282,6 +288,12 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\ImageGameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Text.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\TextGameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
