@@ -29,6 +29,7 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
+	
 	void InitControllers();
 
 private:
@@ -43,4 +44,7 @@ private:
 
 	FileManager* _fileManager;
 	CollisionManager* _collissionManager;
+
+	TextGameObject* _player1;
+	TextGameObject* _player2;
 };

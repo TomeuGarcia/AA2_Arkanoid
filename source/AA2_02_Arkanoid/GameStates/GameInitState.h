@@ -19,7 +19,7 @@ public:
 	void InitBall();
 	void InitBackground();
 	void InitTexts();
-
+	void InitPlayerScoresAndLives();
 private:
 	bool _start;
 	FileManager* _fileManager;

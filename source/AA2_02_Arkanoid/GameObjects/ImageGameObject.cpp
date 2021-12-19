@@ -19,8 +19,13 @@ ImageGameObject::ImageGameObject(SDL_Renderer* renderer, const char* path, const
 	_sprite->SetOpacity(opacity);
 }
 
+ImageGameObject::ImageGameObject(ImageGameObject* other):_sprite(other->_sprite)
+{
+}
+
 ImageGameObject::~ImageGameObject()
 {
+	
 	delete _sprite;
 }
 
@@ -31,4 +36,8 @@ void ImageGameObject::Update(const double& elapsedTime)
 void ImageGameObject::Render() const
 {
 	_sprite->Draw();
+}
+void ImageGameObject::SetImagePosition(const Vector2D<int>& position)
+{
+	_sprite->SetDestinationStart(position);
 }

@@ -77,6 +77,8 @@ void GameScene::End()
 	InputHandler::GetInstance()->RemoveAllControllers();
 }
 
+
+
 void GameScene::InitControllers()
 {
 	_controller1 = new Keyboard("keyboardPlayer1");
