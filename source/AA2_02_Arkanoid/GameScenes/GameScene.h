@@ -13,8 +13,8 @@
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/GameObjects.h"
 
-
 #include "../Physics/CollissionManager.h"
+#include "../GameLogic/GameLogic.h"
 
 #include <map>
 #include <list>
@@ -36,6 +36,8 @@ private:
 	std::map< GameStates, GameState*> _gameStates;
 	GameState* _currentGameState;
 	bool _isStateFinished;
+
+	GameLogic* _gameLogic;
 
 	Controller* _controller1;
 	Controller* _controller2;

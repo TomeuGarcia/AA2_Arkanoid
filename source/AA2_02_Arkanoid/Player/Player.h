@@ -5,16 +5,14 @@ class Player
 public:
 	Player(const int &lives);
 	~Player();
-	void LoseLives(const int &quantity);
+	void LoseLives(const int &amount);
 	bool Lost();
-	void LosePoints(const int& quantity);
-	void GainPoints(const int& quantity);
-
+	void LosePoints(const int& amount);
+	void GainPoints(const int& amount);
+	int GetScore() const;
 
 private:
 	LifeSystem* _lifeSystem;
 	int _score;
-
-
 
 };

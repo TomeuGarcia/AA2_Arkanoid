@@ -1,10 +1,11 @@
 #pragma once
 #include "GameState.h"
+#include "../GameLogic/GameLogic.h"
 
 class GameRunningState : public GameState {
 public:
 	GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2, 
-		GameObjects* gameObjects, CollisionManager* collisionManager);
+		GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic);
 	~GameRunningState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -23,4 +24,6 @@ private:
 
 	Controller* _controller1;
 	Controller* _controller2;
+
+	GameLogic* _gameLogic;
 };

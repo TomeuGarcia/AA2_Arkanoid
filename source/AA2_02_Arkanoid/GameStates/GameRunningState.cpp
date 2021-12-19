@@ -2,9 +2,9 @@
 
 
 GameRunningState::GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2,
-	GameObjects* gameObjects, CollisionManager* collisionManager)
+	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic)
 	: GameState(renderer, gameObjects), _controller1(controller1), _controller2(controller2),
-	_goToPauseState(false), _quit(false), _collisionManager(collisionManager)
+	_goToPauseState(false), _quit(false), _collisionManager(collisionManager), _gameLogic(gameLogic)
 {
 }
 
@@ -36,11 +36,6 @@ bool GameRunningState::Update(const double& elapsedTime)
 		_nextState = GameStates::PAUSED;
 		return true;
 	}
-	// Simulating the game ended
-	else if (_controller1->GetButtonDown(ActionName::QUIT)) {
-		_nextState = GameStates::GAME_OVER;
-		return true;
-	}
 
 	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
 		_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
@@ -65,6 +60,12 @@ bool GameRunningState::Update(const double& elapsedTime)
 
 
 
+	// Simulating the game ended
+	if (_gameLogic->Player1Lost() || _gameLogic->Player2Lost()) {
+		_nextState = GameStates::GAME_OVER;
+		return true;
+	}
+
 	// Test brick breaking
 	if (_controller1->GetButtonUp(ActionName::DOWN)) {
 		for (std::list<Brick*>::iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
@@ -79,6 +80,21 @@ bool GameRunningState::Update(const double& elapsedTime)
 			}
 		}
 	}
+
+	// Test lives and score
+	if (_controller1->GetButtonUp(ActionName::UP)) {
+		_gameLogic->Player1LosesLives();
+		_gameObjects->Player1LosesLives();
+		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
+		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+	}
+	if (_controller2->GetButtonUp(ActionName::UP)) {
+		_gameLogic->Player2LosesLives();
+		_gameObjects->Player2LosesLives();
+		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
+		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+	}
+
 
 	return false;
 }
