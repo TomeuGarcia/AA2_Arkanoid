@@ -1,5 +1,6 @@
 #pragma once
 #include "../GameObjects/ImageGameObject.h"
+#include "../GameObjects/TextGameObject.h"
 #include "../Player/Platform.h"
 #include "../Brick/NormalBrick.h"
 #include "../Brick/HeavyBrick.h"
@@ -23,8 +24,9 @@ struct GameObjects {
 
 	std::vector<GameObject*> _gameObjectCollection;
 
-	GameObjects() : _background(nullptr), _platform1(nullptr), _platform2(nullptr), _ball(nullptr), _bricks(), _gameObjectCollection(), _scorePlayer1(nullptr), _scorePlayer2(nullptr),
-		_livePlayer1Image(),_livePlayer2Image()
+	GameObjects() 
+		: _background(nullptr), _platform1(nullptr), _platform2(nullptr), _ball(nullptr), _bricks(), _gameObjectCollection(), 
+		_scorePlayer1(nullptr), _scorePlayer2(nullptr), _livePlayer1Image(),_livePlayer2Image()
 	{
 	}
 	void AddGameObjectToCollection(GameObject* gameObject) 
@@ -63,14 +65,16 @@ struct GameObjects {
 		AddGameObjectToCollection(pl1);
 		AddGameObjectToCollection(pl2);
 	}
-	void InitPlayersLives(ImageGameObject* livesImage) 
+
+	void InitPlayersLives(SDL_Renderer* renderer, const char* path, const Vector2D<int>& size,
+		const Vector2D<int>& sourcePosition, const Vector2D<int>& sourceSize)
 	{
 		for (int i = 0; i < 3; ++i) 
 		{
-			_livePlayer1Image.push_back(new ImageGameObject(livesImage));
-			_livePlayer2Image.push_back(new ImageGameObject(livesImage));
-			_livePlayer1Image[i]->SetImagePosition(Vector2D<int>(100 + (i * 40), 550));
-			_livePlayer2Image[i]->SetImagePosition(Vector2D<int>(400 + (i * 40), 550)); 
+			_livePlayer1Image.push_back(new ImageGameObject(renderer, path, Vector2D<int>(100 + (i * 80), 550),
+				size, sourcePosition, sourceSize));
+			_livePlayer2Image.push_back(new ImageGameObject(renderer, path, Vector2D<int>(480 + (i * 80), 550),
+				size, sourcePosition, sourceSize));
 			AddGameObjectToCollection(_livePlayer1Image[i]);
 			AddGameObjectToCollection(_livePlayer2Image[i]);
 		}

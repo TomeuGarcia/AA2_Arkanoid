@@ -19,11 +19,11 @@ void GameInitState::DoStart()
 	std::cout << "GameInitState::Start\n";
 
 	LoadGame();
+	InitPlayerScoresAndLives();
 	InitPlatforms();
 	InitBall();
 	InitBackground();
 	InitTexts();
-	InitPlayerScoresAndLives();
 	_collisionManager->Init(_gameObjects->_platform1->GetCollider(), _gameObjects->_platform2->GetCollider());
 }
 
@@ -97,9 +97,12 @@ void GameInitState::LoadGame()
 void GameInitState::InitPlayerScoresAndLives()
 {
 	SDL_Color color = { 200,0,0,255 };
-	_gameObjects->InitPlayerSocres(new TextGameObject(_renderer, "Pl1:",color,Vector2D<int>(80,400),36),
-		new TextGameObject(_renderer, "Pl2:", color, Vector2D<int>(380, 400), 36));
-	_gameObjects->InitPlayersLives(new ImageGameObject(_renderer,"../../resources/assets/images/platform.png",Vector2D<int>(0,0),PLATFORM_DESTINATION_SIZE,Vector2D<int>(0,0),PLATFORM_SOURCE_SIZE));
+	_gameObjects->InitPlayerSocres(
+		new TextGameObject(_renderer, "Pl1:", color, Vector2D<int>(100, 510), 36),
+		new TextGameObject(_renderer, "Pl2:", color, Vector2D<int>(480, 510), 36));
+
+	_gameObjects->InitPlayersLives(_renderer, "../../resources/assets/images/platform.png",
+		PLATFORM_DESTINATION_SIZE, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE);
 }
 void GameInitState::InitPlatforms()
 {

@@ -19,13 +19,12 @@ ImageGameObject::ImageGameObject(SDL_Renderer* renderer, const char* path, const
 	_sprite->SetOpacity(opacity);
 }
 
-ImageGameObject::ImageGameObject(ImageGameObject* other):_sprite(other->_sprite)
+ImageGameObject::ImageGameObject(ImageGameObject& other):_sprite(other._sprite)
 {
 }
 
 ImageGameObject::~ImageGameObject()
 {
-	
 	delete _sprite;
 }
 
