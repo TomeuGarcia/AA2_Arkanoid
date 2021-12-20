@@ -12,6 +12,9 @@ Ball::Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector
 
 	// Initialize _collider
 	_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.X, _size.Y });
+
+	// Initialize _rigidbody
+	_rigidbody = new Rigidbody2D(_collider, &_moveDirection);
 }
 
 Ball::~Ball()
@@ -23,7 +26,12 @@ Ball::~Ball()
 
 void Ball::Update(const double& elapsedTime)
 {
-	Move(elapsedTime);
+	if (!_rigidbody->WillBeColliding()) {
+		Move(elapsedTime);
+	}
+	else {
+		_moveDirection *= -1;
+	}
 	_collider->SetBoundaryPosition(_position);
 }
 
@@ -42,4 +50,14 @@ void Ball::Move(const float& elapsedTime)
 void Ball::SetMoveDirection(const Vector2D<float>& direction)
 {
 	_moveDirection = direction;
+}
+
+BoxCollider2D* Ball::GetCollider() const
+{
+	return _collider;
+}
+
+Rigidbody2D* Ball::GetRigidbody() const
+{
+	return _rigidbody;
 }

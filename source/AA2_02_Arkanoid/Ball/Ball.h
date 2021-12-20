@@ -3,6 +3,7 @@
 #include "../Constants/Constants.h"
 #include "../Renders/Image.h"
 #include "../Physics/BoxCollider2D.h"
+#include "../Physics/Rigidbody2D.h"
 
 
 class Ball : public GameObject {
@@ -16,10 +17,13 @@ public:
 
 	void Move(const float& elapsedTime);
 	void SetMoveDirection(const Vector2D<float>& direction);
+	BoxCollider2D* GetCollider() const;
+	Rigidbody2D* GetRigidbody() const;
 
 private:
 	Image* _sprite;
 	BoxCollider2D* _collider;
+	Rigidbody2D* _rigidbody;
 
 	Vector2D<float> _position;
 	Vector2D<int> _size;

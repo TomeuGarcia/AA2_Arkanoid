@@ -141,9 +141,6 @@
     <ClCompile Include="Ball\Ball.cpp">
       <Filter>Ball</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameInputs.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="GameStates\GameInitState.cpp">
       <Filter>GameStates</Filter>
     </ClCompile>
@@ -277,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="Ball\Ball.h">
       <Filter>Ball</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameInputs.h">
-      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="GameStates\GameInitState.h">
       <Filter>GameStates</Filter>

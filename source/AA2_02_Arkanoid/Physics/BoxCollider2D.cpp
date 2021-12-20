@@ -1,6 +1,6 @@
 #include "BoxCollider2D.h"
 
-BoxCollider2D::BoxCollider2D() : Collider(ColliderType::NONE)
+BoxCollider2D::BoxCollider2D() : Collider(ColliderType::SQUARE)
 {
 }
 

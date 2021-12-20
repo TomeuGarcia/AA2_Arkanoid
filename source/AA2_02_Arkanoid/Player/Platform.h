@@ -6,7 +6,7 @@
 #include "../Constants/Constants.h"
 
 
-class Platform : public GameObject {
+class Platform : public GameObject, public BoxCollider2D {
 
 public:
 	Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed);
@@ -22,7 +22,7 @@ public:
 
 private:
 	Image* _sprite;
-	BoxCollider2D* _collider;
+	//BoxCollider2D* _collider;
 	Rigidbody2D* _rigidbody;
 
 	Vector2D<float> _position;

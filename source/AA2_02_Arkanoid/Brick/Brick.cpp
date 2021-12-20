@@ -5,7 +5,7 @@ Brick::Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int
 	_spriteSourceWidthGap(spriteSourceWidthGap) 
 {
 	_position = Vector2D<int>(position.X + size.X / 2 - size.Y / 2, position.Y + size.Y / 2 - size.X / 2); // Position inverted after rotating 90deg
-	_size = Vector2D<int>(size.Y, size.Y); // Size inverted after rotating 90deg
+	_size = Vector2D<int>(size.Y, size.X); // Size inverted after rotating 90deg
 }
 
 

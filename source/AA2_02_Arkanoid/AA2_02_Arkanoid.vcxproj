@@ -210,7 +210,6 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="GameStates\GameRunningState.cpp" />
     <ClCompile Include="GameStates\GameState.cpp" />
     <ClCompile Include="Game\Game.cpp" />
-    <ClCompile Include="Game\GameInputs.cpp" />
     <ClCompile Include="Inputs\Controller.cpp" />
     <ClCompile Include="Inputs\Event.cpp" />
     <ClCompile Include="Inputs\InputHandler.cpp" />
@@ -255,7 +254,6 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="GameStates\GameRunningState.h" />
     <ClInclude Include="GameStates\GameState.h" />
     <ClInclude Include="Game\Game.h" />
-    <ClInclude Include="Game\GameInputs.h" />
     <ClInclude Include="Inputs\Controller.h" />
     <ClInclude Include="Inputs\Event.h" />
     <ClInclude Include="Inputs\InputHandler.h" />

@@ -25,9 +25,9 @@ void GameInitState::DoStart()
 	InitBackground();
 	InitTexts();
 
-	_collisionManager->Init(_gameObjects->_platform1->GetCollider(), _gameObjects->_platform2->GetCollider());
 	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform1->GetRigidbody());
 	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform2->GetRigidbody());
+	_collisionManager->AddGameObjectRigidbody(_gameObjects->_ball->GetRigidbody());
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 10,  780, 40 })); // Top wall
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 485,  780, 50 })); // Down wall
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 25,  10, 550 })); // Left wall

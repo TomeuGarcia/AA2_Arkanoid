@@ -39,31 +39,12 @@ bool GameRunningState::Update(const double& elapsedTime)
 
 
 	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
+	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 
 	_collisionManager->Update();
 
 	_gameObjects->_platform1->Update(elapsedTime);
-
-	//if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
-	//	//_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
-	//	_gameObjects->_platform1->Update(elapsedTime);
-	//}
-	//else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove > 0) {
-	//	//_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
-	//	_gameObjects->_platform1->Update(elapsedTime);
-	//}
-
-	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
-	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove < 0) {
-		//_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
-		_gameObjects->_platform2->Update(elapsedTime);
-	}
-	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove > 0) {
-		//_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
-		_gameObjects->_platform2->Update(elapsedTime);
-	}
-	
-
+	_gameObjects->_platform2->Update(elapsedTime);
 	_gameObjects->_ball->Update(elapsedTime);
 
 
@@ -89,19 +70,19 @@ bool GameRunningState::Update(const double& elapsedTime)
 		}
 	}
 
-	// Test lives and score
-	if (_controller1->GetButtonUp(ActionName::UP)) {
-		_gameLogic->Player1LosesLives();
-		//_gameObjects->Player1LosesLives();
-		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
-		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
-	}
-	if (_controller2->GetButtonUp(ActionName::UP)) {
-		_gameLogic->Player2LosesLives();
-		//_gameObjects->Player2LosesLives();
-		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
-		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
-	}
+	//// Test lives and score
+	//if (_controller1->GetButtonUp(ActionName::UP)) {
+	//	_gameLogic->Player1LosesLives();
+	//	//_gameObjects->Player1LosesLives();
+	//	_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
+	//	_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+	//}
+	//if (_controller2->GetButtonUp(ActionName::UP)) {
+	//	_gameLogic->Player2LosesLives();
+	//	//_gameObjects->Player2LosesLives();
+	//	_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
+	//	_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+	//}
 
 
 	return false;
