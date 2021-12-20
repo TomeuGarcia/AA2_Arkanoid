@@ -18,14 +18,14 @@ public:
 	bool Platform2LowerWallCollision() const;
 
 
-	void AddRigidbodyGameObject(Rigidbody2D* gameObject);
-	void AddRigidbodylessGameObject(Collider* gameObject);
+	void AddGameObjectRigidbody(Rigidbody2D* gameObject);
+	void AddRigidbodylessGameObjectCollider(Collider* gameObject);
 	void Update();
 	void CheckCollision(Rigidbody2D* rigidbody, Collider* otherCollider);
 
 private:
-	std::vector<Rigidbody2D*> _rigidbodyGameObjectsRigidbodies;
-	std::vector<Collider*> _rigidbodylessGameObjectsColliders;
+	std::vector<Rigidbody2D*> _rigidbodies;
+	std::vector<Collider*> _rigidbodylessColliders;
 
 
 

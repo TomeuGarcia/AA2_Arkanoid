@@ -37,21 +37,31 @@ bool GameRunningState::Update(const double& elapsedTime)
 		return true;
 	}
 
-	if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
-		_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
-		_gameObjects->_platform1->Update(elapsedTime);
-	}
-	else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove > 0) {
-		_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
-		_gameObjects->_platform1->Update(elapsedTime);
-	}
 
+	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, -1));
+
+	_collisionManager->Update();
+
+	_gameObjects->_platform1->Update(elapsedTime);
+	if (_gameObjects->_platform1->GetRigidbody()->WillBeColliding()) {
+		std::cout << "---------------------------------------> COLLIDING\n";
+	}
+	//if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
+	//	//_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
+	//	_gameObjects->_platform1->Update(elapsedTime);
+	//}
+	//else if (!_collisionManager->Platform1LowerWallCollision() && _platform1VerticalMove > 0) {
+	//	//_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
+	//	_gameObjects->_platform1->Update(elapsedTime);
+	//}
+
+	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 	if (!_collisionManager->Platform2UpperWallCollision() && _platform2VerticalMove < 0) {
-		_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
+		//_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 		_gameObjects->_platform2->Update(elapsedTime);
 	}
 	else if (!_collisionManager->Platform2LowerWallCollision() && _platform2VerticalMove > 0) {
-		_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
+		//_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 		_gameObjects->_platform2->Update(elapsedTime);
 	}
 	

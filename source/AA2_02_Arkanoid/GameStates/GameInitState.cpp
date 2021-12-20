@@ -24,7 +24,14 @@ void GameInitState::DoStart()
 	InitBall();
 	InitBackground();
 	InitTexts();
+
 	_collisionManager->Init(_gameObjects->_platform1->GetCollider(), _gameObjects->_platform2->GetCollider());
+	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform1->GetRigidbody());
+	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform2->GetRigidbody());
+	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 10,  780, 40 })); // Top wall
+	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 485,  780, 50 })); // Down wall
+	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 25,  10, 550 })); // Left wall
+	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 780, 25,  10, 550 })); // Right wall
 }
 
 void GameInitState::HandleEvents()
@@ -109,10 +116,8 @@ void GameInitState::InitPlayerScoresAndLives()
 void GameInitState::InitPlatforms()
 {
 	_gameObjects->InitPlatforms(
-		new Platform(_renderer, Vector2D<float>(PLATFORM_SOURCE_HEIGHT, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH), 
-			PLATFORM_DESTINATION_SIZE, _platformSpeed),
-		new Platform(_renderer, Vector2D<float>(SCREEN_WIDTH - 80, (SCREEN_HEIGHT / 2) - PLATFORM_DESTINATION_WIDTH),
-			PLATFORM_DESTINATION_SIZE, _platformSpeed)
+		new Platform(_renderer, PLATFORM_1_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed),
+		new Platform(_renderer, PLATFORM_2_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed)
 	);
 }
 

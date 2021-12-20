@@ -3,7 +3,7 @@
 GameScene::GameScene(SDL_Renderer* renderer)
 	: Scene(renderer), _gameLogic(nullptr),
 	_fileManager(nullptr), _gameObjects(nullptr), _collissionManager(nullptr), _controller1(nullptr), _controller2(nullptr),
-	_currentGameState(), _isStateFinished(false)
+	_currentGameState(), _isStateFinished(false), _player1(nullptr), _player2(nullptr)
 {
 }
 
@@ -61,6 +61,7 @@ bool GameScene::Update(const double& elapsedTime)
 		}
 
 	}
+
 
 	return false;
 }

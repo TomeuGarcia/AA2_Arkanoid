@@ -3,7 +3,6 @@
 Rigidbody2D::Rigidbody2D(Collider* collider, Vector2D<float>* moveDirection)
 	: _collider(collider), _moveDirection(moveDirection), _willBeColliding(false)
 {
-	_colliderBoundary = _collider->_boundary;
 }
 
 Rigidbody2D::~Rigidbody2D()
@@ -12,11 +11,12 @@ Rigidbody2D::~Rigidbody2D()
 	_moveDirection = nullptr;
 }
 
-
-void Rigidbody2D::UpdateColliderBoundary()
+void Rigidbody2D::Update(const Vector2D<float>* moveDirection)
 {
-	_colliderBoundary = _collider->BoundaryInDirection(*_moveDirection);	
+	_moveDirection->X = moveDirection->X;
+	_moveDirection->Y = moveDirection->Y;
 }
+
 
 void Rigidbody2D::SetWillBeColliding(const bool& willBeColliding) // Used by CollisionManager
 {
@@ -31,4 +31,9 @@ bool Rigidbody2D::WillBeColliding() const
 Collider* Rigidbody2D::GetCollider() const
 {
 	return _collider;
+}
+
+Vector2D<float> Rigidbody2D::GetMoveDirection() const
+{
+	return *_moveDirection;
 }

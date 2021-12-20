@@ -1,6 +1,5 @@
 #pragma once
 #include "SDL.h"
-#include "../Physics/Rigidbody2D.h"
 
 
 class GameObject {

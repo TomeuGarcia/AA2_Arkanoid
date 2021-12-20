@@ -27,12 +27,22 @@ bool BoxCollider2D::IsCollidingWithCollider(const Collider* other)
 
 }
 
-ColliderBoundary BoxCollider2D::BoundaryInDirection(const Vector2D<float> direction)
+bool BoxCollider2D::WillBeCollidingWithColliderOnDirection(const Vector2D<float>& direction, const Collider* other)
 {
-	ColliderBoundary boundaryInDirection(_boundary);
-	boundaryInDirection._rectBoundary.x += direction.X;
-	boundaryInDirection._rectBoundary.y += direction.Y;
-	return boundaryInDirection;
+	SDL_Rect rectBoundaryOnDirection(_boundary._rectBoundary);
+	rectBoundaryOnDirection.x += direction.X;
+	rectBoundaryOnDirection.y += direction.Y;
+	std::cout << "		x: " << direction.X << "  y: " << direction.Y;
+
+	switch (other->_type)
+	{
+	case ColliderType::SQUARE:
+		return CollisionsHelper::IsRectInsideRect(&rectBoundaryOnDirection, &other->_boundary._rectBoundary);
+		break; // never executes
+	default:
+		return false;
+		break; // never executes
+	}
 }
 
 void BoxCollider2D::SetBoundaryPosition(const Vector2D<float>& boundaryPosition)
