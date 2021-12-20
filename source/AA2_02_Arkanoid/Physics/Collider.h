@@ -20,6 +20,7 @@ public:
 	~Collider() = default;
 
 	virtual bool IsCollidingWithCollider(const Collider* other) = 0;
+	virtual ColliderBoundary BoundaryInDirection(const Vector2D<float> direction) = 0;
 
 	ColliderType _type;
 	ColliderBoundary _boundary;

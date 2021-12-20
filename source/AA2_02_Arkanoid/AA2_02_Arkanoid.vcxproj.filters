@@ -177,6 +177,9 @@
     <ClCompile Include="GameLogic\GameLogic.cpp">
       <Filter>GameLogic</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\Rigidbody2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="GameLogic\GameLogic.h">
       <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Rigidbody2D.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

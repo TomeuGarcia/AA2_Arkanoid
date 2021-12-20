@@ -27,6 +27,14 @@ bool BoxCollider2D::IsCollidingWithCollider(const Collider* other)
 
 }
 
+ColliderBoundary BoxCollider2D::BoundaryInDirection(const Vector2D<float> direction)
+{
+	ColliderBoundary boundaryInDirection(_boundary);
+	boundaryInDirection._rectBoundary.x += direction.X;
+	boundaryInDirection._rectBoundary.y += direction.Y;
+	return boundaryInDirection;
+}
+
 void BoxCollider2D::SetBoundaryPosition(const Vector2D<float>& boundaryPosition)
 {
 	_boundary._rectBoundary.x = boundaryPosition.X;

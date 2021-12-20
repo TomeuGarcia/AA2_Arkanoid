@@ -99,12 +99,19 @@ struct GameObjects {
 	}
 
 	void Player1LosesLives() {
-		delete *_livesPlayer1Image.rbegin();
-		*_livesPlayer1Image.rbegin() = nullptr;
+		ImageGameObject** holder = &(*_livesPlayer1Image.rbegin());
+		ImageGameObject* holder2 = *_livesPlayer1Image.rbegin();
+		delete holder2;
+		*holder = nullptr;
+
+		/*std::list<ImageGameObject*>::reverse_iterator itHolder = _livesPlayer1Image.rbegin();
+		*_livesPlayer1Image.rbegin().base() = nullptr;
+		delete (*itHolder);*/
 	}
 
 	void Player2LosesLives() {
-		delete* _livesPlayer2Image.rbegin();
-		*_livesPlayer2Image.rbegin() = nullptr;
+		/*std::list<ImageGameObject*>::reverse_iterator itHolder = _livesPlayer2Image.rbegin();
+		*_livesPlayer2Image.rbegin().base() = nullptr;
+		delete (*itHolder);*/
 	}
 };

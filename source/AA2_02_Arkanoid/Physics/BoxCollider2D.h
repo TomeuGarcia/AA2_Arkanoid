@@ -9,6 +9,7 @@ public:
 	~BoxCollider2D();
 
 	virtual bool IsCollidingWithCollider(const Collider* other) override;
+	virtual ColliderBoundary BoundaryInDirection(const Vector2D<float> direction) override;
 
 	void SetBoundaryPosition(const Vector2D<float>& boundaryPosition);
 	void SetBoundarySize(const Vector2D<int>& boundarySize);

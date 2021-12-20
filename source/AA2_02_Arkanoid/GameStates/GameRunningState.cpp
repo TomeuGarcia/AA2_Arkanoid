@@ -84,13 +84,13 @@ bool GameRunningState::Update(const double& elapsedTime)
 	// Test lives and score
 	if (_controller1->GetButtonUp(ActionName::UP)) {
 		_gameLogic->Player1LosesLives();
-		_gameObjects->Player1LosesLives();
+		//_gameObjects->Player1LosesLives();
 		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
 		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
 	}
 	if (_controller2->GetButtonUp(ActionName::UP)) {
 		_gameLogic->Player2LosesLives();
-		_gameObjects->Player2LosesLives();
+		//_gameObjects->Player2LosesLives();
 		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
 		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
 	}

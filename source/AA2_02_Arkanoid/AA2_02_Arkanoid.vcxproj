@@ -219,6 +219,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Physics\Collider.cpp" />
     <ClCompile Include="Physics\BoxCollider2D.cpp" />
     <ClCompile Include="Physics\CollissionManager.cpp" />
+    <ClCompile Include="Physics\Rigidbody2D.cpp" />
     <ClCompile Include="Player\Platform.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Renders\AnimatedImage.cpp" />
@@ -263,6 +264,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Physics\BoxCollider2D.h" />
     <ClInclude Include="Physics\CollisionsHelper.h" />
     <ClInclude Include="Physics\CollissionManager.h" />
+    <ClInclude Include="Physics\Rigidbody2D.h" />
     <ClInclude Include="Physics\Vector2D.h" />
     <ClInclude Include="Player\Platform.h" />
     <ClInclude Include="Player\Player.h" />

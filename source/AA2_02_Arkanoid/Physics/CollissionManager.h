@@ -1,8 +1,8 @@
 #pragma once
 #include "../Constants/Constants.h"
-#include "BoxCollider2D.h"
 #include "../GameObjects/GameObject.h"
-#include <list>
+#include "Rigidbody2D.h"
+#include <vector>
 
 
 class CollisionManager {
@@ -18,10 +18,14 @@ public:
 	bool Platform2LowerWallCollision() const;
 
 
+	void AddRigidbodyGameObject(Rigidbody2D* gameObject);
+	void AddRigidbodylessGameObject(Collider* gameObject);
+	void Update();
+	void CheckCollision(Rigidbody2D* rigidbody, Collider* otherCollider);
 
 private:
-	std::list<GameObject*> _staticGameObjects;
-	std::list<std::list<GameObject*>> _movingGameObjects;
+	std::vector<Rigidbody2D*> _rigidbodyGameObjectsRigidbodies;
+	std::vector<Collider*> _rigidbodylessGameObjectsColliders;
 
 
 
