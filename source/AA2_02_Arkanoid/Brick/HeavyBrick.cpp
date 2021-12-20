@@ -5,12 +5,12 @@ HeavyBrick::HeavyBrick(SDL_Renderer* renderer, const Vector2D<int>& position, co
 	: Brick(position, size, spriteSourceWidthGap), 	_points(points), _lifeSystem(lives) 
 {
 	// Initialize _sprite
-	_sprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, _position, _size);
+	_sprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, position, size);
 	_sprite->Init("../../resources/assets/images/bricks.png");
 	_sprite->Rotate(90);
 
 	// Initialize _collider
-	_collider = new BoxCollider2D({ _position.X, _position.Y, _size.Y, _size.X }); // Size inverted due to 90deg rotation
+	_collider = new BoxCollider2D({ _position.X, _position.Y, _size.X, _size.Y }); 
 }
 
 HeavyBrick::~HeavyBrick()

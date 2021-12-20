@@ -1,16 +1,19 @@
 #include "Platform.h"
 
 Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed)
-	: _sprite(nullptr), _collider(nullptr), _rigidbody(nullptr), _position(position), _size(size), 
+	: _sprite(nullptr), _collider(nullptr), _rigidbody(nullptr), _position(), _size(), 
 	_moveDirection(Vector2D<float>(0,0)), _moveSpeed(moveSpeed)
 {
+	_position = Vector2D<float>(position.X + size.X / 2 - size.Y / 2, position.Y + size.Y / 2 - size.X / 2); // Position inverted after rotating 90deg
+	_size = Vector2D<int>(size.Y, size.Y); // Size inverted after rotating 90deg
+
 	// Initialize _sprite
-	_sprite = new Image(renderer, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);
+	_sprite = new Image(renderer, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE, Vector2D<int>(position.X, position.Y), size);
 	_sprite->Init("../../resources/assets/images/platform.png");
 	_sprite->Rotate(90);
 
 	// Initialize _collider
-	_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.Y, _size.X }); // Size inverted due to 90deg rotation
+	_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.X, _size.Y }); 
 
 	// Initialize _rigidbody
 	_rigidbody = new Rigidbody2D(_collider, &_moveDirection);

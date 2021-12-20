@@ -38,14 +38,12 @@ bool GameRunningState::Update(const double& elapsedTime)
 	}
 
 
-	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, -1));
+	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
 
 	_collisionManager->Update();
 
 	_gameObjects->_platform1->Update(elapsedTime);
-	if (_gameObjects->_platform1->GetRigidbody()->WillBeColliding()) {
-		std::cout << "---------------------------------------> COLLIDING\n";
-	}
+
 	//if (!_collisionManager->Platform1UpperWallCollision() && _platform1VerticalMove < 0) {
 	//	//_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
 	//	_gameObjects->_platform1->Update(elapsedTime);

@@ -32,7 +32,6 @@ bool BoxCollider2D::WillBeCollidingWithColliderOnDirection(const Vector2D<float>
 	SDL_Rect rectBoundaryOnDirection(_boundary._rectBoundary);
 	rectBoundaryOnDirection.x += direction.X;
 	rectBoundaryOnDirection.y += direction.Y;
-	std::cout << "		x: " << direction.X << "  y: " << direction.Y;
 
 	switch (other->_type)
 	{

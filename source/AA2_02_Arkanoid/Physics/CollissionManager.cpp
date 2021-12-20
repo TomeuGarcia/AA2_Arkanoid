@@ -71,6 +71,7 @@ void CollisionManager::Update()
 
 	int currentRigidbody{ 0 };
 	for (int i{ 0 }; i < _rigidbodies.size(); ++i) {
+		_rigidbodies[currentRigidbody]->SetWillBeColliding(false);
 
 		// 1.(1/2) Iterate other rigidbody-GameObjects' Rigidbodies
 		for (int j{ 0 }; j < currentRigidbody; ++j) {
@@ -90,15 +91,8 @@ void CollisionManager::Update()
 
 void CollisionManager::CheckCollision(Rigidbody2D* rigidbody, Collider* otherCollider)
 {
-	rigidbody->SetWillBeColliding(
-		rigidbody->GetCollider()->WillBeCollidingWithColliderOnDirection(rigidbody->GetMoveDirection(), otherCollider)
-	);
-	if (rigidbody->WillBeColliding()) {
-		std::cout << "		-> YES\n";
+	bool willCollide = rigidbody->GetCollider()->WillBeCollidingWithColliderOnDirection(rigidbody->GetMoveDirection(), otherCollider);
+	if (willCollide) { 
+		rigidbody->SetWillBeColliding(willCollide);
 	}
-	else {
-		std::cout << "		-> NO\n";
-	}
-	//rigidbody->SetWillBeColliding(rigidbody->GetCollider()->IsCollidingWithCollider(otherCollider));
-	//rigidbody->SetWillBeColliding(rigidbody->WillBeCollidingWithCollider(otherCollider));
 }
