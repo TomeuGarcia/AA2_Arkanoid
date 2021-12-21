@@ -5,7 +5,7 @@
 #include "../Physics/BoxCollider2D.h"
 #include "../Constants/Constants.h"
 
-class Brick : public GameObject {
+class Brick : public GameObject, public BoxCollider2D {
 
 public:
 	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
@@ -20,7 +20,6 @@ public:
 
 protected:
 	Image* _sprite;
-	BoxCollider2D* _collider;
 
 	Vector2D<int> _position;
 	Vector2D<int> _size;

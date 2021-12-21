@@ -241,6 +241,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\ImageGameObject.h" />
+    <ClInclude Include="GameObjects\Tags.h" />
     <ClInclude Include="GameObjects\TextGameObject.h" />
     <ClInclude Include="GameScenes\GameScene.h" />
     <ClInclude Include="GameScenes\MainMenuScene.h" />
@@ -260,6 +261,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Inputs\Keyboard.h" />
     <ClInclude Include="Physics\Collider.h" />
     <ClInclude Include="Physics\BoxCollider2D.h" />
+    <ClInclude Include="Physics\CollisionData.h" />
     <ClInclude Include="Physics\CollisionsHelper.h" />
     <ClInclude Include="Physics\CollissionManager.h" />
     <ClInclude Include="Physics\Rigidbody2D.h" />

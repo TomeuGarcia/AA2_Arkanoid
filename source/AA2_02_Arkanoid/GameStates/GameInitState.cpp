@@ -32,6 +32,11 @@ void GameInitState::DoStart()
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 485,  780, 50 })); // Down wall
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 25,  10, 550 })); // Left wall
 	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 780, 25,  10, 550 })); // Right wall
+	
+	for (std::list<Brick*>::const_iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
+		_collisionManager->AddRigidbodylessGameObjectCollider((*it));
+	}
+	
 }
 
 void GameInitState::HandleEvents()
@@ -130,7 +135,7 @@ void GameInitState::InitPlatforms()
 
 void GameInitState::InitBall()
 {
-	Vector2D<float> spawnPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	Vector2D<float> spawnPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 50);
 	Vector2D<float> spawnDirection(-1, 0);
 	_gameObjects->InitBall( 
 		new Ball(_renderer, spawnPosition, BALL_DESTINATION_SIZE, spawnDirection, _platformSpeed) 

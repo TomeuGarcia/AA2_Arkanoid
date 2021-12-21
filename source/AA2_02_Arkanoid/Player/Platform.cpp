@@ -1,7 +1,7 @@
 #include "Platform.h"
 
 Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const float& moveSpeed)
-	: BoxCollider2D(), _sprite(nullptr), _rigidbody(nullptr), _position(), _size(), 
+	: GameObject(Tag::PLATFORM), BoxCollider2D(), _sprite(nullptr), _rigidbody(nullptr), _position(), _size(), 
 	_moveDirection(Vector2D<float>(0,0)), _moveSpeed(moveSpeed)
 {
 	_position = Vector2D<float>(position.X + size.X / 2 - size.Y / 2, position.Y + size.Y / 2 - size.X / 2); // Position inverted after rotating 90deg
@@ -16,7 +16,6 @@ Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, cons
 	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, _size.X, _size.Y };
 
 	// Initialize _rigidbody
-	//_rigidbody = new Rigidbody2D(_collider, &_moveDirection);
 	_rigidbody = new Rigidbody2D(this, &_moveDirection);
 }
 
@@ -42,7 +41,7 @@ void Platform::Render() const
 }
 
 
-void Platform::Move(const float& elapsedTime)
+void Platform::Move(const double& elapsedTime)
 {
 	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(Vector2D<float>(_position.X - _size.X/2, _position.Y));

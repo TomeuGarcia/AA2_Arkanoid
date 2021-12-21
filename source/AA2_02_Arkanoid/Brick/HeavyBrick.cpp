@@ -8,15 +8,11 @@ HeavyBrick::HeavyBrick(SDL_Renderer* renderer, const Vector2D<int>& position, co
 	_sprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, position, size);
 	_sprite->Init("../../resources/assets/images/bricks.png");
 	_sprite->Rotate(90);
-
-	// Initialize _collider
-	_collider = new BoxCollider2D({ _position.X, _position.Y, _size.X, _size.Y }); 
 }
 
 HeavyBrick::~HeavyBrick()
 {
 	delete _sprite;
-	delete _collider;
 }
 
 

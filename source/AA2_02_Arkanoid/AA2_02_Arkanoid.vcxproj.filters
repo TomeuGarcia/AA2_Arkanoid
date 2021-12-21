@@ -311,5 +311,11 @@
     <ClInclude Include="Physics\Rigidbody2D.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Tags.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollisionData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

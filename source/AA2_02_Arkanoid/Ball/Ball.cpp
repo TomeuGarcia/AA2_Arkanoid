@@ -2,7 +2,7 @@
 
 
 Ball::Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed)
-	: _sprite(nullptr), _collider(nullptr), _position(position), _size(size),
+	: GameObject(Tag::BALL), BoxCollider2D(), _sprite(nullptr), _position(position), _size(size),
 	_moveDirection(moveDirection), _moveSpeed(moveSpeed)
 	
 {
@@ -11,16 +11,15 @@ Ball::Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector
 	_sprite->Init("../../resources/assets/images/ball.png");
 
 	// Initialize _collider
-	_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.X, _size.Y });
+	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, _size.X, _size.Y };
 
 	// Initialize _rigidbody
-	_rigidbody = new Rigidbody2D(_collider, &_moveDirection);
+	_rigidbody = new Rigidbody2D(this, &_moveDirection);
 }
 
 Ball::~Ball()
 {
 	delete _sprite;
-	delete _collider;
 }
 
 
@@ -28,11 +27,11 @@ void Ball::Update(const double& elapsedTime)
 {
 	if (!_rigidbody->WillBeColliding()) {
 		Move(elapsedTime);
+		SetBoundaryPosition(_position);
 	}
 	else {
 		_moveDirection *= -1;
 	}
-	_collider->SetBoundaryPosition(_position);
 }
 
 void Ball::Render() const
@@ -50,11 +49,6 @@ void Ball::Move(const float& elapsedTime)
 void Ball::SetMoveDirection(const Vector2D<float>& direction)
 {
 	_moveDirection = direction;
-}
-
-BoxCollider2D* Ball::GetCollider() const
-{
-	return _collider;
 }
 
 Rigidbody2D* Ball::GetRigidbody() const

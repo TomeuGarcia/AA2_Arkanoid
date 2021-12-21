@@ -15,7 +15,7 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
-	void Move(const float& elapsedTime);
+	void Move(const double& elapsedTime);
 	void SetMoveDirection(const Vector2D<float>& direction);
 	Rigidbody2D* GetRigidbody() const;
 
