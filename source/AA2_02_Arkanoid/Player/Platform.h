@@ -17,12 +17,10 @@ public:
 
 	void Move(const float& elapsedTime);
 	void SetMoveDirection(const Vector2D<float>& direction);
-	BoxCollider2D* GetCollider() const;
 	Rigidbody2D* GetRigidbody() const;
 
 private:
 	Image* _sprite;
-	//BoxCollider2D* _collider;
 	Rigidbody2D* _rigidbody;
 
 	Vector2D<float> _position;

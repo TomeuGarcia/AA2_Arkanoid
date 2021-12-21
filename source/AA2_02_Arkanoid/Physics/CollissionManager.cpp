@@ -54,6 +54,6 @@ void CollisionManager::CheckCollision(Rigidbody2D* rigidbody, Collider* otherCol
 {
 	bool willCollide = rigidbody->GetCollider()->WillBeCollidingWithColliderOnDirection(rigidbody->GetMoveDirection(), otherCollider);
 	if (willCollide) { 
-		rigidbody->SetWillBeColliding(willCollide);
+		rigidbody->SetWillBeColliding(true);
 	}
 }

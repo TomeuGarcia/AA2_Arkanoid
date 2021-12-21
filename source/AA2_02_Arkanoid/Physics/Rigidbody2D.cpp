@@ -1,7 +1,7 @@
 #include "Rigidbody2D.h"
 
 Rigidbody2D::Rigidbody2D(Collider* collider, Vector2D<float>* moveDirection)
-	: _collider(collider), _moveDirection(moveDirection), _willBeColliding(false)
+	: _collider(collider), _moveDirection(moveDirection)
 {
 }
 
@@ -20,12 +20,12 @@ void Rigidbody2D::Update(const Vector2D<float>* moveDirection)
 
 void Rigidbody2D::SetWillBeColliding(const bool& willBeColliding) // Used by CollisionManager
 {
-	_willBeColliding = willBeColliding;
+	_collider->_willBeColliding = willBeColliding;
 }
 
 bool Rigidbody2D::WillBeColliding() const
 {
-	return _willBeColliding;
+	return _collider->_willBeColliding;
 }
 
 Collider* Rigidbody2D::GetCollider() const

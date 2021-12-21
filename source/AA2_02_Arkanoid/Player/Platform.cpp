@@ -14,7 +14,6 @@ Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, cons
 
 	// Initialize _collider
 	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, _size.X, _size.Y };
-	//_collider = new BoxCollider2D({ (int)_position.X, (int)_position.Y, _size.X, _size.Y }); 
 
 	// Initialize _rigidbody
 	//_rigidbody = new Rigidbody2D(_collider, &_moveDirection);
@@ -24,7 +23,6 @@ Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, cons
 Platform::~Platform()
 {
 	delete _sprite;
-	//delete _collider;
 	delete _rigidbody;
 }
 
@@ -33,8 +31,9 @@ void Platform::Update(const double& elapsedTime)
 {
 	if (!_rigidbody->WillBeColliding()) {
 		Move(elapsedTime);
+		SetBoundaryPosition(_position);
 	}
-	//_collider->SetBoundaryPosition(_position);
+	
 }
 
 void Platform::Render() const
@@ -46,22 +45,13 @@ void Platform::Render() const
 void Platform::Move(const float& elapsedTime)
 {
 	_position += _moveDirection * _moveSpeed * elapsedTime;
-	//_sprite->SetDestinationStart(_position);
-	_sprite->SetDestinationStart(Vector2D<float>(_position.X - _size.X/2, _position.Y + _size.Y/2));
+	_sprite->SetDestinationStart(Vector2D<float>(_position.X - _size.X/2, _position.Y));
 }
 
 void Platform::SetMoveDirection(const Vector2D<float>& direction)
 {
-	//_moveDirection = direction;
 	_moveDirection.X = direction.X;
 	_moveDirection.Y = direction.Y;
-}
-
-BoxCollider2D* Platform::GetCollider() const
-{
-	//return _collider;
-	BoxCollider2D bc;
-	return &bc; // ---------------------- NEEDS REVISING
 }
 
 Rigidbody2D* Platform::GetRigidbody() const

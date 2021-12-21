@@ -11,8 +11,6 @@ public:
 	CollisionManager();
 	~CollisionManager();
 
-	void Init(BoxCollider2D* platform1Collider, BoxCollider2D* platform2Collider);
-
 	void AddGameObjectRigidbody(Rigidbody2D* gameObject);
 	void AddRigidbodylessGameObjectCollider(Collider* gameObject);
 	void Update();

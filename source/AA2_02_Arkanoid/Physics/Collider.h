@@ -24,5 +24,5 @@ public:
 
 	ColliderType _type;
 	ColliderBoundary _boundary;
-
+	bool _willBeColliding;
 };

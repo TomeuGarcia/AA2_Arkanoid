@@ -19,5 +19,4 @@ public:
 private:
 	Collider* _collider;
 	Vector2D<float>* _moveDirection;
-	bool _willBeColliding;
 };
