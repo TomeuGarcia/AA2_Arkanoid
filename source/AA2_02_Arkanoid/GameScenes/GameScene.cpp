@@ -51,8 +51,12 @@ bool GameScene::Update(const double& elapsedTime)
 
 		_currentGameState->End();
 
-		if (_currentGameState->GetNextState() == GameStates::QUIT) {
+		if (_currentGameState->GetNextState() == GameStates::QUIT_TO_RANKING) {
 			_nextScene = Scenes::RANKING;
+			return true;
+		}
+		else if (_currentGameState->GetNextState() == GameStates::QUIT_TO_MAIN_MENU) {
+			_nextScene = Scenes::MAIN_MENU;
 			return true;
 		}
 		else {

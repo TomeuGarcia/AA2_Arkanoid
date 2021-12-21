@@ -18,6 +18,7 @@ public:
 
 private:
 	bool _goToRunningState;
+	bool _goToMainMenu;
 
 	Controller* _controller;
 

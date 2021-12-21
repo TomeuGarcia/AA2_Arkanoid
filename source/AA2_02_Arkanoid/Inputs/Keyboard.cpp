@@ -12,37 +12,43 @@ void Keyboard::HandleEvent(const Event* eventToHandle)
 	}
 
 	if (eventToHandle->_actionType == ActionType::BUTTON_UP) {
-		_actionUpStatus[it->second] = true;
-		_actionDownStatus[it->second] = false;
+		_actionUpStatus[it->second] = ActionStatus::ACTIVE;
+		_actionDownStatus[it->second] = ActionStatus::INACTIVE;
 	}
 	else if (eventToHandle->_actionType == ActionType::BUTTON_DOWN) {
-		_actionUpStatus[it->second] = false;
-		_actionDownStatus[it->second] = true;
+		_actionUpStatus[it->second] = ActionStatus::INACTIVE;
+		_actionDownStatus[it->second] = ActionStatus::ACTIVE;
+	}
+}
+
+void Keyboard::ResetEvents()
+{
+	for (std::unordered_map<ActionName, ActionStatus>::iterator it = _actionUpStatus.begin(); it != _actionUpStatus.end(); ++it) {
+		it->second = ActionStatus::NONE;
+	}
+	for (std::unordered_map<ActionName, ActionStatus>::iterator it = _actionDownStatus.begin(); it != _actionDownStatus.end(); ++it) {
+		it->second = ActionStatus::NONE;
 	}
 }
 
 bool Keyboard::GetButtonUp(const ActionName& actionID)
 {
-	std::unordered_map<ActionName, bool>::iterator it = _actionUpStatus.find(actionID);
+	std::unordered_map<ActionName, ActionStatus>::iterator it = _actionUpStatus.find(actionID);
 	if (it == _actionUpStatus.end()) {
 		throw std::exception("Action Up not registered for a Keyboard.");
 	}
 
-	if (it->second) {
-		it->second = false;
-		return true;	// true is only returned in the frame when the button went UP
-	}
-	return false;
+	return it->second == ActionStatus::ACTIVE;
 }
 
 bool Keyboard::GetButtonDown(const ActionName& actionID) const
 {
-	std::unordered_map<ActionName, bool>::const_iterator it = _actionDownStatus.find(actionID);
+	std::unordered_map<ActionName, ActionStatus>::const_iterator it = _actionDownStatus.find(actionID);
 	if (it == _actionDownStatus.end()) {
 		throw std::exception("Action Down not registered for a Keyboard."); 
 	}
 
-	return it->second;
+	return it->second == ActionStatus::ACTIVE;
 }
 
 

@@ -114,16 +114,6 @@ void SceneManager::InitFont()
 
 void SceneManager::HandleEvents()
 {
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_QUIT) {
-			*_isRunning = false;
-		}
-
-		InputHandler::GetInstance()->HandleEvents(&event);
-	}
-
 	_currentScene->HandleEvents();
 }
 

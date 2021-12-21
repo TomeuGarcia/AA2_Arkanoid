@@ -29,7 +29,7 @@ bool GameOverState::Update(const double& elapsedTime)
 {
 	std::cout << "GameOverState::Update\n";
 	if (_goToRanking) {
-		_nextState = GameStates::QUIT;
+		_nextState = GameStates::QUIT_TO_RANKING;
 		return true;
 	}
 	_blackBackground->Update(elapsedTime);

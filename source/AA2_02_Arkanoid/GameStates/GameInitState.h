@@ -22,6 +22,7 @@ public:
 	void InitPlayerScoresAndLives();
 private:
 	bool _start;
+	bool _goToMainMenu;
 	FileManager* _fileManager;
 	int _platformSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;

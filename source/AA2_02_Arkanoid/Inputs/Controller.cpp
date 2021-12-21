@@ -9,11 +9,17 @@ std::string Controller::GetName() const
 	return _name;
 }
 
+void Controller::HandleEvents(const Event* eventToHandle)
+{
+	HandleEvent(eventToHandle);
+	HandleAxisEvent(eventToHandle);
+}
+
 void Controller::AddActionKey(const ActionName& actionID, const int& eventKeyToAdd)
 {
 	_eventKeyToAction[eventKeyToAdd] = actionID;
-	_actionUpStatus[actionID] = false;
-	_actionDownStatus[actionID] = false;
+	_actionUpStatus[actionID] = ActionStatus::NONE;
+	_actionDownStatus[actionID] = ActionStatus::NONE;
 }
 
 void Controller::AddAxisActionKeys(const AxisName& axisID, const int& positiveSignedEventKeyToAdd, const int& negativeSignedEventKeyToAdd)

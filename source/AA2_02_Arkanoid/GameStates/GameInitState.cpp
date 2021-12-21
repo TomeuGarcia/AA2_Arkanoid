@@ -4,7 +4,7 @@
 GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
 	GameObjects* gameObjects, CollisionManager* collisionManager)
 	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager), 
-	_platformSpeed(), _collisionManager(collisionManager), _start(false), 
+	_platformSpeed(), _collisionManager(collisionManager), _start(false), _goToMainMenu(false),
 	_blackBackground(nullptr), _startGame(nullptr), _spaceToStart(nullptr)
 {
 }
@@ -39,6 +39,9 @@ void GameInitState::HandleEvents()
 	if (_controller->GetButtonDown(ActionName::START)) {
 		_start = true;
 	}
+	if (_controller->GetButtonDown(ActionName::QUIT)) {
+		_goToMainMenu = true;
+	}
 }
 
 bool GameInitState::Update(const double& elapsedTime)
@@ -47,6 +50,10 @@ bool GameInitState::Update(const double& elapsedTime)
 	
 	if (_start) {
 		_nextState = GameStates::RUNNING;
+		return true;
+	}
+	else if (_goToMainMenu) {
+		_nextState = GameStates::QUIT_TO_MAIN_MENU;
 		return true;
 	}
 
@@ -75,7 +82,7 @@ void GameInitState::End()
 {
 	std::cout << "GameInitState::End\n";
 
-	_start = false;
+	_start = _goToMainMenu = false;
 
 	delete _blackBackground;
 	delete _startGame;

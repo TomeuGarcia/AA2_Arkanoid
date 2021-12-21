@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 #include "../GameScenes/SceneManager.h"
-#include "GameInputs.h"
+#include "../Inputs/InputHandler.h"
 
 class Game {
 
@@ -12,6 +12,10 @@ public:
 	void GameLoop();
 
 private:
+	void HandleEvents();
+	void Update(const double& elapsedTime);
+	void Render();
+
 	SceneManager* _sceneManager;
 	bool _isRunning;
 };

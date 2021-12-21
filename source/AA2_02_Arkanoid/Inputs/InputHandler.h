@@ -12,7 +12,7 @@ private:
 public:
 	static InputHandler* GetInstance();
 
-	void HandleEvents(const SDL_Event* eventToHandle);
+	void HandleEvents();
 	void AddController(Controller* controllerToAdd);
 	void RemoveAllControllers();
 

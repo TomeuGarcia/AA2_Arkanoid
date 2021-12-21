@@ -6,5 +6,6 @@ struct Event {
 	int _key;
 	ActionType _actionType;
 
+	Event();
 	Event(int key, ActionType actionType);
 };

@@ -2,7 +2,7 @@
 
 
 GamePausedState::GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
-	: GameState(renderer, gameObjects), _controller(controller), _goToRunningState(false),
+	: GameState(renderer, gameObjects), _controller(controller), _goToRunningState(false), _goToMainMenu(false),
 	_blackBackground(nullptr), _pauseText(nullptr), _lToResumeText(nullptr)
 	
 {
@@ -24,6 +24,9 @@ void GamePausedState::HandleEvents()
 	if (_controller->GetButtonDown(ActionName::RESUME)) {
 		_goToRunningState = true;
 	}
+	if (_controller->GetButtonDown(ActionName::QUIT)) {
+		_goToMainMenu = true;
+	}
 }
 
 bool GamePausedState::Update(const double& elapsedTime)
@@ -31,6 +34,10 @@ bool GamePausedState::Update(const double& elapsedTime)
 	std::cout << "GamePausedState::Update\n";
 	if (_goToRunningState) {
 		_nextState = GameStates::RUNNING;
+		return true;
+	}
+	else if (_goToMainMenu) {
+		_nextState = GameStates::QUIT_TO_MAIN_MENU;
 		return true;
 	}
 
@@ -59,7 +66,7 @@ void GamePausedState::End()
 {
 	std::cout << "GamePausedState::End\n";
 
-	_goToRunningState = false;
+	_goToRunningState = _goToMainMenu = false;
 	delete _blackBackground;
 	_blackBackground = nullptr;
 	delete _pauseText;

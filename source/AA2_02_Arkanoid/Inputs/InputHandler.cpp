@@ -15,16 +15,24 @@ InputHandler* InputHandler::GetInstance()
 	return _instance;
 }
 
-void InputHandler::HandleEvents(const SDL_Event* eventToHandle)
+void InputHandler::HandleEvents()
 {
-	Event* newEventToHandle = new Event(eventToHandle->key.keysym.sym, _actionTypeMapping[eventToHandle->key.type]);
-
 	for (Controller* controller : _controllers) {
-		controller->HandleEvent(newEventToHandle);
-		controller->HandleAxisEvent(newEventToHandle);
+		controller->ResetEvents();
 	}
 
-	delete newEventToHandle;
+	SDL_Event event;
+	Event eventToHandle;
+
+	while (SDL_PollEvent(&event)) {
+
+		eventToHandle = Event(event.key.keysym.sym, _actionTypeMapping[event.key.type]);
+		for (Controller* controller : _controllers) {
+			controller->HandleEvents(&eventToHandle);
+		}
+
+	}
+
 }
 
 void InputHandler::AddController(Controller* controllerToAdd)

@@ -5,7 +5,7 @@
 #include "../Inputs/Keyboard.h"
 
 
-enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT };
+enum class GameStates { NONE, INIT, RUNNING, PAUSED, GAME_OVER, QUIT_TO_RANKING, QUIT_TO_MAIN_MENU };
 
 
 class GameState {

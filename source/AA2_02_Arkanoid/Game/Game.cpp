@@ -25,10 +25,26 @@ void Game::GameLoop()
 		auto currentTime = std::chrono::system_clock::now();
 		std::chrono::duration<double> elapsedTime = currentTime - lastTime;
 
-		_sceneManager->HandleEvents();
-		_sceneManager->Update(elapsedTime.count());
-		_sceneManager->Render();
+		HandleEvents();
+		Update(elapsedTime.count());
+		Render();
 
 		lastTime = currentTime;
 	}
+}
+
+void Game::HandleEvents()
+{
+	InputHandler::GetInstance()->HandleEvents();
+	_sceneManager->HandleEvents();
+}
+
+void Game::Update(const double& elapsedTime)
+{
+	_sceneManager->Update(elapsedTime);
+}
+
+void Game::Render()
+{
+	_sceneManager->Render();
 }
