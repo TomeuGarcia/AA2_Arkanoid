@@ -42,10 +42,7 @@ bool GameRunningState::Update(const double& elapsedTime)
 	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 
 	_collisionManager->Update();
-
-	_gameObjects->_platform1->Update(elapsedTime);
-	_gameObjects->_platform2->Update(elapsedTime);
-	_gameObjects->_ball->Update(elapsedTime);
+	_gameObjects->Update(elapsedTime);
 
 
 
@@ -58,14 +55,8 @@ bool GameRunningState::Update(const double& elapsedTime)
 	// Test brick breaking
 	if (_controller1->GetButtonUp(ActionName::DOWN)) {
 		for (std::list<Brick*>::iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
-			if (*it && (*it)->DoCollision()) {
-				/*std::list<Brick*>::const_iterator it2{ it };
-				++it;
-				_gameObjects->_bricks.erase(it2);*/
-
-				std::list<Brick*>::iterator itHolder{ it };
-				*it = nullptr;
-				delete (*itHolder);
+			if ((*it)->IsActive()) {
+				(*it)->SetActive(!(*it)->DoCollision());
 			}
 		}
 	}
@@ -91,8 +82,11 @@ bool GameRunningState::Update(const double& elapsedTime)
 void GameRunningState::Render() const
 {
 	std::cout << "GameRunningState::Render\n";
+	
 	SDL_RenderClear(_renderer);
-	DrawGameObjects();
+	
+	RenderGameObjects();
+
 	SDL_RenderPresent(_renderer);
 }
 

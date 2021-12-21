@@ -24,8 +24,6 @@ private:
 	Image* _sprite;
 	Rigidbody2D* _rigidbody;
 
-	Vector2D<float> _position;
-	Vector2D<int> _size;
 	Vector2D<float> _moveDirection;
 	float _moveSpeed;
 };

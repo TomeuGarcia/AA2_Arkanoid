@@ -2,9 +2,9 @@
 
 
 GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
-	GameObjects* gameObjects, CollisionManager* collisionManager)
+	GameObjects* gameObjects)
 	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager), 
-	_platformSpeed(), _collisionManager(collisionManager), _start(false), _goToMainMenu(false),
+	_platformSpeed(), _start(false), _goToMainMenu(false),
 	_blackBackground(nullptr), _startGame(nullptr), _spaceToStart(nullptr)
 {
 }
@@ -18,24 +18,13 @@ void GameInitState::DoStart()
 {
 	std::cout << "GameInitState::Start\n";
 
+	InitBackground();
+	InitTexts(); 
 	LoadGame();
 	InitPlayerScoresAndLives();
 	InitPlatforms();
 	InitBall();
-	InitBackground();
-	InitTexts();
-
-	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform1->GetRigidbody());
-	_collisionManager->AddGameObjectRigidbody(_gameObjects->_platform2->GetRigidbody());
-	_collisionManager->AddGameObjectRigidbody(_gameObjects->_ball->GetRigidbody());
-	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 10,  780, 40 })); // Top wall
-	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 485,  780, 50 })); // Down wall
-	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 10, 25,  10, 550 })); // Left wall
-	_collisionManager->AddRigidbodylessGameObjectCollider(new BoxCollider2D({ 780, 25,  10, 550 })); // Right wall
-	
-	for (std::list<Brick*>::const_iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
-		_collisionManager->AddRigidbodylessGameObjectCollider((*it));
-	}
+	InitWalls();
 	
 }
 
@@ -75,7 +64,7 @@ void GameInitState::Render() const
 
 	SDL_RenderClear(_renderer);
 
-	DrawGameObjects();
+	RenderGameObjects();
 	_blackBackground->Render();
 	_startGame->Render();
 	_spaceToStart->Render();
@@ -116,7 +105,7 @@ void GameInitState::LoadGame()
 void GameInitState::InitPlayerScoresAndLives()
 {
 	SDL_Color color = { 200,0,0,255 };
-	_gameObjects->InitPlayerSocres(
+	_gameObjects->InitPlayerScores(
 		new TextGameObject(_renderer, "Pl1:", color, Vector2D<int>(100, 510), 36),
 		new TextGameObject(_renderer, "0", color, Vector2D<int>(200, 510), 36),
 		new TextGameObject(_renderer, "Pl2:", color, Vector2D<int>(480, 510), 36),
@@ -135,10 +124,20 @@ void GameInitState::InitPlatforms()
 
 void GameInitState::InitBall()
 {
-	Vector2D<float> spawnPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 50);
-	Vector2D<float> spawnDirection(-1, 0);
+	Vector2D<float> spawnPosition(SCREEN_WIDTH / 2 + 20, SCREEN_HEIGHT / 2 - 50);
+	Vector2D<float> spawnDirection(0, 1);
 	_gameObjects->InitBall( 
 		new Ball(_renderer, spawnPosition, BALL_DESTINATION_SIZE, spawnDirection, _platformSpeed) 
+	);
+}
+
+void GameInitState::InitWalls()
+{
+	_gameObjects->InitWalls(
+		new Wall(Vector2D<float>(10, 10), Vector2D<int>(780, 40)),		// top wall
+		new Wall(Vector2D<float>(10, 485), Vector2D<int>(780, 50)),		// bottom wall
+		new Wall(Vector2D<float>(10, 25), Vector2D<int>(10, 550)),		// left wall
+		new Wall(Vector2D<float>(780, 25), Vector2D<int>(10, 550))		// right wall
 	);
 }
 

@@ -58,6 +58,9 @@
     <Filter Include="GameLogic">
       <UniqueIdentifier>{8710c394-b58b-46ff-b2e2-0c04c0d3cb8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wall">
+      <UniqueIdentifier>{59ab0a46-4c27-48b4-89ec-60614bdeb8b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="Physics\Rigidbody2D.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall\Wall.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,8 +320,11 @@
     <ClInclude Include="GameObjects\Tags.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Wall\Wall.h">
+      <Filter>Wall</Filter>
+    </ClInclude>
     <ClInclude Include="Physics\CollisionData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

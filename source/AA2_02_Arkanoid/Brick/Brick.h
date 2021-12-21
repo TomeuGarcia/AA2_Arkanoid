@@ -8,7 +8,7 @@
 class Brick : public GameObject, public BoxCollider2D {
 
 public:
-	Brick(const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
+	Brick(const Vector2D<float>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
 	virtual ~Brick() = default;
 
 	virtual void Update(const double& elapsedTime) override;
@@ -16,13 +16,10 @@ public:
 
 	virtual void NextSprite() = 0;
 	virtual bool DoCollision() = 0; // Returns true if brick is to be destroyed
-	Vector2D<int> GetPosition() const;
+	Vector2D<float> GetPosition() const;
 
 protected:
 	Image* _sprite;
 
-	Vector2D<int> _position;
-	Vector2D<int> _size;
 	int _spriteSourceWidthGap;
-	
 };

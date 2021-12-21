@@ -3,7 +3,7 @@
 class FixBrick: public Brick {
 
 public:
-	FixBrick(SDL_Renderer* renderer, const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
+	FixBrick(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap);
 	~FixBrick();
 
 	virtual void NextSprite() override;

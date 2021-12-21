@@ -1,12 +1,19 @@
 #include "BoxCollider2D.h"
 
-BoxCollider2D::BoxCollider2D() : Collider(ColliderType::SQUARE)
+BoxCollider2D::BoxCollider2D() : Collider(nullptr, ColliderType::SQUARE)
 {
 }
 
-BoxCollider2D::BoxCollider2D(const SDL_Rect& boundaries) : Collider(ColliderType::SQUARE)
+BoxCollider2D::BoxCollider2D(GameObject* thisGameObject) 
+	: Collider(thisGameObject, ColliderType::SQUARE)
 {
-	_boundary._rectBoundary = boundaries;
+	_boundary._rectBoundary;
+}
+
+BoxCollider2D::BoxCollider2D(GameObject* thisGameObject, const SDL_Rect& rectBoundary)
+	: Collider(thisGameObject, ColliderType::SQUARE)
+{
+	_boundary._rectBoundary = rectBoundary;
 }
 
 BoxCollider2D::~BoxCollider2D()

@@ -1,7 +1,7 @@
 #include "Collider.h"
 
-Collider::Collider(ColliderType type) 
-    : _type(type), _boundary(), _willBeColliding(false), _collisionData()
+Collider::Collider(GameObject* thisGameObject, ColliderType type) 
+    : _thisGameObject(thisGameObject), _type(type), _boundary(), _willBeColliding(false), _collisionData()
 {}
 
 void Collider::OnCollisionEnter()
@@ -17,6 +17,16 @@ void Collider::OnCollisionStay()
 void Collider::OnCollisionExit()
 {
     return;
+}
+
+GameObject* Collider::GetThisGameObject()
+{
+    return _thisGameObject;
+}
+
+void Collider::SetCollisionData(CollisionData incomingCollisionData)
+{
+    _collisionData = incomingCollisionData;
 }
 
 

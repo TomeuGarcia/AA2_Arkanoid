@@ -22,13 +22,13 @@ void GameScene::DoStart()
 
 	InitControllers();
 	_gameLogic = new GameLogic(3, 1, 50, 100);
-	_gameObjects = new GameObjects;
+	_collissionManager = new CollisionManager;
+	_gameObjects = new GameObjects(_collissionManager);
 
 	_fileManager = new FileManager;
-	_collissionManager = new CollisionManager;
 
 	_isStateFinished = false;
-	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _controller1, _fileManager, _gameObjects, _collissionManager);
+	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _controller1, _fileManager, _gameObjects);
 	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _controller1, _controller2, _gameObjects, _collissionManager, _gameLogic);
 	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _controller1, _gameObjects);
 	_gameStates[GameStates::GAME_OVER] = new GameOverState(_renderer, _controller1, _gameObjects);

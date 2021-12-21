@@ -1,10 +1,10 @@
 #include "BrickFactory.h"
 
 
-Brick* BrickFactory::Create(SDL_Renderer* renderer, const BrickData& brickData, const Vector2D<int>& rotatedSize, const Vector2D<int>& offset,
+Brick* BrickFactory::Create(SDL_Renderer* renderer, const BrickData& brickData, const Vector2D<float>& rotatedSize, const Vector2D<float>& offset,
 	std::map<BrickType, std::pair<int, int>>* brickPoints)
 {
-	Vector2D<int> brickPosition(brickData._x, brickData._y);
+	Vector2D<float> brickPosition(brickData._x, brickData._y);
 	brickPosition *= rotatedSize;
 	brickPosition += offset;
 

@@ -4,7 +4,7 @@
 class BrickFactory {
 
 public:
-	Brick* Create(SDL_Renderer* renderer, const BrickData& brickData, const Vector2D<int>& rotatedSize, const Vector2D<int>& offset,
+	Brick* Create(SDL_Renderer* renderer, const BrickData& brickData, const Vector2D<float>& rotatedSize, const Vector2D<float>& offset,
 		std::map<BrickType, std::pair<int, int>>* brickPoints);
 	int GetRandomBrickPoints(const BrickType& brickType, std::map<BrickType, std::pair<int, int>>* brickPoints);
 };

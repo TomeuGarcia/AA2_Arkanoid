@@ -5,8 +5,9 @@
 
 struct CollisionData {
 
-	CollisionData() = default;
-	CollisionData(Tag otherTag, Vector2D<int> otherCentrePosition)
+	CollisionData() : _otherTag(Tag::NONE), _otherCentrePosition() 
+	{}
+	CollisionData(Tag otherTag, Vector2D<float> otherCentrePosition)
 		: _otherTag(otherTag), _otherCentrePosition(otherCentrePosition) 
 	{}
 	CollisionData(CollisionData* collisionData)
@@ -17,6 +18,6 @@ struct CollisionData {
 
 
 	Tag _otherTag;
-	Vector2D<int> _otherCentrePosition;
+	Vector2D<float> _otherCentrePosition;
 
 };

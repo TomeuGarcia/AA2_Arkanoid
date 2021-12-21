@@ -1,11 +1,11 @@
 #include "NormalBrick.h"
 
-NormalBrick::NormalBrick(SDL_Renderer* renderer, const Vector2D<int>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap,
+NormalBrick::NormalBrick(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap,
 	const int& points, const int& lives)
 	: Brick(position, size, spriteSourceWidthGap), _points(points), _lifeSystem(lives)
 {
 	// Initialize _sprite
-	_sprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, position, size);
+	_sprite = new Image(renderer, NORMAL_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, Vector2D<int>(position.X, position.Y), size);
 	_sprite->Init("../../resources/assets/images/bricks.png");
 	_sprite->Rotate(90);
 }

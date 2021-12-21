@@ -24,7 +24,7 @@ public:
 	virtual void End() = 0;
 
 	GameStates GetNextState() const { return _nextState; }
-	void DrawGameObjects() const;
+	void RenderGameObjects() const;
 
 protected:
 	virtual void DoStart() = 0;

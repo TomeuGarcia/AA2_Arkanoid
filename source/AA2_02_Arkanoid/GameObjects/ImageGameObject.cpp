@@ -36,6 +36,7 @@ void ImageGameObject::Render() const
 {
 	_sprite->Draw();
 }
+
 void ImageGameObject::SetImagePosition(const Vector2D<int>& position)
 {
 	_sprite->SetDestinationStart(position);

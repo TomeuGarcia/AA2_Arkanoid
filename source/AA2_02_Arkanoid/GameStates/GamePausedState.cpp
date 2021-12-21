@@ -54,7 +54,7 @@ void GamePausedState::Render() const
 	
 	SDL_RenderClear(_renderer);
 
-	DrawGameObjects();
+	RenderGameObjects();
 	_blackBackground->Render();
 	_pauseText->Render();
 	_lToResumeText->Render();

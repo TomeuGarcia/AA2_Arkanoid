@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "CollisionsHelper.h"
 #include "CollisionData.h"
+#include "../GameObjects/GameObject.h"
 
 
 //enum class ColliderType { NONE, SQUARE, CIRCLE, BOX, SPHERE, EDGE };
@@ -17,7 +18,7 @@ union ColliderBoundary
 class Collider {
 
 public: 
-	Collider(ColliderType type);
+	Collider(GameObject* thisGameObject, ColliderType type);
 	~Collider() = default;
 
 	virtual bool IsCollidingWithCollider(const Collider* other) = 0;
@@ -27,10 +28,15 @@ public:
 	virtual void OnCollisionStay();
 	virtual void OnCollisionExit();
 
-	void SetCollisionData();
+	GameObject* GetThisGameObject();
+	void SetCollisionData(CollisionData incomingCollisionData);
+
 
 	ColliderType _type;
 	ColliderBoundary _boundary;
 	bool _willBeColliding;
 	CollisionData _collisionData;
+
+private:
+	GameObject* _thisGameObject;
 };

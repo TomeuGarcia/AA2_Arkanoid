@@ -1,5 +1,4 @@
 #pragma once
-#include "../Constants/Constants.h"
 #include "../GameObjects/GameObject.h"
 #include "Rigidbody2D.h"
 #include <vector>
@@ -14,9 +13,12 @@ public:
 	void AddGameObjectRigidbody(Rigidbody2D* gameObject);
 	void AddRigidbodylessGameObjectCollider(Collider* gameObject);
 	void Update();
+	
+private:
+	void ResetCollisions();
+	void CheckForCollisions();
 	void CheckCollision(Rigidbody2D* rigidbody, Collider* otherCollider);
 
-private:
 	std::vector<Rigidbody2D*> _rigidbodies;
 	std::vector<Collider*> _rigidbodylessColliders;
 };

@@ -6,7 +6,9 @@ class BoxCollider2D : public Collider {
 
 public:
 	BoxCollider2D();
-	BoxCollider2D(const SDL_Rect& boundaries);
+	BoxCollider2D(GameObject* thisGameObject);
+	BoxCollider2D(GameObject* thisGameObject, const SDL_Rect& rectBoundary);
+
 	~BoxCollider2D();
 
 	virtual bool IsCollidingWithCollider(const Collider* other) override;

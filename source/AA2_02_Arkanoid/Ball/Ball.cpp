@@ -2,9 +2,8 @@
 
 
 Ball::Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed)
-	: GameObject(Tag::BALL), BoxCollider2D(), _sprite(nullptr), _position(position), _size(size),
+	: GameObject(Tag::BALL, position, size), BoxCollider2D(this), _sprite(nullptr),
 	_moveDirection(moveDirection), _moveSpeed(moveSpeed)
-	
 {
 	// Initialize _sprite
 	_sprite = new Image(renderer, Vector2D<int>(0, 0), BALL_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);

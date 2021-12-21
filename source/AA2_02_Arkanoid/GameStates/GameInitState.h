@@ -6,7 +6,7 @@
 
 class GameInitState : public GameState {
 public:
-	GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, GameObjects* gameObjects, CollisionManager* collisionManager);
+	GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, GameObjects* gameObjects);
 	~GameInitState();
 	virtual void DoStart() override;
 	virtual void HandleEvents() override;
@@ -14,12 +14,14 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
+	void InitBackground();
 	void LoadGame();
 	void InitPlatforms();
 	void InitBall();
-	void InitBackground();
+	void InitWalls();
 	void InitTexts();
 	void InitPlayerScoresAndLives();
+
 private:
 	bool _start;
 	bool _goToMainMenu;
@@ -27,7 +29,6 @@ private:
 	int _platformSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
-	CollisionManager* _collisionManager;
 	Controller* _controller;
 
 	ImageGameObject* _blackBackground;

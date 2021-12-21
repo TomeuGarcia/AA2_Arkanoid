@@ -8,16 +8,13 @@
 #include "../GameStates/GameOverState.h"
 
 #include "../Brick/BrickFactory.h"
-#include "../Ball/Ball.h"
-
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/GameObjects.h"
-
-#include "../Physics/CollissionManager.h"
 #include "../GameLogic/GameLogic.h"
 
 #include <map>
-#include <list>
+
+
 
 class GameScene : public Scene {
 public:
@@ -42,10 +39,10 @@ private:
 	Controller* _controller1;
 	Controller* _controller2;
 
+	CollisionManager* _collissionManager;
 	GameObjects* _gameObjects;
 
 	FileManager* _fileManager;
-	CollisionManager* _collissionManager;
 
 	TextGameObject* _player1;
 	TextGameObject* _player2;
