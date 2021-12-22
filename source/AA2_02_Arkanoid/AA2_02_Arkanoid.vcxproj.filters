@@ -181,7 +181,7 @@
       <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="Wall\Wall.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +322,6 @@
     </ClInclude>
     <ClInclude Include="Wall\Wall.h">
       <Filter>Wall</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics\CollisionData.h">
-      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

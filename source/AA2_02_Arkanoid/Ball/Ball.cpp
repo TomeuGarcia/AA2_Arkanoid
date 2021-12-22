@@ -24,18 +24,24 @@ Ball::~Ball()
 
 void Ball::Update(const double& elapsedTime)
 {
+	Collider::Update();
+
 	if (!_rigidbody->WillBeColliding()) {
 		Move(elapsedTime);
 		SetBoundaryPosition(_position);
-	}
-	else {
-		_moveDirection *= -1;
 	}
 }
 
 void Ball::Render() const
 {
 	_sprite->Draw();
+}
+
+
+void Ball::OnCollisionEnter()
+{
+	//Vector2D<float> colliderPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
+	_moveDirection *= -1;
 }
 
 

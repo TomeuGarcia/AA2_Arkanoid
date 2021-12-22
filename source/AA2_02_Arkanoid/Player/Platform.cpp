@@ -28,6 +28,8 @@ Platform::~Platform()
 
 void Platform::Update(const double& elapsedTime)
 {
+	Collider::Update();
+
 	if (!_rigidbody->WillBeColliding()) {
 		Move(elapsedTime);
 		SetBoundaryPosition(_position);

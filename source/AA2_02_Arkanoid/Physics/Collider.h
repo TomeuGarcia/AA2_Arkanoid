@@ -1,9 +1,10 @@
 #pragma once
 #include "SDL.h"
 #include "CollisionsHelper.h"
-#include "CollisionData.h"
 #include "../GameObjects/GameObject.h"
 
+
+enum class CollisionStatus { NONE, ENTER, STAY, EXIT };
 
 //enum class ColliderType { NONE, SQUARE, CIRCLE, BOX, SPHERE, EDGE };
 enum class ColliderType { NONE, SQUARE };
@@ -28,15 +29,19 @@ public:
 	virtual void OnCollisionStay();
 	virtual void OnCollisionExit();
 
+	void Update();
+
 	GameObject* GetThisGameObject();
-	void SetCollisionData(CollisionData incomingCollisionData);
+	void SetOtherCollisionCollider(Collider* otherCollisionCollider);
+	void UpdateCollisionStatus();
 
 
 	ColliderType _type;
 	ColliderBoundary _boundary;
 	bool _willBeColliding;
-	CollisionData _collisionData;
 
-private:
+protected:
 	GameObject* _thisGameObject;
+	CollisionStatus _collisionStatus;
+	Collider* _otherCollisionCollider;
 };

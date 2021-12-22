@@ -68,7 +68,10 @@ void CollisionManager::CheckForCollisions()
 			if (_rigidbodylessColliders[j]->GetThisGameObject()->IsActive()) {
 				CheckCollision(_rigidbodies[i], _rigidbodylessColliders[j]);
 			}
+			_rigidbodylessColliders[j]->UpdateCollisionStatus();
 		}
+
+		_rigidbodies[i]->GetCollider()->UpdateCollisionStatus();
 	}
 }
 
@@ -77,13 +80,9 @@ void CollisionManager::CheckCollision(Rigidbody2D* rigidbody, Collider* otherCol
 	bool willCollide = rigidbody->GetCollider()->WillBeCollidingWithColliderOnDirection(rigidbody->GetMoveDirection(), otherCollider);
 	if (willCollide) { 
 		rigidbody->SetWillBeColliding(true);
+		rigidbody->GetCollider()->SetOtherCollisionCollider(otherCollider);
 
-		rigidbody->GetCollider()->SetCollisionData(CollisionData(otherCollider->GetThisGameObject()->GetTag(),
-				otherCollider->GetThisGameObject()->GetCentrePosition())
-		);
-
-		otherCollider->SetCollisionData(CollisionData(rigidbody->GetCollider()->GetThisGameObject()->GetTag(),
-			rigidbody->GetCollider()->GetThisGameObject()->GetCentrePosition())
-		);
+		otherCollider->_willBeColliding = true;
+		otherCollider->SetOtherCollisionCollider(rigidbody->GetCollider());
 	}
 }
