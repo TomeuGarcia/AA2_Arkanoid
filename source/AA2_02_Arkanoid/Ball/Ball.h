@@ -6,10 +6,12 @@
 #include "../Physics/Rigidbody2D.h"
 
 
+enum class BallStatus{ FOLLOWING, MOVING };
+
 class Ball : public GameObject, public BoxCollider2D {
 
 public:
-	Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, 
+	Ball(SDL_Renderer* renderer, Vector2D<float>* position, const Vector2D<int>& size, 
 		const Vector2D<float>& moveDirection, const float& moveSpeed);
 	~Ball();
 
@@ -20,6 +22,7 @@ public:
 
 
 	void Move(const float& elapsedTime);
+	void Follow();
 	void SetMoveDirection(const Vector2D<float>& direction);
 	Rigidbody2D* GetRigidbody() const;
 
@@ -29,5 +32,7 @@ private:
 
 	Vector2D<float> _moveDirection;
 	float _moveSpeed;
+	BallStatus _ballStatus;
+	Vector2D<float>** _followingPosition;
 };
 

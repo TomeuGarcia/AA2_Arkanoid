@@ -1,9 +1,9 @@
 #include "Ball.h"
 
 
-Ball::Ball(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed)
-	: GameObject(Tag::BALL, position, size), BoxCollider2D(this), _sprite(nullptr),
-	_moveDirection(moveDirection), _moveSpeed(moveSpeed)
+Ball::Ball(SDL_Renderer* renderer, Vector2D<float>* position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed)
+	: GameObject(Tag::BALL, *position, size), BoxCollider2D(this), _sprite(nullptr),
+	_moveDirection(moveDirection), _moveSpeed(moveSpeed), _ballStatus(BallStatus::FOLLOWING), _followingPosition(&position)
 {
 	// Initialize _sprite
 	_sprite = new Image(renderer, Vector2D<int>(0, 0), BALL_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);
@@ -26,10 +26,17 @@ void Ball::Update(const double& elapsedTime)
 {
 	Collider::Update();
 
-	if (!_rigidbody->WillBeColliding()) {
-		Move(elapsedTime);
-		SetBoundaryPosition(_position);
+	if (_ballStatus == BallStatus::FOLLOWING) {
+		std::cout << " --------------------- " << (*_followingPosition)->X << ", " << (*_followingPosition)->Y << std::endl;
+		Follow();
 	}
+	else if (_ballStatus == BallStatus::MOVING) {
+		if (!_rigidbody->WillBeColliding()) {
+			Move(elapsedTime);
+			SetBoundaryPosition(_position);
+		}
+	}
+
 }
 
 void Ball::Render() const
@@ -48,6 +55,12 @@ void Ball::OnCollisionEnter()
 void Ball::Move(const float& elapsedTime)
 {
 	_position += _moveDirection * _moveSpeed * elapsedTime;
+	_sprite->SetDestinationStart(_position);
+}
+
+void Ball::Follow()
+{
+	_position = **_followingPosition;
 	_sprite->SetDestinationStart(_position);
 }
 

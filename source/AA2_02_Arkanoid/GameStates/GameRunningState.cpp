@@ -42,8 +42,7 @@ bool GameRunningState::Update(const double& elapsedTime)
 	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
 
 	_collisionManager->Update();
-	_gameObjects->Update(elapsedTime);
-
+	UpdateGameObjects(elapsedTime);
 
 
 	// Simulating the game ended
@@ -63,16 +62,12 @@ bool GameRunningState::Update(const double& elapsedTime)
 
 	// Test lives and score
 	if (_controller1->GetButtonUp(ActionName::UP)) {
-		_gameLogic->Player1LosesLives();
-		//_gameObjects->Player1LosesLives();
-		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
-		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+		_gameLogic->Player1GetsScored();
+		UpdatePlayerScores();
 	}
 	if (_controller2->GetButtonUp(ActionName::UP)) {
-		_gameLogic->Player2LosesLives();
-		//_gameObjects->Player2LosesLives();
-		_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
-		_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+		_gameLogic->Player2GetsScored();
+		UpdatePlayerScores();
 	}
 
 
@@ -95,4 +90,10 @@ void GameRunningState::End()
 	std::cout << "GameRunningState::End\n";
 	_goToPauseState = false;
 	_quit = false;
+}
+
+void GameRunningState::UpdatePlayerScores()
+{
+	_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
+	_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
 }

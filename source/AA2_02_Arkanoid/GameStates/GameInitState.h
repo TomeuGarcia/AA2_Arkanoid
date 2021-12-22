@@ -31,7 +31,9 @@ private:
 	
 	Controller* _controller;
 
-	ImageGameObject* _blackBackground;
-	TextGameObject* _startGame;
-	TextGameObject* _spaceToStart;
+	float _platform1VerticalMove;
+	float _platform2VerticalMove;
+
+	TextGameObject* _startGameText;
+	TextGameObject* _spaceToStartText;
 };

@@ -13,14 +13,14 @@ GameLogic::~GameLogic()
 	_player1 = _player2 = nullptr;
 }
 
-void GameLogic::Player1LosesLives()
+void GameLogic::Player1GetsScored()
 {
 	_player1->LoseLives(_playerLivesLoss);
 	_player1->LosePoints(_playerScoreLoss);
 	_player2->GainPoints(_playerScoreGain);
 }
 
-void GameLogic::Player2LosesLives()
+void GameLogic::Player2GetsScored()
 {
 	_player2->LoseLives(_playerLivesLoss);
 	_player2->LosePoints(_playerScoreLoss);

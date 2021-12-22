@@ -8,8 +8,8 @@ public:
 	GameLogic(const int& playerStartLives, const int& playerLivesLoss, const int& playerScoreLoss, const int& playerScoreGain);
 	~GameLogic();
 
-	void Player1LosesLives();
-	void Player2LosesLives();
+	void Player1GetsScored();
+	void Player2GetsScored();
 	void Player1DestroyedBrick(const int& brickScoreGain);
 	void Player2DestroyedBrick(const int& brickScoreGain);
 	std::string GetPlayer1ScoreStr();

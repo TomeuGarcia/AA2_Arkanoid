@@ -13,6 +13,8 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
+	void UpdatePlayerScores();
+
 private:
 	bool _goToPauseState;
 	bool _quit;

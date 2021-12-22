@@ -24,6 +24,7 @@ public:
 	virtual void End() = 0;
 
 	GameStates GetNextState() const { return _nextState; }
+	void UpdateGameObjects(const double& elapsedTime);
 	void RenderGameObjects() const;
 
 protected:
