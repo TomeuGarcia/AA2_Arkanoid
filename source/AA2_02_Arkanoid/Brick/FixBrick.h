@@ -7,5 +7,5 @@ public:
 	~FixBrick();
 
 	virtual void NextSprite() override;
-	virtual bool DoCollision() override;
+	virtual void GetsHit() override;
 };

@@ -4,14 +4,16 @@ GameObjects::GameObjects()
 	: _collisionManager(nullptr), _gameObjectCollection(), _background(nullptr),
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
-	_livesPlayer1Image(), _livesPlayer2Image()
+	_leftScoreWall(nullptr), _rightScoreWall(nullptr),
+	_livesImagesPlayer1(), _livesImagesPlayer2()
 {}
 
 GameObjects::GameObjects(CollisionManager* collisionManager)
 	: _collisionManager(collisionManager), _gameObjectCollection(), _background(nullptr),
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
-	_livesPlayer1Image(), _livesPlayer2Image()
+	_leftScoreWall(nullptr), _rightScoreWall(nullptr), 
+	_livesImagesPlayer1(), _livesImagesPlayer2()
 {}
 
 
@@ -71,7 +73,10 @@ void GameObjects::AddBrick(Brick* newBrick)
 	_collisionManager->AddRigidbodylessGameObjectCollider(newBrick);
 }
 
-void GameObjects::InitWalls(Wall* topWall, Wall* bottomWall, Wall* leftWall, Wall* rightWall) {
+void GameObjects::InitWalls(Wall* topWall, Wall* bottomWall, ScoreWall* leftWall, ScoreWall* rightWall) {
+	_leftScoreWall = leftWall;
+	_rightScoreWall = rightWall;
+
 	AddGameObjectToCollection(topWall);
 	AddGameObjectToCollection(bottomWall);
 	AddGameObjectToCollection(leftWall);
@@ -102,12 +107,13 @@ void GameObjects::InitPlayersLives(SDL_Renderer* renderer, const char* path, con
 {
 	for (int i = 0; i < 3; ++i)
 	{
-		_livesPlayer1Image.push_back(new ImageGameObject(renderer, path, Vector2D<int>(100 + (i * 80), 550),
+		_livesImagesPlayer1.push_back(new ImageGameObject(renderer, path, Vector2D<int>(100 + (i * 80), 550),
 			size, sourcePosition, sourceSize));
-		_livesPlayer2Image.push_back(new ImageGameObject(renderer, path, Vector2D<int>(480 + (i * 80), 550),
+		_livesImagesPlayer2.push_back(new ImageGameObject(renderer, path, Vector2D<int>(480 + (i * 80), 550),
 			size, sourcePosition, sourceSize));
-		AddGameObjectToCollection(_livesPlayer1Image[i]);
-		AddGameObjectToCollection(_livesPlayer2Image[i]);
+
+		AddGameObjectToCollection(_livesImagesPlayer1[i]);
+		AddGameObjectToCollection(_livesImagesPlayer2[i]);
 	}
 }
 
@@ -122,18 +128,17 @@ void GameObjects::UpdateScorePointsPlayer2(const char* points) {
 }
 
 void GameObjects::Player1LosesLives() {
-	ImageGameObject** holder = &(*_livesPlayer1Image.rbegin());
-	ImageGameObject* holder2 = *_livesPlayer1Image.rbegin();
-	delete holder2;
-	*holder = nullptr;
-
-	/*std::list<ImageGameObject*>::reverse_iterator itHolder = _livesPlayer1Image.rbegin();
-	*_livesPlayer1Image.rbegin().base() = nullptr;
-	delete (*itHolder);*/
+	size_t lifeImage{ _livesImagesPlayer1.size() - 1 };
+	while (!_livesImagesPlayer1[lifeImage]->IsActive()) {
+		--lifeImage;
+	}
+	_livesImagesPlayer1[lifeImage]->SetActive(false);
 }
 
 void GameObjects::Player2LosesLives() {
-	/*std::list<ImageGameObject*>::reverse_iterator itHolder = _livesPlayer2Image.rbegin();
-	*_livesPlayer2Image.rbegin().base() = nullptr;
-	delete (*itHolder);*/
+	size_t lifeImage{ _livesImagesPlayer2.size() - 1 };
+	while (!_livesImagesPlayer2[lifeImage]->IsActive()) {
+		--lifeImage;
+	}
+	_livesImagesPlayer2[lifeImage]->SetActive(false);	
 }

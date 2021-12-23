@@ -1,6 +1,7 @@
 #include "SplashScreenScene.h"
 
-SplashScreenScene::SplashScreenScene(SDL_Renderer* renderer) : Scene(renderer), _background(nullptr), _waitTime(SPLASH_WAIT_TIME)
+SplashScreenScene::SplashScreenScene(SDL_Renderer* renderer) 
+	: Scene(renderer), _background(nullptr), _waitTime(SPLASH_WAIT_TIME)
 {
 }
 
@@ -10,17 +11,11 @@ SplashScreenScene::~SplashScreenScene()
 
 void SplashScreenScene::DoStart()
 {
-	std::cout << "SplashScreenScene::Start\n";
-
 	InitBackground();
 }
 
-void SplashScreenScene::HandleEvents() {}
-
 bool SplashScreenScene::Update(const double& elapsedTime)
 {
-	std::cout << "SplashScreenScene::Update\n";
-
 	if (_waitTime <= 0.0f) {
 		_nextScene = Scenes::MAIN_MENU;
 		return true;
@@ -34,8 +29,6 @@ bool SplashScreenScene::Update(const double& elapsedTime)
 
 void SplashScreenScene::Render() const
 {
-	std::cout << "SplashScreenScene::Render\n";
-
 	SDL_RenderClear(_renderer);
 	_background->Render();
 	SDL_RenderPresent(_renderer);
@@ -43,7 +36,6 @@ void SplashScreenScene::Render() const
 
 void SplashScreenScene::End()
 {
-	std::cout << "SplashScreenScene::End\n";
 
 	delete _background;
 	_background = nullptr;

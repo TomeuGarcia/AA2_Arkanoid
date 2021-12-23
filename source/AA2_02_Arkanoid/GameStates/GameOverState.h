@@ -6,15 +6,13 @@ public:
 	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects);
 	~GameOverState();
 	virtual void DoStart() override;
-	virtual void HandleEvents() override;
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
 	void InitBlackBackground();
 	void InitTexts();
-private:
-	bool _goToRanking;
 
+private:
 	Controller* _controller;
 	ImageGameObject* _blackBackground;
 	TextGameObject* _gameOverText;

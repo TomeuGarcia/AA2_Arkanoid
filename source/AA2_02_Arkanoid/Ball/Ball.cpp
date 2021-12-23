@@ -1,9 +1,10 @@
 #include "Ball.h"
 
 
-Ball::Ball(SDL_Renderer* renderer, Vector2D<float>* position, const Vector2D<int>& size, const Vector2D<float>& moveDirection, const float& moveSpeed)
-	: GameObject(Tag::BALL, *position, size), BoxCollider2D(this), _sprite(nullptr),
-	_moveDirection(moveDirection), _moveSpeed(moveSpeed), _ballStatus(BallStatus::FOLLOWING), _followingPosition(&position)
+Ball::Ball(SDL_Renderer* renderer, const Vector2D<int>& size, const float& moveSpeed, Platform* lastPlatform)
+	: GameObject(Tag::BALL, *lastPlatform->GetGrabPosition(), size), BoxCollider2D(this), _sprite(nullptr),
+	_moveDirection(), _moveSpeed(moveSpeed), _ballStatus(BallStatus::FOLLOWING), 
+	_followingPosition(lastPlatform->GetGrabPosition()), _lastPlatform(lastPlatform)
 {
 	// Initialize _sprite
 	_sprite = new Image(renderer, Vector2D<int>(0, 0), BALL_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);
@@ -27,13 +28,11 @@ void Ball::Update(const double& elapsedTime)
 	Collider::Update();
 
 	if (_ballStatus == BallStatus::FOLLOWING) {
-		std::cout << " --------------------- " << (*_followingPosition)->X << ", " << (*_followingPosition)->Y << std::endl;
 		Follow();
 	}
 	else if (_ballStatus == BallStatus::MOVING) {
 		if (!_rigidbody->WillBeColliding()) {
 			Move(elapsedTime);
-			SetBoundaryPosition(_position);
 		}
 	}
 
@@ -47,7 +46,6 @@ void Ball::Render() const
 
 void Ball::OnCollisionEnter()
 {
-	//Vector2D<float> colliderPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
 	_moveDirection *= -1;
 }
 
@@ -56,12 +54,14 @@ void Ball::Move(const float& elapsedTime)
 {
 	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(_position);
+	SetBoundaryPosition(_position);
 }
 
 void Ball::Follow()
 {
-	_position = **_followingPosition;
+	_position = *_followingPosition;
 	_sprite->SetDestinationStart(_position);
+	SetBoundaryPosition(_position);
 }
 
 void Ball::SetMoveDirection(const Vector2D<float>& direction)
@@ -72,4 +72,24 @@ void Ball::SetMoveDirection(const Vector2D<float>& direction)
 Rigidbody2D* Ball::GetRigidbody() const
 {
 	return _rigidbody;
+}
+
+void Ball::StartMoving()
+{
+	_ballStatus = BallStatus::MOVING;
+	_moveDirection.X = _position.X > _lastPlatform->GetCentrePosition().X ? 1 : -1;
+}
+
+void Ball::StartFollowing(Platform* platformToFollow)
+{
+	_ballStatus = BallStatus::FOLLOWING;
+	_lastPlatform = platformToFollow;
+	_followingPosition = _lastPlatform->GetGrabPosition();
+	_moveDirection = { 0,0 };
+	Follow();
+}
+
+void Ball::SetLastPlatform(Platform* lastPlatform)
+{
+	_lastPlatform = lastPlatform;
 }

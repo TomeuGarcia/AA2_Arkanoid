@@ -9,7 +9,6 @@ public:
 	GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, GameObjects* gameObjects);
 	~GameInitState();
 	virtual void DoStart() override;
-	virtual void HandleEvents() override;
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
@@ -23,17 +22,13 @@ public:
 	void InitPlayerScoresAndLives();
 
 private:
-	bool _start;
-	bool _goToMainMenu;
 	FileManager* _fileManager;
 	int _platformSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
 	Controller* _controller;
 
-	float _platform1VerticalMove;
-	float _platform2VerticalMove;
-
+	ImageGameObject* _blackBackground;
 	TextGameObject* _startGameText;
 	TextGameObject* _spaceToStartText;
 };

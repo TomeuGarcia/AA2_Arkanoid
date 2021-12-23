@@ -226,6 +226,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Renders\Render.cpp" />
     <ClCompile Include="Renders\Text.cpp" />
     <ClCompile Include="Systems\LifeSystem.cpp" />
+    <ClCompile Include="Wall\ScoreWall.cpp" />
     <ClCompile Include="Wall\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +275,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Renders\Render.h" />
     <ClInclude Include="Renders\Text.h" />
     <ClInclude Include="Systems\LifeSystem.h" />
+    <ClInclude Include="Wall\ScoreWall.h" />
     <ClInclude Include="Wall\Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

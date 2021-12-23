@@ -2,7 +2,8 @@
 
 
 GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
-	: GameState(renderer, gameObjects), _controller(controller), _goToRanking(false),_blackBackground(nullptr),_gameOverText(nullptr),_winnerText(nullptr), _goToRankingText(nullptr)
+	: GameState(renderer, gameObjects), _controller(controller),_blackBackground(nullptr),_gameOverText(nullptr),
+	_winnerText(nullptr), _goToRankingText(nullptr)
 {
 }
 
@@ -13,25 +14,18 @@ GameOverState::~GameOverState()
 
 void GameOverState::DoStart()
 {
-	std::cout << "GameOverState::Start\n";
 	InitBlackBackground();
 	InitTexts();
 }
 
-void GameOverState::HandleEvents()
-{
-	if (_controller->GetButtonDown(ActionName::RESUME)) {
-		_goToRanking = true;
-	}
-}
 
 bool GameOverState::Update(const double& elapsedTime)
 {
-	std::cout << "GameOverState::Update\n";
-	if (_goToRanking) {
+	if (_controller->GetButtonDown(ActionName::RESUME)) {
 		_nextState = GameStates::QUIT_TO_RANKING;
 		return true;
 	}
+
 	_blackBackground->Update(elapsedTime);
 	_gameOverText->Update(elapsedTime);
 	_winnerText->Update(elapsedTime);
@@ -41,8 +35,6 @@ bool GameOverState::Update(const double& elapsedTime)
 
 void GameOverState::Render() const
 {
-	std::cout << "GameOverState::Render\n";
-
 	SDL_RenderClear(_renderer);
 
 	RenderGameObjects();
@@ -56,8 +48,6 @@ void GameOverState::Render() const
 
 void GameOverState::End()
 {
-	std::cout << "GameOverState::End\n";
-	_goToRanking = false;
 	delete _gameOverText;
 	delete _winnerText;
 	_gameObjects = nullptr;

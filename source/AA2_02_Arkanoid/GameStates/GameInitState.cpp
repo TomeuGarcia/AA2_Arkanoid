@@ -4,9 +4,7 @@
 GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
 	GameObjects* gameObjects)
 	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager), 
-	_platformSpeed(), _start(false), _goToMainMenu(false),
-	_startGameText(nullptr), _spaceToStartText(nullptr),
-	_platform1VerticalMove(), _platform2VerticalMove()
+	_platformSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr)
 {
 }
 
@@ -17,8 +15,6 @@ GameInitState::~GameInitState()
 
 void GameInitState::DoStart()
 {
-	std::cout << "GameInitState::Start\n";
-
 	InitBackground();
 	InitTexts(); 
 	LoadGame();
@@ -29,35 +25,18 @@ void GameInitState::DoStart()
 	
 }
 
-void GameInitState::HandleEvents()
-{
-	if (_controller->GetButtonDown(ActionName::START)) {
-		_start = true;
-	}
-	if (_controller->GetButtonDown(ActionName::QUIT)) {
-		_goToMainMenu = true;
-	}
-
-	_platform1VerticalMove = _controller->GetAxis(AxisName::VERTICAL); ///////////////////////////////////////////////
-	_platform2VerticalMove = _controller->GetAxis(AxisName::VERTICAL); ///////////////////// REVISAAAAAAAAAR
-}
-
 bool GameInitState::Update(const double& elapsedTime)
-{
-	std::cout << "GameInitState::Update\n";
-	
-	if (_start) {
+{	
+	if (_controller->GetButtonDown(ActionName::START)) {
 		_nextState = GameStates::RUNNING;
 		return true;
 	}
-	else if (_goToMainMenu) {
+	else if (_controller->GetButtonDown(ActionName::QUIT)) {
 		_nextState = GameStates::QUIT_TO_MAIN_MENU;
 		return true;
 	}
 
-	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _platform1VerticalMove));
-	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _platform2VerticalMove));
-
+	_blackBackground->Update(elapsedTime);
 	_startGameText->Update(elapsedTime);
 	_spaceToStartText->Update(elapsedTime);
 	UpdateGameObjects(elapsedTime);
@@ -67,11 +46,10 @@ bool GameInitState::Update(const double& elapsedTime)
 
 void GameInitState::Render() const
 {
-	std::cout << "GameInitState::Render\n";
-
 	SDL_RenderClear(_renderer);
 
 	RenderGameObjects();
+	_blackBackground->Render();
 	_startGameText->Render();
 	_spaceToStartText->Render();
 
@@ -80,10 +58,6 @@ void GameInitState::Render() const
 
 void GameInitState::End()
 {
-	std::cout << "GameInitState::End\n";
-
-	_start = _goToMainMenu = false;
-
 	delete _startGameText;
 	delete _spaceToStartText;
 	_startGameText = _spaceToStartText = nullptr;
@@ -122,17 +96,16 @@ void GameInitState::InitPlatforms()
 {
 	_gameObjects->InitPlatforms(
 		new Platform(_renderer, PLATFORM_1_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH)),
+			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), true),
 		new Platform(_renderer, PLATFORM_2_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(680, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH))
+			new Vector2D<float>(710, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), false)
 	);
 }
 
 void GameInitState::InitBall()
 {
-	Vector2D<float> spawnDirection(0, 0);
 	_gameObjects->InitBall( 
-		new Ball(_renderer, _gameObjects->_platform1->GetGrabPosition(), BALL_DESTINATION_SIZE, spawnDirection, _platformSpeed)
+		new Ball(_renderer, BALL_DESTINATION_SIZE, _platformSpeed, _gameObjects->_platform1)
 	);
 }
 
@@ -141,8 +114,8 @@ void GameInitState::InitWalls()
 	_gameObjects->InitWalls(
 		new Wall(Vector2D<float>(10, 10), Vector2D<int>(780, 16)),		// top wall
 		new Wall(Vector2D<float>(10, 470), Vector2D<int>(780, 16)),		// bottom wall
-		new Wall(Vector2D<float>(10, 25), Vector2D<int>(16, 550)),		// left wall
-		new Wall(Vector2D<float>(775, 25), Vector2D<int>(16, 550))		// right wall
+		new ScoreWall(Vector2D<float>(10, 25), Vector2D<int>(16, 550), _gameObjects->_platform1),	// left score wall
+		new ScoreWall(Vector2D<float>(775, 25), Vector2D<int>(16, 550), _gameObjects->_platform2)	// right score wall
 	);
 }
 
@@ -152,6 +125,8 @@ void GameInitState::InitBackground()
 		new ImageGameObject(_renderer, "../../resources/assets/images/background.jpg", 
 		Vector2D<int>(0, 0), SCREEN_SIZE, Vector2D<int>(0, 0), SCREEN_SIZE)
 	);
+	_blackBackground = new ImageGameObject(_renderer, "../../resources/assets/images/blackBackground.png",
+		Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 150);
 }
 
 void GameInitState::InitTexts()

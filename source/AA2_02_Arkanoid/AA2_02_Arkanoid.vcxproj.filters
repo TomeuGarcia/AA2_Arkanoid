@@ -183,6 +183,9 @@
     <ClCompile Include="Wall\Wall.cpp">
       <Filter>Wall</Filter>
     </ClCompile>
+    <ClCompile Include="Wall\ScoreWall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="Wall\Wall.h">
       <Filter>Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall\ScoreWall.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

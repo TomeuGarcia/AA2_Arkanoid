@@ -25,9 +25,7 @@ void Brick::Render() const
 void Brick::OnCollisionEnter()
 {
 	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BALL) {
-		if (DoCollision()) {
-			SetActive(false);
-		}
+		GetsHit();
 	}
 }
 

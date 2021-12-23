@@ -2,8 +2,9 @@
 
 
 MainMenuScene::MainMenuScene(SDL_Renderer* renderer, bool* isRunning)
-	: _isRunning(isRunning), Scene(renderer), _controller(nullptr), _goToGameScene(false), _goToRankingScene(false), 
-	_background(nullptr), _title(nullptr), _playGameText(nullptr), _rankingText(nullptr), _optionsText(nullptr), _quitText(nullptr)
+	: _isRunning(isRunning), Scene(renderer), _controller(nullptr),
+	_background(nullptr), _title(nullptr), _playGameText(nullptr), 
+	_rankingText(nullptr), _optionsText(nullptr), _quitText(nullptr)
 {
 }
 
@@ -14,8 +15,6 @@ MainMenuScene::~MainMenuScene()
 
 void MainMenuScene::DoStart()
 {
-	std::cout << "MainMenuScene::Start\n";
-
 	_controller = new Keyboard("keyboard");
 	_controller->AddActionKey(ActionName::START, SDLK_SPACE);
 	_controller->AddActionKey(ActionName::RANKING, SDLK_r);
@@ -25,29 +24,18 @@ void MainMenuScene::DoStart()
 	InitTexts();
 }
 
-void MainMenuScene::HandleEvents()
-{
-	if (_controller->GetButtonDown(ActionName::START)) {
-		_goToGameScene = true;
-	}
-	else if (_controller->GetButtonDown(ActionName::RANKING)) {
-		_goToRankingScene = true;
-	}
-	else if (_controller->GetButtonDown(ActionName::QUIT)) {
-		*_isRunning = false;
-	}
-}
-
 bool MainMenuScene::Update(const double& elapsedTime)
 {
-	std::cout << "MainMenuScene::Update\n";
-	if (_goToGameScene) {
+	if (_controller->GetButtonDown(ActionName::START)) {
 		_nextScene = Scenes::GAME;
 		return true;
 	}
-	else if (_goToRankingScene) {
+	else if (_controller->GetButtonDown(ActionName::RANKING)) {
 		_nextScene = Scenes::RANKING;
 		return true;
+	}
+	if (_controller->GetButtonDown(ActionName::QUIT)) {
+		*_isRunning = false;
 	}
 
 
@@ -65,7 +53,6 @@ bool MainMenuScene::Update(const double& elapsedTime)
 
 void MainMenuScene::Render() const
 {
-	std::cout << "MainMenuScene::Render\n";
 	SDL_RenderClear(_renderer);
 
 	_background->Render();
@@ -79,10 +66,7 @@ void MainMenuScene::Render() const
 
 void MainMenuScene::End()
 {
-	std::cout << "MainMenuScene::End\n";
 	InputHandler::GetInstance()->RemoveAllControllers();
-	_goToGameScene = false;
-	_goToRankingScene = false;
 
 	delete _background;
 	_background = nullptr;

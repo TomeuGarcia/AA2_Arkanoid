@@ -2,20 +2,59 @@
 
 Game::Game() : _sceneManager(nullptr), _isRunning(true)
 {
+	InitSDL();
 	InitSceneManager();
 }
 
 Game::~Game()
 {
-	_sceneManager->Release();
+	Release();
 	delete _sceneManager;
 }
 
+
+void Game::InitSDL()
+{
+	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+
+	bool isInitialized = result >= 0;
+
+	if (!isInitialized) {
+		SDL_GetError();
+	}
+
+	InitWindowAndRenderer();
+	InitAudioSDL();
+	SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+	InitFont();
+}
+
+void Game::InitWindowAndRenderer()
+{
+	int result = SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN, &_window, &_renderer);
+	bool isInitialized = result >= 0;
+
+	if (!isInitialized) {
+		SDL_GetError();
+	}
+}
+
+void Game::InitAudioSDL()
+{
+}
+
+void Game::InitFont()
+{
+	TTF_Init();
+}
+
+
 void Game::InitSceneManager()
 {
-	_sceneManager = new SceneManager(&_isRunning);
-	_sceneManager->Init();
+	_sceneManager = new SceneManager(&_isRunning, _renderer);
 }
+
+
 
 
 void Game::GameLoop()
@@ -36,7 +75,6 @@ void Game::GameLoop()
 void Game::HandleEvents()
 {
 	InputHandler::GetInstance()->HandleEvents();
-	_sceneManager->HandleEvents();
 }
 
 void Game::Update(const double& elapsedTime)
@@ -47,4 +85,16 @@ void Game::Update(const double& elapsedTime)
 void Game::Render()
 {
 	_sceneManager->Render();
+}
+
+
+void Game::Release()
+{
+	Mix_CloseAudio();
+
+	TTF_Quit();
+
+	SDL_DestroyRenderer(_renderer);
+	SDL_DestroyWindow(_window);
+	SDL_Quit();
 }

@@ -10,9 +10,11 @@ public:
 	~NormalBrick();
 
 	virtual void NextSprite() override;
-	virtual bool DoCollision() override;
+	virtual void GetsHit() override;
 
 private:
+	void GetsDestroyed();
+
 	int _points;
 	LifeSystem _lifeSystem;
 };

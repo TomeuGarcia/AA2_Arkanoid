@@ -17,7 +17,7 @@ public:
 	virtual void OnCollisionEnter() override;
 
 	virtual void NextSprite() = 0;
-	virtual bool DoCollision() = 0; // Returns true if brick is to be destroyed
+	virtual void GetsHit() = 0; // Returns true if brick is to be destroyed
 	Vector2D<float> GetPosition() const;
 
 protected:

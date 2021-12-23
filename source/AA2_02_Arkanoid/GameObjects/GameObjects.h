@@ -7,6 +7,7 @@
 #include "../Brick/FixBrick.h"
 #include "../Ball/Ball.h"
 #include "../Wall/Wall.h"
+#include "../Wall/ScoreWall.h"
 #include "../Physics/CollissionManager.h"
 #include <list>
 #include <vector>
@@ -26,15 +27,19 @@ struct GameObjects {
 	Platform* _platform1;
 	Platform* _platform2;
 	Ball* _ball;
-	std::list<Brick*> _bricks;
+	std::vector<Brick*> _bricks;
+
+	// Score walls
+	ScoreWall* _leftScoreWall;
+	ScoreWall* _rightScoreWall;
 
 	// Player
 	TextGameObject* _scorePlayer1;
 	TextGameObject* _scorePlayer2;
 	TextGameObject* _scorePointsPlayer1;
 	TextGameObject* _scorePointsPlayer2;
-	std::vector<ImageGameObject*> _livesPlayer1Image;
-	std::vector<ImageGameObject*> _livesPlayer2Image;
+	std::vector<ImageGameObject*> _livesImagesPlayer1;
+	std::vector<ImageGameObject*> _livesImagesPlayer2;
 
 
 	GameObjects();
@@ -48,7 +53,7 @@ struct GameObjects {
 	void InitPlatforms(Platform* platform1, Platform* platform2);
 	void InitBall(Ball* ball);
 	void AddBrick(Brick* newBrick);
-	void InitWalls(Wall* topWall, Wall* bottomWall, Wall* leftWall, Wall* rightWall);
+	void InitWalls(Wall* topWall, Wall* bottomWall, ScoreWall* leftWall, ScoreWall* rightWall);
 
 	void InitPlayerScores(TextGameObject* scorePlayer1, TextGameObject* scorePointsPlayer1,
 		TextGameObject* scorePlayer2, TextGameObject* scorePointsPlayer2);

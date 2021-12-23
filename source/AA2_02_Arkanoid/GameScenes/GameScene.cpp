@@ -18,8 +18,6 @@ GameScene::~GameScene()
 
 void GameScene::DoStart()
 {
-	std::cout << "GameGameScene::Start\n";
-
 	InitControllers();
 	_gameLogic = new GameLogic(3, 1, 50, 100);
 	_collissionManager = new CollisionManager;
@@ -37,15 +35,8 @@ void GameScene::DoStart()
 
 }
 
-void GameScene::HandleEvents()
-{
-	_currentGameState->HandleEvents();
-}
-
 bool GameScene::Update(const double& elapsedTime)
 {
-	std::cout << "GameGameScene::Update\n";
-
 	_isStateFinished = _currentGameState->Update(elapsedTime);
 	if (_isStateFinished) {
 
@@ -72,15 +63,11 @@ bool GameScene::Update(const double& elapsedTime)
 
 void GameScene::Render() const
 {
-	std::cout << "GameGameScene::Render\n";
-
 	_currentGameState->Render();
 }
 
 void GameScene::End()
 {
-	std::cout << "GameGameScene::End\n";
-
 	delete _fileManager;
 	delete _gameObjects;
 	delete _collissionManager;
@@ -105,5 +92,6 @@ void GameScene::InitControllers()
 	_controller2->AddActionKey(ActionName::UP, SDLK_UP);
 	_controller2->AddActionKey(ActionName::DOWN, SDLK_DOWN);
 	_controller2->AddAxisActionKeys(AxisName::VERTICAL, SDLK_DOWN, SDLK_UP);
+	_controller2->AddActionKey(ActionName::START, SDLK_SPACE);
 	InputHandler::GetInstance()->AddController(_controller2);
 }

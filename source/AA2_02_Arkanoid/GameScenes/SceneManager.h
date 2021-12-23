@@ -1,8 +1,4 @@
 #pragma once
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_mixer.h>
-#include <SDL_ttf.h>
 #include <iostream>
 #include <map>
 
@@ -20,29 +16,21 @@
 class SceneManager {
 
 public:
-	SceneManager(bool* isRunning);
+	SceneManager(bool* isRunning, SDL_Renderer* renderer);
 	~SceneManager();
 
-	void Init();
-	void InitScenes();
-	void InitSDL();
-	void InitWindowAndRenderer();
-	void InitFont();
-	void InitAudioSDL();
-
-	void HandleEvents();
 	void Update(const double& elapsedTime);
 	void Render();
-	void Release();
-
+	
 	bool IsRunning();
 
 private:
+	void InitScenes();
+
 	Scene* _currentScene;
 	std::map<Scenes, Scene*> _scenes;
 	bool _isSceneFinished;
 
-	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 
 	bool* _isRunning;

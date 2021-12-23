@@ -21,14 +21,20 @@ void NormalBrick::NextSprite()
 	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidthGap, 0));
 }
 
-bool NormalBrick::DoCollision()
+void NormalBrick::GetsHit()
 {
 	_lifeSystem.LoseLives(1);
 	if (_lifeSystem.HasNoLivesLeft()) {
-		return true;
+		GetsDestroyed();
 	}
 	else {
 		NextSprite();
-		return false;
 	}
 }
+
+void NormalBrick::GetsDestroyed()
+{
+	// add points to player
+	SetActive(false);
+}
+

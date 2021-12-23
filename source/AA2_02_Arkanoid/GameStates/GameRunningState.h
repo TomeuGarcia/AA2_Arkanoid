@@ -1,6 +1,8 @@
 #pragma once
+#include <functional>
 #include "GameState.h"
 #include "../GameLogic/GameLogic.h"
+
 
 class GameRunningState : public GameState {
 public:
@@ -8,7 +10,6 @@ public:
 		GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic);
 	~GameRunningState();
 	virtual void DoStart() override;
-	virtual void HandleEvents() override;
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
@@ -16,11 +17,12 @@ public:
 	void UpdatePlayerScores();
 
 private:
-	bool _goToPauseState;
-	bool _quit;
+	void Platform1StartKickOff();
+	void Platform2StartKickOff();
+	void StartKickOff(Platform* kickOffPlatform);
 
-	float _platform1VerticalMove;
-	float _platform2VerticalMove;
+	void BrickIsDestroyed();
+
 
 	CollisionManager* _collisionManager;
 

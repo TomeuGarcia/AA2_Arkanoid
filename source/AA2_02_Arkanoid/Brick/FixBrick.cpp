@@ -22,8 +22,7 @@ void FixBrick::NextSprite()
 	_sprite->SetSourceStart(sourceStart);
 }
 
-bool FixBrick::DoCollision()
+void FixBrick::GetsHit()
 {
 	NextSprite();
-	return false;
 }

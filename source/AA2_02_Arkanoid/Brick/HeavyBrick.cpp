@@ -21,14 +21,19 @@ void HeavyBrick::NextSprite()
 	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidthGap, 0));
 }
 
-bool HeavyBrick::DoCollision()
+void HeavyBrick::GetsHit()
 {
 	_lifeSystem.LoseLives(1);
 	if (_lifeSystem.HasNoLivesLeft()) {
-		return true;
+		GetsDestroyed();
 	}
 	else {
 		NextSprite();
-		return false;
 	}	
+}
+
+void HeavyBrick::GetsDestroyed()
+{
+	// add points to player
+	SetActive(false);
 }
