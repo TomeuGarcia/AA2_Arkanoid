@@ -2,7 +2,7 @@
 
 RankingScene::RankingScene(SDL_Renderer* renderer) 
 	: Scene(renderer), _controller(nullptr),
-	_title(nullptr), _ranking(), _mainMenuText(nullptr)
+	_title(nullptr), _ranking(), _mainMenuText(nullptr), _background(nullptr)
 {
 }
 

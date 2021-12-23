@@ -2,7 +2,7 @@
 
 GameLogic::GameLogic(const int& playerStartLives, const int& playerLivesLoss, const int& playerScoreLoss, const int& playerScoreGain)
 	: _playerLivesLoss(playerLivesLoss), _playerScoreLoss(playerScoreLoss), _playerScoreGain(playerScoreGain),
-	_player1(new Player(playerStartLives)), _player2(new Player(playerStartLives))
+	_player1(new Player("player1", playerStartLives)), _player2(new Player("player2", playerStartLives))
 {
 }
 
@@ -13,46 +13,50 @@ GameLogic::~GameLogic()
 	_player1 = _player2 = nullptr;
 }
 
-void GameLogic::Player1GetsScored()
+
+Player* GameLogic::GetPlayer1() const
 {
-	_player1->LoseLives(_playerLivesLoss);
-	_player1->LosePoints(_playerScoreLoss);
-	_player2->GainPoints(_playerScoreGain);
+	return _player1;
 }
 
-void GameLogic::Player2GetsScored()
+Player* GameLogic::GetPlayer2() const
 {
-	_player2->LoseLives(_playerLivesLoss);
-	_player2->LosePoints(_playerScoreLoss);
-	_player1->GainPoints(_playerScoreGain);
+	return _player2;
 }
 
-void GameLogic::Player1DestroyedBrick(const int& brickScoreGain)
+
+
+
+void GameLogic::PlayerGetsScored(Player* actingPlayer)
 {
-	_player1->GainPoints(brickScoreGain);
+	if (actingPlayer == _player1) {
+		_player1->LoseLives(_playerLivesLoss);
+		_player1->LosePoints(_playerScoreLoss);
+		_player2->GainPoints(_playerScoreGain);
+	}
+	else if (actingPlayer == _player2) {
+		_player2->LoseLives(_playerLivesLoss);
+		_player2->LosePoints(_playerScoreLoss);
+		_player1->GainPoints(_playerScoreGain);
+	}
 }
 
-void GameLogic::Player2DestroyedBrick(const int& brickScoreGain)
+void GameLogic::PlayerDestroyedBrick(Player* actingPlayer, const int& brickScoreGain)
 {
-	_player2->GainPoints(brickScoreGain);
+	actingPlayer->GainPoints(brickScoreGain);
 }
 
-std::string GameLogic::GetPlayer1ScoreStr()
+std::string GameLogic::GetPlayerScoreStr(Player* actingPlayer)
 {
-	return std::to_string(_player1->GetScore());
+	return std::to_string(actingPlayer->GetScore());
 }
 
-std::string GameLogic::GetPlayer2ScoreStr()
-{
-	return std::to_string(_player2->GetScore());
-}
-
-bool GameLogic::Player1Lost()
+bool GameLogic::Player1Lost() const
 {
 	return _player1->Lost();
 }
 
-bool GameLogic::Player2Lost()
+bool GameLogic::Player2Lost() const
 {
 	return _player2->Lost();
 }

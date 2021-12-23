@@ -35,3 +35,8 @@ Vector2D<float> Brick::GetPosition() const
 	return _position; 
 }
 
+void Brick::SetBrickBreaksCallback(std::function<void(const int&)> brickBreaksCallback)
+{
+	_brickBreaksCallback = brickBreaksCallback;
+}
+

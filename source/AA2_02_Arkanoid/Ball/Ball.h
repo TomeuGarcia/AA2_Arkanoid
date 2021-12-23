@@ -27,7 +27,9 @@ public:
 	Rigidbody2D* GetRigidbody() const;
 	void StartMoving();
 	void StartFollowing(Platform* platformToFollow);
+
 	void SetLastPlatform(Platform* lastPlatform);
+	Platform* GetLastPlatform() const;
 
 private:
 	Image* _sprite;

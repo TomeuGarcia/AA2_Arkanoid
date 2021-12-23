@@ -135,10 +135,22 @@ void GameObjects::Player1LosesLives() {
 	_livesImagesPlayer1[lifeImage]->SetActive(false);
 }
 
+
+
 void GameObjects::Player2LosesLives() {
 	size_t lifeImage{ _livesImagesPlayer2.size() - 1 };
 	while (!_livesImagesPlayer2[lifeImage]->IsActive()) {
 		--lifeImage;
 	}
 	_livesImagesPlayer2[lifeImage]->SetActive(false);	
+}
+
+void GameObjects::PlayerLosesLives(Player* actingPlayer) {
+
+	if (_platform1->GetPlayer() == actingPlayer) {
+		Player1LosesLives();
+	}
+	else if (_platform2->GetPlayer() == actingPlayer) {
+		Player2LosesLives();
+	}
 }

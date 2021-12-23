@@ -3,7 +3,7 @@
 
 class GameOverState : public GameState {
 public:
-	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects);
+	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, std::string* winnerTextStr);
 	~GameOverState();
 	virtual void DoStart() override;
 	virtual bool Update(const double& elapsedTime) override;
@@ -19,4 +19,5 @@ private:
 	TextGameObject* _winnerText;
 	TextGameObject* _goToRankingText;
 
+	std::string* _winnerTextStr;
 };

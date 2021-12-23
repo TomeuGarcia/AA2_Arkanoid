@@ -34,7 +34,7 @@ void NormalBrick::GetsHit()
 
 void NormalBrick::GetsDestroyed()
 {
-	// add points to player
+	_brickBreaksCallback(_points);
 	SetActive(false);
 }
 

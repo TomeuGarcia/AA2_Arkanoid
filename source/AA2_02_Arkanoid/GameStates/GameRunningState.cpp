@@ -2,9 +2,9 @@
 
 
 GameRunningState::GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2,
-	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic)
+	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr)
 	: GameState(renderer, gameObjects), _controller1(controller1), _controller2(controller2),
-	_collisionManager(collisionManager), _gameLogic(gameLogic)
+	_collisionManager(collisionManager), _gameLogic(gameLogic), _winnerTextStr(winnerTextStr)
 {
 }
 
@@ -14,17 +14,31 @@ GameRunningState::~GameRunningState()
 
 void GameRunningState::DoStart()
 {	
-	_gameObjects->_leftScoreWall->SetStartKickOffCallback(std::bind(&GameRunningState::Platform1StartKickOff, this));
-	_gameObjects->_rightScoreWall->SetStartKickOffCallback(std::bind(&GameRunningState::Platform2StartKickOff, this));
+	// Set ScoreWalls callback
+	_gameObjects->_leftScoreWall->SetStartKickOffCallback(std::bind(&GameRunningState::StartKickOff, this, std::placeholders::_1));
+	_gameObjects->_rightScoreWall->SetStartKickOffCallback(std::bind(&GameRunningState::StartKickOff, this, std::placeholders::_1));
+
+	// Set Bricks callback
+	for (std::vector<Brick*>::iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
+		(*it)->SetBrickBreaksCallback(std::bind(&GameRunningState::BrickBreaks, this, std::placeholders::_1));
+	}
 }
 
 
 bool GameRunningState::Update(const double& elapsedTime)
 {
-	if (_gameLogic->Player1Lost() || _gameLogic->Player2Lost()) {
+	if (_gameLogic->Player1Lost()) {
+		*_winnerTextStr = "Player 2";
 		_nextState = GameStates::GAME_OVER;
 		return true;
 	}
+	else if (_gameLogic->Player2Lost()) {
+		*_winnerTextStr = "Player 1";
+		_nextState = GameStates::GAME_OVER;
+		return true;
+	}
+
+
 	if (_controller1->GetButtonDown(ActionName::PAUSE)) {
 		_nextState = GameStates::PAUSED;
 		return true;
@@ -43,7 +57,7 @@ bool GameRunningState::Update(const double& elapsedTime)
 
 	_collisionManager->Update();
 	UpdateGameObjects(elapsedTime);
-	UpdatePlayerScores();
+	
 
 
 	return false;
@@ -64,36 +78,25 @@ void GameRunningState::End()
 
 void GameRunningState::UpdatePlayerScores()
 {
-	_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayer1ScoreStr().c_str());
-	_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayer2ScoreStr().c_str());
+	_gameObjects->UpdateScorePointsPlayer1(_gameLogic->GetPlayerScoreStr(_gameLogic->GetPlayer1()).c_str());
+	_gameObjects->UpdateScorePointsPlayer2(_gameLogic->GetPlayerScoreStr(_gameLogic->GetPlayer2()).c_str());
 }
 
 
-
-void GameRunningState::Platform1StartKickOff()
-{
-	StartKickOff(_gameObjects->_platform1);
-	_gameLogic->Player1GetsScored();
-	_gameObjects->Player1LosesLives();
-}
-
-void GameRunningState::Platform2StartKickOff()
-{
-	StartKickOff(_gameObjects->_platform2);
-	_gameLogic->Player2GetsScored();
-	_gameObjects->Player2LosesLives();
-}
 
 void GameRunningState::StartKickOff(Platform* kickOffPlatform)
 {
+	_gameLogic->PlayerGetsScored(kickOffPlatform->GetPlayer());
+	_gameObjects->PlayerLosesLives(kickOffPlatform->GetPlayer());
+	UpdatePlayerScores();
+
 	kickOffPlatform->SetIsGrabbing(true);
 	_gameObjects->_ball->StartFollowing(kickOffPlatform);
 }
 
 
-void GameRunningState::BrickIsDestroyed()
+void GameRunningState::BrickBreaks(const int& brickPoints)
 {
-	/*_gameLogic->PlayerDestroyedBrick(_gameObjects->_ball->GetLastPlatform()->GetPlayer());
-
-	_gameLogic->Player1DestroyedBrick()*/
+	_gameLogic->PlayerDestroyedBrick(_gameObjects->_ball->GetLastPlatform()->GetPlayer(), brickPoints);
+	UpdatePlayerScores();
 }

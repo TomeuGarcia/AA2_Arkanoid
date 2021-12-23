@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "SDL.h"
 #include "../GameObjects/GameObject.h"
 #include "../Renders/Image.h"
@@ -16,12 +17,17 @@ public:
 
 	virtual void OnCollisionEnter() override;
 
+
 	virtual void NextSprite() = 0;
 	virtual void GetsHit() = 0; // Returns true if brick is to be destroyed
 	Vector2D<float> GetPosition() const;
+
+	void SetBrickBreaksCallback(std::function<void(const int&)> brickBreaksCallback);
 
 protected:
 	Image* _sprite;
 
 	int _spriteSourceWidthGap;
+
+	std::function<void(const int&)> _brickBreaksCallback;
 };

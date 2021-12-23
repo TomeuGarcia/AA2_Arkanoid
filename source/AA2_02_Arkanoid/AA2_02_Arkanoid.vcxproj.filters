@@ -184,7 +184,7 @@
       <Filter>Wall</Filter>
     </ClCompile>
     <ClCompile Include="Wall\ScoreWall.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,7 +327,7 @@
       <Filter>Wall</Filter>
     </ClInclude>
     <ClInclude Include="Wall\ScoreWall.h">
-      <Filter>Header Files</Filter>
+      <Filter>Wall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

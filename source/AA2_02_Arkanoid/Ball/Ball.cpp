@@ -31,9 +31,7 @@ void Ball::Update(const double& elapsedTime)
 		Follow();
 	}
 	else if (_ballStatus == BallStatus::MOVING) {
-		if (!_rigidbody->WillBeColliding()) {
-			Move(elapsedTime);
-		}
+		Move(elapsedTime);
 	}
 
 }
@@ -46,12 +44,51 @@ void Ball::Render() const
 
 void Ball::OnCollisionEnter()
 {
-	_moveDirection *= -1;
+	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::PLATFORM) {
+
+		Vector2D<float> platformPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
+		Vector2D<int> platformSize = _otherCollisionCollider->GetThisGameObject()->GetSize();
+
+		if (GetCentrePosition().Y < (platformPosition.Y - platformSize.Y / 4)) {
+			_moveDirection.Y = -1 -((rand() % 5) / 5.0f);
+		}
+		else if (GetCentrePosition().Y > (platformPosition.Y + platformSize.Y / 4)) {
+			_moveDirection.Y = 1 +((rand() % 5) / 5.0f);
+		}
+		else {
+			_moveDirection.Y = 0;
+		}
+		_moveDirection.X *= -1;
+	}
+	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
+		_moveDirection.Y *= -1;
+	}
+	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BRICK) {
+		
+		Vector2D<float> brickPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
+		Vector2D<int> brickSize = _otherCollisionCollider->GetThisGameObject()->GetSize();
+
+		if ((GetCentrePosition().Y >= brickPosition.Y - brickSize.Y / 2) && 
+			(GetCentrePosition().Y <= brickPosition.Y + brickSize.Y / 2)) {
+			_moveDirection.X *= -1;
+		}
+		else if ((GetCentrePosition().X >= brickPosition.X - brickSize.X / 2) &&
+			(GetCentrePosition().X <= brickPosition.X + brickSize.X / 2)) {
+			_moveDirection.Y *= -1;
+		}
+		else {
+			_moveDirection *= -1;
+		}
+	}
+	else {
+		_moveDirection *= -1;
+	}
 }
 
 
 void Ball::Move(const float& elapsedTime)
 {
+	//_moveDirection.Normalize();
 	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(_position);
 	SetBoundaryPosition(_position);
@@ -92,4 +129,9 @@ void Ball::StartFollowing(Platform* platformToFollow)
 void Ball::SetLastPlatform(Platform* lastPlatform)
 {
 	_lastPlatform = lastPlatform;
+}
+
+Platform* Ball::GetLastPlatform() const
+{
+	return _lastPlatform;
 }

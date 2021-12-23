@@ -1,9 +1,10 @@
 #include "Platform.h"
 
 Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, 
-	const float& moveSpeed, Vector2D<float>* grabPosition, const bool& isGrabbing)
+	const float& moveSpeed, Vector2D<float>* grabPosition, const bool& isGrabbing, Player* player)
 	: GameObject(Tag::PLATFORM), BoxCollider2D(this), _sprite(nullptr), _rigidbody(nullptr),
-	_moveDirection(Vector2D<float>(0,0)), _moveSpeed(moveSpeed), _grabPosition(grabPosition), _isGrabbing(isGrabbing)
+	_moveDirection(Vector2D<float>(0,0)), _moveSpeed(moveSpeed), _grabPosition(grabPosition), 
+	_isGrabbing(isGrabbing), _player(player)
 {
 	_position = Vector2D<float>(position.X + (size.X / 2) - (size.Y / 2), position.Y + (size.Y / 2) - (size.X / 2)); // Position inverted after rotating 90deg
 	_size = Vector2D<int>(size.Y, size.X); // Size inverted after rotating 90deg
@@ -49,6 +50,7 @@ void Platform::Render() const
 
 void Platform::Move(const double& elapsedTime)
 {
+	_moveDirection.Normalize();
 	_position += _moveDirection * _moveSpeed * elapsedTime;
 	*_grabPosition += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(Vector2D<float>(_position.X - _size.X, _position.Y + _size.X));
@@ -78,4 +80,9 @@ bool Platform::IsGrabbing() const
 void Platform::SetIsGrabbing(const bool& isGrabbing)
 {
 	_isGrabbing = isGrabbing;
+}
+
+Player* Platform::GetPlayer() const
+{
+	return _player;
 }

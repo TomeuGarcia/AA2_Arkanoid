@@ -3,7 +3,7 @@
 class Player 
 {
 public:
-	Player(const int &lives);
+	Player(const char* name, const int &lives);
 	~Player();
 	void LoseLives(const int &amount);
 	bool Lost();
@@ -11,7 +11,10 @@ public:
 	void GainPoints(const int& amount);
 	int GetScore() const;
 
+	friend bool operator== (const Player& player1, const Player& player2);
+
 private:
+	std::string _name;
 	LifeSystem* _lifeSystem;
 	int _score;
 

@@ -1,10 +1,11 @@
 #include "GameInitState.h"
 
 
-GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
-	GameObjects* gameObjects)
-	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager), 
-	_platformSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr)
+GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager,
+	GameObjects* gameObjects, GameLogic* gameLogic)
+	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager),
+	_platformSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr),
+	_gameLogic(gameLogic)
 {
 }
 
@@ -61,6 +62,7 @@ void GameInitState::End()
 	delete _startGameText;
 	delete _spaceToStartText;
 	_startGameText = _spaceToStartText = nullptr;
+	_gameLogic = nullptr;
 }
 
 
@@ -96,9 +98,9 @@ void GameInitState::InitPlatforms()
 {
 	_gameObjects->InitPlatforms(
 		new Platform(_renderer, PLATFORM_1_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), true),
+			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), true, _gameLogic->GetPlayer1()),
 		new Platform(_renderer, PLATFORM_2_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(710, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), false)
+			new Vector2D<float>(710, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), false, _gameLogic->GetPlayer2())
 	);
 }
 

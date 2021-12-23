@@ -1,6 +1,7 @@
 #include "Player.h"
 
-Player::Player(const int& lives) :_lifeSystem(new LifeSystem(lives)),_score(0)
+Player::Player(const char* name, const int& lives) 
+	: _name(name), _lifeSystem(new LifeSystem(lives)),_score(0)
 {
 
 }
@@ -37,4 +38,9 @@ void Player::GainPoints(const int& amount)
 int Player::GetScore() const
 {
 	return _score;
+}
+
+bool operator==(const Player& player1, const Player& player2)
+{
+	return player1._name == player2._name;
 }

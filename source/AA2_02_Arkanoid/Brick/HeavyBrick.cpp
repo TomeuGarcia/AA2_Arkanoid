@@ -34,6 +34,6 @@ void HeavyBrick::GetsHit()
 
 void HeavyBrick::GetsDestroyed()
 {
-	// add points to player
+	_brickBreaksCallback(_points);
 	SetActive(false);
 }

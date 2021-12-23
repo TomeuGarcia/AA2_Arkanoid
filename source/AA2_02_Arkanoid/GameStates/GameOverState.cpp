@@ -1,9 +1,9 @@
 #include "GameOverState.h"
 
 
-GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
+GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, std::string* winnerTextStr)
 	: GameState(renderer, gameObjects), _controller(controller),_blackBackground(nullptr),_gameOverText(nullptr),
-	_winnerText(nullptr), _goToRankingText(nullptr)
+	_winnerText(nullptr), _goToRankingText(nullptr), _winnerTextStr(winnerTextStr)
 {
 }
 
@@ -63,7 +63,9 @@ void GameOverState::InitBlackBackground()
 void GameOverState::InitTexts()
 {
 	SDL_Color white({ 255,255,255,255 });
+	std::string winner{ std::string("Winner --> ") + _winnerTextStr->c_str() };
+
 	_gameOverText = new TextGameObject(_renderer, "GAME OVER", white, Vector2D<int>(160, 200), 72);
-	_winnerText =  new TextGameObject(_renderer, "Winner --> Player 1", white, Vector2D<int>(170, 300), 36);
+	_winnerText =  new TextGameObject(_renderer, winner.c_str(), white, Vector2D<int>(170, 300), 36);
 	_goToRankingText = new TextGameObject(_renderer, "Ranking Button L", white, Vector2D<int>(280, 350), 24);
 }

@@ -3,10 +3,12 @@
 #include "../Brick/BrickFactory.h"
 #include "../FileManaging/FileManager.h"
 #include "../GameObjects/TextGameObject.h"
+#include "../GameLogic/GameLogic.h"
 
 class GameInitState : public GameState {
 public:
-	GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, GameObjects* gameObjects);
+	GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager, 
+		GameObjects* gameObjects, GameLogic* gameLogic);
 	~GameInitState();
 	virtual void DoStart() override;
 	virtual bool Update(const double& elapsedTime) override;
@@ -27,6 +29,8 @@ private:
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
 	Controller* _controller;
+
+	GameLogic* _gameLogic;
 
 	ImageGameObject* _blackBackground;
 	TextGameObject* _startGameText;

@@ -64,4 +64,5 @@ struct GameObjects {
 	void UpdateScorePointsPlayer2(const char* points);
 	void Player1LosesLives();
 	void Player2LosesLives();
+	void PlayerLosesLives(Player* actingPlayer);
 };

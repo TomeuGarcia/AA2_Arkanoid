@@ -13,11 +13,11 @@ void ScoreWall::Update(const double& elapsedTime)
 void ScoreWall::OnCollisionEnter()
 {
 	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BALL) {
-		_startKickOffCallback();
+		_startKickOffCallback(_ownerPlatform);
 	}
 }
 
-void ScoreWall::SetStartKickOffCallback(std::function<void()> startKickOffCallback)
+void ScoreWall::SetStartKickOffCallback(std::function<void(Platform*)> startKickOffCallback)
 {
 	_startKickOffCallback = startKickOffCallback;
 }
