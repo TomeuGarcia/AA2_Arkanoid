@@ -31,6 +31,8 @@ public:
 	void SetLastPlatform(Platform* lastPlatform);
 	Platform* GetLastPlatform() const;
 
+	float GetRandomBounce(const float& randomUnits) const;
+
 private:
 	Image* _sprite;
 	Rigidbody2D* _rigidbody;

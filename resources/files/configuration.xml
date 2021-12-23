@@ -5,6 +5,15 @@
 		<Heavy min="5" max="7"/>
 	</BrickInfo>
 	<Level PlatformSpeed="200">
+		<Brick i="0" j="0" type="N"/>
+		<Brick i="0" j="1" type="N"/>
+		<Brick i="0" j="2" type="N"/>
+		<Brick i="0" j="3" type="N"/>
+		<Brick i="5" j="0" type="N"/>
+		<Brick i="1" j="0" type="N"/>
+		<Brick i="1" j="1" type="H"/>
+		<Brick i="1" j="2" type="H"/>
+		<Brick i="1" j="3" type="N"/>
 		<Brick i="5" j="0" type="N"/>
 		<Brick i="6" j="0" type="H"/>
 		<Brick i="4" j="1" type="N"/>

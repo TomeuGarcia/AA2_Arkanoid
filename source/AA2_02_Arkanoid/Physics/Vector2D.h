@@ -62,6 +62,14 @@ public:
         }
     }
 
+    Vector2D Normalized() {
+        T length = Length();
+        if (length > 0) {
+            return *this / length;
+        }
+        return *this;
+    }
+
 public:
     T X;
     T Y;

@@ -50,8 +50,7 @@ void Platform::Render() const
 
 void Platform::Move(const double& elapsedTime)
 {
-	_moveDirection.Normalize();
-	_position += _moveDirection * _moveSpeed * elapsedTime;
+	_position += _moveDirection.Normalized() * _moveSpeed * elapsedTime;
 	*_grabPosition += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(Vector2D<float>(_position.X - _size.X, _position.Y + _size.X));
 }
