@@ -21,7 +21,7 @@ void GamePausedState::DoStart()
 
 bool GamePausedState::Update(const double& elapsedTime)
 {
-	if (_controller->GetButtonDown(ActionName::RESUME)) {
+	if (_controller->GetButtonDown(ActionName::START)) {
 		_nextState = GameStates::RUNNING;
 		return true;
 	}
@@ -68,5 +68,5 @@ void GamePausedState::InitTexts()
 {
 	SDL_Color white({ 255,255,255,255 });
 	_pauseText = new TextGameObject(_renderer, "...PAUSE...", white, Vector2D<int>(200, 200), 72);
-	_lToResumeText = new TextGameObject(_renderer, "L TO RESUME", white, Vector2D<int>(240, 280), 36);
+	_lToResumeText = new TextGameObject(_renderer, "Space to resume", white, Vector2D<int>(185, 280), 36);
 }
