@@ -15,9 +15,6 @@ public:
 
 private:
 	Controller* _controller;
-	ImageGameObject* _background;
 
-	TextGameObject* _title;
 	std::vector<TextGameObject*> _ranking;
-	TextGameObject* _mainMenuText;
 };

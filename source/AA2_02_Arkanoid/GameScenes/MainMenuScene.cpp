@@ -2,9 +2,7 @@
 
 
 MainMenuScene::MainMenuScene(SDL_Renderer* renderer, bool* isRunning)
-	: _isRunning(isRunning), Scene(renderer), _controller(nullptr),
-	_background(nullptr), _title(nullptr), _playGameText(nullptr), 
-	_rankingText(nullptr), _optionsText(nullptr), _quitText(nullptr)
+	: _isRunning(isRunning), Scene(renderer), _controller(nullptr)
 {
 }
 
@@ -39,13 +37,7 @@ bool MainMenuScene::Update(const double& elapsedTime)
 	}
 
 
-	_background->Update(elapsedTime);
-
-	_title->Update(elapsedTime);
-	_playGameText->Update(elapsedTime);
-	_rankingText->Update(elapsedTime);
-	_optionsText->Update(elapsedTime);
-	_quitText->Update(elapsedTime);
+	UpdateSceneGameObjects(elapsedTime);
 
 
 	return false;
@@ -54,13 +46,7 @@ bool MainMenuScene::Update(const double& elapsedTime)
 void MainMenuScene::Render() const
 {
 	SDL_RenderClear(_renderer);
-
-	_background->Render();
-	_title->Render();
-	_playGameText->Render();
-	_rankingText->Render();
-	_optionsText->Render();
-	_quitText->Render();
+	RenderSceneGameObjects();
 	SDL_RenderPresent(_renderer);
 }
 
@@ -68,31 +54,32 @@ void MainMenuScene::End()
 {
 	InputHandler::GetInstance()->RemoveAllControllers();
 
-	delete _background;
-	_background = nullptr;
-
-	delete _title;
-	delete _playGameText;
-	delete _rankingText;
-	delete _optionsText;
-	delete _quitText;
-	_title = _playGameText = _rankingText = _optionsText = _quitText = nullptr;
-
+	DeleteSceneGameObjects();
 }
 
 void MainMenuScene::InitBackground()
 {
-	_background = new ImageGameObject(_renderer, "../../resources/assets/images/background.jpg",
+	ImageGameObject* background = new ImageGameObject(_renderer, "../../resources/assets/images/background.jpg",
 		Vector2D<int>(0, 0), SCREEN_SIZE,Vector2D<int>(30, 30), Vector2D<int>(740, 435));
+
+	AddSceneGameObject(background);
 }
 
 void MainMenuScene::InitTexts()
 {
 	SDL_Color white({ 255,255,255,255 });
-	_title = new TextGameObject(_renderer, "Main Menu", white, Vector2D<int>(300, 100), 36);
+	TextGameObject* title = new TextGameObject(_renderer, "Main Menu", white, Vector2D<int>(300, 100), 36);
+	AddSceneGameObject(title);
 
-	_playGameText = new TextGameObject(_renderer, "Space to Play Game", white, Vector2D<int>(50, 200), 24);
-	_rankingText = new TextGameObject(_renderer, "R to Ranking", white, Vector2D<int>(50, 300), 24);
-	_optionsText = new TextGameObject(_renderer, "Options", white, Vector2D<int>(50, 400), 24);
-	_quitText = new TextGameObject(_renderer, "Esc to Quit", white, Vector2D<int>(50, 500), 24);
+	TextGameObject* playGameText = new TextGameObject(_renderer, "Space to Play Game", white, Vector2D<int>(50, 200), 24);
+	AddSceneGameObject(playGameText);
+
+	TextGameObject* rankingText = new TextGameObject(_renderer, "R to Ranking", white, Vector2D<int>(50, 300), 24);
+	AddSceneGameObject(rankingText);
+
+	TextGameObject* optionsText = new TextGameObject(_renderer, "Options", white, Vector2D<int>(50, 400), 24);
+	AddSceneGameObject(optionsText);
+
+	TextGameObject* quitText = new TextGameObject(_renderer, "Esc to Quit", white, Vector2D<int>(50, 500), 24);
+	AddSceneGameObject(quitText);
 }

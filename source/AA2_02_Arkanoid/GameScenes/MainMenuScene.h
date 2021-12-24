@@ -15,11 +15,4 @@ private:
 	bool* _isRunning;
 
 	Controller* _controller;
-
-	ImageGameObject* _background;
-	TextGameObject* _title;
-	TextGameObject* _playGameText;
-	TextGameObject* _rankingText;
-	TextGameObject* _optionsText;
-	TextGameObject* _quitText;	
 };

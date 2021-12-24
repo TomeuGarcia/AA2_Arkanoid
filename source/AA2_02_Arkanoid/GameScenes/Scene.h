@@ -11,7 +11,8 @@ enum class Scenes{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME, QUIT};
 class Scene {
 
 public:
-	Scene(SDL_Renderer* renderer) : _nextScene(Scenes::NONE), _renderer(renderer) {}
+	Scene(SDL_Renderer* renderer) 
+		: _nextScene(Scenes::NONE), _renderer(renderer), _sceneGameObjects() {}
 	virtual ~Scene() = default;
 
 	void Start() {
@@ -26,7 +27,14 @@ public:
 
 protected:
 	virtual void DoStart() = 0;
+	void UpdateSceneGameObjects(const double& elapsedTime);
+	void RenderSceneGameObjects() const;
+	void DeleteSceneGameObjects();
+	void AddSceneGameObject(GameObject* gameObject);
 
 	Scenes _nextScene;
 	SDL_Renderer* _renderer;
+
+private:
+	std::vector<GameObject*> _sceneGameObjects;
 };

@@ -1,7 +1,7 @@
 #include "SplashScreenScene.h"
 
 SplashScreenScene::SplashScreenScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _background(nullptr), _waitTime(SPLASH_WAIT_TIME)
+	: Scene(renderer), _waitTime(SPLASH_WAIT_TIME)
 {
 }
 
@@ -22,7 +22,7 @@ bool SplashScreenScene::Update(const double& elapsedTime)
 	}
 
 	_waitTime -= elapsedTime;
-	_background->Update(elapsedTime);
+	UpdateSceneGameObjects(elapsedTime);
 
 	return false;
 }
@@ -30,19 +30,19 @@ bool SplashScreenScene::Update(const double& elapsedTime)
 void SplashScreenScene::Render() const
 {
 	SDL_RenderClear(_renderer);
-	_background->Render();
+	RenderSceneGameObjects();
 	SDL_RenderPresent(_renderer);
 }
 
 void SplashScreenScene::End()
 {
-
-	delete _background;
-	_background = nullptr;
+	DeleteSceneGameObjects();
 }
 
 void SplashScreenScene::InitBackground()
 {
-	_background = new ImageGameObject(_renderer, "../../resources/assets/images/arkanoidSplashScreen.png", 
+	ImageGameObject* background = new ImageGameObject(_renderer, "../../resources/assets/images/arkanoidSplashScreen.png",
 		Vector2D<int>(0,0), SCREEN_SIZE, Vector2D<int>(0, 0), SCREEN_SIZE);
+
+	AddSceneGameObject(background);
 }

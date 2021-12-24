@@ -186,6 +186,9 @@
     <ClCompile Include="Wall\ScoreWall.cpp">
       <Filter>Wall</Filter>
     </ClCompile>
+    <ClCompile Include="GameScenes\Scene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">

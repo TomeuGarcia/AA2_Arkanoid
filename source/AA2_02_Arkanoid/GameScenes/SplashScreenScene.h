@@ -16,5 +16,4 @@ public:
 
 private:
 	float _waitTime;
-	ImageGameObject* _background;
 };
