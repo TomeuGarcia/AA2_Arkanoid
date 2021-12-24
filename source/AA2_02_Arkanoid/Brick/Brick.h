@@ -15,14 +15,13 @@ public:
 
 	virtual void Render() const override;
 
-	virtual void OnCollisionEnter() override;
-
-	virtual void GetsHit() = 0;
 	Vector2D<float> GetPosition() const;
-
 	void SetBrickBreaksCallback(std::function<void(const int&)> brickBreaksCallback);
 
 protected:
+	virtual void OnCollisionEnter() override;
+	virtual void GetsHit() = 0;
+
 	AnimatedImage* _animatedSprite;
 
 	int _spriteSourceWidthGap;

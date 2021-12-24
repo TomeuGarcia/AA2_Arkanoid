@@ -8,5 +8,6 @@ public:
 
 	virtual void Update(const double& elapsedTime) override;
 
+private:
 	virtual void GetsHit() override;
 };

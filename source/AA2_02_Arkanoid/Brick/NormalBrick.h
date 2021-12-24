@@ -11,9 +11,8 @@ public:
 
 	virtual void Update(const double& elapsedTime) override;
 
-	virtual void GetsHit() override;
-
 private:
+	virtual void GetsHit() override;
 	void GetsDestroyed();
 
 	int _points;

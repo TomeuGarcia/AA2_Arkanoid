@@ -55,7 +55,6 @@ void Ball::OnCollisionEnter()
 		_moveDirection.Y *= -1;
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BRICK) {
-
 		Vector2D<float> brickPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
 		Vector2D<int> brickSize = _otherCollisionCollider->GetThisGameObject()->GetSize();
 

@@ -19,6 +19,8 @@ Brick* BrickFactory::Create(SDL_Renderer* renderer, const BrickData& brickData, 
 	else if (brickData._brickType == BrickType::FIX) {
 		return new FixBrick(renderer, brickPosition, BRICK_DESTINATION_SIZE, FIX_BRICK_SOURCE_WIDTH_GAP);
 	}
+
+	return nullptr;
 }
 
 

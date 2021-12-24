@@ -18,22 +18,22 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
-	virtual void OnCollisionEnter() override;
+	void StartMoving();
+	void StartFollowing(Platform* platformToFollow);	
+	Rigidbody2D* GetRigidbody() const;
+	void SetLastPlatform(Platform* lastPlatform);
+	Platform* GetLastPlatform() const;
 
+
+private:
+	virtual void OnCollisionEnter() override;
 
 	void Move(const float& elapsedTime);
 	void Follow();
 	void SetMoveDirection(const Vector2D<float>& direction);
-	Rigidbody2D* GetRigidbody() const;
-	void StartMoving();
-	void StartFollowing(Platform* platformToFollow);
-
-	void SetLastPlatform(Platform* lastPlatform);
-	Platform* GetLastPlatform() const;
-
 	float GetRandomBounce(const float& randomUnits) const;
 
-private:
+
 	Image* _sprite;
 	Rigidbody2D* _rigidbody;
 

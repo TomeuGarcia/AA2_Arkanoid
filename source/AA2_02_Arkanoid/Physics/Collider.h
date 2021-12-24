@@ -25,22 +25,21 @@ public:
 	virtual bool IsCollidingWithCollider(const Collider* other) = 0;
 	virtual bool WillBeCollidingWithColliderOnDirection(const Vector2D<float>& direction, const Collider* other) = 0;
 
-	virtual void OnCollisionEnter();
-	virtual void OnCollisionStay();
-	virtual void OnCollisionExit();
-
-	void Update();
-
 	GameObject* GetThisGameObject();
 	void SetOtherCollisionCollider(Collider* otherCollisionCollider);
 	void UpdateCollisionStatus();
-
 
 	ColliderType _type;
 	ColliderBoundary _boundary;
 	bool _willBeColliding;
 
 protected:
+	virtual void OnCollisionEnter();
+	virtual void OnCollisionStay();
+	virtual void OnCollisionExit();
+
+	void Update();
+
 	GameObject* _thisGameObject;
 	CollisionStatus _collisionStatus;
 	Collider* _otherCollisionCollider;

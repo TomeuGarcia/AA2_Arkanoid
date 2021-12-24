@@ -11,11 +11,11 @@ public:
 
 	virtual void Update(const double& elapsedTime) override;
 
-	virtual void OnCollisionEnter();
-
 	void SetStartKickOffCallback(std::function<void(Platform*)> startKickOffCallback);
 
 private:
+	virtual void OnCollisionEnter();
+
 	Platform* _ownerPlatform;
 	std::function<void(Platform*)> _startKickOffCallback;
 };
