@@ -77,24 +77,27 @@ void Ball::OnCollisionEnter()
 			(GetCentrePosition().Y <= brickPosition.Y + brickSize.Y / 2 + brickSize.Y / 4)) {
 			_moveDirection.X *= -1 - GetRandomBounce(5);
 		}
-		else if ((GetCentrePosition().X >= brickPosition.X - brickSize.X / 2 - brickSize.X / 4) &&
-			(GetCentrePosition().X <= brickPosition.X + brickSize.X / 2 + brickSize.X / 4)) {
+		else if ((GetCentrePosition().X >= brickPosition.X - brickSize.X / 4) &&
+			(GetCentrePosition().X <= brickPosition.X + brickSize.X / 4)) {
 			_moveDirection.Y *= -1 - GetRandomBounce(5);
 		}
 		else {
+			_moveDirection *= 2;
 			_moveDirection *= -1;
 		}
 	}
 	else {
 		_moveDirection *= -1;
 	}
+	_moveDirection.Normalize();
+
 }
 
 
 void Ball::Move(const float& elapsedTime)
 {
 	
-	_position += _moveDirection.Normalized() * _moveSpeed * elapsedTime;
+	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(_position);
 	SetBoundaryPosition(_position);
 }

@@ -9,7 +9,8 @@ public:
 		const int& points, const int& lives);
 	~HeavyBrick();
 
-	virtual void NextSprite() override;
+	virtual void Update(const double& elapsedTime) override;
+
 	virtual void GetsHit() override;
 
 private:

@@ -20,3 +20,22 @@ void AnimatedImage::Update(const double& elapsedTime)
 	_currentFrame = (int)(_accumulatedElapsedTime * _frameSpeed) % _numberOfFrames;
 	_sourceRect.x = _frameWidth * _currentFrame;
 }
+
+bool AnimatedImage::AnimationFinished() const
+{
+	return _currentFrame == _numberOfFrames-1;
+}
+
+void AnimatedImage::ForceNextFrame()
+{
+	++_currentFrame;
+	++_accumulatedElapsedTime;
+	_sourceRect.x = _frameWidth * _currentFrame;
+}
+
+void AnimatedImage::ResetAnimation()
+{
+	_currentFrame = 0;
+	_accumulatedElapsedTime = 0;
+	_sourceRect.x = _frameWidth * _currentFrame;
+}

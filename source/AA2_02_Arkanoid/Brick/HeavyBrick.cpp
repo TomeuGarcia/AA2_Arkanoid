@@ -4,31 +4,41 @@ HeavyBrick::HeavyBrick(SDL_Renderer* renderer, const Vector2D<float>& position, 
 	const int& points, const int& lives)
 	: Brick(position, size, spriteSourceWidthGap), 	_points(points), _lifeSystem(lives) 
 {
-	// Initialize _sprite
-	_sprite = new Image(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, Vector2D<int>(position.X, position.Y), size);
-	_sprite->Init("../../resources/assets/images/bricks.png");
-	_sprite->Rotate(90);
+	// Initialize _animatedSprite
+	_animatedSprite = new AnimatedImage(renderer, HEAVY_BRICK_SOURCE_START, BRICK_SOURCE_SIZE, TOTAL_BRICK_FRAMES+1,
+		Vector2D<int>(position.X, position.Y), size);
+	_animatedSprite->Init("../../resources/assets/images/bricks.png");
+	_animatedSprite->Rotate(90);
 }
 
 HeavyBrick::~HeavyBrick()
 {
-	delete _sprite;
+	delete _animatedSprite;
 }
 
-
-void HeavyBrick::NextSprite()
+void HeavyBrick::Update(const double& elapsedTime)
 {
-	_sprite->SetSourceStart(_sprite->GetSourceRectStart() + Vector2D<int>(_spriteSourceWidthGap, 0));
+	Collider::Update();
+
+	if (_playingAnimation) {
+		_animatedSprite->Update(elapsedTime);
+	}
+
+	if (_animatedSprite->AnimationFinished()) {
+		_playingAnimation = false;
+		GetsDestroyed();
+	}
 }
+
 
 void HeavyBrick::GetsHit()
 {
 	_lifeSystem.LoseLives(1);
 	if (_lifeSystem.HasNoLivesLeft()) {
-		GetsDestroyed();
+		_playingAnimation = true;
 	}
 	else {
-		NextSprite();
+		_animatedSprite->ForceNextFrame();
 	}	
 }
 

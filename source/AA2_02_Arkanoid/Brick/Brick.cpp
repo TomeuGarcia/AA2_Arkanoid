@@ -1,8 +1,8 @@
 #include "Brick.h"
 
 Brick::Brick(const Vector2D<float>& position, const Vector2D<int>& size, const int& spriteSourceWidthGap)
-	: GameObject(Tag::BRICK), BoxCollider2D(this), _sprite(nullptr),
-	_spriteSourceWidthGap(spriteSourceWidthGap) 
+	: GameObject(Tag::BRICK), BoxCollider2D(this), _animatedSprite(nullptr),
+	_spriteSourceWidthGap(spriteSourceWidthGap) , _playingAnimation(false)
 {
 	_position = Vector2D<float>(position.X + size.X / 2 - size.Y / 2, position.Y + size.Y / 2 - size.X / 2); // Position inverted after rotating 90deg
 	_size = Vector2D<int>(size.Y, size.X); // Size inverted after rotating 90deg
@@ -12,14 +12,9 @@ Brick::Brick(const Vector2D<float>& position, const Vector2D<int>& size, const i
 }
 
 
-void Brick::Update(const double& elapsedTime)
-{
-	Collider::Update();
-}
-
 void Brick::Render() const
 {
-	_sprite->Draw();
+	_animatedSprite->Draw();
 }
 
 void Brick::OnCollisionEnter()

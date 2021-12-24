@@ -58,7 +58,7 @@ public:
     void Normalize() {
         T length = Length();
         if (length > 0) {
-            (*this) *= 1 / length;
+            (*this) /= length;
         }
     }
 
