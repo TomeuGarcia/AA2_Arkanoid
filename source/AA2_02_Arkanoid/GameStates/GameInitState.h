@@ -26,6 +26,7 @@ public:
 private:
 	FileManager* _fileManager;
 	int _platformSpeed;
+	int _ballSpeed;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 	
 	Controller* _controller;

@@ -4,7 +4,7 @@
 GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager,
 	GameObjects* gameObjects, GameLogic* gameLogic)
 	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager),
-	_platformSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr),
+	_platformSpeed(), _ballSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr),
 	_gameLogic(gameLogic)
 {
 }
@@ -72,6 +72,7 @@ void GameInitState::LoadGame()
 	GameData* gameData = _fileManager->LoadGameData("../../resources/files/configuration.xml");
 
 	_platformSpeed = gameData->GetPlatformSpeed();
+	_ballSpeed = gameData->GetBallSpeed();
 	_brickPoints = gameData->GetBrickPoints();
 
 	BrickFactory brickFactory;
@@ -107,7 +108,7 @@ void GameInitState::InitPlatforms()
 void GameInitState::InitBall()
 {
 	_gameObjects->InitBall( 
-		new Ball(_renderer, BALL_DESTINATION_SIZE, _platformSpeed, _gameObjects->_platform1)
+		new Ball(_renderer, BALL_DESTINATION_SIZE, _ballSpeed, _gameObjects->_platform1)
 	);
 }
 

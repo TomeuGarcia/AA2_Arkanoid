@@ -45,25 +45,11 @@ void Ball::Render() const
 void Ball::OnCollisionEnter()
 {
 	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::PLATFORM) {
-
 		Vector2D<float> platformPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
-		Vector2D<int> platformSize = _otherCollisionCollider->GetThisGameObject()->GetSize();
 
-		if ((GetCentrePosition().Y < (platformPosition.Y - platformSize.Y / 4)) &&
-			(GetCentrePosition().Y) > (platformPosition.Y - platformSize.Y /1.5)) {
-			_moveDirection.Y = -1 - GetRandomBounce(8);
-			_moveDirection.X *= -1;
-		}
-		else if (GetCentrePosition().Y > (platformPosition.Y + platformSize.Y / 4) &&
-			(GetCentrePosition().Y) < (platformPosition.Y + platformSize.Y / 1.5)) {
-			_moveDirection.Y = 1 + GetRandomBounce(8);
-			_moveDirection.X *= -1;
-		}
-		else if (GetCentrePosition().Y > (platformPosition.Y - platformSize.Y / 4) &&
-			GetCentrePosition().Y < (platformPosition.Y + platformSize.Y / 4)) {
-			_moveDirection.Y = 0;
-			_moveDirection.X *= -1;
-		}
+		_moveDirection.Y = (GetCentrePosition().Y - platformPosition.Y);
+		_moveDirection.X = (platformPosition.X - GetCentrePosition().X);
+		_moveDirection.X *= -1;
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
 		_moveDirection.Y *= -1;
@@ -73,18 +59,9 @@ void Ball::OnCollisionEnter()
 		Vector2D<float> brickPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
 		Vector2D<int> brickSize = _otherCollisionCollider->GetThisGameObject()->GetSize();
 
-		if ((GetCentrePosition().Y >= brickPosition.Y - brickSize.Y / 2 - brickSize.Y / 4) &&
-			(GetCentrePosition().Y <= brickPosition.Y + brickSize.Y / 2 + brickSize.Y / 4)) {
-			_moveDirection.X *= -1 - GetRandomBounce(5);
-		}
-		else if ((GetCentrePosition().X >= brickPosition.X - brickSize.X / 4) &&
-			(GetCentrePosition().X <= brickPosition.X + brickSize.X / 4)) {
-			_moveDirection.Y *= -1 - GetRandomBounce(5);
-		}
-		else {
-			_moveDirection *= 2;
-			_moveDirection *= -1;
-		}
+		_moveDirection.Y = (GetCentrePosition().Y - brickPosition.Y + brickSize.Y/4);
+		_moveDirection.X = (brickPosition.X + brickSize.X / 4 - GetCentrePosition().X);
+		_moveDirection.X *= -1;
 	}
 	else {
 		_moveDirection *= -1;

@@ -38,6 +38,7 @@ GameData* FileManager::LoadGameData(const char* filePath)
 	// Getting Level Info
 	nodePtr = rootPtr->first_node("Level");
 	gameData->SetPlatformSpeed(std::stoi(nodePtr->first_attribute("PlatformSpeed")->value()));
+	gameData->SetBallSpeed(std::stoi(nodePtr->first_attribute("BallSpeed")->value()));
 
 	for (rapidxml::xml_node<>* levelNodePtr = nodePtr->first_node(); levelNodePtr; levelNodePtr = levelNodePtr->next_sibling()) {
 		stringHolder = levelNodePtr->first_attribute("type")->value();

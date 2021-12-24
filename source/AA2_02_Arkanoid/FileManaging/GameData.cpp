@@ -3,7 +3,7 @@
 BrickData::BrickData(const BrickType& brickType, const int& i, const int& j) : _brickType(brickType), _x(i), _y(j) {}
 
 
-GameData::GameData() : _platformSpeed(0), _levelBricks(), _brickPoints() , _brickStringToBrickType()
+GameData::GameData() : _platformSpeed(0), _ballSpeed(0), _levelBricks(), _brickPoints() , _brickStringToBrickType()
 {
 	_brickStringToBrickType[std::string("N")] = BrickType::NORMAL;
 	_brickStringToBrickType[std::string("H")] = BrickType::HEAVY;
@@ -24,6 +24,11 @@ void GameData::SetPlatformSpeed(const int& platformSpeed)
 	_platformSpeed = platformSpeed;
 }
 
+void GameData::SetBallSpeed(const int& ballSpeed)
+{
+	_ballSpeed = ballSpeed;
+}
+
 void GameData::SetLevelBricks(const int& i, const int& j, std::string& type)
 {
 	_levelBricks.push_back(BrickData(_brickStringToBrickType[type], i, j));
@@ -31,6 +36,11 @@ void GameData::SetLevelBricks(const int& i, const int& j, std::string& type)
 
 
 int GameData::GetPlatformSpeed() { return _platformSpeed; }
+
+int GameData::GetBallSpeed()
+{
+	return _ballSpeed;
+}
 
 std::list<BrickData> GameData::GetLevelBricks() { return _levelBricks; }
 

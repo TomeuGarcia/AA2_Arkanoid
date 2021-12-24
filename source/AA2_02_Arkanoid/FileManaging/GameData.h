@@ -26,14 +26,17 @@ public:
 	GameData();
 	void SetBrickInfo(std::string& brickType, const int& min, const int& max);
 	void SetPlatformSpeed(const int& platformSpeed);
+	void SetBallSpeed(const int& ballSpeed);
 	void SetLevelBricks(const int& i, const int& j, std::string& type);
 
 	int GetPlatformSpeed();
+	int GetBallSpeed();
 	std::list<BrickData> GetLevelBricks();
 	std::map<BrickType, std::pair<int, int>> GetBrickPoints();
 
 private:
 	int _platformSpeed;
+	int _ballSpeed;
 	std::list<BrickData> _levelBricks;
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 
