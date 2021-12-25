@@ -55,6 +55,8 @@ bool GameRunningState::Update(const double& elapsedTime)
 	_collisionManager->Update();
 	UpdateGameObjects(elapsedTime);
 
+	CheckBallExitingBoundaries();
+
 	return false;
 }
 
@@ -94,4 +96,14 @@ void GameRunningState::BrickBreaks(const int& brickPoints)
 {
 	_gameLogic->PlayerDestroyedBrick(_gameObjects->_ball->GetLastPlatform()->GetPlayer(), brickPoints);
 	UpdatePlayerScores();
+}
+
+void GameRunningState::CheckBallExitingBoundaries()
+{
+	SDL_Rect gameRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	Vector2D<int> ballPosition(_gameObjects->_ball->GetCentrePosition().X, _gameObjects->_ball->GetCentrePosition().Y);
+
+	if (!CollisionsHelper::IsPointInsideRect(&gameRect, &ballPosition)) {
+		StartKickOff(_gameObjects->_ball->GetLastPlatform());
+	}
 }

@@ -19,6 +19,8 @@ private:
 	void UpdatePlayerScores();
 	void BrickBreaks(const int& brickPoints);
 
+	void CheckBallExitingBoundaries();
+
 
 	CollisionManager* _collisionManager;
 
