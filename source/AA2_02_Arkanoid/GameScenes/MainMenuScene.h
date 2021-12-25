@@ -11,6 +11,7 @@ public:
 	virtual void End() override;
 	void InitBackground();
 	void InitTexts();
+
 private:
 	bool* _isRunning;
 

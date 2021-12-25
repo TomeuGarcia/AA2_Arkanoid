@@ -69,10 +69,17 @@ void Ball::OnCollisionEnter()
 
 }
 
+void Ball::OnCollisionStay()
+{
+	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
+		Vector2D<float> wallPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
+		_moveDirection.Y = (wallPosition.Y - GetCentrePosition().Y > 0) ? -1 : 1;
+	}
+}
+
 
 void Ball::Move(const float& elapsedTime)
-{
-	
+{	
 	_position += _moveDirection * _moveSpeed * elapsedTime;
 	_sprite->SetDestinationStart(_position);
 	SetBoundaryPosition(_position);
@@ -118,9 +125,4 @@ void Ball::SetLastPlatform(Platform* lastPlatform)
 Platform* Ball::GetLastPlatform() const
 {
 	return _lastPlatform;
-}
-
-float Ball::GetRandomBounce(const float& randomUnits) const
-{
-	return (rand() % static_cast<int>(randomUnits)) / randomUnits;
 }

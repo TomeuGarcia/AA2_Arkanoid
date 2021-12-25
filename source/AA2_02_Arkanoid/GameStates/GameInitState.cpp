@@ -1,9 +1,9 @@
 #include "GameInitState.h"
 
 
-GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller, FileManager* fileManager,
+GameInitState::GameInitState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2, FileManager* fileManager,
 	GameObjects* gameObjects, GameLogic* gameLogic)
-	: GameState(renderer, gameObjects), _controller(controller), _fileManager(fileManager),
+	: GameState(renderer, gameObjects), _controller1(controller1), _controller2(controller2), _fileManager(fileManager),
 	_platformSpeed(), _ballSpeed(), _startGameText(nullptr), _spaceToStartText(nullptr), _blackBackground(nullptr),
 	_gameLogic(gameLogic)
 {
@@ -28,11 +28,11 @@ void GameInitState::DoStart()
 
 bool GameInitState::Update(const double& elapsedTime)
 {	
-	if (_controller->GetButtonDown(ActionName::START)) {
+	if (_controller1->GetButtonDown(ActionName::START)) {
 		_nextState = GameStates::RUNNING;
 		return true;
 	}
-	else if (_controller->GetButtonDown(ActionName::QUIT)) {
+	else if (_controller1->GetButtonDown(ActionName::QUIT)) {
 		_nextState = GameStates::QUIT_TO_MAIN_MENU;
 		return true;
 	}
@@ -99,9 +99,11 @@ void GameInitState::InitPlatforms()
 {
 	_gameObjects->InitPlatforms(
 		new Platform(_renderer, PLATFORM_1_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), true, _gameLogic->GetPlayer1()),
+			new Vector2D<float>(60, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), true, _gameLogic->GetPlayer1(),
+			_controller1),
 		new Platform(_renderer, PLATFORM_2_START_POSITION, PLATFORM_DESTINATION_SIZE, _platformSpeed, 
-			new Vector2D<float>(710, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), false, _gameLogic->GetPlayer2())
+			new Vector2D<float>(710, SCREEN_HEIGHT / 2 - PLATFORM_DESTINATION_WIDTH), false, _gameLogic->GetPlayer2(),
+			_controller2)
 	);
 }
 
@@ -137,4 +139,6 @@ void GameInitState::InitTexts()
 	SDL_Color white({ 255,255,255,255 });
 	_startGameText = new TextGameObject(_renderer, "START GAME", white, Vector2D<int>(140, 200), 72);
 	_spaceToStartText = new TextGameObject(_renderer, "SPACE BAR TO START", white, Vector2D<int>(180, 280), 36);
+
+
 }

@@ -3,17 +3,12 @@
 GameScene::GameScene(SDL_Renderer* renderer)
 	: Scene(renderer), _gameLogic(nullptr),
 	_fileManager(nullptr), _gameObjects(nullptr), _collissionManager(nullptr), _controller1(nullptr), _controller2(nullptr),
-	_currentGameState(), _isStateFinished(false), _player1(nullptr), _player2(nullptr), _winnerTextStr()
+	_currentGameState(), _isStateFinished(false), _winnerTextStr()
 {
 }
 
 GameScene::~GameScene()
 {
-	delete _gameLogic;
-	_gameLogic = nullptr;
-	delete _controller1;
-	delete _controller2;
-	_controller1 = _controller2 = nullptr;
 }
 
 void GameScene::DoStart()
@@ -26,7 +21,7 @@ void GameScene::DoStart()
 	_fileManager = new FileManager;
 
 	_isStateFinished = false;
-	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _controller1, _fileManager, _gameObjects, _gameLogic);
+	_gameStates[GameStates::INIT] = new GameInitState(_renderer, _controller1, _controller2, _fileManager, _gameObjects, _gameLogic);
 	_gameStates[GameStates::RUNNING] = new GameRunningState(_renderer, _controller1, _controller2, _gameObjects, 
 		_collissionManager, _gameLogic, &_winnerTextStr);
 	_gameStates[GameStates::PAUSED] = new GamePausedState(_renderer, _controller1, _gameObjects);
@@ -73,6 +68,9 @@ void GameScene::End()
 	delete _gameObjects;
 	delete _collissionManager;
 	InputHandler::GetInstance()->RemoveAllControllers();
+	_controller1 = _controller2 = nullptr;
+	delete _gameLogic;
+	_gameLogic = nullptr;
 }
 
 

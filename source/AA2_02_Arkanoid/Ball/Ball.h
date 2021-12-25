@@ -27,12 +27,11 @@ public:
 
 private:
 	virtual void OnCollisionEnter() override;
+	virtual void OnCollisionStay() override;
 
 	void Move(const float& elapsedTime);
 	void Follow();
 	void SetMoveDirection(const Vector2D<float>& direction);
-	float GetRandomBounce(const float& randomUnits) const;
-
 
 	Image* _sprite;
 	Rigidbody2D* _rigidbody;

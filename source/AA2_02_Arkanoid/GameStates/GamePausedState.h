@@ -12,10 +12,10 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
+private:
 	void InitBlackBackground();
 	void InitTexts();
 
-private:
 	Controller* _controller;
 
 	ImageGameObject* _blackBackground;

@@ -52,13 +52,8 @@ bool GameRunningState::Update(const double& elapsedTime)
 		_gameObjects->_ball->StartMoving();
 	}
 
-	_gameObjects->_platform1->SetMoveDirection(Vector2D<float>(0, _controller1->GetAxis(AxisName::VERTICAL)));
-	_gameObjects->_platform2->SetMoveDirection(Vector2D<float>(0, _controller2->GetAxis(AxisName::VERTICAL)));
-
 	_collisionManager->Update();
 	UpdateGameObjects(elapsedTime);
-	
-
 
 	return false;
 }

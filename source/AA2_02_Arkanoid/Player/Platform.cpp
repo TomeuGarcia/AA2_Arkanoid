@@ -1,10 +1,10 @@
 #include "Platform.h"
 
-Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size, 
-	const float& moveSpeed, Vector2D<float>* grabPosition, const bool& isGrabbing, Player* player)
+Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size,
+	const float& moveSpeed, Vector2D<float>* grabPosition, const bool& isGrabbing, Player* player, Controller* controller)
 	: GameObject(Tag::PLATFORM), BoxCollider2D(this), _sprite(nullptr), _rigidbody(nullptr),
-	_moveDirection(Vector2D<float>(0,0)), _moveSpeed(moveSpeed), _grabPosition(grabPosition), 
-	_isGrabbing(isGrabbing), _player(player)
+	_moveDirection(Vector2D<float>(0, 0)), _moveSpeed(moveSpeed), _grabPosition(grabPosition),
+	_isGrabbing(isGrabbing), _player(player), _controller(controller)
 {
 	_position = Vector2D<float>(position.X + (size.X / 2) - (size.Y / 2), position.Y + (size.Y / 2) - (size.X / 2)); // Position inverted after rotating 90deg
 	_size = Vector2D<int>(size.Y, size.X); // Size inverted after rotating 90deg
@@ -31,6 +31,8 @@ Platform::~Platform()
 void Platform::Update(const double& elapsedTime)
 {
 	Collider::Update();
+
+	SetMoveDirection(Vector2D<float>(0, _controller->GetAxis(AxisName::VERTICAL)));
 
 	if (!_rigidbody->WillBeColliding()) {
 		Move(elapsedTime);

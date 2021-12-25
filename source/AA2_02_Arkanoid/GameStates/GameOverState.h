@@ -9,10 +9,11 @@ public:
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
+
+private:
 	void InitBlackBackground();
 	void InitTexts();
 
-private:
 	Controller* _controller;
 	ImageGameObject* _blackBackground;
 	TextGameObject* _gameOverText;

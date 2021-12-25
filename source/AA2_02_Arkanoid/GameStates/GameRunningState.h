@@ -14,11 +14,9 @@ public:
 	virtual void Render() const override;
 	virtual void End() override;
 
-	void UpdatePlayerScores();
-
 private:
 	void StartKickOff(Platform* kickOffPlatform);
-
+	void UpdatePlayerScores();
 	void BrickBreaks(const int& brickPoints);
 
 

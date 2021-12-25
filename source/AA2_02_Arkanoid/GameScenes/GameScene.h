@@ -43,8 +43,5 @@ private:
 
 	FileManager* _fileManager;
 
-	TextGameObject* _player1;
-	TextGameObject* _player2;
-
 	std::string _winnerTextStr;
 };
