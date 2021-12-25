@@ -17,14 +17,14 @@ ButtonGameObject::~ButtonGameObject()
 
 void ButtonGameObject::Update(const double& elapsedTime)
 {
-	if (CollisionsHelper::IsPointInsideRect(&_rect, &InputHandler::GetInstance()->GetMouseScreenPosition())) {
-		OnHoverEnter();
-		// if click
-		// OnHoverClick();
-	}
-	else {
-		OnHoverExit();
-	}
+	//if (CollisionsHelper::IsPointInsideRect(&_rect, &InputHandler::GetInstance()->GetMouseScreenPosition())) {
+	//	OnHoverEnter();
+	//	// if click
+	//	// OnHoverClick();
+	//}
+	//else {
+	//	OnHoverExit();
+	//}
 }
 
 void ButtonGameObject::Render() const
