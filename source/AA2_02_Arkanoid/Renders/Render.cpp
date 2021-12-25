@@ -48,6 +48,12 @@ void Render::SetDestinationStart(const Vector2D<float>& destinationStartCorner)
 	_destinationRect.y = destinationStartCorner.Y;
 }
 
+Vector2D<int> Render::GetDestinationSize() const
+{
+	return Vector2D<int>(_destinationRect.w, _destinationRect.h);
+}
+
+
 void Render::Init(const char* path)
 {
 	// Create surface

@@ -2,7 +2,10 @@
 
 InputHandler* InputHandler::_instance = nullptr;
 
-InputHandler::InputHandler() {
+InputHandler::InputHandler() 
+	: _mouseScreenPosition(), _actionTypeMapping()
+
+{
 	_actionTypeMapping[SDL_KEYDOWN] = ActionType::BUTTON_DOWN;
 	_actionTypeMapping[SDL_KEYUP] = ActionType::BUTTON_UP;
 }
@@ -26,9 +29,16 @@ void InputHandler::HandleEvents()
 
 	while (SDL_PollEvent(&event)) {
 
-		eventToHandle = Event(event.key.keysym.sym, _actionTypeMapping[event.key.type]);
-		for (Controller* controller : _controllers) {
-			controller->HandleEvents(&eventToHandle);
+		if (event.motion.type == SDL_MOUSEMOTION)
+		{
+			_mouseScreenPosition.X = event.motion.x;
+			_mouseScreenPosition.Y = event.motion.y;
+		}
+		else {
+			eventToHandle = Event(event.key.keysym.sym, _actionTypeMapping[event.key.type]);
+			for (Controller* controller : _controllers) {
+				controller->HandleEvents(&eventToHandle);
+			}
 		}
 
 	}
@@ -43,4 +53,9 @@ void InputHandler::AddController(Controller* controllerToAdd)
 void InputHandler::RemoveAllControllers()
 {
 	_controllers.clear();
+}
+
+Vector2D<int> InputHandler::GetMouseScreenPosition() const
+{
+	return _mouseScreenPosition;
 }

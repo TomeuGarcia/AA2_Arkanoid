@@ -196,6 +196,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="FileManaging\FileManager.cpp" />
     <ClCompile Include="FileManaging\GameData.cpp" />
     <ClCompile Include="GameLogic\GameLogic.cpp" />
+    <ClCompile Include="GameObjects\ButtonGameObject.cpp" />
     <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="GameObjects\ImageGameObject.cpp" />
     <ClCompile Include="GameObjects\TextGameObject.cpp" />
@@ -241,6 +242,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="FileManaging\FileManager.h" />
     <ClInclude Include="FileManaging\GameData.h" />
     <ClInclude Include="GameLogic\GameLogic.h" />
+    <ClInclude Include="GameObjects\ButtonGameObject.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\ImageGameObject.h" />

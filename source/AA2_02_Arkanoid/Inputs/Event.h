@@ -1,6 +1,6 @@
 #pragma once
 
-enum class ActionType {BUTTON_UP, BUTTON_DOWN};
+enum class ActionType {BUTTON_UP, BUTTON_DOWN, MOUSE};
 
 struct Event {
 	int _key;
