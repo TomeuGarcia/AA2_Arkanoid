@@ -11,7 +11,7 @@ public:
 	virtual void Draw() override;
 	virtual void Update(const double& elapsedTime) override;
 
-	bool AnimationFinished() const;
+	bool HasAnimationFinished() const;
 	void ForceNextFrame();
 	void ResetAnimation();
 

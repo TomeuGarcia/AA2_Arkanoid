@@ -16,6 +16,9 @@ void Scene::RenderSceneGameObjects() const
 
 void Scene::DeleteSceneGameObjects()
 {
+	for (std::vector<GameObject*>::iterator it = _sceneGameObjects.begin(); it != _sceneGameObjects.end(); ++it) {
+		delete* it;
+	}
 	_sceneGameObjects.clear();
 }
 

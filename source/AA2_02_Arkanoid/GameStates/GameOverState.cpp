@@ -35,15 +35,11 @@ bool GameOverState::Update(const double& elapsedTime)
 
 void GameOverState::Render() const
 {
-	SDL_RenderClear(_renderer);
-
 	RenderGameObjects();
 	_blackBackground->Render();
 	_gameOverText->Render();
 	_winnerText->Render();
 	_goToRankingText->Render();
-
-	SDL_RenderPresent(_renderer);
 }
 
 void GameOverState::End()

@@ -27,12 +27,12 @@ void GameRunningState::DoStart()
 
 bool GameRunningState::Update(const double& elapsedTime)
 {
-	if (_gameLogic->Player1Lost()) {
+	if (_gameLogic->DidPlayer1Lose()) {
 		*_winnerTextStr = "Player 2";
 		_nextState = GameStates::GAME_OVER;
 		return true;
 	}
-	else if (_gameLogic->Player2Lost()) {
+	else if (_gameLogic->DidPlayer2Lose()) {
 		*_winnerTextStr = "Player 1";
 		_nextState = GameStates::GAME_OVER;
 		return true;
@@ -61,12 +61,8 @@ bool GameRunningState::Update(const double& elapsedTime)
 }
 
 void GameRunningState::Render() const
-{	
-	SDL_RenderClear(_renderer);
-	
+{		
 	RenderGameObjects();
-
-	SDL_RenderPresent(_renderer);
 }
 
 void GameRunningState::End()

@@ -34,9 +34,7 @@ bool RankingScene::Update(const double& elapsedTime)
 
 void RankingScene::Render() const
 {
-	SDL_RenderClear(_renderer);
 	RenderSceneGameObjects();
-	SDL_RenderPresent(_renderer);
 }
 
 void RankingScene::End()

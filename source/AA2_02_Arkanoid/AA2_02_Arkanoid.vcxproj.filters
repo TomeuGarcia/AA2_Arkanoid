@@ -192,6 +192,15 @@
     <ClCompile Include="GameObjects\ButtonGameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUps\PowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\ExtraLengthPowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\MiniLengthPowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -337,6 +346,12 @@
     </ClInclude>
     <ClInclude Include="GameObjects\ButtonGameObject.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\ExtraLengthPowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\MiniLengthPowerUp.h">
+      <Filter>PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 Platform::Platform(SDL_Renderer* renderer, const Vector2D<float>& position, const Vector2D<int>& size,
 	const float& moveSpeed, Vector2D<float>* grabPosition, const bool& isGrabbing, Player* player, Controller* controller)
 	: GameObject(Tag::PLATFORM), BoxCollider2D(this), _sprite(nullptr), _rigidbody(nullptr),
-	_moveDirection(Vector2D<float>(0, 0)), _moveSpeed(moveSpeed), _grabPosition(grabPosition),
+	_moveDirection(Vector2D<float>(0, 0)), _startMoveSpeed(moveSpeed), _moveSpeed(moveSpeed), _grabPosition(grabPosition),
 	_isGrabbing(isGrabbing), _player(player), _controller(controller)
 {
 	_position = Vector2D<float>(position.X + (size.X / 2) - (size.Y / 2), position.Y + (size.Y / 2) - (size.X / 2)); // Position inverted after rotating 90deg
@@ -86,4 +86,28 @@ void Platform::SetIsGrabbing(const bool& isGrabbing)
 Player* Platform::GetPlayer() const
 {
 	return _player;
+}
+
+void Platform::SetSize(const Vector2D<int>& size)
+{
+	_position.X += (size.X - _size.X) / 2;
+	_position.Y += (size.Y - _size.Y) / 2;
+	_size = size;
+
+	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, _size.X, _size.Y };
+
+	_sprite->SetDestinationRect(Vector2D<int>(_position.X, _position.Y), _size);
+
+}
+
+float Platform::GetMoveSpeed() const{
+	return _moveSpeed;
+}
+
+void Platform::SetMoveSpeed(const float& moveSpeed) {
+	_moveSpeed = moveSpeed;
+}
+
+void Platform::ResetMoveSpeed() {
+	_moveSpeed = _startMoveSpeed;
 }

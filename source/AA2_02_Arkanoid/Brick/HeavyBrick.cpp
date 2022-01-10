@@ -24,7 +24,7 @@ void HeavyBrick::Update(const double& elapsedTime)
 		_animatedSprite->Update(elapsedTime);
 	}
 
-	if (_animatedSprite->AnimationFinished()) {
+	if (_animatedSprite->HasAnimationFinished()) {
 		_playingAnimation = false;
 		GetsDestroyed();
 	}

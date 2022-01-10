@@ -21,7 +21,7 @@ void AnimatedImage::Update(const double& elapsedTime)
 	_sourceRect.x = _frameWidth * _currentFrame;
 }
 
-bool AnimatedImage::AnimationFinished() const
+bool AnimatedImage::HasAnimationFinished() const
 {
 	return _currentFrame == _numberOfFrames-1;
 }

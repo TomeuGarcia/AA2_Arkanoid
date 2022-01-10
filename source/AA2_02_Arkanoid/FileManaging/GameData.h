@@ -20,6 +20,17 @@ struct BrickData {
 	int _y;
 };
 
+
+enum class PowerUpType { EXTRA_LENGTH, MINI_LENGTH };
+
+struct PowerUpData {
+
+
+	BrickType _brickType;
+};
+
+
+
 class GameData {
 
 public:

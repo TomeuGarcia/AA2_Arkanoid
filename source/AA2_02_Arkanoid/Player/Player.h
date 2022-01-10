@@ -6,7 +6,7 @@ public:
 	Player(const char* name, const int &lives);
 	~Player();
 	void LoseLives(const int &amount);
-	bool Lost();
+	bool DidLose();
 	void LosePoints(const int& amount);
 	void GainPoints(const int& amount);
 	int GetScore() const;

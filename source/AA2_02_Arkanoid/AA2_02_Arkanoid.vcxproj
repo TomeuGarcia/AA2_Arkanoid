@@ -223,6 +223,9 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Physics\Rigidbody2D.cpp" />
     <ClCompile Include="Player\Platform.cpp" />
     <ClCompile Include="Player\Player.cpp" />
+    <ClCompile Include="PowerUps\ExtraLengthPowerUp.cpp" />
+    <ClCompile Include="PowerUps\MiniLengthPowerUp.cpp" />
+    <ClCompile Include="PowerUps\PowerUp.cpp" />
     <ClCompile Include="Renders\AnimatedImage.cpp" />
     <ClCompile Include="Renders\Image.cpp" />
     <ClCompile Include="Renders\Render.cpp" />
@@ -272,6 +275,8 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Physics\Vector2D.h" />
     <ClInclude Include="Player\Platform.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="PowerUps\ExtraLengthPowerUp.h" />
+    <ClInclude Include="PowerUps\MiniLengthPowerUp.h" />
     <ClInclude Include="PowerUps\PowerUp.h" />
     <ClInclude Include="Renders\AnimatedImage.h" />
     <ClInclude Include="Renders\Image.h" />

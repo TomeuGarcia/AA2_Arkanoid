@@ -26,7 +26,10 @@ public:
 	bool IsGrabbing() const;
 	void SetIsGrabbing(const bool& isGrabbing);
 	Player* GetPlayer() const;
-
+	void SetSize(const Vector2D<int>& size);
+	float GetMoveSpeed() const;
+	void SetMoveSpeed(const float& moveSpeed);
+	void ResetMoveSpeed();
 
 private:
 	void Move(const double& elapsedTime);
@@ -36,6 +39,7 @@ private:
 	Rigidbody2D* _rigidbody;
 
 	Vector2D<float> _moveDirection;
+	float _startMoveSpeed;
 	float _moveSpeed;
 	Vector2D<float>* _grabPosition;
 	bool _isGrabbing;

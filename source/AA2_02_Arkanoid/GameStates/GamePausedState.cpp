@@ -39,14 +39,10 @@ bool GamePausedState::Update(const double& elapsedTime)
 
 void GamePausedState::Render() const
 {	
-	SDL_RenderClear(_renderer);
-
 	RenderGameObjects();
 	_blackBackground->Render();
 	_pauseText->Render();
 	_lToResumeText->Render();
-
-	SDL_RenderPresent(_renderer);
 }
 
 void GamePausedState::End()

@@ -29,9 +29,7 @@ bool SplashScreenScene::Update(const double& elapsedTime)
 
 void SplashScreenScene::Render() const
 {
-	SDL_RenderClear(_renderer);
 	RenderSceneGameObjects();
-	SDL_RenderPresent(_renderer);
 }
 
 void SplashScreenScene::End()

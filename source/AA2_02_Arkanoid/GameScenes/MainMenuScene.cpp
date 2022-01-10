@@ -45,9 +45,7 @@ bool MainMenuScene::Update(const double& elapsedTime)
 
 void MainMenuScene::Render() const
 {
-	SDL_RenderClear(_renderer);
 	RenderSceneGameObjects();
-	SDL_RenderPresent(_renderer);
 }
 
 void MainMenuScene::End()

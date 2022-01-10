@@ -15,8 +15,8 @@ public:
 	void PlayerDestroyedBrick(Player* actingPlayer, const int& brickScoreGain);
 	std::string GetPlayerScoreStr(Player* actingPlayer);
 
-	bool Player1Lost() const;
-	bool Player2Lost() const;
+	bool DidPlayer1Lose() const;
+	bool DidPlayer2Lose() const;
 
 
 private:

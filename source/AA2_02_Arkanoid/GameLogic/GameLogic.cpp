@@ -51,12 +51,12 @@ std::string GameLogic::GetPlayerScoreStr(Player* actingPlayer)
 	return std::to_string(actingPlayer->GetScore());
 }
 
-bool GameLogic::Player1Lost() const
+bool GameLogic::DidPlayer1Lose() const
 {
-	return _player1->Lost();
+	return _player1->DidLose();
 }
 
-bool GameLogic::Player2Lost() const
+bool GameLogic::DidPlayer2Lose() const
 {
-	return _player2->Lost();
+	return _player2->DidLose();
 }

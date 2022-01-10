@@ -18,7 +18,7 @@ void Player::LoseLives(const int& amount)
 	
 }
 
-bool Player::Lost()
+bool Player::DidLose()
 {
 	
 	return _lifeSystem->HasNoLivesLeft();

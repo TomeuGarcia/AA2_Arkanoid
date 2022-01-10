@@ -84,7 +84,9 @@ void Game::Update(const double& elapsedTime)
 
 void Game::Render()
 {
+	SDL_RenderClear(_renderer);
 	_sceneManager->Render();
+	SDL_RenderPresent(_renderer);
 }
 
 

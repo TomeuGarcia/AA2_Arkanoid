@@ -34,6 +34,16 @@ GameData* FileManager::LoadGameData(const char* filePath)
 							   std::stoi(brickInfoNodePtr->first_attribute("max")->value()));
 	}
 
+	// Getting PowerUp Info
+	nodePtr = rootPtr->first_node("PowerUpInfo");
+	for (rapidxml::xml_node<>* powerUpInfoNodePtr = nodePtr->first_node(); powerUpInfoNodePtr; powerUpInfoNodePtr = powerUpInfoNodePtr->next_sibling()) {
+		stringHolder = powerUpInfoNodePtr->name();
+
+		gameData->SetBrickInfo(stringHolder,
+			std::stoi(powerUpInfoNodePtr->first_attribute("min")->value()),
+			std::stoi(powerUpInfoNodePtr->first_attribute("max")->value()));
+	}
+
 
 	// Getting Level Info
 	nodePtr = rootPtr->first_node("Level");

@@ -15,12 +15,7 @@ void SceneManager::InitScenes()
 {
 	_isSceneFinished = false;
 
-	_scenes[Scenes::SPLASH_SCREEN] = new SplashScreenScene(_renderer);
-	_scenes[Scenes::MAIN_MENU] = new MainMenuScene(_renderer, _isRunning);
-	_scenes[Scenes::RANKING] = new RankingScene(_renderer);
-	_scenes[Scenes::GAME] = new GameScene(_renderer);
-
-	_currentScene = _scenes[Scenes::SPLASH_SCREEN];
+	_currentScene = new SplashScreenScene(_renderer);
 	_currentScene->Start();
 }
 
@@ -33,7 +28,7 @@ void SceneManager::Update(const double& elapsedTime)
 		// Acabar estat actual
 		_currentScene->End();
 		// Canviar d'estat
-		_currentScene = _scenes[_currentScene->GetNextState()];
+		SetNewCurrentScene(_currentScene->GetNextState());
 		// Començar nou estat
 		_currentScene->Start();
 	}
@@ -48,4 +43,28 @@ void SceneManager::Render()
 bool SceneManager::IsRunning()
 {
 	return _isRunning;
+}
+
+
+void SceneManager::SetNewCurrentScene(const Scenes& newCurrentScene)
+{
+	delete _currentScene;
+
+	switch (newCurrentScene) 
+	{
+	case Scenes::SPLASH_SCREEN:
+		_currentScene = new SplashScreenScene(_renderer);
+		break;
+	case Scenes::MAIN_MENU:
+		_currentScene = new MainMenuScene(_renderer, _isRunning);
+		break;
+	case Scenes::RANKING:
+		_currentScene = new RankingScene(_renderer);
+		break;
+	case Scenes::GAME:
+		_currentScene = new GameScene(_renderer);
+		break;
+	default:
+		break;
+	}
 }

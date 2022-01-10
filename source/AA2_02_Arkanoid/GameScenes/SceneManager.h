@@ -26,9 +26,9 @@ public:
 
 private:
 	void InitScenes();
+	void SetNewCurrentScene(const Scenes& newCurrentScene);
 
 	Scene* _currentScene;
-	std::map<Scenes, Scene*> _scenes;
 	bool _isSceneFinished;
 
 	SDL_Renderer* _renderer;

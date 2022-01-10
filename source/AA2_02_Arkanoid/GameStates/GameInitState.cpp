@@ -47,14 +47,10 @@ bool GameInitState::Update(const double& elapsedTime)
 
 void GameInitState::Render() const
 {
-	SDL_RenderClear(_renderer);
-
 	RenderGameObjects();
 	_blackBackground->Render();
 	_startGameText->Render();
 	_spaceToStartText->Render();
-
-	SDL_RenderPresent(_renderer);
 }
 
 void GameInitState::End()
