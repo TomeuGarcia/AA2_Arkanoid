@@ -6,6 +6,7 @@
 #include "../Brick/FixBrick.h"
 #include "../Brick/HeavyBrick.h"
 #include "../Brick/NormalBrick.h"
+#include "../PowerUps/PowerUp.h"
 
 #include "../Physics/Vector2D.h"
 
@@ -21,12 +22,16 @@ struct BrickData {
 };
 
 
-enum class PowerUpType { EXTRA_LENGTH, MINI_LENGTH };
 
 struct PowerUpData {
+	PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& sizeIncreasePercent,
+		const float& sizeDecreasePercent, const float& speedIncreasePercent);
 
-
-	BrickType _brickType;
+	float _powerUpChancePercent;
+	float _powerUpDuration;
+	float _sizeIncreasePercent;
+	float _sizeDecreasePercent;
+	float _speedIncreasePercent;
 };
 
 

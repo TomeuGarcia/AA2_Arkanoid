@@ -1,6 +1,14 @@
 #include "GameData.h"
 
-BrickData::BrickData(const BrickType& brickType, const int& i, const int& j) : _brickType(brickType), _x(i), _y(j) {}
+BrickData::BrickData(const BrickType& brickType, const int& i, const int& j) 
+	: _brickType(brickType), _x(i), _y(j) 
+{}
+
+PowerUpData::PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& sizeIncreasePercent,
+	const float& sizeDecreasePercent, const float& speedIncreasePercent)
+	: _powerUpChancePercent(powerUpChancePercent), _powerUpDuration(powerUpDuration), _sizeIncreasePercent(sizeIncreasePercent),
+	_sizeDecreasePercent(sizeDecreasePercent), _speedIncreasePercent(speedIncreasePercent)
+{}
 
 
 GameData::GameData() : _platformSpeed(0), _ballSpeed(0), _levelBricks(), _brickPoints() , _brickStringToBrickType()

@@ -19,6 +19,17 @@ void PowerUp::Render() const
 	_sprite->Draw();
 }
 
+void PowerUp::OnCollisionEnter()
+{
+	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::PLATFORM) {
+		DoEffect(static_cast<Platform*>(_otherCollisionCollider->GetThisGameObject()));
+		SetActive(false);
+	}
+	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
+		SetActive(false);
+	}
+}
+
 void PowerUp::Move(const double& elapsedTime)
 {
 	_position += _moveDirection * _moveSpeed * elapsedTime;

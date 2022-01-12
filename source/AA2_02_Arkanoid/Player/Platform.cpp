@@ -100,6 +100,11 @@ void Platform::SetSize(const Vector2D<int>& size)
 
 }
 
+void Platform::ResetSize()
+{
+	SetSize(Vector2D<int>(PLATFORM_DESTINATION_HEIGHT, PLATFORM_DESTINATION_WIDTH)); 
+}
+
 float Platform::GetMoveSpeed() const{
 	return _moveSpeed;
 }

@@ -27,6 +27,7 @@ public:
 	void SetIsGrabbing(const bool& isGrabbing);
 	Player* GetPlayer() const;
 	void SetSize(const Vector2D<int>& size);
+	void ResetSize();
 	float GetMoveSpeed() const;
 	void SetMoveSpeed(const float& moveSpeed);
 	void ResetMoveSpeed();

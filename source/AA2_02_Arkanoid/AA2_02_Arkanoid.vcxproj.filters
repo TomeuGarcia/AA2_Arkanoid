@@ -201,6 +201,9 @@
     <ClCompile Include="PowerUps\MiniLengthPowerUp.cpp">
       <Filter>PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUps\PowerUpManager.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -351,6 +354,12 @@
       <Filter>PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="PowerUps\MiniLengthPowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\PowerUpManager.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\PowerUpFactory.h">
       <Filter>PowerUps</Filter>
     </ClInclude>
   </ItemGroup>

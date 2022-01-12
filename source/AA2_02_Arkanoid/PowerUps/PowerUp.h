@@ -6,6 +6,9 @@
 #include "../Player/Platform.h"
 
 
+enum class PowerUpType { MINI_LENGTH, EXTRA_LENGTH, COUNT };
+
+
 class PowerUp : public GameObject, public BoxCollider2D
 {
 public:
@@ -19,6 +22,8 @@ public:
 	virtual void DoEffect(Platform* platform) = 0;
 
 protected:
+	virtual void OnCollisionEnter() override;
+
 	void Move(const double& elapsedTime);
 
 
