@@ -22,16 +22,23 @@ struct BrickData {
 };
 
 
+struct PowerUpCreateData {
+	PowerUpCreateData(const float& powerUpDuration, const float& powerUpSpeed, 
+		const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent);
 
-struct PowerUpData {
-	PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& sizeIncreasePercent,
-		const float& sizeDecreasePercent, const float& speedIncreasePercent);
-
-	float _powerUpChancePercent;
 	float _powerUpDuration;
+	float _powerUpSpeed;
 	float _sizeIncreasePercent;
 	float _sizeDecreasePercent;
 	float _speedIncreasePercent;
+};
+
+struct PowerUpData {
+	PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed, 
+		const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent);
+
+	float _powerUpChancePercent;
+	PowerUpCreateData _powerUpCreateData;
 };
 
 
@@ -44,11 +51,14 @@ public:
 	void SetPlatformSpeed(const int& platformSpeed);
 	void SetBallSpeed(const int& ballSpeed);
 	void SetLevelBricks(const int& i, const int& j, std::string& type);
+	void SetPowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed,
+		const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent);
 
 	int GetPlatformSpeed();
 	int GetBallSpeed();
 	std::list<BrickData> GetLevelBricks();
 	std::map<BrickType, std::pair<int, int>> GetBrickPoints();
+	PowerUpData GetPowerUpData() const;
 
 private:
 	int _platformSpeed;
@@ -57,4 +67,6 @@ private:
 	std::map<BrickType, std::pair<int, int>> _brickPoints;
 
 	std::map<std::string, BrickType> _brickStringToBrickType;
+
+	PowerUpData _powerUpData;
 };

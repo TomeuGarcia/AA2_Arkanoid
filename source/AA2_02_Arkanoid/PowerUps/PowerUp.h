@@ -20,6 +20,7 @@ public:
 	virtual void Render() const override;
 
 	virtual void DoEffect(Platform* platform) = 0;
+	void DoFinishEffect(Platform* platform);
 
 protected:
 	virtual void OnCollisionEnter() override;

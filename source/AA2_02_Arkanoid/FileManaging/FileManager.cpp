@@ -36,13 +36,20 @@ GameData* FileManager::LoadGameData(const char* filePath)
 
 	// Getting PowerUp Info
 	nodePtr = rootPtr->first_node("PowerUpInfo");
-	for (rapidxml::xml_node<>* powerUpInfoNodePtr = nodePtr->first_node(); powerUpInfoNodePtr; powerUpInfoNodePtr = powerUpInfoNodePtr->next_sibling()) {
-		stringHolder = powerUpInfoNodePtr->name();
 
-		gameData->SetBrickInfo(stringHolder,
-			std::stoi(powerUpInfoNodePtr->first_attribute("min")->value()),
-			std::stoi(powerUpInfoNodePtr->first_attribute("max")->value()));
-	}
+	int powerUpSpawnChance{ std::stoi(nodePtr->first_attribute("PowerUpChancePercent")->value()) };
+	int powerUpDuration{ std::stoi(nodePtr->first_attribute("PowerUpDuration")->value()) };
+	int powerUpSpeed{ std::stoi(nodePtr->first_attribute("PowerUpSpeed")->value()) };
+
+
+	/// Dividir entre 100
+	rapidxml::xml_node<>* powerupInfoNodePtr = nodePtr->first_node("ExtraLength");
+	powerupInfoNodePtr->first_attribute("SizeIncreasePercent");
+
+	powerupInfoNodePtr = nodePtr->first_node("MiniLength");
+	powerupInfoNodePtr->first_attribute("SizeDecreasePercent");
+	powerupInfoNodePtr->first_attribute("SpeedIncreasePercent");
+	//gameData->SetPowerUpData();
 
 
 	// Getting Level Info

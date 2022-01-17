@@ -19,6 +19,12 @@ void PowerUp::Render() const
 	_sprite->Draw();
 }
 
+void PowerUp::DoFinishEffect(Platform* platform)
+{
+	platform->ResetSize();
+	platform->ResetMoveSpeed();
+}
+
 void PowerUp::OnCollisionEnter()
 {
 	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::PLATFORM) {

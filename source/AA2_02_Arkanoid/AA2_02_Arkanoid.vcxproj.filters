@@ -204,6 +204,9 @@
     <ClCompile Include="PowerUps\PowerUpManager.cpp">
       <Filter>PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUps\PowerUpFactory.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">

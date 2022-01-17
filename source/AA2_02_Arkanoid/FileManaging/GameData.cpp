@@ -4,10 +4,17 @@ BrickData::BrickData(const BrickType& brickType, const int& i, const int& j)
 	: _brickType(brickType), _x(i), _y(j) 
 {}
 
-PowerUpData::PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& sizeIncreasePercent,
-	const float& sizeDecreasePercent, const float& speedIncreasePercent)
-	: _powerUpChancePercent(powerUpChancePercent), _powerUpDuration(powerUpDuration), _sizeIncreasePercent(sizeIncreasePercent),
-	_sizeDecreasePercent(sizeDecreasePercent), _speedIncreasePercent(speedIncreasePercent)
+
+PowerUpCreateData::PowerUpCreateData(const float& powerUpDuration, const float& powerUpSpeed,
+	const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent)
+	: _powerUpDuration(powerUpDuration), _powerUpSpeed(powerUpSpeed), 
+	_sizeIncreasePercent(sizeIncreasePercent), _sizeDecreasePercent(sizeDecreasePercent), _speedIncreasePercent(speedIncreasePercent)
+{}
+
+PowerUpData::PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed, 
+	const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent)
+	: _powerUpChancePercent(powerUpChancePercent), 
+	_powerUpCreateData(powerUpDuration, powerUpSpeed, sizeIncreasePercent, sizeDecreasePercent, speedIncreasePercent)
 {}
 
 
@@ -55,3 +62,16 @@ std::list<BrickData> GameData::GetLevelBricks() { return _levelBricks; }
 std::map<BrickType, std::pair<int, int>> GameData::GetBrickPoints() { return _brickPoints; }
 
 
+
+void GameData::SetPowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed,
+	const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent)
+{
+	_powerUpData = PowerUpData(powerUpChancePercent, powerUpDuration, powerUpSpeed, sizeIncreasePercent,
+		sizeDecreasePercent, speedIncreasePercent);
+}
+
+
+PowerUpData GameData::GetPowerUpData() const
+{
+	return _powerUpData;
+}

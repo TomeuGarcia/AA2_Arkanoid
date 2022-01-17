@@ -1,15 +1,16 @@
 #include "PowerUpManager.h"
 
-PowerUpManager::PowerUpManager(PowerUpFactory* powerUpFactory, Platform* platform1, Platform* platform2, 
-	const float& powerUpSpawnChance, const float& powerUpDuration)
-	: _powerUpFactory(powerUpFactory),
-	_platform1(platform1), _platform2(platform2), _powerUpSpawnChance(powerUpSpawnChance), 
-	_powerUpDuration(powerUpDuration), _timerPlatform1(0), _timerPlatform2(0)
+PowerUpManager::PowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData, Platform* platform1, Platform* platform2)
+	: _renderer(renderer), _powerUpFactory(new PowerUpFactory()), _powerUpCreateData(powerUpData->_powerUpCreateData),
+	_powerUpSpawnChance(powerUpData->_powerUpChancePercent),
+	_platform1(platform1), _platform2(platform2), _timerPlatform1(0), _timerPlatform2(0)
 {
 }
 
 PowerUpManager::~PowerUpManager()
 {
+	delete _powerUpFactory;
+
 	_platform1 = nullptr;
 	_platform2 = nullptr;
 }
@@ -30,11 +31,21 @@ void PowerUpManager::SetSpawnPowerUpCallback(std::function<void(GameObject*)> sp
 	_spawnPowerUpCallback = spawnPowerUpCallback;
 }
 
-void PowerUpManager::SpawnRandomPowerUp(const Vector2D<int> position)
+
+
+
+void PowerUpManager::TrySpawnPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction)
+{
+	if (_powerUpSpawnChance <= rand() % 100) {
+		SpawnRandomPowerUp(position, direction);
+	}
+}
+
+void PowerUpManager::SpawnRandomPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction)
 {
 	PowerUpType powerUpType = static_cast<PowerUpType>(rand() % static_cast<int>(PowerUpType::COUNT));
-	// Add rest of powerup factory create arguments
-	//PowerUp* createdPowerUp = _powerUpFactory->Create(powerUpType);
+	
+	PowerUp* createdPowerUp = _powerUpFactory->Create(powerUpType, _renderer, position, direction, &_powerUpCreateData);
 }
 
 
