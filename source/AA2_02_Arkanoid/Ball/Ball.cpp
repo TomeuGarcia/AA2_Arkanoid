@@ -62,6 +62,8 @@ void Ball::OnCollisionEnter()
 		_moveDirection.X = (brickPosition.X + brickSize.X / 4 - GetCentrePosition().X);
 		_moveDirection.X *= -1;
 	}
+	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::POWER_UP) {
+	}
 	else {
 		_moveDirection *= -1;
 	}

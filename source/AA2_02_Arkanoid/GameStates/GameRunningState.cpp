@@ -20,7 +20,7 @@ void GameRunningState::DoStart()
 
 	// Set Bricks callback
 	for (std::vector<Brick*>::iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
-		(*it)->SetBrickBreaksCallback(std::bind(&GameRunningState::BrickBreaks, this, std::placeholders::_1));
+		(*it)->SetBrickBreaksCallback(std::bind(&GameRunningState::BrickBreaks, this, std::placeholders::_1, std::placeholders::_2));
 	}
 }
 
@@ -88,10 +88,15 @@ void GameRunningState::StartKickOff(Platform* kickOffPlatform)
 }
 
 
-void GameRunningState::BrickBreaks(const int& brickPoints)
+void GameRunningState::BrickBreaks(const Vector2D<float> brickPosition, const int& brickPoints)
 {
 	_gameLogic->PlayerDestroyedBrick(_gameObjects->_ball->GetLastPlatform()->GetPlayer(), brickPoints);
 	UpdatePlayerScores();
+
+
+	Vector2D<float> powerUpMoveDirection(0, 0);
+	powerUpMoveDirection.X = _gameObjects->_ball->GetLastPlatform()->GetCentrePosition().X > _gameObjects->_ball->GetCentrePosition().X ? 1 : -1;
+	_gameObjects->_powerUpManager->TrySpawnPowerUp(brickPosition, powerUpMoveDirection);
 }
 
 void GameRunningState::CheckBallExitingBoundaries()

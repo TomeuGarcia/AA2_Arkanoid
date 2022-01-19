@@ -34,6 +34,7 @@ struct PowerUpCreateData {
 };
 
 struct PowerUpData {
+	PowerUpData();
 	PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed, 
 		const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent);
 

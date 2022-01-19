@@ -43,7 +43,7 @@ void NormalBrick::GetsHit()
 
 void NormalBrick::GetsDestroyed()
 {
-	_brickBreaksCallback(_points);
+	_brickBreaksCallback(_position, _points);
 	SetActive(false);
 }
 

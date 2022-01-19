@@ -19,6 +19,8 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
+	virtual Rigidbody2D* GetRigidbody() const override;
+
 	virtual void DoEffect(Platform* platform) = 0;
 	void DoFinishEffect(Platform* platform);
 
@@ -29,6 +31,7 @@ protected:
 
 
 	Image* _sprite;
+	Rigidbody2D* _rigidbody;
 
 	Vector2D<float> _moveDirection;
 	float _moveSpeed;

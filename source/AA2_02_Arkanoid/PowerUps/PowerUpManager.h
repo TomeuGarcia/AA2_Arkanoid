@@ -9,7 +9,7 @@
 class PowerUpManager : public GameObject
 {
 public:
-	PowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData, Platform* platform1, Platform* platform2);
+	PowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData);
 	~PowerUpManager();
 
 	virtual void Update(const double& elapsedTime) override;
@@ -29,9 +29,9 @@ private:
 	PowerUpCreateData _powerUpCreateData;
 	float _powerUpSpawnChance;
 	
-	Platform* _platform1;
+	//Platform* _platform1;
 	float _timerPlatform1;
-	Platform* _platform2;
+	//Platform* _platform2;
 	float _timerPlatform2;
 
 	std::function<void(GameObject*)> _spawnPowerUpCallback;

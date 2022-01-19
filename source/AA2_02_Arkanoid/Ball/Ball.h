@@ -18,9 +18,10 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
+	virtual Rigidbody2D* GetRigidbody() const override;
+
 	void StartMoving();
 	void StartFollowing(Platform* platformToFollow);	
-	Rigidbody2D* GetRigidbody() const;
 	void SetLastPlatform(Platform* lastPlatform);
 	Platform* GetLastPlatform() const;
 

@@ -17,7 +17,7 @@ public:
 private:
 	void StartKickOff(Platform* kickOffPlatform);
 	void UpdatePlayerScores();
-	void BrickBreaks(const int& brickPoints);
+	void BrickBreaks(const Vector2D<float> brickPosition, const int& brickPoints);
 
 	void CheckBallExitingBoundaries();
 

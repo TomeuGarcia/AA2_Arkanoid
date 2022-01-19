@@ -77,6 +77,8 @@ void GameInitState::LoadGame()
 		_gameObjects->AddBrick(brickFactory.Create(_renderer, *it, ROTATED_BRICK_DESTINATION_SIZE, OFFSET, &_brickPoints));
 	}
 
+	PowerUpData powerUpData = gameData->GetPowerUpData();
+	_gameObjects->InitPowerUpManager(_renderer, &powerUpData);
 }
 
 void GameInitState::InitPlayerScoresAndLives()
@@ -91,6 +93,12 @@ void GameInitState::InitPlayerScoresAndLives()
 	_gameObjects->InitPlayersLives(_renderer, "../../resources/assets/images/platform.png",
 		PLATFORM_DESTINATION_SIZE, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE);
 }
+
+void GameInitState::InitPowerUpManager()
+{
+
+}
+
 void GameInitState::InitPlatforms()
 {
 	_gameObjects->InitPlatforms(

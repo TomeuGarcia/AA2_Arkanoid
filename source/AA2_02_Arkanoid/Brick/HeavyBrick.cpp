@@ -44,6 +44,6 @@ void HeavyBrick::GetsHit()
 
 void HeavyBrick::GetsDestroyed()
 {
-	_brickBreaksCallback(_points);
+	_brickBreaksCallback(_position, _points);
 	SetActive(false);
 }

@@ -16,7 +16,7 @@ public:
 	virtual void Render() const override;
 
 	Vector2D<float> GetPosition() const;
-	void SetBrickBreaksCallback(std::function<void(const int&)> brickBreaksCallback);
+	void SetBrickBreaksCallback(std::function<void(const Vector2D<float>, const int&)> brickBreaksCallback);
 
 protected:
 	virtual void OnCollisionEnter() override;
@@ -27,5 +27,5 @@ protected:
 	int _spriteSourceWidthGap;
 	bool _playingAnimation;
 
-	std::function<void(const int&)> _brickBreaksCallback;
+	std::function<void(const Vector2D<float>, const int&)> _brickBreaksCallback;
 };

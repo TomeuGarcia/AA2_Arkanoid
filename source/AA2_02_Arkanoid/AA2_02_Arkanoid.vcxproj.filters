@@ -207,6 +207,9 @@
     <ClCompile Include="PowerUps\PowerUpFactory.cpp">
       <Filter>PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">

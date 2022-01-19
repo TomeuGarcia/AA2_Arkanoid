@@ -34,22 +34,25 @@ GameData* FileManager::LoadGameData(const char* filePath)
 							   std::stoi(brickInfoNodePtr->first_attribute("max")->value()));
 	}
 
+
+
 	// Getting PowerUp Info
 	nodePtr = rootPtr->first_node("PowerUpInfo");
 
-	int powerUpSpawnChance{ std::stoi(nodePtr->first_attribute("PowerUpChancePercent")->value()) };
-	int powerUpDuration{ std::stoi(nodePtr->first_attribute("PowerUpDuration")->value()) };
-	int powerUpSpeed{ std::stoi(nodePtr->first_attribute("PowerUpSpeed")->value()) };
+	float powerUpSpawnChance{ std::stof(nodePtr->first_attribute("PowerUpChancePercent")->value()) };
+	float powerUpDuration{ std::stof(nodePtr->first_attribute("PowerUpDuration")->value()) };
+	float powerUpSpeed{ std::stof(nodePtr->first_attribute("PowerUpSpeed")->value()) };
 
-
-	/// Dividir entre 100
 	rapidxml::xml_node<>* powerupInfoNodePtr = nodePtr->first_node("ExtraLength");
-	powerupInfoNodePtr->first_attribute("SizeIncreasePercent");
+	float sizeIncreasePercent{ std::stof(powerupInfoNodePtr->first_attribute("SizeIncreasePercent")->value()) };
 
 	powerupInfoNodePtr = nodePtr->first_node("MiniLength");
-	powerupInfoNodePtr->first_attribute("SizeDecreasePercent");
-	powerupInfoNodePtr->first_attribute("SpeedIncreasePercent");
-	//gameData->SetPowerUpData();
+	float sizeDecreasePercent{ std::stof(powerupInfoNodePtr->first_attribute("SizeDecreasePercent")->value()) };
+	float speedIncreasePercent{ std::stof(powerupInfoNodePtr->first_attribute("SpeedIncreasePercent")->value()) };
+	
+	gameData->SetPowerUpData(powerUpSpawnChance, powerUpDuration, powerUpSpeed,
+		sizeIncreasePercent, sizeDecreasePercent, speedIncreasePercent);
+	
 
 
 	// Getting Level Info

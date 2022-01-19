@@ -8,7 +8,11 @@ BrickData::BrickData(const BrickType& brickType, const int& i, const int& j)
 PowerUpCreateData::PowerUpCreateData(const float& powerUpDuration, const float& powerUpSpeed,
 	const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent)
 	: _powerUpDuration(powerUpDuration), _powerUpSpeed(powerUpSpeed), 
-	_sizeIncreasePercent(sizeIncreasePercent), _sizeDecreasePercent(sizeDecreasePercent), _speedIncreasePercent(speedIncreasePercent)
+	_sizeIncreasePercent(sizeIncreasePercent/100.0f), _sizeDecreasePercent(sizeDecreasePercent/100.0f), _speedIncreasePercent(speedIncreasePercent/100.0f)
+{}
+
+PowerUpData::PowerUpData() 
+	: _powerUpChancePercent(0),	_powerUpCreateData(0, 0, 0, 0, 0)
 {}
 
 PowerUpData::PowerUpData(const float& powerUpChancePercent, const float& powerUpDuration, const float& powerUpSpeed, 
@@ -18,7 +22,7 @@ PowerUpData::PowerUpData(const float& powerUpChancePercent, const float& powerUp
 {}
 
 
-GameData::GameData() : _platformSpeed(0), _ballSpeed(0), _levelBricks(), _brickPoints() , _brickStringToBrickType()
+GameData::GameData() : _platformSpeed(0), _ballSpeed(0), _levelBricks(), _brickPoints() , _brickStringToBrickType(), _powerUpData()
 {
 	_brickStringToBrickType[std::string("N")] = BrickType::NORMAL;
 	_brickStringToBrickType[std::string("H")] = BrickType::HEAVY;

@@ -5,7 +5,8 @@ GameObjects::GameObjects()
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
 	_leftScoreWall(nullptr), _rightScoreWall(nullptr),
-	_livesImagesPlayer1(), _livesImagesPlayer2()
+	_livesImagesPlayer1(), _livesImagesPlayer2(),
+	_powerUpManager(nullptr)
 {}
 
 GameObjects::GameObjects(CollisionManager* collisionManager)
@@ -13,8 +14,18 @@ GameObjects::GameObjects(CollisionManager* collisionManager)
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
 	_leftScoreWall(nullptr), _rightScoreWall(nullptr), 
-	_livesImagesPlayer1(), _livesImagesPlayer2()
+	_livesImagesPlayer1(), _livesImagesPlayer2(), 
+	_powerUpManager(nullptr)
 {}
+
+GameObjects::~GameObjects()
+{
+	delete _collisionManager;
+
+	for (int i{ 0 }; i < _gameObjectCollection.size(); ++i) {
+		delete _gameObjectCollection[i];
+	}
+}
 
 
 void GameObjects::Render() const {
@@ -40,6 +51,14 @@ void GameObjects::AddGameObjectToCollection(GameObject* gameObject)
 	_gameObjectCollection.push_back(gameObject);
 }
 
+void GameObjects::AddRigidbodyGameObjectToCollection(GameObject* gameObject)
+{
+	_gameObjectCollection.push_back(gameObject);
+
+	//_collisionManager->AddRigidbodylessGameObjectCollider(dynamic_cast<Collider*>(gameObject));
+	_collisionManager->AddGameObjectRigidbody(gameObject->GetRigidbody());
+}
+
 void GameObjects::InitBackground(ImageGameObject* background)
 {
 	_background = background;
@@ -60,9 +79,11 @@ void GameObjects::InitPlatforms(Platform* platform1, Platform* platform2)
 void GameObjects::InitBall(Ball* ball)
 {
 	_ball = ball;
-	AddGameObjectToCollection(ball);
+
+	AddGameObjectToCollection(_ball);
 
 	_collisionManager->AddGameObjectRigidbody(_ball->GetRigidbody());
+	//AddRigidbodyGameObjectToCollection(ball);
 }
 
 void GameObjects::AddBrick(Brick* newBrick)
@@ -116,6 +137,15 @@ void GameObjects::InitPlayersLives(SDL_Renderer* renderer, const char* path, con
 		AddGameObjectToCollection(_livesImagesPlayer2[i]);
 	}
 }
+
+void GameObjects::InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData)
+{
+	_powerUpManager = new PowerUpManager(renderer, powerUpData);
+	_powerUpManager->SetSpawnPowerUpCallback(std::bind(&GameObjects::AddRigidbodyGameObjectToCollection, this, std::placeholders::_1));
+
+	AddGameObjectToCollection(_powerUpManager);
+}
+
 
 void GameObjects::UpdateScorePointsPlayer1(const char* points) {
 	_scorePointsPlayer1->SetText(points);

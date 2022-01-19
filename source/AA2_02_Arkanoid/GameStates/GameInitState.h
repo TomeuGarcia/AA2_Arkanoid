@@ -23,6 +23,8 @@ private:
 	void InitWalls();
 	void InitTexts();
 	void InitPlayerScoresAndLives();
+	void InitPowerUpManager();
+
 
 	FileManager* _fileManager;
 	int _platformSpeed;

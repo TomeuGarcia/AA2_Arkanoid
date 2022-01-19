@@ -9,6 +9,7 @@
 #include "../Wall/Wall.h"
 #include "../Wall/ScoreWall.h"
 #include "../Physics/CollissionManager.h"
+#include "../PowerUps/PowerUpManager.h"
 #include <list>
 #include <vector>
 
@@ -41,14 +42,19 @@ struct GameObjects {
 	std::vector<ImageGameObject*> _livesImagesPlayer1;
 	std::vector<ImageGameObject*> _livesImagesPlayer2;
 
+	// PowerUps
+	PowerUpManager* _powerUpManager;
+
 
 	GameObjects();
 	GameObjects(CollisionManager* collisionManager);
+	~GameObjects();
 
 	void Render() const;
 	void Update(const double& elapsedTime);
 
 	void AddGameObjectToCollection(GameObject* gameObject);
+	void AddRigidbodyGameObjectToCollection(GameObject* gameObject);
 	void InitBackground(ImageGameObject* background);
 	void InitPlatforms(Platform* platform1, Platform* platform2);
 	void InitBall(Ball* ball);
@@ -59,6 +65,8 @@ struct GameObjects {
 		TextGameObject* scorePlayer2, TextGameObject* scorePointsPlayer2);
 	void InitPlayersLives(SDL_Renderer* renderer, const char* path, const Vector2D<int>& size,
 		const Vector2D<int>& sourcePosition, const Vector2D<int>& sourceSize);
+
+	void InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData);
 
 	void UpdateScorePointsPlayer1(const char* points);
 	void UpdateScorePointsPlayer2(const char* points);
