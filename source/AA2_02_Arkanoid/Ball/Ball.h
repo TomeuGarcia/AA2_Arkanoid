@@ -5,7 +5,7 @@
 #include "../Physics/BoxCollider2D.h"
 #include "../Physics/Rigidbody2D.h"
 #include "../Player/Platform.h"
-
+#include "../Brick/Brick.h"
 
 enum class BallStatus{ FOLLOWING, MOVING };
 

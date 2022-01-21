@@ -26,7 +26,7 @@ void PowerUpManager::Render() const
 	return;
 }
 
-void PowerUpManager::SetSpawnPowerUpCallback(std::function<void(GameObject*)> spawnPowerUpCallback)
+void PowerUpManager::SetSpawnPowerUpCallback(std::function<void(PowerUp*)> spawnPowerUpCallback)
 {
 	_spawnPowerUpCallback = spawnPowerUpCallback;
 }

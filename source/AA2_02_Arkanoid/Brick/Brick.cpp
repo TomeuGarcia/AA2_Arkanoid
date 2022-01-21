@@ -17,13 +17,6 @@ void Brick::Render() const
 	_animatedSprite->Draw();
 }
 
-void Brick::OnCollisionEnter()
-{
-	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BALL) {
-		GetsHit();
-	}
-}
-
 
 Vector2D<float> Brick::GetPosition() const 
 { 

@@ -2,6 +2,12 @@
 
 FileManager::FileManager() : _content(), _document() {}
 
+FileManager::~FileManager() 
+{
+	_content.clear();
+	_document.clear();
+}
+
 GameData* FileManager::LoadGameData(const char* filePath)
 {
 	std::ifstream file(filePath);
@@ -68,6 +74,8 @@ GameData* FileManager::LoadGameData(const char* filePath)
 								 stringHolder);
 	}
 
+	_content.clear();
+	_document.clear();
 
 	return gameData;
 }

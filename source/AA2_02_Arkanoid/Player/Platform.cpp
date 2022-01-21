@@ -34,11 +34,14 @@ void Platform::Update(const double& elapsedTime)
 
 	SetMoveDirection(Vector2D<float>(0, _controller->GetAxis(AxisName::VERTICAL)));
 
-	if (!_rigidbody->WillBeColliding()) {
-		Move(elapsedTime);
-		SetBoundaryPosition(_position);
+	if (_rigidbody->WillBeColliding()) {
+		if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
+			return;
+		}
 	}
-	
+
+	Move(elapsedTime);
+	SetBoundaryPosition(_position);	
 }
 
 void Platform::Render() const

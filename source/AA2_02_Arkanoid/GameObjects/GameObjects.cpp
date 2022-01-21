@@ -20,8 +20,6 @@ GameObjects::GameObjects(CollisionManager* collisionManager)
 
 GameObjects::~GameObjects()
 {
-	delete _collisionManager;
-
 	for (int i{ 0 }; i < _gameObjectCollection.size(); ++i) {
 		delete _gameObjectCollection[i];
 	}
@@ -83,7 +81,6 @@ void GameObjects::InitBall(Ball* ball)
 	AddGameObjectToCollection(_ball);
 
 	_collisionManager->AddGameObjectRigidbody(_ball->GetRigidbody());
-	//AddRigidbodyGameObjectToCollection(ball);
 }
 
 void GameObjects::AddBrick(Brick* newBrick)
@@ -141,9 +138,16 @@ void GameObjects::InitPlayersLives(SDL_Renderer* renderer, const char* path, con
 void GameObjects::InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData)
 {
 	_powerUpManager = new PowerUpManager(renderer, powerUpData);
-	_powerUpManager->SetSpawnPowerUpCallback(std::bind(&GameObjects::AddRigidbodyGameObjectToCollection, this, std::placeholders::_1));
+	_powerUpManager->SetSpawnPowerUpCallback(std::bind(&GameObjects::SetPowerUp, this, std::placeholders::_1));
 
 	AddGameObjectToCollection(_powerUpManager);
+}
+
+void GameObjects::SetPowerUp(PowerUp* powerUp)
+{
+	AddGameObjectToCollection(powerUp);
+
+	_collisionManager->AddGameObjectRigidbody(powerUp->GetRigidbody());
 }
 
 

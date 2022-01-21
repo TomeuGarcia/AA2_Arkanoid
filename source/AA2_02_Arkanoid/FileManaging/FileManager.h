@@ -13,6 +13,7 @@ class FileManager {
 
 public:
 	FileManager();
+	~FileManager();
 	GameData* LoadGameData(const char* filePath);
 
 private:

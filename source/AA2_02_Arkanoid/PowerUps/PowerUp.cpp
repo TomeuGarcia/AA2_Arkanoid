@@ -40,12 +40,12 @@ void PowerUp::OnCollisionEnter()
 		//DoEffect(dynamic_cast<Platform*>(_otherCollisionCollider->GetThisGameObject()));
 		_position.X = 0;
 		_position.Y = 0;
-		//SetActive(false);
+		SetActive(false);
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
 		_position.X = 0;
 		_position.Y = 0;
-		//SetActive(false);
+		SetActive(false);
 	}
 }
 

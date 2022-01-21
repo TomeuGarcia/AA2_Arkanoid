@@ -67,6 +67,7 @@ struct GameObjects {
 		const Vector2D<int>& sourcePosition, const Vector2D<int>& sourceSize);
 
 	void InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData);
+	void SetPowerUp(PowerUp* powerUp);
 
 	void UpdateScorePointsPlayer1(const char* points);
 	void UpdateScorePointsPlayer2(const char* points);

@@ -15,7 +15,7 @@ public:
 	virtual void Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 
-	void SetSpawnPowerUpCallback(std::function<void(GameObject*)> spawnPowerUpCallback);
+	void SetSpawnPowerUpCallback(std::function<void(PowerUp*)> spawnPowerUpCallback);
 
 	void TrySpawnPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction);
 	void SpawnRandomPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction);
@@ -34,5 +34,5 @@ private:
 	//Platform* _platform2;
 	float _timerPlatform2;
 
-	std::function<void(GameObject*)> _spawnPowerUpCallback;
+	std::function<void(PowerUp*)> _spawnPowerUpCallback;
 };

@@ -18,9 +18,9 @@ public:
 	Vector2D<float> GetPosition() const;
 	void SetBrickBreaksCallback(std::function<void(const Vector2D<float>, const int&)> brickBreaksCallback);
 
-protected:
-	virtual void OnCollisionEnter() override;
 	virtual void GetsHit() = 0;
+
+protected:
 
 	AnimatedImage* _animatedSprite;
 
