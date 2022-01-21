@@ -147,7 +147,7 @@ void GameObjects::SetPowerUp(PowerUp* powerUp)
 {
 	AddGameObjectToCollection(powerUp);
 
-	_collisionManager->AddGameObjectRigidbody(powerUp->GetRigidbody());
+	//_collisionManager->AddGameObjectRigidbody(powerUp->GetRigidbody());
 }
 
 

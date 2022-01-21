@@ -23,7 +23,6 @@ void GameInitState::DoStart()
 	InitPlatforms();
 	InitBall();
 	InitWalls();
-	
 }
 
 bool GameInitState::Update(const double& elapsedTime)
@@ -126,6 +125,7 @@ void GameInitState::InitWalls()
 		new ScoreWall(Vector2D<float>(10, 25), Vector2D<int>(16, 550), _gameObjects->_platform1),	// left score wall
 		new ScoreWall(Vector2D<float>(775, 25), Vector2D<int>(16, 550), _gameObjects->_platform2)	// right score wall
 	);
+
 }
 
 void GameInitState::InitBackground()
