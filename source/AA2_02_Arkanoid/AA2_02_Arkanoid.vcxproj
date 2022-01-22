@@ -195,6 +195,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Brick\NormalBrick.cpp" />
     <ClCompile Include="FileManaging\FileManager.cpp" />
     <ClCompile Include="FileManaging\GameData.cpp" />
+    <ClCompile Include="FileManaging\RankingData.cpp" />
     <ClCompile Include="GameLogic\GameLogic.cpp" />
     <ClCompile Include="GameObjects\ButtonGameObject.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
@@ -247,6 +248,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="Constants\Constants.h" />
     <ClInclude Include="FileManaging\FileManager.h" />
     <ClInclude Include="FileManaging\GameData.h" />
+    <ClInclude Include="FileManaging\RankingData.h" />
     <ClInclude Include="GameLogic\GameLogic.h" />
     <ClInclude Include="GameObjects\ButtonGameObject.h" />
     <ClInclude Include="GameObjects\GameObject.h" />

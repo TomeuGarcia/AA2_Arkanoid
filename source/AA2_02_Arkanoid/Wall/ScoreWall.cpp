@@ -17,6 +17,13 @@ void ScoreWall::OnCollisionEnter()
 	}
 }
 
+void ScoreWall::OnCollisionStay()
+{
+	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BALL) {
+		_startKickOffCallback(_ownerPlatform);
+	}
+}
+
 void ScoreWall::SetStartKickOffCallback(std::function<void(Platform*)> startKickOffCallback)
 {
 	_startKickOffCallback = startKickOffCallback;

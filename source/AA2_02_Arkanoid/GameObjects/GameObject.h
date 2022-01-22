@@ -27,6 +27,7 @@ public:
 	Tag GetTag() const { return _tag; }
 	Vector2D<float> GetCentrePosition() const { return Vector2D<float>(_position.X + _size.X/2, _position.Y + _size.Y/2); }
 	Vector2D<int> GetSize() const { return _size; }
+	Vector2D<float> GetSizeFloat() const { return Vector2D<float>(_size.X, _size.Y); }
 	virtual Rigidbody2D* GetRigidbody() const { return nullptr; }
 
 

@@ -62,11 +62,9 @@ void Ball::OnCollisionEnter()
 		_moveDirection.X = (brickPosition.X + brickSize.X / 4 - GetCentrePosition().X);
 		_moveDirection.X *= -1;
 
-		dynamic_cast<Brick*>(_otherCollisionCollider->GetThisGameObject())->GetsHit();
+		//dynamic_cast<Brick*>(_otherCollisionCollider->GetThisGameObject())->GetsHit();
 	}
-	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::POWER_UP) {
-	}
-	else {
+	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() != Tag::POWER_UP) {
 		_moveDirection *= -1;
 	}
 	_moveDirection.Normalize();

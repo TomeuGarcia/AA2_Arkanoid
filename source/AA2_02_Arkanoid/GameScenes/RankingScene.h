@@ -9,12 +9,17 @@ public:
 	virtual bool Update(const double& elapsedTime) override;
 	virtual void Render() const override;
 	virtual void End() override;
-	
-	void InitBackground();
-	void InitTexts();
 
 private:
+	void InitBackground();
+	void InitTexts();
+	void InitRanking();
+
+
 	Controller* _controller;
 
 	std::vector<TextGameObject*> _ranking;
+
+	FileManager* _fileManager;
+	std::set<RankingPlayer>* _rankingPlayerSet;
 };

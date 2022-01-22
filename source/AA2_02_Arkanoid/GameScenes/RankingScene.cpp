@@ -1,7 +1,7 @@
 #include "RankingScene.h"
 
 RankingScene::RankingScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _controller(nullptr)
+	: Scene(renderer), _controller(nullptr), _fileManager(new FileManager())
 {
 }
 
@@ -16,6 +16,7 @@ void RankingScene::DoStart()
 	_controller->AddActionKey(ActionName::RESUME, SDLK_ESCAPE);
 	InputHandler::GetInstance()->AddController(_controller);
 	InitBackground();
+	InitRanking();
 	InitTexts();
 }
 
@@ -42,6 +43,9 @@ void RankingScene::End()
 	InputHandler::GetInstance()->RemoveAllControllers();
 	_ranking.clear();
 	DeleteSceneGameObjects();
+
+	delete _fileManager;
+	delete[] _rankingPlayerSet;
 }
 
 void RankingScene::InitBackground()
@@ -59,10 +63,34 @@ void RankingScene::InitTexts()
 	TextGameObject* mainMenuText = new TextGameObject(_renderer, "ESC to Menu", white, Vector2D<int>(580, 550), 24);
 	AddSceneGameObject(mainMenuText);
 
-	for (int i = 0; i < 10; ++i) {
-		_ranking.push_back(new TextGameObject(_renderer, (std::to_string(i+1) + std::string(". Player")).c_str(), 
-			white, Vector2D<int>(320, 160 + i*(40)), 20));
+
+	int i{ 0 };
+	std::string nameAndScore("");
+	for (std::set<RankingPlayer>::reverse_iterator rit{ _rankingPlayerSet->rbegin() }; rit != _rankingPlayerSet->rend(); ++rit, ++i) {
+
+		nameAndScore = std::to_string(i + 1) + rit->_name + " - " + std::to_string(rit->_score);
+
+		_ranking.push_back(new TextGameObject(_renderer, nameAndScore.c_str(),
+			white, Vector2D<int>(320, 160 + i * (40)), 20));
 		AddSceneGameObject(_ranking[i]);
 	}
-	
+
+	for (; i < RANKING_SIZE; ++i) {
+
+		nameAndScore = std::to_string(i + 1) + std::string(". ---");
+
+		_ranking.push_back(new TextGameObject(_renderer, nameAndScore.c_str(),
+			white, Vector2D<int>(320, 160 + i * (40)), 20));
+		AddSceneGameObject(_ranking[i]);
+	}
+
 }
+
+void RankingScene::InitRanking()
+{
+	std::vector<RankingPlayer>* _rankingPlayers = _fileManager->GetRankingData("../../resources/files/ranking.bin");
+
+	std::set<RankingPlayer> rankingPlayerSet(_rankingPlayers->begin(), _rankingPlayers->end());
+	_rankingPlayerSet = &rankingPlayerSet;
+}
+

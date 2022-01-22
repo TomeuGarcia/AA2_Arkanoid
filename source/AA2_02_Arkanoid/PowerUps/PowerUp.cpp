@@ -37,14 +37,10 @@ void PowerUp::DoFinishEffect(Platform* platform)
 void PowerUp::OnCollisionEnter()
 {
 	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::PLATFORM) {
-		//DoEffect(dynamic_cast<Platform*>(_otherCollisionCollider->GetThisGameObject()));
-		_position.X = 0;
-		_position.Y = 0;
+		DoEffect(dynamic_cast<Platform*>(_otherCollisionCollider->GetThisGameObject()));
 		SetActive(false);
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
-		_position.X = 0;
-		_position.Y = 0;
 		SetActive(false);
 	}
 }

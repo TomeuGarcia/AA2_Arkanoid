@@ -48,6 +48,12 @@ void Render::SetDestinationStart(const Vector2D<float>& destinationStartCorner)
 	_destinationRect.y = destinationStartCorner.Y;
 }
 
+void Render::SetDestinationSize(const Vector2D<int>& destinationSize)
+{
+	_destinationRect.w = destinationSize.X;
+	_destinationRect.h = destinationSize.Y;
+}
+
 Vector2D<int> Render::GetDestinationSize() const
 {
 	return Vector2D<int>(_destinationRect.w, _destinationRect.h);

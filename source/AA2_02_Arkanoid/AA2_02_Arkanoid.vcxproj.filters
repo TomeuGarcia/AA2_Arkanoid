@@ -208,7 +208,10 @@
       <Filter>PowerUps</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\GameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\RankingData.cpp">
+      <Filter>FileManaging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="PowerUps\PowerUpFactory.h">
       <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\RankingData.h">
+      <Filter>FileManaging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

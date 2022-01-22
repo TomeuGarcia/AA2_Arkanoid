@@ -11,6 +11,11 @@ MiniLengthPowerUp::MiniLengthPowerUp(SDL_Renderer* renderer, const Vector2D<floa
 
 void MiniLengthPowerUp::DoEffect(Platform* platform)
 {
-	platform->SetSize(platform->GetSize() * _sizeDecrease);
-	platform->SetMoveSpeed(platform->GetMoveSpeed() * _speedIncrease);
+	platform->ResetSize();
+	platform->ResetMoveSpeed();
+
+	/*Vector2D<float> platformSize(platform->GetSizeFloat());
+	platformSize.Y *= _sizeDecrease;
+	platform->SetSize(platformSize);
+	platform->SetMoveSpeed(platform->GetMoveSpeed() * _speedIncrease);*/
 }

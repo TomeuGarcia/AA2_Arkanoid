@@ -1,9 +1,13 @@
 #pragma once
 #include "GameState.h"
+#include "../FileManaging/FileManager.h"
+#include <set>
+
 
 class GameOverState : public GameState {
 public:
-	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, std::string* winnerTextStr);
+	GameOverState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, 
+		RankingPlayer* rankingPlayer, FileManager* fileManager);
 	~GameOverState();
 	virtual void DoStart() override;
 	virtual bool Update(const double& elapsedTime) override;
@@ -13,6 +17,12 @@ public:
 private:
 	void InitBlackBackground();
 	void InitTexts();
+	
+	void AskWinnerName();
+	void LoadRanking();
+	bool UpdateRanking();
+	void StoreRanking();
+
 
 	Controller* _controller;
 	ImageGameObject* _blackBackground;
@@ -20,5 +30,11 @@ private:
 	TextGameObject* _winnerText;
 	TextGameObject* _goToRankingText;
 
-	std::string* _winnerTextStr;
+	RankingPlayer* _winnerRankingPlayer;
+
+	FileManager* _fileManager;
+	std::vector<RankingPlayer>* _rankingPlayers;
+	std::set<RankingPlayer>* _rankingPlayerSet;
+
+	bool _sceneWasShown;
 };

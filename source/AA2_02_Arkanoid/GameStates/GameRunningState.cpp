@@ -2,9 +2,9 @@
 
 
 GameRunningState::GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2,
-	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr)
+	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr, int* winnerScore)
 	: GameState(renderer, gameObjects), _controller1(controller1), _controller2(controller2),
-	_collisionManager(collisionManager), _gameLogic(gameLogic), _winnerTextStr(winnerTextStr)
+	_collisionManager(collisionManager), _gameLogic(gameLogic), _winnerTextStr(winnerTextStr), _winnerScore(winnerScore)
 {
 }
 
@@ -29,11 +29,13 @@ bool GameRunningState::Update(const double& elapsedTime)
 {
 	if (_gameLogic->DidPlayer1Lose()) {
 		*_winnerTextStr = "Player 2";
+		*_winnerScore = _gameObjects->_platform2->GetPlayer()->GetScore();
 		_nextState = GameStates::GAME_OVER;
 		return true;
 	}
 	else if (_gameLogic->DidPlayer2Lose()) {
 		*_winnerTextStr = "Player 1";
+		*_winnerScore = _gameObjects->_platform1->GetPlayer()->GetScore();
 		_nextState = GameStates::GAME_OVER;
 		return true;
 	}

@@ -91,21 +91,21 @@ Player* Platform::GetPlayer() const
 	return _player;
 }
 
-void Platform::SetSize(const Vector2D<int>& size)
+void Platform::SetSize(const Vector2D<float>& size)
 {
-	_position.X += (size.X - _size.X) / 2;
-	_position.Y += (size.Y - _size.Y) / 2;
-	_size = size;
+	//_position.Y += (size.X - _size.X) / 2;
+	//_position.X += (size.Y - _size.Y) / 2;
+	_size.X = size.X;
+	_size.Y = size.Y;
 
-	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, _size.X, _size.Y };
+	_boundary._rectBoundary = { (int)_position.X, (int)_position.Y, (int)_size.X, (int)_size.Y };
 
-	_sprite->SetDestinationRect(Vector2D<int>(_position.X, _position.Y), _size);
-
+	_sprite->SetDestinationSize(Vector2D<int>(_size.Y, _size.X));
 }
 
 void Platform::ResetSize()
 {
-	SetSize(Vector2D<int>(PLATFORM_DESTINATION_HEIGHT, PLATFORM_DESTINATION_WIDTH)); 
+	SetSize(Vector2D<float>(PLATFORM_DESTINATION_HEIGHT, PLATFORM_DESTINATION_WIDTH));
 }
 
 float Platform::GetMoveSpeed() const{

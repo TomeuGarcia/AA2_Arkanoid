@@ -1,7 +1,7 @@
 #include "GameObjects.h"
 
 GameObjects::GameObjects() 
-	: _collisionManager(nullptr), _gameObjectCollection(), _background(nullptr),
+	: _spawnQueue(), _collisionManager(nullptr), _gameObjectCollection(), _background(nullptr),
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
 	_leftScoreWall(nullptr), _rightScoreWall(nullptr),
@@ -10,24 +10,32 @@ GameObjects::GameObjects()
 {}
 
 GameObjects::GameObjects(CollisionManager* collisionManager)
-	: _collisionManager(collisionManager), _gameObjectCollection(), _background(nullptr),
+	: _spawnQueue(), _collisionManager(collisionManager), _gameObjectCollection(), _background(nullptr),
 	_platform1(nullptr), _platform2(nullptr), _ball(nullptr),
 	_scorePlayer1(nullptr), _scorePlayer2(nullptr), _scorePointsPlayer1(nullptr), _scorePointsPlayer2(nullptr),
 	_leftScoreWall(nullptr), _rightScoreWall(nullptr), 
 	_livesImagesPlayer1(), _livesImagesPlayer2(), 
 	_powerUpManager(nullptr)
-{}
+{
+}
 
 GameObjects::~GameObjects()
 {
 	for (int i{ 0 }; i < _gameObjectCollection.size(); ++i) {
 		delete _gameObjectCollection[i];
 	}
+
+	GameObject* holder{ nullptr };
+	while (!_spawnQueue.empty()) {
+		holder = _spawnQueue.front();
+		_spawnQueue.pop();
+		delete holder;
+	}
 }
 
 
-void GameObjects::Render() const {
-
+void GameObjects::Render() const 
+{
 	for (int i{ 0 }; i < _gameObjectCollection.size(); ++i) {
 		if (_gameObjectCollection[i]->IsActive()) {
 			_gameObjectCollection[i]->Render();
@@ -35,12 +43,30 @@ void GameObjects::Render() const {
 	}
 }
 
-void GameObjects::Update(const double& elapsedTime) {
+void GameObjects::Update(const double& elapsedTime) 
+{
+	IterateSpawnQueue();
+
 	for (int i{ 0 }; i < _gameObjectCollection.size(); ++i) {
 		if (_gameObjectCollection[i]->IsActive()) {
 			_gameObjectCollection[i]->Update(elapsedTime);
 		}
 	}
+}
+
+
+void GameObjects::IterateSpawnQueue()
+{
+	while (!_spawnQueue.empty()) {
+		//AddRigidbodylessGameObjectToCollection(_spawnQueue.front());
+		AddRigidbodyGameObjectToCollection(_spawnQueue.front());
+		_spawnQueue.pop();
+	}
+}
+
+void GameObjects::AddElementToSpawnQueue(GameObject* gameObject)
+{
+	_spawnQueue.push(gameObject);
 }
 
 
@@ -53,8 +79,13 @@ void GameObjects::AddRigidbodyGameObjectToCollection(GameObject* gameObject)
 {
 	_gameObjectCollection.push_back(gameObject);
 
-	//_collisionManager->AddRigidbodylessGameObjectCollider(dynamic_cast<Collider*>(gameObject));
 	_collisionManager->AddGameObjectRigidbody(gameObject->GetRigidbody());
+}
+
+void GameObjects::AddRigidbodylessGameObjectToCollection(GameObject* gameObject)
+{
+	_gameObjectCollection.push_back(gameObject);
+	_collisionManager->AddRigidbodylessGameObjectCollider(dynamic_cast<Collider*>(gameObject));
 }
 
 void GameObjects::InitBackground(ImageGameObject* background)
@@ -138,16 +169,9 @@ void GameObjects::InitPlayersLives(SDL_Renderer* renderer, const char* path, con
 void GameObjects::InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData)
 {
 	_powerUpManager = new PowerUpManager(renderer, powerUpData);
-	_powerUpManager->SetSpawnPowerUpCallback(std::bind(&GameObjects::SetPowerUp, this, std::placeholders::_1));
+	_powerUpManager->SetSpawnPowerUpCallback(std::bind(&GameObjects::AddElementToSpawnQueue, this, std::placeholders::_1));
 
 	AddGameObjectToCollection(_powerUpManager);
-}
-
-void GameObjects::SetPowerUp(PowerUp* powerUp)
-{
-	AddGameObjectToCollection(powerUp);
-
-	//_collisionManager->AddGameObjectRigidbody(powerUp->GetRigidbody());
 }
 
 

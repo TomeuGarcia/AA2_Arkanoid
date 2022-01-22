@@ -15,6 +15,7 @@ public:
 
 private:
 	virtual void OnCollisionEnter();
+	virtual void OnCollisionStay();
 
 	Platform* _ownerPlatform;
 	std::function<void(Platform*)> _startKickOffCallback;

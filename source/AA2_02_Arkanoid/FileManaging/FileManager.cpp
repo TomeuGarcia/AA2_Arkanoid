@@ -79,3 +79,62 @@ GameData* FileManager::LoadGameData(const char* filePath)
 
 	return gameData;
 }
+
+
+
+
+void FileManager::StoreRankingData(const char* filePath, std::vector<RankingPlayer>* rankingPlayers)
+{
+	// Open output file
+	std::ofstream outputFile;
+	outputFile.open(filePath, std::ios::out | std::ios::binary);
+	if (!outputFile.is_open()) {
+		throw std::exception("Couldn't open ranking.bin file\n");
+	}
+
+	// Store info
+	size_t rankingLength{ rankingPlayers->size() };
+	outputFile.write(reinterpret_cast<char*>(&rankingLength), sizeof(size_t)); // Storing the ranking length
+	size_t nameLength;
+	for (int i{ 0 }; i < rankingLength; ++i) {
+		nameLength = rankingPlayers->at(i)._name.size(); // Get player name length
+		outputFile.write(reinterpret_cast<char*>(&nameLength), sizeof(size_t)); // Store player name length
+		outputFile.write(rankingPlayers->at(i)._name.c_str(), nameLength); // Store player name (char*)
+		outputFile.write(reinterpret_cast<char*>(&rankingPlayers->at(i)._score), sizeof(int)); // Store player score
+	}
+
+}
+
+
+std::vector<RankingPlayer>* FileManager::GetRankingData(const char* filePath)
+{
+	// Open input file
+	std::ifstream inputFile;
+	inputFile.open(filePath, std::ios::in | std::ios::binary);
+	if (!inputFile.is_open()) {
+		throw std::exception("Couldn't open ranking.bin file\n");
+	}
+
+
+	// Recover info
+	std::vector<RankingPlayer> _rankingPlayers;
+
+	size_t rankingLength;
+	inputFile.read(reinterpret_cast<char*>(&rankingLength), sizeof(size_t)); // Recover vector length
+	_rankingPlayers.resize(rankingLength);
+
+	size_t nameLength;
+	char* temp;
+	for (int i{ 0 }; i < rankingLength; ++i) {
+		inputFile.read(reinterpret_cast<char*>(&nameLength), sizeof(size_t)); // Recover player name length
+		temp = new char[nameLength + 1];
+		inputFile.read(temp, nameLength); // Recover player name (char*)
+		temp[nameLength] = '\0';
+		_rankingPlayers[i]._name = temp; // Store player name
+		delete[] temp;
+		inputFile.read(reinterpret_cast<char*>(&_rankingPlayers[i]._score), sizeof(int)); // Recover player score
+	}
+
+
+	return &_rankingPlayers;
+}

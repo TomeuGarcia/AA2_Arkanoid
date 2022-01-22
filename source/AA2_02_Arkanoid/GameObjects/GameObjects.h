@@ -12,8 +12,12 @@
 #include "../PowerUps/PowerUpManager.h"
 #include <list>
 #include <vector>
+#include <queue>
 
 struct GameObjects {
+
+	// GameObject spawn queue
+	std::queue<GameObject*> _spawnQueue;
 
 	// Collision Manager
 	CollisionManager* _collisionManager;
@@ -53,8 +57,12 @@ struct GameObjects {
 	void Render() const;
 	void Update(const double& elapsedTime);
 
+	void IterateSpawnQueue();
+	void AddElementToSpawnQueue(GameObject* gameObject);
+
 	void AddGameObjectToCollection(GameObject* gameObject);
 	void AddRigidbodyGameObjectToCollection(GameObject* gameObject);
+	void AddRigidbodylessGameObjectToCollection(GameObject* gameObject);
 	void InitBackground(ImageGameObject* background);
 	void InitPlatforms(Platform* platform1, Platform* platform2);
 	void InitBall(Ball* ball);
@@ -67,7 +75,6 @@ struct GameObjects {
 		const Vector2D<int>& sourcePosition, const Vector2D<int>& sourceSize);
 
 	void InitPowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData);
-	void SetPowerUp(PowerUp* powerUp);
 
 	void UpdateScorePointsPlayer1(const char* points);
 	void UpdateScorePointsPlayer2(const char* points);

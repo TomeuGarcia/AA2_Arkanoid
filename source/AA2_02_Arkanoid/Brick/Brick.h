@@ -14,9 +14,13 @@ public:
 	virtual ~Brick() = default;
 
 	virtual void Render() const override;
+	
+	virtual void OnCollisionEnter() override;
+	virtual void OnCollisionStay() override;
 
 	Vector2D<float> GetPosition() const;
 	void SetBrickBreaksCallback(std::function<void(const Vector2D<float>, const int&)> brickBreaksCallback);
+
 
 	virtual void GetsHit() = 0;
 

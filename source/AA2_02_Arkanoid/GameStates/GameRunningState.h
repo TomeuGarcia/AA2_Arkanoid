@@ -7,7 +7,7 @@
 class GameRunningState : public GameState {
 public:
 	GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2, 
-		GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr);
+		GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr, int* winnerScore);
 	~GameRunningState();
 	virtual void DoStart() override;
 	virtual bool Update(const double& elapsedTime) override;
@@ -30,4 +30,5 @@ private:
 	GameLogic* _gameLogic;
 
 	std::string* _winnerTextStr;
+	int* _winnerScore;
 };

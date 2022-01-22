@@ -8,7 +8,8 @@ BrickData::BrickData(const BrickType& brickType, const int& i, const int& j)
 PowerUpCreateData::PowerUpCreateData(const float& powerUpDuration, const float& powerUpSpeed,
 	const float& sizeIncreasePercent, const float& sizeDecreasePercent, const float& speedIncreasePercent)
 	: _powerUpDuration(powerUpDuration), _powerUpSpeed(powerUpSpeed), 
-	_sizeIncreasePercent(sizeIncreasePercent/100.0f), _sizeDecreasePercent(sizeDecreasePercent/100.0f), _speedIncreasePercent(speedIncreasePercent/100.0f)
+	_sizeIncreasePercent(sizeIncreasePercent/100.0f + 1.0f), 
+	_sizeDecreasePercent(1.0f - sizeDecreasePercent/100.0f), _speedIncreasePercent(speedIncreasePercent/100.0f + 1.0f)
 {}
 
 PowerUpData::PowerUpData() 

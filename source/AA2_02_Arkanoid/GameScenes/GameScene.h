@@ -43,5 +43,5 @@ private:
 
 	FileManager* _fileManager;
 
-	std::string _winnerTextStr;
+	RankingPlayer _rankingPlayer;
 };
