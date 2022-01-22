@@ -5,7 +5,7 @@ GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, Gam
 	RankingPlayer* rankingPlayer, FileManager* fileManager)
 	: GameState(renderer, gameObjects), _controller(controller),_blackBackground(nullptr),_gameOverText(nullptr),
 	_winnerText(nullptr), _goToRankingText(nullptr), _winnerRankingPlayer(rankingPlayer),
-	_fileManager(fileManager), _rankingPlayers(nullptr), _rankingPlayerSet(nullptr), _sceneWasShown(false)
+	_fileManager(fileManager), _rankingPlayers(), _sceneWasShown(false)
 {
 }
 
@@ -62,7 +62,7 @@ void GameOverState::End()
 	delete _blackBackground;
 	_blackBackground = nullptr;
 
-	delete[] _rankingPlayers;
+	_rankingPlayers.clear();
 }
 void GameOverState::InitBlackBackground()
 {
@@ -94,34 +94,20 @@ void GameOverState::LoadRanking()
 
 bool GameOverState::UpdateRanking()
 {
-	std::set<RankingPlayer> rankingPlayerSet(_rankingPlayers->begin(), _rankingPlayers->end());
-	_rankingPlayerSet = &rankingPlayerSet;
+	_rankingPlayers.sort();
 
-	if (rankingPlayerSet.size() < RANKING_SIZE) {
-		// Loop to update player score if player already exists in ranking with lesser score
-		for (std::set<RankingPlayer>::reverse_iterator rit{ rankingPlayerSet.rbegin() }; rit != rankingPlayerSet.rend(); ++rit) {
-			if (rit->_name == _winnerRankingPlayer->_name && rit->_score < _winnerRankingPlayer->_score) {
-				rankingPlayerSet.insert(*_winnerRankingPlayer);
-				rankingPlayerSet.erase(*rit);
-				return true;
-			}
-		}
-		rankingPlayerSet.insert(*_winnerRankingPlayer);
+
+	if (_rankingPlayers.size() < RANKING_SIZE) {
+		_rankingPlayers.push_back(*_winnerRankingPlayer);
 		return true;
 	}
 	else {
-
-		for (std::set<RankingPlayer>::reverse_iterator rit{ rankingPlayerSet.rbegin() }; rit != rankingPlayerSet.rend(); ++rit) {
+		for (std::list<RankingPlayer>::reverse_iterator rit{ _rankingPlayers.rbegin() }; rit != _rankingPlayers.rend(); ++rit) {
 			// Add current player if a lesser score is found, then erase the smallest score
 			if (rit->_score < _winnerRankingPlayer->_score) {
-				rankingPlayerSet.insert(*_winnerRankingPlayer);
-				rankingPlayerSet.erase(rankingPlayerSet.begin());
-				return true;
-			}
-			// Update player score if player already exists in ranking with lesser score
-			else if (rit->_name == _winnerRankingPlayer->_name && rit->_score < _winnerRankingPlayer->_score) {
-				rankingPlayerSet.insert(*_winnerRankingPlayer);
-				rankingPlayerSet.erase(*rit);
+				_rankingPlayers.push_back(*_winnerRankingPlayer);
+				_rankingPlayers.sort();
+				_rankingPlayers.pop_front();
 				return true;
 			}
 		}
@@ -133,11 +119,6 @@ bool GameOverState::UpdateRanking()
 
 void GameOverState::StoreRanking()
 {
-	delete[] _rankingPlayers;
-
-	std::vector<RankingPlayer> rankingPlayers(_rankingPlayerSet->begin(), _rankingPlayerSet->end());
-	_rankingPlayers = &rankingPlayers;
-	
 	_fileManager->StoreRankingData("../../resources/files/ranking.bin", _rankingPlayers);
 }
 

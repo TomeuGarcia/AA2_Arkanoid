@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <map>
 
 
 struct RankingPlayer {
@@ -9,7 +8,10 @@ struct RankingPlayer {
 
 	std::string _name;
 	int _score;
+
+	bool operator< (const RankingPlayer& other) { return _score < other._score; }
+	bool operator!= (const RankingPlayer& other) { return (_score != other._score) && (_name != other._name); }
 };
 
-bool operator< (const RankingPlayer& rp1, const RankingPlayer& rp2);
+
 

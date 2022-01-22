@@ -1,7 +1,7 @@
 #include "RankingScene.h"
 
 RankingScene::RankingScene(SDL_Renderer* renderer) 
-	: Scene(renderer), _controller(nullptr), _fileManager(new FileManager())
+	: Scene(renderer), _controller(nullptr), _fileManager(new FileManager()), _rankingPlayers()
 {
 }
 
@@ -45,7 +45,7 @@ void RankingScene::End()
 	DeleteSceneGameObjects();
 
 	delete _fileManager;
-	delete[] _rankingPlayerSet;
+	_rankingPlayers.clear();
 }
 
 void RankingScene::InitBackground()
@@ -55,6 +55,15 @@ void RankingScene::InitBackground()
 	AddSceneGameObject(_background);
 }
 
+
+void RankingScene::InitRanking()
+{
+	_rankingPlayers = _fileManager->GetRankingData("../../resources/files/ranking.bin");
+	_rankingPlayers.sort();
+}
+
+
+
 void RankingScene::InitTexts()
 {
 	SDL_Color white({ 255,255,255,255 });
@@ -63,12 +72,11 @@ void RankingScene::InitTexts()
 	TextGameObject* mainMenuText = new TextGameObject(_renderer, "ESC to Menu", white, Vector2D<int>(580, 550), 24);
 	AddSceneGameObject(mainMenuText);
 
-
 	int i{ 0 };
 	std::string nameAndScore("");
-	for (std::set<RankingPlayer>::reverse_iterator rit{ _rankingPlayerSet->rbegin() }; rit != _rankingPlayerSet->rend(); ++rit, ++i) {
+	for (std::list<RankingPlayer>::reverse_iterator rit{ _rankingPlayers.rbegin() }; rit != _rankingPlayers.rend(); ++rit, ++i) {
 
-		nameAndScore = std::to_string(i + 1) + rit->_name + " - " + std::to_string(rit->_score);
+		nameAndScore = std::to_string(i + 1) + ". " + rit->_name + " - " + std::to_string(rit->_score);
 
 		_ranking.push_back(new TextGameObject(_renderer, nameAndScore.c_str(),
 			white, Vector2D<int>(320, 160 + i * (40)), 20));
@@ -86,11 +94,4 @@ void RankingScene::InitTexts()
 
 }
 
-void RankingScene::InitRanking()
-{
-	std::vector<RankingPlayer>* _rankingPlayers = _fileManager->GetRankingData("../../resources/files/ranking.bin");
-
-	std::set<RankingPlayer> rankingPlayerSet(_rankingPlayers->begin(), _rankingPlayers->end());
-	_rankingPlayerSet = &rankingPlayerSet;
-}
 

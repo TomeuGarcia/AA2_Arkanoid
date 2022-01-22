@@ -83,7 +83,7 @@ GameData* FileManager::LoadGameData(const char* filePath)
 
 
 
-void FileManager::StoreRankingData(const char* filePath, std::vector<RankingPlayer>* rankingPlayers)
+void FileManager::StoreRankingData(const char* filePath, std::list<RankingPlayer>& rankingPlayers)
 {
 	// Open output file
 	std::ofstream outputFile;
@@ -93,20 +93,22 @@ void FileManager::StoreRankingData(const char* filePath, std::vector<RankingPlay
 	}
 
 	// Store info
-	size_t rankingLength{ rankingPlayers->size() };
+	size_t rankingLength{ rankingPlayers.size() };
 	outputFile.write(reinterpret_cast<char*>(&rankingLength), sizeof(size_t)); // Storing the ranking length
+
 	size_t nameLength;
-	for (int i{ 0 }; i < rankingLength; ++i) {
-		nameLength = rankingPlayers->at(i)._name.size(); // Get player name length
+	for (std::list<RankingPlayer>::reverse_iterator rit{ rankingPlayers.rbegin() }; rit != rankingPlayers.rend(); ++rit){
+		nameLength = rit->_name.size(); // Get player name length
 		outputFile.write(reinterpret_cast<char*>(&nameLength), sizeof(size_t)); // Store player name length
-		outputFile.write(rankingPlayers->at(i)._name.c_str(), nameLength); // Store player name (char*)
-		outputFile.write(reinterpret_cast<char*>(&rankingPlayers->at(i)._score), sizeof(int)); // Store player score
+		outputFile.write(rit->_name.c_str(), nameLength); // Store player name (char*)
+		outputFile.write(reinterpret_cast<char*>(&rit->_score), sizeof(int)); // Store player score
 	}
 
+	outputFile.close();
 }
 
 
-std::vector<RankingPlayer>* FileManager::GetRankingData(const char* filePath)
+std::list<RankingPlayer> FileManager::GetRankingData(const char* filePath)
 {
 	// Open input file
 	std::ifstream inputFile;
@@ -117,24 +119,32 @@ std::vector<RankingPlayer>* FileManager::GetRankingData(const char* filePath)
 
 
 	// Recover info
-	std::vector<RankingPlayer> _rankingPlayers;
+	std::list<RankingPlayer> _rankingPlayers;
 
 	size_t rankingLength;
-	inputFile.read(reinterpret_cast<char*>(&rankingLength), sizeof(size_t)); // Recover vector length
-	_rankingPlayers.resize(rankingLength);
+	if (!inputFile.read(reinterpret_cast<char*>(&rankingLength), sizeof(size_t))) // Recover list length
+	{
+		// if it was empty, return empty
+		inputFile.close();
+		return _rankingPlayers;
+	}
+	
 
 	size_t nameLength;
 	char* temp;
+	int score;
 	for (int i{ 0 }; i < rankingLength; ++i) {
 		inputFile.read(reinterpret_cast<char*>(&nameLength), sizeof(size_t)); // Recover player name length
 		temp = new char[nameLength + 1];
 		inputFile.read(temp, nameLength); // Recover player name (char*)
 		temp[nameLength] = '\0';
-		_rankingPlayers[i]._name = temp; // Store player name
+		inputFile.read(reinterpret_cast<char*>(&score), sizeof(int)); // Recover player score
+
+		_rankingPlayers.push_back(RankingPlayer(std::string(temp), score)); // Store
 		delete[] temp;
-		inputFile.read(reinterpret_cast<char*>(&_rankingPlayers[i]._score), sizeof(int)); // Recover player score
 	}
 
 
-	return &_rankingPlayers;
+	inputFile.close();
+	return _rankingPlayers;
 }

@@ -9,6 +9,7 @@
 
 #include "GameData.h"
 #include "RankingData.h"
+#include <list>
 
 #define RANKING_SIZE 10
 
@@ -18,10 +19,11 @@ class FileManager {
 public:
 	FileManager();
 	~FileManager();
+
 	GameData* LoadGameData(const char* filePath);
 
-	void StoreRankingData(const char* filePath, std::vector<RankingPlayer>* rankingPlayers);
-	std::vector<RankingPlayer>* GetRankingData(const char* filePath);
+	void StoreRankingData(const char* filePath, std::list<RankingPlayer>& rankingPlayers);
+	std::list<RankingPlayer> GetRankingData(const char* filePath);
 
 private:
 	std::string _content;

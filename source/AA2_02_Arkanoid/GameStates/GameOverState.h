@@ -33,8 +33,7 @@ private:
 	RankingPlayer* _winnerRankingPlayer;
 
 	FileManager* _fileManager;
-	std::vector<RankingPlayer>* _rankingPlayers;
-	std::set<RankingPlayer>* _rankingPlayerSet;
+	std::list<RankingPlayer> _rankingPlayers;
 
 	bool _sceneWasShown;
 };

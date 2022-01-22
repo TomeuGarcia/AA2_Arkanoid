@@ -21,5 +21,5 @@ private:
 	std::vector<TextGameObject*> _ranking;
 
 	FileManager* _fileManager;
-	std::set<RankingPlayer>* _rankingPlayerSet;
+	std::list<RankingPlayer> _rankingPlayers;
 };
