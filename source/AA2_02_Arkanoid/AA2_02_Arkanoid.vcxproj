@@ -187,6 +187,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio\AudioHandler.cpp" />
     <ClCompile Include="Ball\Ball.cpp" />
     <ClCompile Include="Brick\Brick.cpp" />
     <ClCompile Include="Brick\BrickFactory.cpp" />
@@ -239,6 +240,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="Wall\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio\AudioHandler.h" />
     <ClInclude Include="Ball\Ball.h" />
     <ClInclude Include="Brick\Brick.h" />
     <ClInclude Include="Brick\BrickFactory.h" />

@@ -5,7 +5,7 @@
 #include "Event.h"
 
 enum class ActionStatus { NONE, ACTIVE, INACTIVE };
-enum class ActionName { RIGHT, LEFT, UP, DOWN, PAUSE, RESUME, QUIT, START, RANKING };
+enum class ActionName { RIGHT, LEFT, UP, DOWN, PAUSE, RESUME, QUIT, START, RANKING, MUSIC_SWITCH };
 enum class AxisName { HORIZONTAL, VERTICAL };
 
 

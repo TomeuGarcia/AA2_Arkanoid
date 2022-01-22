@@ -29,6 +29,8 @@ public:
 	void InitControllers();
 
 private:
+	void InitGameMusic();
+
 	std::map< GameStates, GameState*> _gameStates;
 	GameState* _currentGameState;
 	bool _isStateFinished;
@@ -44,4 +46,6 @@ private:
 	FileManager* _fileManager;
 
 	RankingPlayer _rankingPlayer;
+
+	Mix_Music* _gameMusic;
 };

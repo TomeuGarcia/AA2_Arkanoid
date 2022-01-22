@@ -5,6 +5,7 @@
 #include "../GameObjects/TextGameObject.h"
 #include "../Constants/Constants.h"
 #include "../Inputs/Keyboard.h"
+#include "../Audio/AudioHandler.h"
 
 enum class Scenes{NONE, SPLASH_SCREEN, MAIN_MENU, RANKING, GAME, QUIT};
 

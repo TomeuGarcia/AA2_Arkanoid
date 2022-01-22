@@ -13,7 +13,11 @@ public:
 	void InitTexts();
 
 private:
+	void InitMenuMusic();
+
 	bool* _isRunning;
 
 	Controller* _controller;
+
+	Mix_Music* _menuMusic;
 };

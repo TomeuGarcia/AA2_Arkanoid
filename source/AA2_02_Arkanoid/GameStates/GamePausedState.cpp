@@ -1,10 +1,10 @@
 #include "GamePausedState.h"
 
 
-GamePausedState::GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects)
+GamePausedState::GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, Mix_Music* gameMusic)
 	: GameState(renderer, gameObjects), _controller(controller),
-	_blackBackground(nullptr), _pauseText(nullptr), _lToResumeText(nullptr)
-	
+	_blackBackground(nullptr), _pauseText(nullptr), _lToResumeText(nullptr),
+	_gameMusic(gameMusic)
 {
 }
 
@@ -28,6 +28,9 @@ bool GamePausedState::Update(const double& elapsedTime)
 	else if (_controller->GetButtonDown(ActionName::QUIT)) {
 		_nextState = GameStates::QUIT_TO_MAIN_MENU;
 		return true;
+	}
+	if (_controller->GetButtonDown(ActionName::MUSIC_SWITCH)) {
+		AudioHandler::GetInstance()->AudioSwitch();
 	}
 
 	_blackBackground->Update(elapsedTime);
@@ -65,4 +68,5 @@ void GamePausedState::InitTexts()
 	SDL_Color white({ 255,255,255,255 });
 	_pauseText = new TextGameObject(_renderer, "...PAUSE...", white, Vector2D<int>(200, 200), 72);
 	_lToResumeText = new TextGameObject(_renderer, "Space to resume", white, Vector2D<int>(185, 280), 36);
+	_lToResumeText = new TextGameObject(_renderer, "M to play / stop audio", white, Vector2D<int>(185, 315), 28);
 }

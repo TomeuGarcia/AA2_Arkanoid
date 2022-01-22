@@ -2,10 +2,11 @@
 #include "GameState.h"
 #include "../GameObjects/ImageGameObject.h"
 #include "../GameObjects/TextGameObject.h"
+#include "../Audio/AudioHandler.h"
 
 class GamePausedState : public GameState {
 public:
-	GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects);
+	GamePausedState(SDL_Renderer* renderer, Controller* controller, GameObjects* gameObjects, Mix_Music* gameMusic);
 	~GamePausedState();
 	virtual void DoStart() override;
 	virtual bool Update(const double& elapsedTime) override;
@@ -21,4 +22,6 @@ private:
 	ImageGameObject* _blackBackground;
 	TextGameObject* _pauseText;
 	TextGameObject* _lToResumeText;
+
+	Mix_Music* _gameMusic;
 };

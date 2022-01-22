@@ -64,11 +64,13 @@ void GameOverState::End()
 
 	_rankingPlayers.clear();
 }
+
 void GameOverState::InitBlackBackground()
 {
 	_blackBackground = new ImageGameObject(_renderer, "../../resources/assets/images/blackBackground.png",
 		Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), Vector2D<int>(0, 0), Vector2D<int>(SCREEN_WIDTH, SCREEN_HEIGHT), 150);
 }
+
 void GameOverState::InitTexts()
 {
 	SDL_Color white({ 255,255,255,255 });

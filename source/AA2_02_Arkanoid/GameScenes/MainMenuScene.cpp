@@ -2,7 +2,7 @@
 
 
 MainMenuScene::MainMenuScene(SDL_Renderer* renderer, bool* isRunning)
-	: _isRunning(isRunning), Scene(renderer), _controller(nullptr)
+	: _isRunning(isRunning), Scene(renderer), _controller(nullptr), _menuMusic(nullptr)
 {
 }
 
@@ -17,9 +17,11 @@ void MainMenuScene::DoStart()
 	_controller->AddActionKey(ActionName::START, SDLK_SPACE);
 	_controller->AddActionKey(ActionName::RANKING, SDLK_r);
 	_controller->AddActionKey(ActionName::QUIT, SDLK_ESCAPE);
+	_controller->AddActionKey(ActionName::MUSIC_SWITCH, SDLK_m);
 	InputHandler::GetInstance()->AddController(_controller);
 	InitBackground();
 	InitTexts();
+	InitMenuMusic();
 }
 
 bool MainMenuScene::Update(const double& elapsedTime)
@@ -35,7 +37,9 @@ bool MainMenuScene::Update(const double& elapsedTime)
 	if (_controller->GetButtonDown(ActionName::QUIT)) {
 		*_isRunning = false;
 	}
-
+	if (_controller->GetButtonDown(ActionName::MUSIC_SWITCH)) {
+		AudioHandler::GetInstance()->AudioSwitch();
+	}
 
 	UpdateSceneGameObjects(elapsedTime);
 
@@ -53,6 +57,9 @@ void MainMenuScene::End()
 	InputHandler::GetInstance()->RemoveAllControllers();
 
 	DeleteSceneGameObjects();
+
+	AudioHandler::GetInstance()->MuteAudio();
+	AudioHandler::GetInstance()->DeleteMusic(_menuMusic);
 }
 
 void MainMenuScene::InitBackground()
@@ -75,9 +82,16 @@ void MainMenuScene::InitTexts()
 	TextGameObject* rankingText = new TextGameObject(_renderer, "R to Ranking", white, Vector2D<int>(50, 300), 24);
 	AddSceneGameObject(rankingText);
 
-	TextGameObject* optionsText = new TextGameObject(_renderer, "Options", white, Vector2D<int>(50, 400), 24);
+	TextGameObject* optionsText = new TextGameObject(_renderer, "M to play / stop audio", white, Vector2D<int>(50, 400), 24);
 	AddSceneGameObject(optionsText);
 
 	TextGameObject* quitText = new TextGameObject(_renderer, "Esc to Quit", white, Vector2D<int>(50, 500), 24);
 	AddSceneGameObject(quitText);
+}
+
+
+void MainMenuScene::InitMenuMusic()
+{
+	_menuMusic = AudioHandler::GetInstance()->LoadMusic("../../resources/assets/audio/musicMenu.mp3");
+	AudioHandler::GetInstance()->PlayMusic(_menuMusic);
 }
