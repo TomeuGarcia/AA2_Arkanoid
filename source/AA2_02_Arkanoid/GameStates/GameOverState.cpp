@@ -5,7 +5,8 @@ GameOverState::GameOverState(SDL_Renderer* renderer, Controller* controller, Gam
 	RankingPlayer* rankingPlayer, FileManager* fileManager)
 	: GameState(renderer, gameObjects), _controller(controller),_blackBackground(nullptr),_gameOverText(nullptr),
 	_winnerText(nullptr), _goToRankingText(nullptr), _winnerRankingPlayer(rankingPlayer),
-	_fileManager(fileManager), _rankingPlayers(), _sceneWasShown(false)
+	_fileManager(fileManager), _rankingPlayers(), _sceneWasShown(false), 
+	_gameOverSound(nullptr)
 {
 }
 
@@ -19,6 +20,9 @@ void GameOverState::DoStart()
 	_sceneWasShown =false;
 	InitBlackBackground();
 	InitTexts();
+
+	_gameOverSound = AudioHandler::GetInstance()->LoadAudioSFX("../../resources/assets/audio/sfxGameOver.wav");
+	AudioHandler::GetInstance()->PlayAudioSFX(_gameOverSound);
 }
 
 
@@ -63,6 +67,8 @@ void GameOverState::End()
 	_blackBackground = nullptr;
 
 	_rankingPlayers.clear();
+
+	AudioHandler::GetInstance()->DeleteAudioSFX(_gameOverSound);
 }
 
 void GameOverState::InitBlackBackground()

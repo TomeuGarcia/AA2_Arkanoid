@@ -4,7 +4,7 @@
 Ball::Ball(SDL_Renderer* renderer, const Vector2D<int>& size, const float& moveSpeed, Platform* lastPlatform)
 	: GameObject(Tag::BALL, *lastPlatform->GetGrabPosition(), size), BoxCollider2D(this), _sprite(nullptr),
 	_moveDirection(), _moveSpeed(moveSpeed), _ballStatus(BallStatus::FOLLOWING), 
-	_followingPosition(lastPlatform->GetGrabPosition()), _lastPlatform(lastPlatform)
+	_followingPosition(lastPlatform->GetGrabPosition()), _lastPlatform(lastPlatform), _collisionSound(nullptr)
 {
 	// Initialize _sprite
 	_sprite = new Image(renderer, Vector2D<int>(0, 0), BALL_SOURCE_SIZE, Vector2D<int>(_position.X, _position.Y), _size);
@@ -15,11 +15,15 @@ Ball::Ball(SDL_Renderer* renderer, const Vector2D<int>& size, const float& moveS
 
 	// Initialize _rigidbody
 	_rigidbody = new Rigidbody2D(this, &_moveDirection);
+
+	// Initialize audio
+	_collisionSound = AudioHandler::GetInstance()->LoadAudioSFX("../../resources/assets/audio/sfxBallCollides.wav");
 }
 
 Ball::~Ball()
 {
 	delete _sprite;
+	AudioHandler::GetInstance()->DeleteAudioSFX(_collisionSound);
 }
 
 
@@ -50,9 +54,13 @@ void Ball::OnCollisionEnter()
 		_moveDirection.Y = (GetCentrePosition().Y - platformPosition.Y);
 		_moveDirection.X = (platformPosition.X - GetCentrePosition().X);
 		_moveDirection.X *= -1;
+
+		AudioHandler::GetInstance()->PlayAudioSFX(_collisionSound);
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
 		_moveDirection.Y *= -1;
+
+		AudioHandler::GetInstance()->PlayAudioSFX(_collisionSound);
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BRICK) {
 		Vector2D<float> brickPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
@@ -62,7 +70,7 @@ void Ball::OnCollisionEnter()
 		_moveDirection.X = (brickPosition.X + brickSize.X / 4 - GetCentrePosition().X);
 		_moveDirection.X *= -1;
 
-		//dynamic_cast<Brick*>(_otherCollisionCollider->GetThisGameObject())->GetsHit();
+		AudioHandler::GetInstance()->PlayAudioSFX(_collisionSound);
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() != Tag::POWER_UP) {
 		_moveDirection *= -1;

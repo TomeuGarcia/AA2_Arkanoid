@@ -36,4 +36,6 @@ private:
 	std::list<RankingPlayer> _rankingPlayers;
 
 	bool _sceneWasShown;
+
+	Mix_Chunk* _gameOverSound;
 };

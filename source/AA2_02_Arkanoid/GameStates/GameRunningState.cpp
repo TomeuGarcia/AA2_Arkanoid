@@ -4,7 +4,8 @@
 GameRunningState::GameRunningState(SDL_Renderer* renderer, Controller* controller1, Controller* controller2,
 	GameObjects* gameObjects, CollisionManager* collisionManager, GameLogic* gameLogic, std::string* winnerTextStr, int* winnerScore)
 	: GameState(renderer, gameObjects), _controller1(controller1), _controller2(controller2),
-	_collisionManager(collisionManager), _gameLogic(gameLogic), _winnerTextStr(winnerTextStr), _winnerScore(winnerScore)
+	_collisionManager(collisionManager), _gameLogic(gameLogic), _winnerTextStr(winnerTextStr), _winnerScore(winnerScore),
+	_playerLosesLifeSound(nullptr)
 {
 }
 
@@ -22,6 +23,8 @@ void GameRunningState::DoStart()
 	for (std::vector<Brick*>::iterator it = _gameObjects->_bricks.begin(); it != _gameObjects->_bricks.end(); ++it) {
 		(*it)->SetBrickBreaksCallback(std::bind(&GameRunningState::BrickBreaks, this, std::placeholders::_1, std::placeholders::_2));
 	}
+
+	InitAudioSFXs();
 }
 
 
@@ -69,6 +72,7 @@ void GameRunningState::Render() const
 
 void GameRunningState::End()
 {
+	AudioHandler::GetInstance()->DeleteAudioSFX(_playerLosesLifeSound);
 }
 
 void GameRunningState::UpdatePlayerScores()
@@ -87,6 +91,8 @@ void GameRunningState::StartKickOff(Platform* kickOffPlatform)
 
 	kickOffPlatform->SetIsGrabbing(true);
 	_gameObjects->_ball->StartFollowing(kickOffPlatform);
+
+	AudioHandler::GetInstance()->PlayAudioSFX(_playerLosesLifeSound);
 }
 
 
@@ -109,4 +115,11 @@ void GameRunningState::CheckBallExitingBoundaries()
 	if (!CollisionsHelper::IsPointInsideRect(&gameRect, &ballPosition)) {
 		StartKickOff(_gameObjects->_ball->GetLastPlatform());
 	}
+}
+
+
+void GameRunningState::InitAudioSFXs()
+{
+	// Initialize audio
+	_playerLosesLifeSound = AudioHandler::GetInstance()->LoadAudioSFX("../../resources/assets/audio/sfxLoseLife.wav");
 }

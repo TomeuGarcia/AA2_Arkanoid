@@ -6,6 +6,7 @@
 #include "../Physics/Rigidbody2D.h"
 #include "../Player/Platform.h"
 #include "../Brick/Brick.h"
+#include "../Audio/AudioHandler.h"
 
 enum class BallStatus{ FOLLOWING, MOVING };
 
@@ -42,5 +43,7 @@ private:
 	BallStatus _ballStatus;
 	Vector2D<float>* _followingPosition;
 	Platform* _lastPlatform;
+
+	Mix_Chunk* _collisionSound;
 };
 

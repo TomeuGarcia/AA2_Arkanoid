@@ -21,6 +21,7 @@ private:
 
 	void CheckBallExitingBoundaries();
 
+	void InitAudioSFXs();
 
 	CollisionManager* _collisionManager;
 
@@ -31,4 +32,6 @@ private:
 
 	std::string* _winnerTextStr;
 	int* _winnerScore;
+
+	Mix_Chunk* _playerLosesLifeSound;
 };
