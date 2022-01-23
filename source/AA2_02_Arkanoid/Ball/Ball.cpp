@@ -56,6 +56,8 @@ void Ball::OnCollisionEnter()
 		_moveDirection.X *= -1;
 
 		AudioHandler::GetInstance()->PlayAudioSFX(_collisionSound);
+
+		_lastPlatform = dynamic_cast<Platform*>(_otherCollisionCollider->GetThisGameObject());
 	}
 	else if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
 		_moveDirection.Y *= -1;

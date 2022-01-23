@@ -50,9 +50,6 @@ void Platform::Render() const
 }
 
 
-
-
-
 void Platform::Move(const double& elapsedTime)
 {
 	_position += _moveDirection.Normalized() * _moveSpeed * elapsedTime;
