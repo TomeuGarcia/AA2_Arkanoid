@@ -3,7 +3,7 @@
 #include "../Player/Platform.h"
 
 
-enum class PowerUpType { MINI_LENGTH, EXTRA_LENGTH, COUNT };
+enum class PowerUpType { MINI_LENGTH, EXTRA_LENGTH, EXTRA_SPEED, COUNT };
 
 
 class PowerUp : public GameObject, public BoxCollider2D

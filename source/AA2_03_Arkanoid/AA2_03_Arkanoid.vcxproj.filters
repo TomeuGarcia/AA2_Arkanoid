@@ -219,6 +219,9 @@
     <ClCompile Include="Audio\AudioHandler.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUps\SpeedPowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScenes\GameScene.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Audio\AudioHandler.h">
       <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\SpeedPowerUp.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

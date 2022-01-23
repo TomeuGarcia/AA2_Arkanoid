@@ -54,6 +54,8 @@ GameData* FileManager::LoadGameData(const char* filePath)
 
 	powerupInfoNodePtr = nodePtr->first_node("MiniLength");
 	float sizeDecreasePercent{ std::stof(powerupInfoNodePtr->first_attribute("SizeDecreasePercent")->value()) };
+
+	powerupInfoNodePtr = nodePtr->first_node("ExtraSpeed");
 	float speedIncreasePercent{ std::stof(powerupInfoNodePtr->first_attribute("SpeedIncreasePercent")->value()) };
 	
 	gameData->SetPowerUpData(powerUpSpawnChance, powerUpDuration, powerUpSpeed,

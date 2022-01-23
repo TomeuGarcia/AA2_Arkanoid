@@ -6,7 +6,8 @@
 	</BrickInfo>
 	<PowerUpInfo PowerUpChancePercent="50" PowerUpDuration="20" PowerUpSpeed="200">
 		<ExtraLength SizeIncreasePercent="25"/>
-		<MiniLength SizeDecreasePercent="25" SpeedIncreasePercent="20"/>
+		<MiniLength SizeDecreasePercent="25"/>
+		<ExtraSpeed SpeedIncreasePercent="20"/>
 	</PowerUpInfo>
 	<Level PlatformSpeed="200" BallSpeed="300">
 		<Brick i="0" j="0" type="N"/>

@@ -82,7 +82,6 @@ void Ball::OnCollisionEnter()
 }
 
 
-
 void Ball::Move(const float& elapsedTime)
 {	
 	_position += _moveDirection * _moveSpeed * elapsedTime;

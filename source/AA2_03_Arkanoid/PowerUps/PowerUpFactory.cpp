@@ -14,11 +14,15 @@ PowerUp* PowerUpFactory::Create(const PowerUpType& powerUpType, SDL_Renderer* re
 	switch (powerUpType) {
 	case PowerUpType::MINI_LENGTH:
 		return new MiniLengthPowerUp(renderer, position, POWERUP_DESTINATION_SIZE, moveDirection, powerUpCreateData->_powerUpSpeed,
-			powerUpCreateData->_powerUpDuration, powerUpCreateData->_sizeDecreasePercent, powerUpCreateData->_speedIncreasePercent);
+			powerUpCreateData->_powerUpDuration, powerUpCreateData->_sizeDecreasePercent);
 		break;
 	case PowerUpType::EXTRA_LENGTH:
 		return new ExtraLengthPowerUp(renderer, position, POWERUP_DESTINATION_SIZE, moveDirection, powerUpCreateData->_powerUpSpeed,
 			powerUpCreateData->_powerUpDuration, powerUpCreateData->_sizeIncreasePercent);
+		break;
+	case PowerUpType::EXTRA_SPEED:
+		return new SpeedPowerUp(renderer, position, POWERUP_DESTINATION_SIZE, moveDirection, powerUpCreateData->_powerUpSpeed,
+			powerUpCreateData->_powerUpDuration, powerUpCreateData->_speedIncreasePercent);
 		break;
 	default:
 		break;

@@ -2,6 +2,7 @@
 #include "../FileManaging/GameData.h"
 #include "ExtraLengthPowerUp.h"
 #include "MiniLengthPowerUp.h"
+#include "SpeedPowerUp.h"
 
 class PowerUpFactory {
 

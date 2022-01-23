@@ -11,8 +11,7 @@ ExtraLengthPowerUp::ExtraLengthPowerUp(SDL_Renderer* renderer, const Vector2D<fl
 
 void ExtraLengthPowerUp::DoEffect(Platform* platform)
 {
-	platform->ResetSize();
-	platform->ResetMoveSpeed();
+	DoFinishEffect(platform);
 
 	Vector2D<float> platformSize(platform->GetSizeFloat());
 	platformSize.Y *= _sizeIncrease;

@@ -231,6 +231,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClCompile Include="PowerUps\PowerUp.cpp" />
     <ClCompile Include="PowerUps\PowerUpFactory.cpp" />
     <ClCompile Include="PowerUps\PowerUpManager.cpp" />
+    <ClCompile Include="PowerUps\SpeedPowerUp.cpp" />
     <ClCompile Include="Renders\AnimatedImage.cpp" />
     <ClCompile Include="Renders\Image.cpp" />
     <ClCompile Include="Renders\Render.cpp" />
@@ -287,6 +288,7 @@ xcopy /d /y "$(SolutionDir)\resources\*.*" "$(TargetDir)\resources\"</Command>
     <ClInclude Include="PowerUps\PowerUp.h" />
     <ClInclude Include="PowerUps\PowerUpFactory.h" />
     <ClInclude Include="PowerUps\PowerUpManager.h" />
+    <ClInclude Include="PowerUps\SpeedPowerUp.h" />
     <ClInclude Include="Renders\AnimatedImage.h" />
     <ClInclude Include="Renders\Image.h" />
     <ClInclude Include="Renders\Render.h" />
