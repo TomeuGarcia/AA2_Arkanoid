@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GameScenes">
+      <UniqueIdentifier>{7b68ee29-6a8d-4eda-aa67-cbfbefcb740a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{5ce7b2a6-57e2-416c-9a8e-fdf4d03fcbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{e573ef24-065f-4034-a0d2-57437af7d71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inputs">
+      <UniqueIdentifier>{cecac248-d171-406f-9dc1-dbe7bee61fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{c20bf001-b173-4956-a64f-1cd114515fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders">
+      <UniqueIdentifier>{6016f8ac-1854-4eda-a455-1067e0ac7579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{185b9149-fcf2-4db3-acf2-45683241d113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PowerUps">
+      <UniqueIdentifier>{77ae2e2a-7105-43e2-b8fa-31c66b01a7ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileManaging">
+      <UniqueIdentifier>{b113b1e0-8c5e-477d-afc5-05022230443e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{10662f6a-e966-4c8f-88ee-c26d3e4661dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bricks">
+      <UniqueIdentifier>{2e31976c-2bc0-4c99-9e1c-47782a01858c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{3af768e6-8514-4065-a25c-489eb08ddf31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ball">
+      <UniqueIdentifier>{0b93f03d-d84c-4595-990d-0bc91ebdb387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{1fba807b-86bc-4ff6-b9d5-738aa2ed4111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{8710c394-b58b-46ff-b2e2-0c04c0d3cb8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wall">
+      <UniqueIdentifier>{59ab0a46-4c27-48b4-89ec-60614bdeb8b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{19fb61b6-ef2a-4bf7-8221-0b509fd4c2fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\MainMenuScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\RankingScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\SceneManager.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\SplashScreenScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\GameScene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameOverState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GamePausedState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameRunningState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Controller.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Event.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\InputHandler.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Inputs\Keyboard.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Render.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Image.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\AnimatedImage.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\LifeSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick\Brick.cpp">
+      <Filter>Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick\FixBrick.cpp">
+      <Filter>Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick\NormalBrick.cpp">
+      <Filter>Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick\HeavyBrick.cpp">
+      <Filter>Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\FileManager.cpp">
+      <Filter>FileManaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Platform.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\GameData.cpp">
+      <Filter>FileManaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick\BrickFactory.cpp">
+      <Filter>Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball\Ball.cpp">
+      <Filter>Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameInitState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\GameState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\CollissionManager.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\GameObjects.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Collider.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\BoxCollider2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\ImageGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Text.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\TextGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic\GameLogic.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Rigidbody2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall\Wall.cpp">
+      <Filter>Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall\ScoreWall.cpp">
+      <Filter>Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScenes\Scene.cpp">
+      <Filter>GameScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\ButtonGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\PowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\ExtraLengthPowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\MiniLengthPowerUp.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\PowerUpManager.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps\PowerUpFactory.cpp">
+      <Filter>PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManaging\RankingData.cpp">
+      <Filter>FileManaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioHandler.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameScenes\GameScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\MainMenuScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\RankingScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\Scene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\SceneManager.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScenes\SplashScreenScene.h">
+      <Filter>GameScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameOverState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GamePausedState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameRunningState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Controller.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Event.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\InputHandler.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputs\Keyboard.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Vector2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollisionsHelper.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\Brick.h">
+      <Filter>Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\AnimatedImage.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Image.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Render.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\LifeSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\PowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\FixBrick.h">
+      <Filter>Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\NormalBrick.h">
+      <Filter>Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\HeavyBrick.h">
+      <Filter>Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\FileManager.h">
+      <Filter>FileManaging</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\GameData.h">
+      <Filter>FileManaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Platform.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants\Constants.h">
+      <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick\BrickFactory.h">
+      <Filter>Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball\Ball.h">
+      <Filter>Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStates\GameInitState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollissionManager.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObjects.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collider.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\BoxCollider2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\ImageGameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Text.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\TextGameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\GameLogic.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Rigidbody2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Tags.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall\Wall.h">
+      <Filter>Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall\ScoreWall.h">
+      <Filter>Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\ButtonGameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\ExtraLengthPowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\MiniLengthPowerUp.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\PowerUpManager.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps\PowerUpFactory.h">
+      <Filter>PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManaging\RankingData.h">
+      <Filter>FileManaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioHandler.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
