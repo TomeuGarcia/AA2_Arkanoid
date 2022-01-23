@@ -36,7 +36,16 @@ void Platform::Update(const double& elapsedTime)
 
 	if (_rigidbody->WillBeColliding()) {
 		if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
-			return;
+			if (GetCentrePosition().Y < SCREEN_HEIGHT / 2) {
+				if (_moveDirection.Y < 0) {
+					return; // Don't move if colliding with game limits (upper)
+				}
+			}
+			else {
+				if (_moveDirection.Y > 0) {
+					return; // Don't move if colliding with game limits (lower)
+				}
+			}
 		}
 	}
 
