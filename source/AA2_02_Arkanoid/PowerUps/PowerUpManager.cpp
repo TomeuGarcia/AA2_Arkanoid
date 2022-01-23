@@ -2,23 +2,18 @@
 
 PowerUpManager::PowerUpManager(SDL_Renderer* renderer, PowerUpData* powerUpData)
 	: _renderer(renderer), _powerUpFactory(new PowerUpFactory()), _powerUpCreateData(powerUpData->_powerUpCreateData),
-	_powerUpSpawnChance(powerUpData->_powerUpChancePercent),
-	_timerPlatform1(0), _timerPlatform2(0)
+	_powerUpSpawnChance(powerUpData->_powerUpChancePercent), _powerUpInstances()
 {
 }
 
 PowerUpManager::~PowerUpManager()
 {
 	delete _powerUpFactory;
-
-	//_platform1 = nullptr;
-	//_platform2 = nullptr;
 }
 
 void PowerUpManager::Update(const double& elapsedTime)
 {
-	//UpdatePlatformTimer(elapsedTime, _platform1, _timerPlatform1);
-	//UpdatePlatformTimer(elapsedTime, _platform2, _timerPlatform2);
+	return;
 }
 
 void PowerUpManager::Render() const
@@ -32,32 +27,30 @@ void PowerUpManager::SetSpawnPowerUpCallback(std::function<void(PowerUp*)> spawn
 }
 
 
+void PowerUpManager::InstantiateAllPowerUp()
+{
+	PowerUp* powerUp;
+	for (int i{ 0 }; i < static_cast<int>(PowerUpType::COUNT); ++i) {
+		powerUp = _powerUpFactory->Create(static_cast<PowerUpType>(i), _renderer, { 0,0 }, { 0,0 }, &_powerUpCreateData);
+		_spawnPowerUpCallback(powerUp);
+		_powerUpInstances[static_cast<PowerUpType>(i)] = powerUp;
+		powerUp->SetActive(false);
+	}
+
+}
+
 
 
 void PowerUpManager::TrySpawnPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction)
 {
 	if (rand() % 100 <= _powerUpSpawnChance) {
-		SpawnRandomPowerUp(position, direction);
+
+		PowerUpType powerUpType = static_cast<PowerUpType>(rand() % static_cast<int>(PowerUpType::COUNT));
+
+		if (!_powerUpInstances[powerUpType]->IsActive()) {
+			_powerUpInstances[powerUpType]->ResetPositionAndDirection(position, direction);
+			_powerUpInstances[powerUpType]->SetActive(true);
+		}
 	}
 }
 
-void PowerUpManager::SpawnRandomPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction)
-{
-	PowerUpType powerUpType = static_cast<PowerUpType>(rand() % static_cast<int>(PowerUpType::COUNT));
-	
-	PowerUp* createdPowerUp = _powerUpFactory->Create(powerUpType, _renderer, position, direction, &_powerUpCreateData);
-	_spawnPowerUpCallback(createdPowerUp);
-}
-
-
-void PowerUpManager::UpdatePlatformTimer(const double& elapsedTime, Platform* platform, float& timer)
-{
-	if (timer < 0)
-		return;
-
-	timer -= elapsedTime;
-	if (timer <= 0) {
-		platform->ResetSize();
-		platform->ResetMoveSpeed();
-	}
-}

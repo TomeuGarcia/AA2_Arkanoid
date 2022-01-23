@@ -79,13 +79,6 @@ void Ball::OnCollisionEnter()
 
 }
 
-void Ball::OnCollisionStay()
-{
-	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::WALL) {
-		Vector2D<float> wallPosition = _otherCollisionCollider->GetThisGameObject()->GetCentrePosition();
-		_moveDirection.Y = (wallPosition.Y - GetCentrePosition().Y > 0) ? -1 : 1;
-	}
-}
 
 
 void Ball::Move(const float& elapsedTime)

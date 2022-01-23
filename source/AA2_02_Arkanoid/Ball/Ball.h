@@ -29,7 +29,6 @@ public:
 
 private:
 	virtual void OnCollisionEnter() override;
-	virtual void OnCollisionStay() override;
 
 	void Move(const float& elapsedTime);
 	void Follow();

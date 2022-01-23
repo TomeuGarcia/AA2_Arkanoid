@@ -16,23 +16,17 @@ public:
 	virtual void Render() const override;
 
 	void SetSpawnPowerUpCallback(std::function<void(PowerUp*)> spawnPowerUpCallback);
+	void InstantiateAllPowerUp();
 
 	void TrySpawnPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction);
-	void SpawnRandomPowerUp(const Vector2D<float>& position, const Vector2D<float>& direction);
 
 private:
-	void UpdatePlatformTimer(const double& elapsedTime, Platform* platform, float& timer);
-
 	SDL_Renderer* _renderer;
 	PowerUpFactory* _powerUpFactory;
 
 	PowerUpCreateData _powerUpCreateData;
 	float _powerUpSpawnChance;
-	
-	//Platform* _platform1;
-	float _timerPlatform1;
-	//Platform* _platform2;
-	float _timerPlatform2;
+	std::map<PowerUpType, PowerUp*> _powerUpInstances;
 
 	std::function<void(PowerUp*)> _spawnPowerUpCallback;
 };

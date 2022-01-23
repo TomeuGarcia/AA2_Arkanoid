@@ -23,6 +23,7 @@ void GameInitState::DoStart()
 	InitPlatforms();
 	InitBall();
 	InitWalls();
+	InitPlayers();
 }
 
 bool GameInitState::Update(const double& elapsedTime)
@@ -93,10 +94,6 @@ void GameInitState::InitPlayerScoresAndLives()
 		PLATFORM_DESTINATION_SIZE, Vector2D<int>(0, 0), PLATFORM_SOURCE_SIZE);
 }
 
-void GameInitState::InitPowerUpManager()
-{
-
-}
 
 void GameInitState::InitPlatforms()
 {
@@ -145,4 +142,12 @@ void GameInitState::InitTexts()
 	_spaceToStartText = new TextGameObject(_renderer, "SPACE BAR TO START", white, Vector2D<int>(180, 280), 36);
 
 
+}
+
+void GameInitState::InitPlayers()
+{
+	_gameLogic->SetPlayerPlatforms(_gameObjects->_platform1, _gameObjects->_platform2);
+
+	_gameObjects->AddGameObjectToCollection(_gameLogic->GetPlayer1());
+	_gameObjects->AddGameObjectToCollection(_gameLogic->GetPlayer2());
 }

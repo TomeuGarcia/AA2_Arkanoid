@@ -16,9 +16,6 @@
 
 struct GameObjects {
 
-	// GameObject spawn queue
-	std::queue<GameObject*> _spawnQueue;
-
 	// Collision Manager
 	CollisionManager* _collisionManager;
 
@@ -57,8 +54,6 @@ struct GameObjects {
 	void Render() const;
 	void Update(const double& elapsedTime);
 
-	void IterateSpawnQueue();
-	void AddElementToSpawnQueue(GameObject* gameObject);
 
 	void AddGameObjectToCollection(GameObject* gameObject);
 	void AddRigidbodyGameObjectToCollection(GameObject* gameObject);

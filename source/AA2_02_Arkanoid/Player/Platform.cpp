@@ -93,8 +93,8 @@ Player* Platform::GetPlayer() const
 
 void Platform::SetSize(const Vector2D<float>& size)
 {
-	//_position.Y += (size.X - _size.X) / 2;
-	//_position.X += (size.Y - _size.Y) / 2;
+	_position.X += (size.X - _size.X) / 2;
+	_position.Y += (_size.Y - size.Y) / 2;
 	_size.X = size.X;
 	_size.Y = size.Y;
 

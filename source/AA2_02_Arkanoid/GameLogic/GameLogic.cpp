@@ -8,8 +8,6 @@ GameLogic::GameLogic(const int& playerStartLives, const int& playerLivesLoss, co
 
 GameLogic::~GameLogic()
 {
-	delete _player1;
-	delete _player2;
 	_player1 = _player2 = nullptr;
 }
 
@@ -22,6 +20,13 @@ Player* GameLogic::GetPlayer1() const
 Player* GameLogic::GetPlayer2() const
 {
 	return _player2;
+}
+
+
+void GameLogic::SetPlayerPlatforms(Platform* platform1, Platform* platform2)
+{
+	_player1->SetPlatform(platform1);
+	_player2->SetPlatform(platform2);
 }
 
 

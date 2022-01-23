@@ -22,8 +22,8 @@ private:
 	void InitBall();
 	void InitWalls();
 	void InitTexts();
+	void InitPlayers();
 	void InitPlayerScoresAndLives();
-	void InitPowerUpManager();
 
 
 	FileManager* _fileManager;

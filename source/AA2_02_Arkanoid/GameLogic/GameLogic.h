@@ -10,6 +10,7 @@ public:
 
 	Player* GetPlayer1() const;
 	Player* GetPlayer2() const;
+	void SetPlayerPlatforms(Platform* platform1, Platform* platform2);
 
 	void PlayerGetsScored(Player* actingPlayer);
 	void PlayerDestroyedBrick(Player* actingPlayer, const int& brickScoreGain);

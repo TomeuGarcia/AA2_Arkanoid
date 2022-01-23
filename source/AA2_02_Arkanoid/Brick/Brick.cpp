@@ -24,12 +24,6 @@ void Brick::OnCollisionEnter()
 	}
 }
 
-void Brick::OnCollisionStay()
-{
-	if (_otherCollisionCollider->GetThisGameObject()->GetTag() == Tag::BALL) {
-		GetsHit();
-	}
-}
 
 Vector2D<float> Brick::GetPosition() const 
 { 
